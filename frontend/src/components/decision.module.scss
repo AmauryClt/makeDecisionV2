@@ -39,16 +39,14 @@ select,
   font-weight: bold;
 }
 
-textarea {
-  height: 200px;
-}
-
 select {
-  height: 50px;
+  height: 75px;
+  font-size: 1em;
 }
 
 em {
   font-size: 0.75em;
+  font-weight: lighter;
 }
 
 button {
@@ -59,8 +57,4 @@ button {
   color: white;
   border-radius: 5px;
   margin: auto;
-}
-
-@media screen and (max-width: 600px) {
-
 }
