@@ -18,18 +18,19 @@ h1 {
 }
 
 label {
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
 }
 
 input,
-textarea,
-select {
+select,
+.editor {
   font-family: "Lato", sans-serif;
   border-radius: 5px;
-  border: none;
+  border: solid whitesmoke 1px;
   box-shadow: 10px 5px 5px rgb(12, 57, 68);
-  background-color: whitesmoke;
 }
 
 .title > input {
@@ -58,4 +59,8 @@ button {
   color: white;
   border-radius: 5px;
   margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+
 }

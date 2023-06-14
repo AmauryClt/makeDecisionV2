@@ -1,6 +1,17 @@
 import styles from "./decision.module.scss";
+import React, { useRef } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 
 export default function Decision() {
+  console.log(Editor);
+
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+    }
+  };
+
   return (
     <div>
       <h1>Interface de création d'une demande de décision</h1>
@@ -12,19 +23,41 @@ export default function Decision() {
           <input type="text" name="title" placeholder="Titre de ta décision" />
         </label>
         <label>
-          <textarea
-            name="details"
-            placeholder="Donne nous quelques détails..."
-          />
+          <div className={styles.editor}>
+            <Editor
+              onInit={(evt, editor) => (editorRef.current = editor)}
+              initialValue="<p>Donnez nous des détails sur votre idée !!!</p>"
+              init={{
+                height: 300,
+                menubar: true,
+              }}
+            />
+          </div>
         </label>
         <label>
-          <textarea
-            name="benefices"
-            placeholder="Quel seront les bénéfices ?"
-          />
+          <div className={styles.editor}>
+            <Editor
+              onInit={(evt, editor) => (editorRef.current = editor)}
+              initialValue="<p>Quel en seront les bénéfices ?</p>"
+              init={{
+                height: 300,
+                menubar: true,
+              }}
+            />
+          </div>
         </label>
         <label>
-          <textarea name="risques" placeholder="Quels seront les risques ?" />
+          Risques :
+          <div className={styles.editor}>
+            <Editor
+              onInit={(evt, editor) => (editorRef.current = editor)}
+              initialValue="<p>Et les risques ?</p>"
+              init={{
+                height: 300,
+                menubar: true,
+              }}
+            />
+          </div>
         </label>
         <label>
           Service(s) impactés
