@@ -2,7 +2,7 @@ import styles from "./home.module.scss";
 
 export default function Home() {
   return (
-    <main>
+    <main className={styles.mainHome}>
       <div className={styles.creer} />
       <div className={styles.attente} />
       <div className={styles.désaccord} />
