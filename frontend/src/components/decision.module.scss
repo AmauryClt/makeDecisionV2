@@ -1,0 +1,61 @@
+h1,
+.intro {
+  text-align: center;
+  color: rgb(12, 57, 68);
+}
+
+form {
+  display: flex;
+  font-family: "Lato", sans-serif;
+  flex-direction: column;
+  gap: 20px;
+  width: 80vw;
+  margin: auto;
+}
+
+h1 {
+  font-family: "Raleway", sans-serif;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea,
+select {
+  font-family: "Lato", sans-serif;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 10px 5px 5px rgb(12, 57, 68);
+  background-color: whitesmoke;
+}
+
+.title > input {
+  height: 40px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+textarea {
+  height: 200px;
+}
+
+select {
+  height: 50px;
+}
+
+em {
+  font-size: 0.75em;
+}
+
+button {
+  width: 20vw;
+  height: 30px;
+  background-color: rgb(12, 57, 68);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  margin: auto;
+}
