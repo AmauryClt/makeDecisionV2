@@ -1,0 +1,76 @@
+nav {
+  width: 100%;
+  height: var(--nav-height, 6rem);
+  top: 0;
+  gap: 4%;
+  display: flex;
+}
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex: auto;
+  align-items: center;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.Liens {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+  white-space: nowrap;
+  gap: 2rem;
+  margin-left: 25rem;
+  margin-top: 0.5rem;
+}
+
+.logo {
+  width: 13rem;
+  height: 3rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.pp {
+  margin-left: 5rem;
+  border-radius: 50%;
+  height: 4rem;
+}
+.rangement {
+  margin-left: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.profile {
+  margin-left: 4.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .Liens {
+    margin-left: 2rem;
+    width: 100%;
+  }
+  .logo {
+    width: 8rem;
+    height: 2rem;
+  }
+  .create {
+    font-size: 1rem;
+  }
+  .running {
+    font-size: 1rem;
+  }
+  .finish {
+    font-size: 1rem;
+  }
+  .nav {
+    max-width: 100%;
+  }
+  nav {
+    height: 3rem;
+    width: 100%;
+  }
+}
