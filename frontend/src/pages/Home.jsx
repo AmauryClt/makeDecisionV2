@@ -1,9 +1,14 @@
-import logo from "../assets/logo.svg";
+import styles from "./home.module.scss";
 
 export default function Home() {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-    </header>
+    <main className={styles.mainHome}>
+      <div className={styles.creer} />
+      <div className={styles.attente} />
+      <div className={styles.désaccord} />
+      <div className={styles.validée} />
+      <div className={styles.enplace} />
+      <div className={styles.archivée} />
+    </main>
   );
 }
