@@ -1,7 +1,3 @@
-
 export default function Home() {
-  return (
-    <header>
-    </header>
-  );
+  return <header>Header Here</header>;
 }

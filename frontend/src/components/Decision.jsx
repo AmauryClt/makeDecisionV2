@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./decision.module.scss";
 
 export default function Decision() {
