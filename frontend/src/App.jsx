@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import Decision from "./components/Decision";
 import Home from "./pages/Home";
 import VotePage from "./components/VotePage";
 import DisagreementPage from "./components/DisagreementPage";
@@ -17,6 +18,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="*" element={<Home />} />
+          <Route path="/CreatePage" element={<Decision />} />
           <Route path="/VotePage" element={<VotePage />} />
           <Route path="/DisagreementPage" element={<DisagreementPage />} />
           <Route path="/ValidPage" element={<ValidPage />} />
