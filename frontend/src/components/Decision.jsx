@@ -6,7 +6,7 @@ export default function Decision() {
   const editorRef = useRef(null);
 
   return (
-    <div>
+    <main>
       <h1>Interface de création d'une demande de décision</h1>
       <p className={styles.intro}>
         Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
@@ -152,6 +152,6 @@ export default function Decision() {
         </label>
         <button type="submit">Je propose mon idée !</button>
       </form>
-    </div>
+    </main>
   );
 }
