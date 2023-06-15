@@ -3,13 +3,15 @@ import { Editor } from "@tinymce/tinymce-react";
 import styles from "./decision.module.scss";
 
 export default function Decision() {
-const [selectedValues, setSelectedValues] = useState([]); // Nouvel état pour stocker les valeurs sélectionnées
+  const [selectedValues, setSelectedValues] = useState([]);
 
-function addValue(value) {
-  if (!selectedValues.includes(value)) {
-    setSelectedValues([...selectedValues, value]);
+  function addValue(value) {
+    if (!selectedValues.includes(value)) {
+      setSelectedValues([...selectedValues, value]);
+    } else {
+      setSelectedValues(selectedValues.filter((v) => v !== value));
+    }
   }
-}
 
   const editorRef = useRef(null);
 
@@ -151,28 +153,28 @@ function addValue(value) {
         </div>
         <p className={styles.label}>Service(s) impactés</p>
         <div className={styles.buttonServ}>
-<button type="button" onClick={() => addValue('Administration')}>
-  Administration
-</button>
-<button type="button" onClick={() => addValue('Bénévoles')}>
-  Bénévoles
-</button>
-<button type="button" onClick={() => addValue('Comptabilité')}>
-  Comptabilité
-</button>
-<button type="button" onClick={() => addValue('Développement')}>
-  Développement
-</button>
-<button type="button" onClick={() => addValue('Technique')}>
-  Technique
-</button>
+          <button type="button" onClick={() => addValue("Administration")}>
+            Administration
+          </button>
+          <button type="button" onClick={() => addValue("Bénévoles")}>
+            Bénévoles
+          </button>
+          <button type="button" onClick={() => addValue("Comptabilité")}>
+            Comptabilité
+          </button>
+          <button type="button" onClick={() => addValue("Développement")}>
+            Développement
+          </button>
+          <button type="button" onClick={() => addValue("Technique")}>
+            Technique
+          </button>
         </div>
         <p className={styles.label}>Choix :</p>
         <ul id="selectedValue">
-        {selectedValues.map((value, index) => (
-          <li key={index}>{value}</li>
-        ))}
-      </ul>
+          {selectedValues.map((value) => (
+            <li key={value.id}>{value}</li>
+          ))}
+        </ul>
         <label className={styles.date}>
           Date de fin souhaitée :
           <input type="date" name="date" />
