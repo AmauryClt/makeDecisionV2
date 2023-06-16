@@ -1,8 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import styles from "./decision.module.scss";
 
 export default function Decision() {
+  const [selectedValues, setSelectedValues] = useState([]);
+
+  function addValue(value) {
+    if (!selectedValues.includes(value)) {
+      setSelectedValues([...selectedValues, value]);
+    } else {
+      setSelectedValues(selectedValues.filter((v) => v !== value));
+    }
+  }
+
   const editorRef = useRef(null);
 
   return (
@@ -15,6 +25,7 @@ export default function Decision() {
         <label className={styles.title}>
           <input type="text" name="title" placeholder="Titre de ta décision" />
         </label>
+        <p className={styles.label}>Détails :</p>
         <div className={styles.editor}>
           <Editor
             onInit={(evt, editor) => {
@@ -56,6 +67,7 @@ export default function Decision() {
             }}
           />
         </div>
+        <p className={styles.label}>Bénéfices :</p>
         <div className={styles.editor}>
           <Editor
             onInit={(evt, editor) => {
@@ -97,7 +109,7 @@ export default function Decision() {
             }}
           />
         </div>
-        Risques :
+        <p className={styles.label}>Risques :</p>
         <div className={styles.editor}>
           <Editor
             onInit={(evt, editor) => {
@@ -139,16 +151,33 @@ export default function Decision() {
             }}
           />
         </div>
-        <label>
-          Service(s) impactés
-          <em>Utilisez la touche ctrl pour une sélection multiple</em>
-          <select name="service" multiple>
-            <option>Administration</option>
-            <option>Bénévoles</option>
-            <option>Comptabilité</option>
-            <option>Développement</option>
-            <option>Technique</option>
-          </select>
+        <p className={styles.label}>Service(s) impactés</p>
+        <div className={styles.buttonServ}>
+          <button type="button" onClick={() => addValue("Administration")}>
+            Administration
+          </button>
+          <button type="button" onClick={() => addValue("Bénévoles")}>
+            Bénévoles
+          </button>
+          <button type="button" onClick={() => addValue("Comptabilité")}>
+            Comptabilité
+          </button>
+          <button type="button" onClick={() => addValue("Développement")}>
+            Développement
+          </button>
+          <button type="button" onClick={() => addValue("Technique")}>
+            Technique
+          </button>
+        </div>
+        <p className={styles.label}>Choix :</p>
+        <ul id="selectedValue">
+          {selectedValues.map((value) => (
+            <li key={value.id}>{value}</li>
+          ))}
+        </ul>
+        <label className={styles.date}>
+          Date de fin souhaitée :
+          <input type="date" name="date" />
         </label>
         <button type="submit">Je propose mon idée !</button>
       </form>
