@@ -17,7 +17,7 @@ export default function Decision() {
 
   return (
     <main>
-      <h1>Interface de création d'une demande de décision</h1>
+      <h1 className={styles.banniere}>Interface de création d'une demande de décision</h1>
       <p className={styles.intro}>
         Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
       </p>
