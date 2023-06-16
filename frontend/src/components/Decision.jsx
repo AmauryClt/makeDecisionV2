@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { add, formatISO, format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { add, formatISO } from "date-fns";
 import styles from "./decision.module.scss";
 
 export default function Decision() {
@@ -13,45 +13,40 @@ export default function Decision() {
       setSelectedValues(selectedValues.filter((v) => v !== value));
     }
   }
-const defaultDate=formatISO(add(new Date(),{months : 1}),{ representation: 'date' })
-const maxDate=formatISO(add(new Date(),{years : 1}),{ representation: 'date' })
-const minDate=formatISO(add(new Date(),{days : 7}),{ representation: 'date' })
+  const defaultDate = formatISO(add(new Date(), { months: 1 }), {
+    representation: "date",
+  });
+  const maxDate = formatISO(add(new Date(), { years: 1 }), {
+    representation: "date",
+  });
+  const minDate = formatISO(add(new Date(), { days: 7 }), {
+    representation: "date",
+  });
 
   const editorRef = useRef(null);
   const editorConfig = {
-              plugins: "lists",
-              height: 300,
-              toolbar: [
-                { name: "history", items: ["undo", "redo"] },
-                {
-                  name: "formatting",
-                  items: [
-                    "bold",
-                    "italic",
-                    "forecolor",
-                    "backcolor",
-                    "fontsizeinput",
-                  ],
-                },
-                {
-                  name: "alignment",
-                  items: [
-                    "alignleft",
-                    "aligncenter",
-                    "alignright",
-                    "alignjustify",
-                  ],
-                },
+    plugins: "lists",
+    height: 300,
+    toolbar: [
+      { name: "history", items: ["undo", "redo"] },
+      {
+        name: "formatting",
+        items: ["bold", "italic", "forecolor", "backcolor", "fontsizeinput"],
+      },
+      {
+        name: "alignment",
+        items: ["alignleft", "aligncenter", "alignright", "alignjustify"],
+      },
 
-                {
-                  name: "indentation",
-                  items: ["bullist", "numlist", "outdent", "indent"],
-                },
-              ],
-              color_cols: 5,
-              menubar: true,
-            }
-    return (
+      {
+        name: "indentation",
+        items: ["bullist", "numlist", "outdent", "indent"],
+      },
+    ],
+    color_cols: 5,
+    menubar: true,
+  };
+  return (
     <main>
       <h1>Interface de création d'une demande de décision</h1>
       <p className={styles.intro}>
@@ -117,7 +112,13 @@ const minDate=formatISO(add(new Date(),{days : 7}),{ representation: 'date' })
         </ul>
         <label className={styles.date}>
           Date de fin souhaitée :
-          <input type="date" name="date" defaultValue={defaultDate} min={minDate} max={maxDate}/>
+          <input
+            type="date"
+            name="date"
+            defaultValue={defaultDate}
+            min={minDate}
+            max={maxDate}
+          />
         </label>
         <button type="submit">Je propose mon idée !</button>
       </form>
