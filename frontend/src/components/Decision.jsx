@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import { add, formatISO, format, formatDistance, formatRelative, subDays } from 'date-fns'
 import styles from "./decision.module.scss";
 
 export default function Decision() {
@@ -12,10 +13,45 @@ export default function Decision() {
       setSelectedValues(selectedValues.filter((v) => v !== value));
     }
   }
+const defaultDate=formatISO(add(new Date(),{months : 1}),{ representation: 'date' })
+const maxDate=formatISO(add(new Date(),{years : 1}),{ representation: 'date' })
+const minDate=formatISO(add(new Date(),{days : 7}),{ representation: 'date' })
 
   const editorRef = useRef(null);
+  const editorConfig = {
+              plugins: "lists",
+              height: 300,
+              toolbar: [
+                { name: "history", items: ["undo", "redo"] },
+                {
+                  name: "formatting",
+                  items: [
+                    "bold",
+                    "italic",
+                    "forecolor",
+                    "backcolor",
+                    "fontsizeinput",
+                  ],
+                },
+                {
+                  name: "alignment",
+                  items: [
+                    "alignleft",
+                    "aligncenter",
+                    "alignright",
+                    "alignjustify",
+                  ],
+                },
 
-  return (
+                {
+                  name: "indentation",
+                  items: ["bullist", "numlist", "outdent", "indent"],
+                },
+              ],
+              color_cols: 5,
+              menubar: true,
+            }
+    return (
     <main>
       <h1>Interface de création d'une demande de décision</h1>
       <p className={styles.intro}>
@@ -32,39 +68,7 @@ export default function Decision() {
               editorRef.current = editor;
             }}
             initialValue="<p>Donnez nous des détails sur votre idée !!!</p>"
-            init={{
-              plugins: "lists",
-              height: 300,
-              toolbar: [
-                { name: "history", items: ["undo", "redo"] },
-                {
-                  name: "formatting",
-                  items: [
-                    "bold",
-                    "italic",
-                    "forecolor",
-                    "backcolor",
-                    "fontsizeinput",
-                  ],
-                },
-                {
-                  name: "alignment",
-                  items: [
-                    "alignleft",
-                    "aligncenter",
-                    "alignright",
-                    "alignjustify",
-                  ],
-                },
-
-                {
-                  name: "indentation",
-                  items: ["bullist", "numlist", "outdent", "indent"],
-                },
-              ],
-              color_cols: 5,
-              menubar: true,
-            }}
+            init={editorConfig}
           />
         </div>
         <p className={styles.label}>Bénéfices :</p>
@@ -74,39 +78,7 @@ export default function Decision() {
               editorRef.current = editor;
             }}
             initialValue="<p>Quel en seront les bénéfices ?</p>"
-            init={{
-              plugins: "lists",
-              height: 300,
-              toolbar: [
-                { name: "history", items: ["undo", "redo"] },
-                {
-                  name: "formatting",
-                  items: [
-                    "bold",
-                    "italic",
-                    "forecolor",
-                    "backcolor",
-                    "fontsizeinput",
-                  ],
-                },
-                {
-                  name: "alignment",
-                  items: [
-                    "alignleft",
-                    "aligncenter",
-                    "alignright",
-                    "alignjustify",
-                  ],
-                },
-
-                {
-                  name: "indentation",
-                  items: ["bullist", "numlist", "outdent", "indent"],
-                },
-              ],
-              color_cols: 5,
-              menubar: true,
-            }}
+            init={editorConfig}
           />
         </div>
         <p className={styles.label}>Risques :</p>
@@ -116,39 +88,7 @@ export default function Decision() {
               editorRef.current = editor;
             }}
             initialValue="<p>Et les risques ?</p>"
-            init={{
-              plugins: "lists",
-              height: 300,
-              toolbar: [
-                { name: "history", items: ["undo", "redo"] },
-                {
-                  name: "formatting",
-                  items: [
-                    "bold",
-                    "italic",
-                    "forecolor",
-                    "backcolor",
-                    "fontsizeinput",
-                  ],
-                },
-                {
-                  name: "alignment",
-                  items: [
-                    "alignleft",
-                    "aligncenter",
-                    "alignright",
-                    "alignjustify",
-                  ],
-                },
-
-                {
-                  name: "indentation",
-                  items: ["bullist", "numlist", "outdent", "indent"],
-                },
-              ],
-              color_cols: 5,
-              menubar: true,
-            }}
+            init={editorConfig}
           />
         </div>
         <p className={styles.label}>Service(s) impactés</p>
@@ -177,7 +117,7 @@ export default function Decision() {
         </ul>
         <label className={styles.date}>
           Date de fin souhaitée :
-          <input type="date" name="date" />
+          <input type="date" name="date" defaultValue={defaultDate} min={minDate} max={maxDate}/>
         </label>
         <button type="submit">Je propose mon idée !</button>
       </form>
