@@ -1,14 +1,10 @@
-* {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-main {
-  background-color: rgba(12, 57, 68, 1);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 100px 100px;
+.mainHome {
+    background-color:rgba(12, 57, 68, 1);
+    height: 713px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr;
+    gap: 100px 100px,
 }
 
 .creer {
