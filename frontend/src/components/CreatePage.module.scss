@@ -9,7 +9,7 @@ form {
   font-family: "Lato", sans-serif;
   flex-direction: column;
   gap: 20px;
-  width: 80vw;
+  width: 80svw;
   margin: auto;
 }
 
@@ -48,11 +48,11 @@ select,
 }
 
 
-button, li {
+.btnSubmit {
   font-family: "Lato", sans-serif;
   font-size: 1em;
-  width: 25vw;
-  height: 30px;
+  width: 35svw;
+  height: 35px;
   background-color: rgb(12, 57, 68);
   border: none;
   color: white;
@@ -67,15 +67,18 @@ button, li {
   gap : 5px
 }
 
-li {
-  list-style: none;
-  text-align : center;
-  vertical-align: middle;
-  padding-top : 5px
-}
-
-button:active{
+.buttonChoice {
   background-color: white;
   color : rgb(12, 57, 68);
-  border : solid rgb(12,57,68)
+  border : solid rgb(12,57,68);
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  width: 35svw;
+  height: 35px;
+  border-radius: 5px;
 }
+
+@media screen and (max-width: 600px) {
+  .btnSubmit {
+    width : 45svw;
+  }}

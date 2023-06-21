@@ -1,18 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
-import styles from "./decision.module.scss";
+import styles from "./CreatePage.module.scss";
+import Button from "./Button";
 
-export default function Decision() {
+export default function CreatePage() {
   const [selectedValues, setSelectedValues] = useState([]);
-
-  function addValue(value) {
-    if (!selectedValues.includes(value)) {
-      setSelectedValues([...selectedValues, value]);
-    } else {
-      setSelectedValues(selectedValues.filter((v) => v !== value));
-    }
-  }
+  const addValue = useCallback(
+    (value) => {
+      if (!selectedValues.includes(value)) {
+        setSelectedValues([...selectedValues, value]);
+      } else {
+        setSelectedValues(selectedValues.filter((v) => v !== value));
+      }
+    },
+    [setSelectedValues]
+  );
   const defaultDate = formatISO(add(new Date(), { months: 1 }), {
     representation: "date",
   });
@@ -31,7 +34,7 @@ export default function Decision() {
       { name: "history", items: ["undo", "redo"] },
       {
         name: "formatting",
-        items: ["bold", "italic", "forecolor", "backcolor", "fontsizeinput"],
+        items: ["bold", "italic", "underline"],
       },
       {
         name: "alignment",
@@ -44,7 +47,7 @@ export default function Decision() {
       },
     ],
     color_cols: 5,
-    menubar: true,
+    menubar: false,
   };
   return (
     <main>
@@ -59,7 +62,7 @@ export default function Decision() {
         <p className={styles.label}>Détails :</p>
         <div className={styles.editor}>
           <Editor
-            onInit={(evt, editor) => {
+            onInit={(editor) => {
               editorRef.current = editor;
             }}
             initialValue="<p>Donnez nous des détails sur votre idée !!!</p>"
@@ -69,7 +72,7 @@ export default function Decision() {
         <p className={styles.label}>Bénéfices :</p>
         <div className={styles.editor}>
           <Editor
-            onInit={(evt, editor) => {
+            onInit={(editor) => {
               editorRef.current = editor;
             }}
             initialValue="<p>Quel en seront les bénéfices ?</p>"
@@ -79,7 +82,7 @@ export default function Decision() {
         <p className={styles.label}>Risques :</p>
         <div className={styles.editor}>
           <Editor
-            onInit={(evt, editor) => {
+            onInit={(editor) => {
               editorRef.current = editor;
             }}
             initialValue="<p>Et les risques ?</p>"
@@ -88,28 +91,20 @@ export default function Decision() {
         </div>
         <p className={styles.label}>Service(s) impactés</p>
         <div className={styles.buttonServ}>
-          <button type="button" onClick={() => addValue("Administration")}>
-            Administration
-          </button>
-          <button type="button" onClick={() => addValue("Bénévoles")}>
-            Bénévoles
-          </button>
-          <button type="button" onClick={() => addValue("Comptabilité")}>
-            Comptabilité
-          </button>
-          <button type="button" onClick={() => addValue("Développement")}>
-            Développement
-          </button>
-          <button type="button" onClick={() => addValue("Technique")}>
-            Technique
-          </button>
+          <Button addValue={addValue}>Administration</Button>
+          <Button addValue={addValue}>Bénévoles</Button>
+          <Button addValue={addValue}>Comptabilité</Button>
+          <Button addValue={addValue}>Développement</Button>
+          <Button addValue={addValue}>Technique</Button>
         </div>
         <p className={styles.label}>Choix :</p>
-        <ul id="selectedValue">
+        <div className={styles.buttonServ} id="selectedValue">
           {selectedValues.map((value) => (
-            <li key={value.id}>{value}</li>
+            <button className={styles.buttonChoice} type="button" key={value}>
+              {value}
+            </button>
           ))}
-        </ul>
+        </div>
         <label className={styles.date}>
           Date de fin souhaitée :
           <input
@@ -120,7 +115,9 @@ export default function Decision() {
             max={maxDate}
           />
         </label>
-        <button type="submit">Je propose mon idée !</button>
+        <button className={styles.btnSubmit} type="submit">
+          Je propose mon idée !
+        </button>
       </form>
     </main>
   );
