@@ -20,7 +20,7 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-router-dom:
-    specifier: ^6.12.1
+    specifier: ^6.13.0
     version: 6.13.0(react-dom@18.2.0)(react@18.2.0)
   vite:
     specifier: ^4.0.4
