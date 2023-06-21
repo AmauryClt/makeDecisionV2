@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./header.module.scss";
 import Navbar from "./Navbar";
 
@@ -14,8 +15,12 @@ function header() {
         <Navbar />
       </div>
       <div className={styles.rangement}>
-        <img className={styles.pp} src="./src/assets/test.jpg" alt="random" />
-        <div className={styles.profile}>Eliott LAREINE</div>
+        <Link to="/Profil">
+          <img className={styles.pp} src="./src/assets/test.jpg" alt="random" />
+        </Link>
+        <Link className={styles.name} to="Profil">
+          <div>Eliott LAREINE</div>
+        </Link>
       </div>
       <style>
         @import

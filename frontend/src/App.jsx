@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import VotePage from "./components/VotePage";
 import ValidPage from "./components/ValidPage";
 import Footer from "./components/Footer";
+import Profil from "./components/Profil";
 
 import "./App.css";
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="*" element={<Home />} />
           <Route path="/VotePage" element={<VotePage />} />
           <Route path="/ValidPage" element={<ValidPage />} />
+          <Route path="/Profil" element={<Profil />} />
         </Routes>
         <Footer />
       </div>
