@@ -29,6 +29,8 @@
     border-width: 1px, 1px, 1px, 1px;
     border-style: solid;
     border-color: rgba(0, 0, 0, 1);
+    text-decoration: none;
+    color:rgba(243, 151, 107, 1)
 }
 
 .EnCours{
@@ -39,6 +41,8 @@
     border-width: 1px, 1px, 1px, 1px;
     border-style: solid;
     border-color: rgba(0, 0, 0, 1);
+    text-decoration: none;
+    color:#FFF30D;
 }
 
 .VoteEnd{
@@ -49,6 +53,8 @@
     border-width: 1px, 1px, 1px, 1px;
     border-style: solid;
     border-color: rgba(0, 0, 0, 1);
+    text-decoration: none;
+    color:rgba(112, 175, 144, 1)
 }
 
 .imgCards{
@@ -57,4 +63,14 @@
     border-top-left-radius: 12.5px;
     border-top-right-radius: 12.5px;
     background-size: 15%;
+}
+
+.TitreHome{
+    display: flex;
+    justify-content: center;
+}
+
+.TexteHome{
+    color: black;
+    margin-left: 2px;
 }

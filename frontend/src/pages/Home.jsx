@@ -1,37 +1,38 @@
 import styles from "./home.module.scss";
+import {Link} from 'react-router-dom';
 
 export default function Home() {
   return (
     <main>
       <h1 className={styles.banniere}> Make Desicion</h1>
       <div className={styles.mainHome}>
-        <div className={styles.Creer}>
+        <Link className={styles.Creer} >
           <img
             className={styles.imgCards}
             src="./src/assets/makesensecreer.jpg"
             alt="Makesense.Logo"
           />
-          <h2>Créer ta décision</h2>
-          <p>Coucou</p>
-        </div>
-        <div className={styles.EnCours}>
+          <h2 className={styles.TitreHome}>Créer ta décision</h2>
+          <p className={styles.TexteHome}>Soit force de proposition pour changer le monde!</p>
+        </Link>
+        <Link className={styles.EnCours} to="/VotePage">
           <img
             className={styles.imgCards}
             src="./src/assets/encoursdevote.jpeg"
             alt="Makesense.Logo"
           />
-          <h2>En cours de vote</h2>
-          <p>Coucou</p>
-        </div>
-        <div className={styles.VoteEnd}>
+          <h2 className={styles.TitreHome}>En cours de vote</h2>
+          <p className={styles.TexteHome}>Soit force de proposition pour changer le monde!</p>
+        </Link>
+        <Link className={styles.VoteEnd} to="/ValidPage">
           <img
             className={styles.imgCards}
             src="./src/assets/makesensevalide.jpg"
             alt="Makesense.Logo"
           />
-          <h2>Votation terminé</h2>
-          <p>Coucou</p>
-        </div>
+          <h2 className={styles.TitreHome}>Votation terminé</h2>
+          <p className={styles.TexteHome}>Soit force de proposition pour changer le monde!</p>
+        </Link>
       </div>
     </main>
   );
