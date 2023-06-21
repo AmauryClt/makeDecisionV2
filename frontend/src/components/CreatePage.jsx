@@ -6,16 +6,16 @@ import Button from "./Button";
 
 export default function CreatePage() {
   const [selectedValues, setSelectedValues] = useState([]);
-  const addValue = useCallback(
-    (value) => {
-      if (!selectedValues.includes(value)) {
-        setSelectedValues([...selectedValues, value]);
-      } else {
-        setSelectedValues(selectedValues.filter((v) => v !== value));
-      }
-    },
-    [setSelectedValues]
-  );
+
+  const addValue = useCallback((value) => {
+    setSelectedValues((prevSelectedValues) => [...prevSelectedValues, value]);
+  }, []);
+
+  const removeValue = useCallback((value) => {
+    setSelectedValues((prevSelectedValues) =>
+      prevSelectedValues.filter((v) => v !== value)
+    );
+  }, []);
   const defaultDate = formatISO(add(new Date(), { months: 1 }), {
     representation: "date",
   });
@@ -91,11 +91,21 @@ export default function CreatePage() {
         </div>
         <p className={styles.label}>Service(s) impactés</p>
         <div className={styles.buttonServ}>
-          <Button addValue={addValue}>Administration</Button>
-          <Button addValue={addValue}>Bénévoles</Button>
-          <Button addValue={addValue}>Comptabilité</Button>
-          <Button addValue={addValue}>Développement</Button>
-          <Button addValue={addValue}>Technique</Button>
+          <Button addValue={addValue} removeValue={removeValue}>
+            Administration
+          </Button>
+          <Button addValue={addValue} removeValue={removeValue}>
+            Bénévoles
+          </Button>
+          <Button addValue={addValue} removeValue={removeValue}>
+            Comptabilité
+          </Button>
+          <Button addValue={addValue} removeValue={removeValue}>
+            Développement
+          </Button>
+          <Button addValue={addValue} removeValue={removeValue}>
+            Technique
+          </Button>
         </div>
         <p className={styles.label}>Choix :</p>
         <div className={styles.buttonServ} id="selectedValue">
