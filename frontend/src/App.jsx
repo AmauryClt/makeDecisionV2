@@ -25,7 +25,6 @@ function App() {
           <Route path="/EstablishmentPage" element={<EstablishmentPage />} />
           <Route path="/ArchivePage" element={<ArchivePage />} />
         </Routes>
-        <Home />
         <Footer />
       </div>
     </Router>
