@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./header.module.scss";
+import Navbar from "./Navbar";
 
 function header() {
   return (
@@ -10,15 +11,7 @@ function header() {
         alt="make-sense"
       />
       <div className={styles.Liens}>
-        <div className={styles.create} to="/Créer-ta-décision">
-          Créer ta décision
-        </div>
-        <div className={styles.running} to="/en-cours-de-vote">
-          En cours de vote
-        </div>
-        <div className={styles.finish} to="/votation-terminé">
-          Votation terminé
-        </div>
+        <Navbar />
       </div>
       <div className={styles.rangement}>
         <img className={styles.pp} src="./src/assets/test.jpg" alt="random" />
