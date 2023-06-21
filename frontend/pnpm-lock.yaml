@@ -1,9 +1,15 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@tinymce/tinymce-react':
+    specifier: ^4.3.0
+    version: 4.3.0(react-dom@18.2.0)(react@18.2.0)
   '@vitejs/plugin-react':
     specifier: ^3.0.1
     version: 3.1.0(vite@4.3.9)
+  nodemodule:
+    specifier: ^0.3.0
+    version: 0.3.0
   prop-types:
     specifier: ^15.8.1
     version: 15.8.1
@@ -14,8 +20,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-router-dom:
-    specifier: ^6.13.0
-    version: 6.13.0(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^6.12.1
+    version: 6.12.1(react-dom@18.2.0)(react@18.2.0)
   vite:
     specifier: ^4.0.4
     version: 4.3.9(sass@1.63.4)
@@ -607,6 +613,21 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
+<<<<<<< HEAD
+=======
+  /@tinymce/tinymce-react@4.3.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-iB4cUsYfcJL4NGuKhqCGYuTmFTje3nPxyPv1HxprTsp/YMGuuiiSNWrv3zwI31QX5Cn8qeq9MrMDnbxuRugHyg==}
+    peerDependencies:
+      react: ^18.0.0 || ^17.0.1 || ^16.7.0
+      react-dom: ^18.0.0 || ^17.0.1 || ^16.7.0
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tinymce: 6.5.0
+    dev: false
+
+>>>>>>> dev
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
@@ -1838,6 +1859,10 @@ packages:
     resolution: {integrity: sha512-QzsYKWhXTWx8h1kIvqfnC++o0pEmpRQA/aenALsL2F4pqNVr7YzcdMlDij5WBnwftRbJCNJL/O7zdKaxKPHqgQ==}
     dev: false
 
+  /nodemodule@0.3.0:
+    resolution: {integrity: sha512-T0ZizAsbXZcuSL21zAkBus1bNZbcH2KUzsv9SHTQIQFHpMd7kQB3fh1KX3SVOaFhvzYiJEDaQCzqGllAzi50LA==}
+    dev: false
+
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
@@ -2026,8 +2051,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
+<<<<<<< HEAD
   /react-router-dom@6.13.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-6Nqoqd7fgwxxVGdbiMHTpDHCYPq62d7Wk1Of7B82vH7ZPwwsRaIa22zRZKPPg413R5REVNiyuQPKDG1bubcOFA==}
+=======
+  /react-router-dom@6.12.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-POIZN9UDKWwEDga054LvYr2KnK8V+0HR4Ny4Bwv8V7/FZCPxJgsCjYxXGxqxzHs7VBxMKZfgvtKhafuJkJSPGA==}
+>>>>>>> dev
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
@@ -2036,11 +2066,19 @@ packages:
       '@remix-run/router': 1.6.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+<<<<<<< HEAD
       react-router: 6.13.0(react@18.2.0)
     dev: false
 
   /react-router@6.13.0(react@18.2.0):
     resolution: {integrity: sha512-Si6KnfEnJw7gUQkNa70dlpI1bul46FuSxX5t5WwlUBxE25DAz2BjVkwaK8Y2s242bQrZPXCpmwLPtIO5pv4tXg==}
+=======
+      react-router: 6.12.1(react@18.2.0)
+    dev: false
+
+  /react-router@6.12.1(react@18.2.0):
+    resolution: {integrity: sha512-evd/GrKJOeOypD0JB9e1r7pQh2gWCsTbUfq059Wm1AFT/K2MNZuDo19lFtAgIhlBrp0MmpgpqtvZC7LPAs7vSw==}
+>>>>>>> dev
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
@@ -2252,6 +2290,10 @@ packages:
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
+
+  /tinymce@6.5.0:
+    resolution: {integrity: sha512-I23hTUhbIyU/HCruy6wpIpOtr8UJhRJjRmJS9DCalN7UxT9iunkkbrcHa0FO9sG4GdMAOmVbZTHFBrgbDPYU6Q==}
+    dev: false
 
   /to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
