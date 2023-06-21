@@ -10,6 +10,9 @@ dependencies:
   date-fns:
     specifier: ^2.30.0
     version: 2.30.0
+  nodemodule:
+    specifier: ^0.3.0
+    version: 0.3.0
   prop-types:
     specifier: ^15.8.1
     version: 15.8.1
@@ -1860,6 +1863,10 @@ packages:
 
   /node-releases@2.0.12:
     resolution: {integrity: sha512-QzsYKWhXTWx8h1kIvqfnC++o0pEmpRQA/aenALsL2F4pqNVr7YzcdMlDij5WBnwftRbJCNJL/O7zdKaxKPHqgQ==}
+    dev: false
+
+  /nodemodule@0.3.0:
+    resolution: {integrity: sha512-T0ZizAsbXZcuSL21zAkBus1bNZbcH2KUzsv9SHTQIQFHpMd7kQB3fh1KX3SVOaFhvzYiJEDaQCzqGllAzi50LA==}
     dev: false
 
   /normalize-path@3.0.0:
