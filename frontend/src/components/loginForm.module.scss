@@ -20,28 +20,45 @@ img {
     display: flex;
     font-size: large;
     margin-top: 15px;
-    padding: 12px;
+    margin-left: 150px;
+    padding: 15px;
+    border-radius: 60px;
  }   
 
 .Password {
     display: flex;
     margin-top: 15px;
-    padding: 12px;
+    margin-left: 150px;
+    padding: 26px;
   }   
 
   .login {
     display: flex;
-    margin-top: 25px;
+    margin-top: 10px;
+    margin-left: 200px;
     float: center;
-    padding: 12px;
+    padding: 50px;
+    border-radius: 60px;
  }
  
 h1 {
     display: flex;
     padding: 35px;
+    margin-left: 200px;
  }   
  
+ .input {
+    border-radius: 60px;
+    width: 300px;
+ }
 
+ .button {
+    border-radius: 60px;
+    width: 150px;
+    height: 25px;
+    background-color: #FFF30D;
+
+ }
  
 
  

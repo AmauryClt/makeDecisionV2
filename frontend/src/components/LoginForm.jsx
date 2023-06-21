@@ -36,7 +36,8 @@ class LoginForm extends React.Component {
             <div className={styles.Username}>
               Username:
               <input
-                type="text"
+                className={styles.input}
+                type="username"
                 name="username"
                 value={username}
                 onChange={this.handleInputChange}
@@ -47,6 +48,7 @@ class LoginForm extends React.Component {
             <div className={styles.Password}>
               Password:
               <input
+                className={styles.input}
                 type="password"
                 name="password"
                 value={password}
@@ -55,7 +57,9 @@ class LoginForm extends React.Component {
             </div>
           </label>
           <div className={styles.login}>
-            <button type="submit">Login</button>
+            <button className={styles.button} type="submit">
+              Login
+            </button>
           </div>
         </form>
       </main>
