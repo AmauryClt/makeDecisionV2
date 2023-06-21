@@ -28,30 +28,36 @@ class LoginForm extends React.Component {
     return (
       <main className={styles.mainHome}>
         <form className={styles.labelStyles} onSubmit={this.handleSubmit}>
+          <div>
+            <img src="./src/assets/makesenseaccueil.jpg" alt="connect" />
+          </div>
           <h1>make decision</h1>
           <label>
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={username}
-              onChange={this.handleInputChange}
-            />
+            <div className={styles.Username}>
+              Username:
+              <input
+                type="text"
+                name="username"
+                value={username}
+                onChange={this.handleInputChange}
+              />
+            </div>
           </label>
           <label>
-            Password:
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={this.handleInputChange}
-            />
+            <div className={styles.Password}>
+              Password:
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={this.handleInputChange}
+              />
+            </div>
           </label>
-          <button type="submit">Login</button>
+          <div className={styles.login}>
+            <button type="submit">Login</button>
+          </div>
         </form>
-        <figcaption>
-          <img src="makesense_accueil.jpg" alt="" />
-        </figcaption>
       </main>
     );
   }
