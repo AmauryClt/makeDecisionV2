@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Decision from "./components/Decision";
 import Menu from "./components/Menu";
 import VotePage from "./components/VotePage";
 import DisagreementPage from "./components/DisagreementPage";
@@ -17,8 +16,7 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/Menu" element={<Menu />} />
-          <Route path="/CreatePage" element={<Decision />} />
+          <Route path="/Menu" element={<Menu />} /> 
           <Route path="/VotePage" element={<VotePage />} />
           <Route path="/DisagreementPage" element={<DisagreementPage />} />
           <Route path="/ValidPage" element={<ValidPage />} />
