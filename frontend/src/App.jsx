@@ -1,13 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
+import CreatePage from "./components/CreatePage";
 import VotePage from "./components/VotePage";
-import DisagreementPage from "./components/DisagreementPage";
 import ValidPage from "./components/ValidPage";
-import EstablishmentPage from "./components/EstablishmentPage";
-import ArchivePage from "./components/ArchivePage";
 import Footer from "./components/Footer";
-
+import LoginForm from "./components/LoginForm";
+import Profil from "./components/Profil";
 import "./App.css";
 
 function App() {
@@ -16,12 +15,12 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
+          <Route path="/" element={<LoginForm />} />
           <Route path="/Menu" element={<Menu />} />
+          <Route path="/CreatePage" element={<CreatePage />} />
           <Route path="/VotePage" element={<VotePage />} />
-          <Route path="/DisagreementPage" element={<DisagreementPage />} />
           <Route path="/ValidPage" element={<ValidPage />} />
-          <Route path="/EstablishmentPage" element={<EstablishmentPage />} />
-          <Route path="/ArchivePage" element={<ArchivePage />} />
+          <Route path="/Profil" element={<Profil />} />
         </Routes>
         <Footer />
       </div>
