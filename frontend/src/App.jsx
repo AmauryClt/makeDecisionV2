@@ -16,7 +16,7 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/Menu" element={<Menu />} /> 
+          <Route path="/Menu" element={<Menu />} />
           <Route path="/VotePage" element={<VotePage />} />
           <Route path="/DisagreementPage" element={<DisagreementPage />} />
           <Route path="/ValidPage" element={<ValidPage />} />
