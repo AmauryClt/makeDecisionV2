@@ -5,7 +5,6 @@
 .mainHome{
     background-color:white;
     height: 27rem;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -27,11 +26,13 @@
 
 .Creer{
     background-color: white;
-    width: 23rem;
-    height: 17rem;
-    border-radius: 15px;
-    border: solid 0.5px;
-    border-color: black;
+    width: 25rem;
+    height: 22rem;
+    margin-left: 5%;
+    border-radius: 0.5rem;
+    border-width: 0.0625rem;
+    border-color: #eaeaea;
+    background-color: #fff;
     box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0,0,0,.1);
     transition: box-shadow .3s;
     text-decoration: none;
@@ -40,11 +41,12 @@
 
 .EnCours{
     background-color: white;
-    width: 23rem;
-    height: 17rem;
-    border-radius: 15px;
-    border: solid 0.5px;
-    border-color: black;
+    width: 25rem;
+    height: 22rem;
+    border-radius: 0.5rem;
+    border-width: 0.0625rem;
+    border-color: #eaeaea;
+    background-color: #fff;
     box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0,0,0,.1);
     transition: box-shadow .3s;
     text-decoration: none;
@@ -53,11 +55,13 @@
 
 .VoteEnd{
     background-color: white;
-    width: 23rem;
-    height: 17rem;
-    border-radius: 15px;
-    border: solid 0.5px;
-    border-color: black;
+    width: 25rem;
+    height: 22rem;
+    margin-right: 5%;
+    border-radius: 0.5rem;
+    border-width: 0.0625rem;
+    border-color: #eaeaea;
+    background-color: #fff;
     box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0,0,0,.1);
     transition: box-shadow .3s;
     text-decoration: none;
@@ -65,8 +69,8 @@
 }
 
 .imgCards{
-    width: 23rem;
-    height: 12rem;
+    width: 25rem;
+    height: 15rem;
     border-top-left-radius: 12.5px;
     border-top-right-radius: 12.5px;
     background-size: 15%;
