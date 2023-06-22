@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <nav className={styles.navlinks}>
       <div className={styles.ul}>
-        <Link className={styles.créer} to="/créertadécision">
+        <Link className={styles.créer} to="/CreatePage">
           <li> Créer ta décision</li>
         </Link>
         <Link className={styles.encours} to="/VotePage">
@@ -16,10 +16,6 @@ function Navbar() {
           <li> Votation terminé</li>
         </Link>
       </div>
-      <style>
-        @import
-        url("https://fonts.googleapis.com/css2?family=Lato:wght@300;900&family=Permanent+Marker&family=Raleway:wght@900&display=swap");
-      </style>
     </nav>
   );
 }
