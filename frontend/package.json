@@ -7,7 +7,10 @@
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
+    "@tinymce/tinymce-react": "^4.3.0",
     "@vitejs/plugin-react": "^3.0.1",
+    "date-fns": "^2.30.0",
+    "nodemodule": "^0.3.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

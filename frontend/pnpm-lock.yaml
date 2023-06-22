@@ -2,8 +2,18 @@ lockfileVersion: "6.0"
 
 dependencies:
   "@vitejs/plugin-react":
+  '@tinymce/tinymce-react':
+    specifier: ^4.3.0
+    version: 4.3.0(react-dom@18.2.0)(react@18.2.0)
+  '@vitejs/plugin-react':
     specifier: ^3.0.1
     version: 3.1.0(vite@4.3.9)
+  date-fns:
+    specifier: ^2.30.0
+    version: 2.30.0
+  nodemodule:
+    specifier: ^0.3.0
+    version: 0.3.0
   prop-types:
     specifier: ^15.8.1
     version: 15.8.1
@@ -322,7 +332,6 @@ packages:
     engines: { node: ">=6.9.0" }
     dependencies:
       regenerator-runtime: 0.13.11
-    dev: true
 
   /@babel/template@7.22.5:
     resolution:
@@ -801,6 +810,18 @@ packages:
     engines: { node: ">=14" }
     dev: false
 
+  /@tinymce/tinymce-react@4.3.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-iB4cUsYfcJL4NGuKhqCGYuTmFTje3nPxyPv1HxprTsp/YMGuuiiSNWrv3zwI31QX5Cn8qeq9MrMDnbxuRugHyg==}
+    peerDependencies:
+      react: ^18.0.0 || ^17.0.1 || ^16.7.0
+      react-dom: ^18.0.0 || ^17.0.1 || ^16.7.0
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tinymce: 6.5.0
+    dev: false
+
   /@types/json5@0.0.29:
     resolution:
       {
@@ -1192,6 +1213,13 @@ packages:
         integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==,
       }
     dev: true
+
+  /date-fns@2.30.0:
+    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
+    engines: {node: '>=0.11'}
+    dependencies:
+      '@babel/runtime': 7.22.5
+    dev: false
 
   /debug@3.2.7:
     resolution:
@@ -2515,6 +2543,10 @@ packages:
       }
     dev: false
 
+  /nodemodule@0.3.0:
+    resolution: {integrity: sha512-T0ZizAsbXZcuSL21zAkBus1bNZbcH2KUzsv9SHTQIQFHpMd7kQB3fh1KX3SVOaFhvzYiJEDaQCzqGllAzi50LA==}
+    dev: false
+
   /normalize-path@3.0.0:
     resolution:
       {
@@ -2842,11 +2874,15 @@ packages:
       picomatch: 2.3.1
 
   /regenerator-runtime@0.13.11:
+
     resolution:
       {
         integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==,
       }
     dev: true
+
+    resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
+
 
   /regexp.prototype.flags@1.5.0:
     resolution:
@@ -3115,6 +3151,10 @@ packages:
         integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==,
       }
     dev: true
+
+  /tinymce@6.5.0:
+    resolution: {integrity: sha512-I23hTUhbIyU/HCruy6wpIpOtr8UJhRJjRmJS9DCalN7UxT9iunkkbrcHa0FO9sG4GdMAOmVbZTHFBrgbDPYU6Q==}
+    dev: false
 
   /to-fast-properties@2.0.0:
     resolution:

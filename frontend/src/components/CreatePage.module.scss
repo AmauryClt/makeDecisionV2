@@ -1,0 +1,84 @@
+h1,
+.intro {
+  text-align: center;
+  color: rgb(12, 57, 68);
+}
+
+form {
+  display: flex;
+  font-family: "Lato", sans-serif;
+  flex-direction: column;
+  gap: 20px;
+  width: 80svw;
+  margin: auto;
+}
+
+h1 {
+  font-family: "Raleway", sans-serif;
+}
+
+label, .label {
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom : -15px
+}
+
+input,
+select,
+.editor {
+  font-family: "Lato", sans-serif;
+  border-radius: 5px;
+  border: solid whitesmoke 1px;
+  box-shadow: 10px 5px 5px rgb(12, 57, 68);
+}
+
+.title > input {
+  height: 40px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.date > input {
+  font-size: 1em;
+}
+
+
+.btnSubmit {
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  width: 35svw;
+  height: 35px;
+  background-color: rgb(12, 57, 68);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.buttonServ, ul {
+  display : flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap : 5px
+}
+
+.buttonChoice {
+  background-color: white;
+  color : rgb(12, 57, 68);
+  border : solid rgb(12,57,68);
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  width: 35svw;
+  height: 35px;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .btnSubmit {
+    width : 45svw;
+  }}
