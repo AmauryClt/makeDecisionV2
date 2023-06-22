@@ -51,13 +51,20 @@ export default function CreatePage() {
   };
   return (
     <main>
-      <h1 className={styles.banniere}>Interface de création d'une demande de décision</h1>
+      <h1 className={styles.banniere}>
+        Interface de création d'une demande de décision
+      </h1>
       <p className={styles.intro}>
         Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
       </p>
       <form>
-        <label >
-          <input className={styles.title} type="text" name="title" placeholder="Titre de ta décision" />
+        <label>
+          <input
+            className={styles.title}
+            type="text"
+            name="title"
+            placeholder="Titre de ta décision"
+          />
         </label>
         <p className={styles.label}>Détails :</p>
         <div className={styles.editor}>
