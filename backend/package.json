@@ -10,7 +10,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mysql2": "^3.0.1"
+    "mysql2": "^3.0.1",
+    "nodemodule": "^0.3.0"
   },
   "devDependencies": {
     "eslint": "^8.32.0",

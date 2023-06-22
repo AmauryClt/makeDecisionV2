@@ -13,6 +13,9 @@ dependencies:
   mysql2:
     specifier: ^3.0.1
     version: 3.0.1
+  nodemodule:
+    specifier: ^0.3.0
+    version: 0.3.0
 
 devDependencies:
   eslint:
@@ -1341,6 +1344,10 @@ packages:
   /negotiator@0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /nodemodule@0.3.0:
+    resolution: {integrity: sha512-T0ZizAsbXZcuSL21zAkBus1bNZbcH2KUzsv9SHTQIQFHpMd7kQB3fh1KX3SVOaFhvzYiJEDaQCzqGllAzi50LA==}
     dev: false
 
   /nodemon@2.0.20:
