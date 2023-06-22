@@ -9,7 +9,7 @@ form {
   font-family: "Lato", sans-serif;
   flex-direction: column;
   gap: 20px;
-  width: 80vw;
+  width: 80svw;
   margin: auto;
 }
 
@@ -17,11 +17,15 @@ h1 {
   font-family: "Raleway", sans-serif;
 }
 
-label {
+label, .label {
   font-family: "Lato", sans-serif;
   font-weight: bold;
   display: flex;
   flex-direction: column;
+}
+
+.label {
+  margin-bottom : -15px
 }
 
 input,
@@ -39,22 +43,42 @@ select,
   font-weight: bold;
 }
 
-select {
-  height: 75px;
+.date > input {
   font-size: 1em;
 }
 
-em {
-  font-size: 0.75em;
-  font-weight: lighter;
-}
 
-button {
-  width: 20vw;
-  height: 30px;
+.btnSubmit {
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  width: 35svw;
+  height: 35px;
   background-color: rgb(12, 57, 68);
   border: none;
   color: white;
   border-radius: 5px;
   margin: auto;
 }
+
+.buttonServ, ul {
+  display : flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap : 5px
+}
+
+.buttonChoice {
+  background-color: white;
+  color : rgb(12, 57, 68);
+  border : solid rgb(12,57,68);
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  width: 35svw;
+  height: 35px;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .btnSubmit {
+    width : 45svw;
+  }}

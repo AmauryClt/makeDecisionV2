@@ -1,0 +1,21 @@
+.buttonClic{
+  background-color: white;
+  color : rgb(12, 57, 68);
+  border : solid rgb(12,57,68)
+}
+
+.buttonNoClic {
+  background-color: rgb(12, 57, 68);
+  border: none;
+  color: white;
+
+}
+
+button{
+  border-radius: 5px;
+  margin: auto;
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  width: 35svw;
+  height: 35px;
+}

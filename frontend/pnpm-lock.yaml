@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@tinymce/tinymce-react':
     specifier: ^4.3.0
@@ -7,6 +11,9 @@ dependencies:
   '@vitejs/plugin-react':
     specifier: ^3.0.1
     version: 3.1.0(vite@4.3.9)
+  date-fns:
+    specifier: ^2.30.0
+    version: 2.30.0
   nodemodule:
     specifier: ^0.3.0
     version: 0.3.0
@@ -20,8 +27,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-router-dom:
-    specifier: ^6.12.1
-    version: 6.12.1(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^6.13.0
+    version: 6.13.0(react-dom@18.2.0)(react@18.2.0)
   vite:
     specifier: ^4.0.4
     version: 4.3.9(sass@1.63.4)
@@ -260,7 +267,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
-    dev: true
 
   /@babel/template@7.22.5:
     resolution: {integrity: sha512-X7yV7eiwAxdj9k94NEylvbVHLiVG1nvzCV2EAowhxLTwODV1jl9UzZ48leOC0sH7OnuHrIkllaBgneUykIcZaw==}
@@ -896,6 +902,13 @@ packages:
   /damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: true
+
+  /date-fns@2.30.0:
+    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
+    engines: {node: '>=0.11'}
+    dependencies:
+      '@babel/runtime': 7.22.5
+    dev: false
 
   /debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -2048,8 +2061,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /react-router-dom@6.12.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-POIZN9UDKWwEDga054LvYr2KnK8V+0HR4Ny4Bwv8V7/FZCPxJgsCjYxXGxqxzHs7VBxMKZfgvtKhafuJkJSPGA==}
+  /react-router-dom@6.13.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-6Nqoqd7fgwxxVGdbiMHTpDHCYPq62d7Wk1Of7B82vH7ZPwwsRaIa22zRZKPPg413R5REVNiyuQPKDG1bubcOFA==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
@@ -2058,11 +2071,11 @@ packages:
       '@remix-run/router': 1.6.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.12.1(react@18.2.0)
+      react-router: 6.13.0(react@18.2.0)
     dev: false
 
-  /react-router@6.12.1(react@18.2.0):
-    resolution: {integrity: sha512-evd/GrKJOeOypD0JB9e1r7pQh2gWCsTbUfq059Wm1AFT/K2MNZuDo19lFtAgIhlBrp0MmpgpqtvZC7LPAs7vSw==}
+  /react-router@6.13.0(react@18.2.0):
+    resolution: {integrity: sha512-Si6KnfEnJw7gUQkNa70dlpI1bul46FuSxX5t5WwlUBxE25DAz2BjVkwaK8Y2s242bQrZPXCpmwLPtIO5pv4tXg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
@@ -2086,7 +2099,6 @@ packages:
 
   /regenerator-runtime@0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
-    dev: true
 
   /regexp.prototype.flags@1.5.0:
     resolution: {integrity: sha512-0SutC3pNudRKgquxGoRGIz946MZVHqbNfPjBdxeOhBrdgDKlRoXmYLQN9xRbrR09ZXWeGAdPuif7egofn6v5LA==}
