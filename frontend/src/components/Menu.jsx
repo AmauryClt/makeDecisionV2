@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "./home.module.scss";
+import styles from "./menu.module.scss";
 
-export default function Home() {
+export default function Menu() {
   return (
     <main>
       <h1 className={styles.banniere}> Make Desicion</h1>
