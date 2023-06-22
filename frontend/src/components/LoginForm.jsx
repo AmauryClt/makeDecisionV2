@@ -1,69 +1,41 @@
 import React from "react";
 import styles from "./loginForm.module.scss";
 
-class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: "",
-    };
-  }
-
-  handleInputChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  // eslint-disable-next-line class-methods-use-this
-  handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
-  render() {
-    const { username, password } = this.state;
-
-    return (
-      <main className={styles.mainHome}>
-        <form className={styles.labelStyles} onSubmit={this.handleSubmit}>
-          <div>
-            <img src="./src/assets/makesenseaccueil.jpg" alt="connect" />
+function LoginForm() {
+  return (
+    <main className={styles.mainHome}>
+      <form className={styles.labelStyles}>
+        <h1>make decision</h1>
+        <label>
+          <div className={styles.Username}>
+            <input
+              className={styles.inputUsername}
+              type="username"
+              name="username"
+              placeholder="Adresse@mail.fr"
+            />
           </div>
-          <h1>make decision</h1>
-          <label>
-            <div className={styles.Username}>
-              Username:
-              <input
-                className={styles.input}
-                type="username"
-                name="username"
-                value={username}
-                onChange={this.handleInputChange}
-              />
-            </div>
-          </label>
-          <label>
-            <div className={styles.Password}>
-              Password:
-              <input
-                className={styles.input}
-                type="password"
-                name="password"
-                value={password}
-                onChange={this.handleInputChange}
-              />
-            </div>
-          </label>
-          <div className={styles.login}>
-            <button className={styles.button} type="submit">
-              Login
-            </button>
+        </label>
+        <label>
+          <div className={styles.Password}>
+            <input
+              className={styles.inputPassword}
+              type="password"
+              name="password"
+              placeholder="Mot de passe"
+            />
           </div>
-        </form>
-      </main>
-    );
-  }
+        </label>
+        <div className={styles.login}>
+          <button className={styles.button} type="submit">
+            LOGIN
+          </button>
+        </div>
+      </form>
+      <div>
+        <img src="./src/assets/makesenseaccueil.jpg" alt="connect" />
+      </div>
+    </main>
+  );
 }
 export default LoginForm;

@@ -1,62 +1,73 @@
 .mainHome {
+display : flex;
 background-color: rgba(12,57,68,1);
-height: 713px;
-margin-top: 95px;
 }
 
 .labelStyles {
+    width : 50svw;
     color: white;
 }
 
 img {
     display: flex;
-    width: 700px;
-    height:700px;
-    float: right;
+    height: 80svh;
+    width-max: 50svw;
     top: 10px;
 }
 
 .Username {
     display: flex;
     font-size: large;
-    margin-top: 15px;
-    margin-left: 150px;
+    margin :auto;
     padding: 15px;
     border-radius: 60px;
  }   
 
 .Password {
     display: flex;
-    margin-top: 15px;
-    margin-left: 150px;
+    margin :auto;
     padding: 26px;
   }   
 
-  .login {
+.login {
     display: flex;
-    margin-top: 10px;
-    margin-left: 200px;
+    margin : auto;
     float: center;
     padding: 50px;
     border-radius: 60px;
- }
+}
  
 h1 {
+    font-family: "Raleway", sans-serif;
+    font-size : 4em;
+    color : white;
     display: flex;
-    padding: 35px;
-    margin-left: 200px;
- }   
+    margin : auto;
+}   
  
- .input {
+ input {
+    font-family: "Lato", sans-serif;
+    height: 30px;
     border-radius: 60px;
-    width: 300px;
+    width: 200px;
+    text-align: center;
+ }
+
+ .inputUsername {
+    width: 25svw;
+ }
+
+  .inputPassword {
+    width: 20svw;
  }
 
  .button {
+    font-family: "Raleway", sans-serif;
     border-radius: 60px;
     width: 150px;
     height: 25px;
     background-color: #FFF30D;
+    color : black
 
  }
  
