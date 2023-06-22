@@ -8,7 +8,11 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
+}
+
+.mainHome :hover{
+    box-shadow: 1.3125rem 1.3125rem 2.25rem 0 rgba(0,0,0,.1);
 }
 
 .banniere {
@@ -23,54 +27,60 @@
 
 .Creer{
     background-color: white;
-    width: 18rem;
-    height: 13rem;
+    width: 23rem;
+    height: 17rem;
     border-radius: 15px;
-    border-width: 1px, 1px, 1px, 1px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 1);
+    border: solid 0.5px;
+    border-color: black;
+    box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0,0,0,.1);
+    transition: box-shadow .3s;
     text-decoration: none;
     color:rgba(243, 151, 107, 1)
 }
 
 .EnCours{
     background-color: white;
-    width: 18rem;
-    height: 13rem;
+    width: 23rem;
+    height: 17rem;
     border-radius: 15px;
-    border-width: 1px, 1px, 1px, 1px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 1);
+    border: solid 0.5px;
+    border-color: black;
+    box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0,0,0,.1);
+    transition: box-shadow .3s;
     text-decoration: none;
     color:#FFF30D;
 }
 
 .VoteEnd{
     background-color: white;
-    width: 18rem;
-    height: 13rem;
+    width: 23rem;
+    height: 17rem;
     border-radius: 15px;
-    border-width: 1px, 1px, 1px, 1px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 1);
+    border: solid 0.5px;
+    border-color: black;
+    box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0,0,0,.1);
+    transition: box-shadow .3s;
     text-decoration: none;
-    color:rgba(112, 175, 144, 1)
+    color:rgba(112, 175, 144, 1);
 }
 
 .imgCards{
-    width: 18rem;
-    height: 8rem;
+    width: 23rem;
+    height: 12rem;
     border-top-left-radius: 12.5px;
     border-top-right-radius: 12.5px;
     background-size: 15%;
+    pointer-events: none;
 }
 
 .TitreHome{
     display: flex;
     justify-content: center;
+    pointer-events: none;
 }
 
 .TexteHome{
     color: black;
     margin-left: 2px;
+    pointer-events: none;
 }
