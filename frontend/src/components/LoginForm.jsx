@@ -5,7 +5,7 @@ function LoginForm() {
   return (
     <main className={styles.mainHome}>
       <form className={styles.labelStyles}>
-        <h1>make decision</h1>
+        <h1 className={styles.bigTitle}>make decision</h1>
         <label>
           <div className={styles.Username}>
             <input

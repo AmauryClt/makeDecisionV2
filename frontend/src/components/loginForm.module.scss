@@ -11,7 +11,7 @@ background-color: rgba(12,57,68,1);
 img {
     display: flex;
     height: 80svh;
-    width-max: 50svw;
+    max-width: 50svw;
     top: 10px;
 }
 
@@ -37,7 +37,7 @@ img {
     border-radius: 60px;
 }
  
-h1 {
+.bigTitle {
     font-family: "Raleway", sans-serif;
     font-size : 4em;
     color : white;
@@ -45,7 +45,7 @@ h1 {
     margin : auto;
 }   
  
- input {
+ .inputUsername, .inputPassword {
     font-family: "Lato", sans-serif;
     height: 30px;
     border-radius: 60px;
@@ -53,11 +53,11 @@ h1 {
     text-align: center;
  }
 
- .inputUsername {
+.inputUsername {
     width: 25svw;
  }
 
-  .inputPassword {
+.inputPassword {
     width: 20svw;
  }
 
