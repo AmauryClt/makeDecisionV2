@@ -6,11 +6,13 @@ import Navbar from "./Navbar";
 function header() {
   return (
     <nav className={styles.headLinks}>
-      <img
-        className={styles.logo}
-        src="./src/assets/logo.png"
-        alt="make-sense"
-      />
+      <Link to="*">
+        <img
+          className={styles.logo}
+          src="./src/assets/logo.png"
+          alt="make-sense"
+        />
+      </Link>
       <div className={styles.Liens}>
         <Navbar />
       </div>
