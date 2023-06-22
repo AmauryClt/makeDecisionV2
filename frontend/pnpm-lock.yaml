@@ -628,7 +628,7 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      tinymce: 6.5.0
+      tinymce: 6.5.1
     dev: false
 
   /@types/json5@0.0.29:
@@ -2287,8 +2287,8 @@ packages:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
 
-  /tinymce@6.5.0:
-    resolution: {integrity: sha512-I23hTUhbIyU/HCruy6wpIpOtr8UJhRJjRmJS9DCalN7UxT9iunkkbrcHa0FO9sG4GdMAOmVbZTHFBrgbDPYU6Q==}
+  /tinymce@6.5.1:
+    resolution: {integrity: sha512-J67fxJiX3tjvVqer1dg1+cOxMeE2P55ESGhaakvqGPbAUU45HnCMLSioaOsxV1KfcXustw9WJo0rtn1SNQlVKQ==}
     dev: false
 
   /to-fast-properties@2.0.0:
