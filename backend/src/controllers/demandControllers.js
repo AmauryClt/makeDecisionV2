@@ -14,7 +14,7 @@ const getVote = (req, res) => {
 
 const postDemand = (req, res) => {
   models.demand
-    .post()
+    .add(req.body)
     .then(([result]) => {
       res.location(`/demand/${result.insertId}`).sendStatus(201);
     })

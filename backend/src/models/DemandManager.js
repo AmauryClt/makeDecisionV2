@@ -5,45 +5,21 @@ class DemandManager extends AbstractManager {
     super({ table: "demand" });
   }
 
-  post({
-    Title,
-    Deadline,
-    Content,
-    Utility,
-    Context,
-    Benefice,
-    Inconvenience,
-    Complement,
-    Statut,
-    Note,
-    userId,
-  }) {
+  add(demand) {
     return this.database.query(
-      `insert into ${this.table} 
-  (Title,
-    Deadline,
-    Content,
-    Utility,
-    Context,
-    Benefice,
-    Inconvenience, 
-    Complement,
-    Statut,
-    Note,
-    userId)
-    values (?,?,?,?,?,?,?,?,?,?,?)`,
+      `insert into ${this.table}(Title,Deadline,Content,Utility,Context,Benefice,Inconvenience,Complement,Statut,Note,userId)values (?,?,?,?,?,?,?,?,?,?,?)`,
       [
-        Title,
-        Deadline,
-        Content,
-        Utility,
-        Context,
-        Benefice,
-        Inconvenience,
-        Complement,
-        Statut,
-        Note,
-        userId,
+        demand.Title,
+        demand.Deadline,
+        demand.Content,
+        demand.Utility,
+        demand.Context,
+        demand.Benefice,
+        demand.Inconvenience,
+        demand.Complement,
+        demand.Statut,
+        demand.Note,
+        demand.userId,
       ]
     );
   }
