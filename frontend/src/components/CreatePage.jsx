@@ -5,6 +5,14 @@ import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
 export default function CreatePage() {
+  const [form, setForm] = useState({
+    editorValues: {
+      Content: "<p>Donnez nous des détails sur votre idée !!!</p>",
+      Benefice: "<p>Quel en seront les bénéfices ?</p>",
+      Inconvenience: "<p>Et les risques ?</p>",
+    },
+  });
+
   const [selectedValues, setSelectedValues] = useState([]);
 
   const addValue = useCallback((value) => {
@@ -49,6 +57,44 @@ export default function CreatePage() {
     color_cols: 5,
     menubar: false,
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      const formData = JSON.stringify(form);
+      fetch("http://localhost:5001/postDemand", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: formData,
+      })
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } catch (error) {
+      console.error("Error saving form data:", error);
+    }
+  };
+
+  const handleChangeE = (name, value) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      editorValues: {
+        ...prevForm.editorValues,
+        [name]: value,
+      },
+    }));
+  };
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <main>
       <h1 className={styles.banniere}>
@@ -57,13 +103,15 @@ export default function CreatePage() {
       <p className={styles.intro}>
         Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
       </p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           <input
             className={styles.title}
             type="text"
-            name="title"
+            name="Title"
             placeholder="Titre de ta décision"
+            onChange={handleChange}
+            required
           />
         </label>
         <p className={styles.label}>Détails :</p>
@@ -73,6 +121,8 @@ export default function CreatePage() {
               editorRef.current = editor;
             }}
             initialValue="<p>Donnez nous des détails sur votre idée !!!</p>"
+            onEditorChange={(content) => handleChangeE("Content", content)}
+            data-name="Content"
             init={editorConfig}
           />
         </div>
@@ -83,6 +133,8 @@ export default function CreatePage() {
               editorRef.current = editor;
             }}
             initialValue="<p>Quel en seront les bénéfices ?</p>"
+            onEditorChange={(content) => handleChangeE("Benefice", content)}
+            data-name="Benefice"
             init={editorConfig}
           />
         </div>
@@ -93,6 +145,10 @@ export default function CreatePage() {
               editorRef.current = editor;
             }}
             initialValue="<p>Et les risques ?</p>"
+            onEditorChange={(content) =>
+              handleChangeE("Inconvenience", content)
+            }
+            data-name="Inconvenience"
             init={editorConfig}
           />
         </div>
@@ -126,10 +182,12 @@ export default function CreatePage() {
           Date de fin souhaitée :
           <input
             type="date"
-            name="date"
+            name="Deadline"
             defaultValue={defaultDate}
             min={minDate}
             max={maxDate}
+            onChange={handleChange}
+            required
           />
         </label>
         <button className={styles.btnSubmit} type="submit">
