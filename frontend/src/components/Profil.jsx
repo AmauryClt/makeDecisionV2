@@ -17,10 +17,25 @@ export default function profile() {
           </p>
         </div>
         <div className={styles.information}>
-          <p className={styles.adresse}>Adresse</p>
-          <p className={styles.mobile}>Num Mobile</p>
-          <p className={styles.fixe}>Num Fixe</p>
-          <p className={styles.nom}>BlaBla</p>
+          <p className={styles.adresse}>
+            Adresse :
+            <span className={styles.rangements}>
+              157 Avenue Victor Hugo Le Grand Chapitôt
+            </span>
+          </p>
+          <p className={styles.mobile}>
+            Num Mobile :
+            <span className={styles.rangements}>06 78 45 58 23</span>
+          </p>
+          <p className={styles.fixe}>
+            Num Fixe :<span className={styles.rangements}>04 45 85 25 93</span>
+          </p>
+          <p className={styles.email}>
+            Email :
+            <span className={styles.rangements}>
+              Eliott.naimepasfaker@gmail.com
+            </span>
+          </p>
         </div>
       </div>
     </main>

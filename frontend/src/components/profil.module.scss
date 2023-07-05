@@ -64,7 +64,7 @@
 }
 
 .information{
-  margin-top: 15px;
+  margin-top: 15px  ;
   margin-left: 7rem;
   margin-bottom: 15px;
   margin-right: 5rem;
@@ -73,4 +73,36 @@
   justify-content: space-between;
   width: 65%;
   background-color: white;
+}
+
+.adresse{
+  font-family: Raleway;
+  font-size: 1.7rem;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.mobile{
+  font-family: Raleway;
+  font-size: 1.7rem;
+  margin-left: 1.5rem;
+}
+
+.fixe{
+  font-family: Raleway;
+  font-size: 1.7rem;
+  margin-left: 1.5rem;
+}
+
+.email{
+  font-family: Raleway;
+  font-size: 1.7rem;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.rangements{
+  font-family: Lato;
+  font-size: 1.7rem;
+  margin-left: 1.5rem;
 }
