@@ -61,7 +61,13 @@ export default function CreatePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      const formData = JSON.stringify(form);
+      const transformedForm = {
+        ...form,
+        Deadline: formatISO(new Date(form.Deadline), {
+          representation: "date",
+        }),
+      };
+      const formData = JSON.stringify(transformedForm);
       fetch("http://localhost:5001/postDemand", {
         method: "POST",
         headers: {
