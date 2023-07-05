@@ -6,3 +6,71 @@
   padding-left: 1%;
   color: white;
 }
+
+.mainHome{
+  background-color:grey;
+  height: 27rem;
+  display: flex;
+}
+
+.pp {
+  border-radius: 50%;
+  height: 8rem;
+  width: 8rem;
+  margin-top: 4px;
+  align-self: center;
+}
+
+.card{
+  margin-top: 15px;
+  margin-left: 10rem;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 15rem;
+  border-radius: 0.5rem;
+  border-width: 0.0625rem;
+  border-color: #eaeaea;
+  background-color: #fff;
+  box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0,0,0,.1);
+  transition: box-shadow .3s;
+  text-decoration: none;
+  color: black;
+}
+
+.nom{
+  font-family: Raleway;
+  align-self: center;
+}
+
+.catégorie{
+  font-family: Raleway;
+  align-self: center;
+}
+
+.adress{
+  font-family: Raleway;
+  align-self: center;
+}
+
+.Modifier{
+  width: 10rem;
+  background: rgba(25, 108, 132, 1);
+  font-family: Raleway;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.information{
+  margin-top: 15px;
+  margin-left: 7rem;
+  margin-bottom: 15px;
+  margin-right: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 65%;
+  background-color: white;
+}
