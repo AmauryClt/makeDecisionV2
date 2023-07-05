@@ -1,7 +1,7 @@
 const models = require("../models");
 
 const getVote = (req, res) => {
-  models.boat
+  models.demand
     .findAll()
     .then(([rows]) => {
       res.json(rows);
