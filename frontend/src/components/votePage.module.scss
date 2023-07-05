@@ -49,7 +49,6 @@
 
 .title {
   font-family: raleway;
-  margin-top: 1rem;
   display: flex;
   justify-content: center;
 }
@@ -67,12 +66,25 @@
 
 .block4 {
   background-color: white;
-  width: 70%;
+  width: 60%;
+  border-radius: 10px;
+  height: 90%;
+  margin-left: 1rem;
+}
+
+.block5 {
+  display: block;
+  float: right;
+  width: 20%;
+  margin: 5%;
+  padding: 1%;
+  background-color: white;
   border-radius: 10px;
   height: 70%;
 }
 
-.block5 {
+.block3 {
   display: flex;
-  flex-direction: column;
+  align-self: center;
+  justify-content: space-around;
 }
