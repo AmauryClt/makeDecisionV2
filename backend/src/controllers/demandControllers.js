@@ -12,6 +12,19 @@ const getVote = (req, res) => {
     });
 };
 
+const postDemand = (req, res) => {
+  models.demand
+    .post()
+    .then(([result]) => {
+      res.location(`/demand/${result.insertId}`).sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error saving");
+    });
+};
+
 module.exports = {
   getVote,
+  postDemand,
 };

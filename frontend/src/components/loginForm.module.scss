@@ -1,75 +1,72 @@
 .mainHome {
-display : flex;
-background-color: rgba(12,57,68,1);
+  display: flex;
+  background-color: rgba(12, 57, 68, 1);
 }
 
 .labelStyles {
-    width : 50svw;
-    color: white;
+  width: 50svw;
+  color: white;
 }
 
 img {
-    display: flex;
-    height: 80svh;
-    max-width: 50svw;
-    top: 10px;
+  display: flex;
+  height: 80svh;
+  max-width: 50svw;
+  top: 10px;
 }
 
 .Username {
-    display: flex;
-    font-size: large;
-    margin :auto;
-    padding: 15px;
-    border-radius: 60px;
- }   
+  display: flex;
+  font-size: large;
+  margin: auto;
+  padding: 15px;
+  border-radius: 60px;
+}
 
 .Password {
-    display: flex;
-    margin :auto;
-    padding: 26px;
-  }   
+  display: flex;
+  margin: auto;
+  padding: 26px;
+}
 
 .login {
-    display: flex;
-    margin : auto;
-    float: center;
-    padding: 50px;
-    border-radius: 60px;
+  display: flex;
+  margin: auto;
+  float: center;
+  padding: 50px;
+  border-radius: 60px;
 }
- 
+
 .bigTitle {
-    font-family: "Raleway", sans-serif;
-    font-size : 4em;
-    color : white;
-    display: flex;
-    margin : auto;
-}   
- 
- .inputUsername, .inputPassword {
-    font-family: "Lato", sans-serif;
-    height: 30px;
-    border-radius: 60px;
-    width: 200px;
-    text-align: center;
- }
+  font-family: "Raleway", sans-serif;
+  font-size: 4em;
+  color: white;
+  display: flex;
+  margin: auto;
+}
+
+.inputUsername,
+.inputPassword {
+  font-family: "Lato", sans-serif;
+  height: 30px;
+  border-radius: 60px;
+  width: 200px;
+  text-align: center;
+}
 
 .inputUsername {
-    width: 25svw;
- }
+  width: 25svw;
+}
 
 .inputPassword {
-    width: 20svw;
- }
+  width: 20svw;
+}
 
- .button {
-    font-family: "Raleway", sans-serif;
-    border-radius: 60px;
-    width: 150px;
-    height: 25px;
-    background-color: #FFF30D;
-    color : black
-
- }
- 
-
- 
+.button {
+  font-family: "Raleway", sans-serif;
+  border-radius: 60px;
+  width: 150px;
+  height: 25px;
+  background-color: #fff30d;
+  color: black;
+}
