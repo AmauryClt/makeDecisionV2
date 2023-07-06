@@ -1,22 +1,31 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 import CreatePage from "./components/CreatePage";
 import VotePage from "./components/VotePage";
 import ValidPage from "./components/ValidPage";
 import Footer from "./components/Footer";
-import LoginForm from "./components/LoginForm";
+import Login from "./components/LoginForm";
 import Profil from "./components/Profil";
 import "./App.css";
+import { useAuth } from "./components/AuthContext";
 
 function App() {
+  const { token, setToken } = useAuth();
   return (
-    <Router>
+    <>
+      {token == null ? (
+        <Link to="/login">Login</Link>
+      ) : (
+        <button type="button" onClick={() => setToken(null)}>
+          Logout
+        </button>
+      )}
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={<LoginForm />} />
-          <Route path="/Menu" element={<Menu />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Menu />} />
           <Route path="/CreatePage" element={<CreatePage />} />
           <Route path="/VotePage" element={<VotePage />} />
           <Route path="/ValidPage" element={<ValidPage />} />
@@ -24,7 +33,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
-    </Router>
+    </>
   );
 }
 
