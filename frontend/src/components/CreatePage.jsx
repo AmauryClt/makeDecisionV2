@@ -165,6 +165,7 @@ export default function CreatePage() {
             min={minDate}
             max={maxDate}
             required
+            className={styles.inputDate}
           />
         </label>
         <button className={styles.btnSubmit} type="submit">

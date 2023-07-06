@@ -10,6 +10,13 @@ CREATE TABLE user (
 
 -- Admin tinyint 0=False 1=True
 
+
+
+CREATE TABLE serv (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Serv VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE demand (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Title VARCHAR(255) NOT NULL,
@@ -19,14 +26,16 @@ CREATE TABLE demand (
     Context TEXT,
     Benefice TEXT,
     Inconvenience TEXT,
-    Complement TEXT,
-    ServiceImpact ENUM('ADMINISTRATIF', 'COMPTABILITE', 'MARKETING', 'RESSOURCE HUMAINE', 'COMMERCIAL'),
+    ServiceImpact INT,
     Statut ENUM('EN ATTENTE DE VOTE', 'EN DESACCORD', 'VALIDE', 'MISE EN PLACE', 'ARCHIVE', 'QUARANTAINE') DEFAULT 'EN ATTENTE DE VOTE',
     Note FLOAT,
     userId INT DEFAULT 2,
     CONSTRAINT fk_demand_user
     FOREIGN KEY (userId)
-    REFERENCES user(Id)
+    REFERENCES user(Id),
+    CONSTRAINT fk_demand_service
+    FOREIGN KEY (ServiceImpact)
+    REFERENCES serv(Id)
 );
 
 CREATE TABLE interaction (
@@ -65,8 +74,12 @@ VALUES
 ('girbau@user.fr', 'GIRBAU', 'Laëtitia', 'user1234', 1),
 ('denneulin@user.fr', 'DENNEULIN', 'Thomas', 'user1234', 0);
 
-INSERT INTO demand (Title, Deadline, Content, Utility, Context, Benefice, Inconvenience, Complement, Statut, Note, userId)
+INSERT INTO demand (Title, Deadline, Content, Utility, Context, Benefice, Inconvenience, Statut, Note, userId)
 VALUES
-('Lorem_Attente', '2023-07-31', 'Ceci est une demande en attente', 'Voir une demande en attente', 'En attente de vote', '+++', '---', 'je complète', 'EN ATTENTE DE VOTE', '4', 1),
-('Lorem_désaccord', '2023-07-31', 'Ceci est une demande en désaccord', 'Voir une demande en désaccord', 'En désaccord', '+++', '---', 'je ne suis pas daccord', 'EN DESACCORD', '5', 2),
-('Lorem_validée', '2023-07-31', 'Ceci est une demande validée', 'Voir une demande en validée', 'Validée', '+++','---', 'je ne suis pas daccord', 'EN DESACCORD', '3', 2);
+('Lorem_Attente', '2023-07-31', 'Ceci est une demande en attente', 'Voir une demande en attente', 'En attente de vote', '+++', '---', 'EN ATTENTE DE VOTE', '4', 1),
+('Lorem_désaccord', '2023-07-31', 'Ceci est une demande en désaccord', 'Voir une demande en désaccord', 'En désaccord', '+++', '---', 'EN DESACCORD', '5', 2),
+('Lorem_validée', '2023-07-31', 'Ceci est une demande validée', 'Voir une demande en validée', 'Validée', '+++','---', 'EN DESACCORD', '3', 2);
+
+INSERT INTO serv (Serv)
+VALUES
+('ADMINISTRATIF'), ('COMPTABILITE'), ('MARKETING'), ('RESSOURCES HUMAINES'), ('COMMERCIAL');
