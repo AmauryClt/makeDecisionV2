@@ -1,17 +1,18 @@
 import React, { useRef, useState, useCallback } from "react";
+import { useForm } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
 export default function CreatePage() {
-  const [form, setForm] = useState({
-    editorValues: {
-      Content: "<p>Donnez nous des détails sur votre idée !!!</p>",
-      Benefice: "<p>Quel en seront les bénéfices ?</p>",
-      Inconvenience: "<p>Et les risques ?</p>",
-    },
-  });
+  const {
+    register,
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data) => {
+    console.info(data);
+  };
 
   const [selectedValues, setSelectedValues] = useState([]);
 
@@ -58,49 +59,6 @@ export default function CreatePage() {
     menubar: false,
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    try {
-      const transformedForm = {
-        ...form,
-        Deadline: formatISO(new Date(form.Deadline), {
-          representation: "date",
-        }),
-      };
-      const formData = JSON.stringify(transformedForm);
-      fetch("http://localhost:5001/postDemand", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: formData,
-      })
-        .then((response) => response.json())
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    } catch (error) {
-      console.error("Error saving form data:", error);
-    }
-  };
-
-  const handleChangeE = (name, value) => {
-    setForm((prevForm) => ({
-      ...prevForm,
-      editorValues: {
-        ...prevForm.editorValues,
-        [name]: value,
-      },
-    }));
-  };
-
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   return (
     <main>
       <h1 className={styles.banniere}>
@@ -109,27 +67,23 @@ export default function CreatePage() {
       <p className={styles.intro}>
         Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
       </p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <input
+            {...register("Title")}
             className={styles.title}
             type="text"
             name="Title"
             placeholder="Titre de ta décision"
-            onChange={handleChange}
             required
           />
         </label>
         <p className={styles.label}>Détails :</p>
         <div className={styles.editor}>
           <Editor
-            onInit={(editor) => {
-              editorRef.current = editor;
-            }}
-            initialValue="<p>Donnez nous des détails sur votre idée !!!</p>"
-            onEditorChange={(content) => handleChangeE("Content", content)}
-            data-name="Content"
+            initialValue="<p>Quel en seront les bénéfices ?</p>"
             init={editorConfig}
+            // onEditorChange={(content) => field.onChange(content)}
           />
         </div>
         <p className={styles.label}>Bénéfices :</p>
@@ -139,8 +93,6 @@ export default function CreatePage() {
               editorRef.current = editor;
             }}
             initialValue="<p>Quel en seront les bénéfices ?</p>"
-            onEditorChange={(content) => handleChangeE("Benefice", content)}
-            data-name="Benefice"
             init={editorConfig}
           />
         </div>
@@ -151,29 +103,25 @@ export default function CreatePage() {
               editorRef.current = editor;
             }}
             initialValue="<p>Et les risques ?</p>"
-            onEditorChange={(content) =>
-              handleChangeE("Inconvenience", content)
-            }
-            data-name="Inconvenience"
             init={editorConfig}
           />
         </div>
         <p className={styles.label}>Service(s) impactés</p>
         <div className={styles.buttonServ}>
           <Button addValue={addValue} removeValue={removeValue}>
-            Administration
+            ADMINISTRATIF
           </Button>
           <Button addValue={addValue} removeValue={removeValue}>
-            Bénévoles
+            COMPTABILITE
           </Button>
           <Button addValue={addValue} removeValue={removeValue}>
-            Comptabilité
+            MARKETING
           </Button>
           <Button addValue={addValue} removeValue={removeValue}>
-            Développement
+            RESSOURCE HUMAINE
           </Button>
           <Button addValue={addValue} removeValue={removeValue}>
-            Technique
+            COMMERCIAL
           </Button>
         </div>
         <p className={styles.label}>Choix :</p>
@@ -187,12 +135,12 @@ export default function CreatePage() {
         <label className={styles.date}>
           Date de fin souhaitée :
           <input
+            {...register("Deadline")}
             type="date"
             name="Deadline"
             defaultValue={defaultDate}
             min={minDate}
             max={maxDate}
-            onChange={handleChange}
             required
           />
         </label>

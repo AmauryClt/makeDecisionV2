@@ -7,7 +7,7 @@ class DemandManager extends AbstractManager {
 
   add(demand) {
     return this.database.query(
-      `insert into ${this.table}(Title,Deadline,Content,Utility,Context,Benefice,Inconvenience,Complement,Statut,Note,userId)values (?,?,?,?,?,?,?,?,?,?,?)`,
+      `insert into ${this.table}(Title,Deadline,Content,Utility,Context,Benefice,Inconvenience,Complement,Serviceimpact,Note)values (?,?,?,?,?,?,?,?,?,?)`,
       [
         demand.Title,
         demand.Deadline,
@@ -17,9 +17,8 @@ class DemandManager extends AbstractManager {
         demand.Benefice,
         demand.Inconvenience,
         demand.Complement,
-        demand.Statut,
+        demand.ServiceImpact,
         demand.Note,
-        demand.userId,
       ]
     );
   }
