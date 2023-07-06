@@ -66,9 +66,8 @@
 
 .block4 {
   background-color: white;
-  width: 60%;
+  width: 80%;
   border-radius: 10px;
-  height: 90%;
   margin-left: 1rem;
 }
 
@@ -87,4 +86,8 @@
   display: flex;
   align-self: center;
   justify-content: space-around;
+}
+
+.block1 {
+  display: flex;
 }
