@@ -1,5 +1,9 @@
 lockfileVersion: "6.0"
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   "@tinymce/tinymce-react":
     specifier: ^4.3.0
@@ -2881,7 +2885,6 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
       react-router: 6.14.1(react@18.2.0)
     dev: false
-
   /react-router@6.14.1(react@18.2.0):
     resolution:
       {
@@ -3362,6 +3365,14 @@ packages:
     hasBin: true
     dependencies:
       isexe: 2.0.0
+    dev: true
+
+  /word-wrap@1.2.3:
+    resolution:
+      {
+        integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==,
+      }
+    engines: { node: ">=0.10.0" }
     dev: true
 
   /wrappy@1.0.2:
