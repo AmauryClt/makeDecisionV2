@@ -5,7 +5,7 @@ export default function VotePage() {
   const [demands, setDemands] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/demand")
+    fetch("http://localhost:5001/demand")
       .then((response) => response.json())
       .then((data) => {
         setDemands(data);
