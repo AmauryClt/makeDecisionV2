@@ -9,11 +9,9 @@ export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
   const onSubmit = (data) => {
-    console.info(data);
-
     const serviceImpactValues = selectedValues.join(",");
     data.ServiceImpact = serviceImpactValues;
-
+    console.info(data);
     fetch("http://localhost:5001/postDemand", {
       method: "POST",
       headers: {
