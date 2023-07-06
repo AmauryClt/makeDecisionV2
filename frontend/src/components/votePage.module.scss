@@ -41,16 +41,20 @@
 }
 
 .popupButton {
-  width: 1.5rem;
+  width: 1.6rem;
   border-radius: 10px;
   text-align: center;
   margin-left: 88rem;
+  margin-top: 0.3rem;
 }
 
 .title {
   font-family: raleway;
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .note {
@@ -90,4 +94,7 @@
 
 .block1 {
   display: flex;
+}
+.username {
+  background-color: white;
 }
