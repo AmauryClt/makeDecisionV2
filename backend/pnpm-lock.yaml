@@ -1,9 +1,5 @@
 lockfileVersion: "6.0"
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   cors:
     specifier: ^2.8.5
@@ -2705,3 +2701,7 @@ packages:
       }
     engines: { node: ">=10" }
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
