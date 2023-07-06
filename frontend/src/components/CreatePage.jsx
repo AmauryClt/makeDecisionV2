@@ -1,20 +1,34 @@
-import React, { useRef, useState, useCallback } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState, useCallback } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
 export default function CreatePage() {
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit, control } = useForm();
+  const [selectedValues, setSelectedValues] = useState([]);
   const onSubmit = (data) => {
     console.info(data);
-  };
 
-  const [selectedValues, setSelectedValues] = useState([]);
+    const serviceImpactValues = selectedValues.join(",");
+    data.ServiceImpact = serviceImpactValues;
+
+    fetch("http://localhost:5001/postDemand", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.info(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const addValue = useCallback((value) => {
     setSelectedValues((prevSelectedValues) => [...prevSelectedValues, value]);
@@ -34,8 +48,6 @@ export default function CreatePage() {
   const minDate = formatISO(add(new Date(), { days: 7 }), {
     representation: "date",
   });
-
-  const editorRef = useRef(null);
   const editorConfig = {
     plugins: "lists",
     height: 300,
@@ -80,30 +92,41 @@ export default function CreatePage() {
         </label>
         <p className={styles.label}>Détails :</p>
         <div className={styles.editor}>
-          <Editor
-            initialValue="<p>Quel en seront les bénéfices ?</p>"
-            init={editorConfig}
-            // onEditorChange={(content) => field.onChange(content)}
+          <Controller
+            control={control}
+            name="Content"
+            render={({ field: { onChange, onBlur, value, ref } }) => (
+              <Editor
+                onBlur={onBlur} // notify when input is touched
+                onEditorChange={onChange} // send value to hook form
+                value={value}
+                initialValue="<p>Donnez nous des détails sur votre idée !!!</p>"
+                init={editorConfig}
+                onInit={(evt, editor) => (ref.current = editor)}
+              />
+            )}
           />
         </div>
         <p className={styles.label}>Bénéfices :</p>
         <div className={styles.editor}>
-          <Editor
-            onInit={(editor) => {
-              editorRef.current = editor;
-            }}
-            initialValue="<p>Quel en seront les bénéfices ?</p>"
-            init={editorConfig}
+          <input
+            {...register("Benefice")}
+            className={styles.title}
+            type="text"
+            name="Benefice"
+            placeholder="Quel en seront les bénéfices ?"
+            required
           />
         </div>
         <p className={styles.label}>Risques :</p>
         <div className={styles.editor}>
-          <Editor
-            onInit={(editor) => {
-              editorRef.current = editor;
-            }}
-            initialValue="<p>Et les risques ?</p>"
-            init={editorConfig}
+          <input
+            {...register("Inconvenience")}
+            className={styles.title}
+            type="text"
+            name="Inconvenience"
+            placeholder="Et les risques ?"
+            required
           />
         </div>
         <p className={styles.label}>Service(s) impactés</p>

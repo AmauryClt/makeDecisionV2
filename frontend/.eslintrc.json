@@ -29,6 +29,8 @@
     "react/jsx-one-expression-per-line": "off",
     "react/no-unescaped-entities": "off",
     "react/jsx-props-no-spreading": "off",
+    "no-return-assign": "off",
+    "no-param-reassign": "off",
 
     "jsx-a11y/label-has-associated-control": [
       "error",
