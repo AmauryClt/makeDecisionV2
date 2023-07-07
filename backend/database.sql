@@ -1,20 +1,17 @@
 CREATE TABLE user (
-    Id INT NOT NULL AUTO_INCREMENT,
+    Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Email VARCHAR(50) NOT NULL,
     Lastname VARCHAR(50),
     Firstname VARCHAR(50),
     Password VARCHAR(50),
-    Admin TINYINT DEFAULT 0,
-    PRIMARY KEY (Id)
+    Admin TINYINT DEFAULT 0
 );
 
 -- Admin tinyint 0=False 1=True
 
-
-
-CREATE TABLE serv (
+CREATE TABLE impactedService (
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    Serv VARCHAR(50) NOT NULL
+    Service VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE demand (
@@ -26,16 +23,24 @@ CREATE TABLE demand (
     Context TEXT,
     Benefice TEXT,
     Inconvenience TEXT,
-    ServiceImpact INT,
     Statut ENUM('EN ATTENTE DE VOTE', 'EN DESACCORD', 'VALIDE', 'MISE EN PLACE', 'ARCHIVE', 'QUARANTAINE') DEFAULT 'EN ATTENTE DE VOTE',
     Note FLOAT,
     userId INT DEFAULT 2,
     CONSTRAINT fk_demand_user
     FOREIGN KEY (userId)
-    REFERENCES user(Id),
-    CONSTRAINT fk_demand_service
-    FOREIGN KEY (ServiceImpact)
-    REFERENCES serv(Id)
+    REFERENCES user(Id)
+);
+
+CREATE TABLE demandServiceJoin (
+    ServiceId INT NOT NULL,
+    DemandId INT NOT NULL,
+    PRIMARY KEY (ServiceId, DemandId),
+    CONSTRAINT fk_service_join
+    FOREIGN KEY (ServiceId)
+    REFERENCES impactedService(Id),
+    CONSTRAINT fk_demand_join
+    FOREIGN KEY (DemandId)
+    REFERENCES demand(Id)
 );
 
 CREATE TABLE interaction (
@@ -80,6 +85,4 @@ VALUES
 ('Lorem_désaccord', '2023-07-31', 'Ceci est une demande en désaccord', 'Voir une demande en désaccord', 'En désaccord', '+++', '---', 'EN DESACCORD', '5', 2),
 ('Lorem_validée', '2023-07-31', 'Ceci est une demande validée', 'Voir une demande en validée', 'Validée', '+++','---', 'EN DESACCORD', '3', 2);
 
-INSERT INTO serv (Serv)
-VALUES
-('ADMINISTRATIF'), ('COMPTABILITE'), ('MARKETING'), ('RESSOURCES HUMAINES'), ('COMMERCIAL');
+INSERT INTO impactedService (Service) VALUES ('ADMINISTRATIF'),('COMPTABILITE'),('MARKETING'),('RESSOURCES HUMAINES'),('COMMERCIAL')

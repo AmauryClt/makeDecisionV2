@@ -13,9 +13,13 @@ const getVote = (req, res) => {
 };
 
 const postDemand = (req, res) => {
+  const { servicesIds, ...rest } = req.body
   models.demand
     .add(req.body)
     .then(([result]) => {
+      servicesIds.forEach(ServiceId => {
+        models.demandService.add(result.insertId, ServiceId);
+      })
       res.location(`/demand/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {

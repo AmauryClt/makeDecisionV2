@@ -30,9 +30,12 @@ pool.getConnection().catch(() => {
 const models = {};
 
 const DemandManager = require("./DemandManager");
+const DemandServiceManager = require("./DemandServiceManager");
 
 models.demand = new DemandManager();
+models.demandService = new DemandServiceManager();
 models.demand.setDatabase(pool);
+models.demandService.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model

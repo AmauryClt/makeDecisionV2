@@ -6,7 +6,7 @@ class DemandManager extends AbstractManager {
   }
 
   add(demand) {
-    return this.database.query(
+       return this.database.query(
       `insert into ${this.table}(Title,Deadline,Content,Utility,Context,Benefice,Inconvenience,Note)values (?,?,?,?,?,?,?,?)`,
       [
         demand.Title,
