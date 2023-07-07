@@ -7,21 +7,23 @@ import ValidPage from "./components/ValidPage";
 import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import Profil from "./components/Profil";
-import "./App.css";
+import styles from "./app.module.scss";
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className={styles.appForm}>
         <Header />
-        <Routes>
-          <Route path="/" element={<LoginForm />} />
-          <Route path="/Menu" element={<Menu />} />
-          <Route path="/CreatePage" element={<CreatePage />} />
-          <Route path="/VotePage" element={<VotePage />} />
-          <Route path="/ValidPage" element={<ValidPage />} />
-          <Route path="/Profil" element={<Profil />} />
-        </Routes>
+        <div className={styles.bodyForm}>
+          <Routes>
+            <Route path="/" element={<LoginForm />} />
+            <Route path="/Menu" element={<Menu />} />
+            <Route path="/CreatePage" element={<CreatePage />} />
+            <Route path="/VotePage" element={<VotePage />} />
+            <Route path="/ValidPage" element={<ValidPage />} />
+            <Route path="/Profil" element={<Profil />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>
