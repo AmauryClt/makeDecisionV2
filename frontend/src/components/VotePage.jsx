@@ -28,21 +28,29 @@ export default function VotePage() {
   return (
     <main>
       <h1 className={styles.banniere}>Décision en attente de vote</h1>
-      <div className={styles.dataContainer}>
-        {demands.map((demand) => (
-          // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-          <div key={demand.Id} onClick={() => openPopup(demand)}>
-            <h3>{demand.Title}</h3>
-            <p>{demand.Statut}</p>
+      <div className={styles.block0}>
+        <div className={styles.dataContainer}>
+          {demands.map((demand) => (
+            <div
+              aria-hidden
+              className={styles.showDemand}
+              key={demand.Id}
+              onClick={() => openPopup(demand)}
+              role="button"
+            >
+              <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
+              <p className={styles.statutFrontDemand}>{demand.Statut}</p>
+              <p className={styles.contentFrontDemand}>{demand.Content}</p>
+            </div>
+          ))}
+        </div>
+        <div className={styles.guide}>
+          <div className={styles.content}>
+            <h2>GUIDE</h2>
+            <p>Lorem ipsum</p>
+            <p>Lorem ipsum</p>
+            <p>Lorem ipsum</p>
           </div>
-        ))}
-      </div>
-      <div className={styles.guide}>
-        <div className={styles.content}>
-          <h2>GUIDE</h2>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
-          <p>Lorem ipsum</p>
         </div>
       </div>
       {selectedDemand && (
