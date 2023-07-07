@@ -67,7 +67,7 @@ export default function VotePage() {
               <div className={styles.block2}>
                 <div className={styles.block3}>
                   <h3 className={styles.title}>{selectedDemand.Title}</h3>
-                  <p className={styles.username}>{selectedDemand.user_Id}</p>
+                  <p className={styles.username}>{selectedDemand.Lastname}</p>
                 </div>
                 <div className={styles.block4}>
                   <p>{selectedDemand.Content}</p>
