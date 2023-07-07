@@ -6,11 +6,56 @@
   padding-left: 1%;
 }
 
+.block0 {
+  display: flex;
+  width: 100%;
+}
+
+.dataContainer {
+  flex: 75%;
+}
+
+.showDemand {
+  display: flex;
+  border: solid 1px;
+  border-radius: 10px;
+  margin: 3%;
+  height: 20%;
+  position: relative;
+}
+
+.showDemand .titleFrontDemand {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
+}
+
+.showDemand .statutFrontDemand {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.showDemand .contentFrontDemand {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 10px; /* Ajout d'une marge pour plus d'espace */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ajout de l'ellipse (...) pour le texte dépassant la limite */
+  max-height: 50%; /* La moitié de la hauteur du cadre */
+  width: 100%; /* Occupera toute la largeur du cadre */
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+}
+
 .guide {
   display: block;
   float: right;
   width: 20%;
-  margin: 5%;
+  height: 400px;
+  margin: 3%;
   padding: 1%;
 }
 

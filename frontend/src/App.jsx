@@ -7,7 +7,7 @@ import ValidPage from "./components/ValidPage";
 import Footer from "./components/Footer";
 import Login from "./components/LoginForm";
 import Profil from "./components/Profil";
-import "./App.css";
+import styles from "./app.module.scss";
 import { useAuth } from "./components/AuthContext";
 
 function App() {
@@ -21,16 +21,18 @@ function App() {
           Logout
         </button>
       )}
-      <div className="App">
+      <div className={styles.appForm}>
         <Header />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Menu />} />
-          <Route path="/CreatePage" element={<CreatePage />} />
-          <Route path="/VotePage" element={<VotePage />} />
-          <Route path="/ValidPage" element={<ValidPage />} />
-          <Route path="/Profil" element={<Profil />} />
-        </Routes>
+        <div className={styles.bodyForm}>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Menu />} />
+            <Route path="/CreatePage" element={<CreatePage />} />
+            <Route path="/VotePage" element={<VotePage />} />
+            <Route path="/ValidPage" element={<ValidPage />} />
+            <Route path="/Profil" element={<Profil />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </>
