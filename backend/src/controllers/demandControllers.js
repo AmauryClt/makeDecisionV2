@@ -13,13 +13,15 @@ const getVote = (req, res) => {
 };
 
 const postDemand = (req, res) => {
-  const { servicesIds, ...rest } = req.body
+  const { ServicesIds } = req.body;
   models.demand
     .add(req.body)
     .then(([result]) => {
-      servicesIds.forEach(ServiceId => {
-        models.demandService.add(result.insertId, ServiceId);
-      })
+      if (ServicesIds && Array.isArray(ServicesIds)) {
+        ServicesIds.forEach((ServiceId) => {
+          models.demandService.add(result.insertId, ServiceId);
+        });
+      }
       res.location(`/demand/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {

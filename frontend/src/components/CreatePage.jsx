@@ -8,11 +8,22 @@ import Button from "./Button";
 export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
+
+  const serviceValues = {
+    ADMINISTRATIF: "1",
+    COMPTABILITE: "2",
+    MARKETING: "3",
+    "RESSOURCES HUMAINES": "4",
+    COMMERCIAL: "5",
+  };
+
   const onSubmit = (data) => {
     console.info(data);
 
-    const serviceImpactValues = selectedValues.join(",");
-    data.ServiceImpact = serviceImpactValues;
+    const serviceImpactValues = selectedValues.map(
+      (value) => serviceValues[value]
+    );
+    data.ServicesIds = serviceImpactValues;
 
     fetch("http://localhost:5001/postDemand", {
       method: "POST",
@@ -39,6 +50,7 @@ export default function CreatePage() {
       prevSelectedValues.filter((v) => v !== value)
     );
   }, []);
+
   const defaultDate = formatISO(add(new Date(), { months: 1 }), {
     representation: "date",
   });
@@ -131,19 +143,39 @@ export default function CreatePage() {
         </div>
         <p className={styles.label}>Service(s) impactés</p>
         <div className={styles.buttonServ}>
-          <Button addValue={addValue} removeValue={removeValue}>
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues.ADMINISTRATIF}
+          >
             ADMINISTRATIF
           </Button>
-          <Button addValue={addValue} removeValue={removeValue}>
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues.COMPTABILITE}
+          >
             COMPTABILITE
           </Button>
-          <Button addValue={addValue} removeValue={removeValue}>
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues.MARKETING}
+          >
             MARKETING
           </Button>
-          <Button addValue={addValue} removeValue={removeValue}>
-            RESSOURCE HUMAINE
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues["RESSOURCES HUMAINES"]}
+          >
+            RESSOURCES HUMAINES
           </Button>
-          <Button addValue={addValue} removeValue={removeValue}>
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues.ADMINISTRATIF}
+          >
             COMMERCIAL
           </Button>
         </div>

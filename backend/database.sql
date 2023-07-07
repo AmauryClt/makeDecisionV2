@@ -19,8 +19,6 @@ CREATE TABLE demand (
     Title VARCHAR(255) NOT NULL,
     Deadline DATE,
     Content TEXT,
-    Utility VARCHAR(255),
-    Context TEXT,
     Benefice TEXT,
     Inconvenience TEXT,
     Statut ENUM('EN ATTENTE DE VOTE', 'EN DESACCORD', 'VALIDE', 'MISE EN PLACE', 'ARCHIVE', 'QUARANTAINE') DEFAULT 'EN ATTENTE DE VOTE',
@@ -79,10 +77,10 @@ VALUES
 ('girbau@user.fr', 'GIRBAU', 'Laëtitia', 'user1234', 1),
 ('denneulin@user.fr', 'DENNEULIN', 'Thomas', 'user1234', 0);
 
-INSERT INTO demand (Title, Deadline, Content, Utility, Context, Benefice, Inconvenience, Statut, Note, userId)
+INSERT INTO demand (Title, Deadline, Content, Benefice, Inconvenience, Statut, Note, userId)
 VALUES
-('Lorem_Attente', '2023-07-31', 'Ceci est une demande en attente', 'Voir une demande en attente', 'En attente de vote', '+++', '---', 'EN ATTENTE DE VOTE', '4', 1),
-('Lorem_désaccord', '2023-07-31', 'Ceci est une demande en désaccord', 'Voir une demande en désaccord', 'En désaccord', '+++', '---', 'EN DESACCORD', '5', 2),
-('Lorem_validée', '2023-07-31', 'Ceci est une demande validée', 'Voir une demande en validée', 'Validée', '+++','---', 'EN DESACCORD', '3', 2);
+('Lorem_Attente', '2023-07-31', 'Ceci est une demande en attente', '+++', '---', 'EN ATTENTE DE VOTE', '4', 1),
+('Lorem_désaccord', '2023-07-31', 'Ceci est une demande en désaccord', '+++', '---', 'EN DESACCORD', '5', 2),
+('Lorem_validée', '2023-07-31', 'Ceci est une demande validée', '+++','---', 'EN DESACCORD', '3', 2);
 
 INSERT INTO impactedService (Service) VALUES ('ADMINISTRATIF'),('COMPTABILITE'),('MARKETING'),('RESSOURCES HUMAINES'),('COMMERCIAL')

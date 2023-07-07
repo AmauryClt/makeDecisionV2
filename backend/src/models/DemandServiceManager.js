@@ -6,12 +6,9 @@ class DemandServiceManager extends AbstractManager {
   }
 
   add(DemandId, ServiceId) {
-       return this.database.query(
+    return this.database.query(
       `insert into ${this.table}(ServiceId, DemandId)values (?,?)`,
-      [
-        ServiceId,
-        DemandId,
-      ]
+      [ServiceId, DemandId]
     );
   }
 }
