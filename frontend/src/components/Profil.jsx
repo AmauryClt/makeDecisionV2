@@ -21,7 +21,7 @@ export default function profile() {
       <h1 className={styles.banniere}>Mon Profil</h1>
       <div className={styles.mainHome}>
         {users.map((user) => (
-          <div key={user.Id}>
+          <div className={styles.element} key={user.Id}>
             <div className={styles.card}>
               <img
                 className={styles.pp}
@@ -31,7 +31,7 @@ export default function profile() {
               <p className={styles.nom}>{user.Lastname}</p>
               <p className={styles.nom}>{user.Firstname}</p>
               <p className={styles.catégorie}>{user.Statut}</p>
-              <p className={styles.mobile}>{user.Numeromob}</p>
+              <p className={styles.mobile2}>{user.Numeromob}</p>
               <p>
                 <button className={styles.Modifier} type="submit">
                   Modifier les infos
@@ -39,22 +39,18 @@ export default function profile() {
               </p>
             </div>
             <div className={styles.information}>
-              <p className={styles.adresse}>
-                Adresse :<p>{user.Adresse}</p>
-                <span className={styles.rangements} />
-              </p>
-              <p className={styles.mobile}>
-                Num Mobile :<p>{user.Numeromob}</p>
-                <span className={styles.rangements} />
-              </p>
-              <p className={styles.fixe}>
-                Num Fixe :<p>{user.Numerofix}</p>
-                <span className={styles.rangements} />
-              </p>
-              <p className={styles.email}>
-                Email :<p>{user.Email}</p>
-                <span className={styles.rangements} />
-              </p>
+              <ul className={styles.adresse}>
+                Adresse :<li>{user.Adresse}</li>
+              </ul>
+              <ul className={styles.mobile}>
+                Num Mobile :<li>{user.Numeromob}</li>
+              </ul>
+              <ul className={styles.fixe}>
+                Num Fixe :<li>{user.Numerofix}</li>
+              </ul>
+              <ul className={styles.email}>
+                Email :<li>{user.Email}</li>
+              </ul>
             </div>
           </div>
         ))}

@@ -26,12 +26,12 @@
 .card {
   margin-right: 0;
   margin-top: 15px;
-  margin-left: 10rem;
+  margin-left: 6rem;
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 15rem;
+  width: 20rem;
   border-radius: 0.5rem;
   border-width: 0.0625rem;
   border-color: #eaeaea;
@@ -65,47 +65,60 @@
   margin-top: 15px;
   margin-left: 7rem;
   margin-bottom: 15px;
-  margin-right: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 65%;
+  width: 100%;
   background-color: white;
 }
 
 .adresse {
-  font-family: Raleway;
+  font-family: Lato;
   font-size: 1.7rem;
-  margin-left: 1.5rem;
   margin-top: 1rem;
+  margin-left: 10px;
+  justify-content: flex-start;
 }
 
 .mobile {
-  font-family: Raleway;
+  font-family: Lato;
   font-size: 1.7rem;
-  margin-left: 1.5rem;
+  margin-left: 10px;
+  justify-content: flex-start;
 }
 
 .fixe {
-  font-family: Raleway;
+  font-family: Lato;
   font-size: 1.7rem;
-  margin-left: 1.5rem;
+  margin-left: 10px;
+  justify-content: flex-start;
 }
 
 .email {
-  font-family: Raleway;
-  font-size: 1.7rem;
-  margin-left: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.rangements {
   font-family: Lato;
   font-size: 1.7rem;
-  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  margin-left: 10px;
+  justify-content: flex-start;
 }
 
 .catégorie {
   font-family: Raleway;
   align-self: center;
+}
+
+.element{
+  display: flex;
+  justify-content: space-between;
+  height: 27rem;
+}
+
+ul{
+  padding: 0;
+}
+
+.mobile2 {
+  font-family: Lato;
+  font-size: 1.7rem;
+  margin-left: 15px;
 }
