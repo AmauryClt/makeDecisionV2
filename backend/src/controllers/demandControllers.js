@@ -2,7 +2,7 @@ const models = require("../models");
 
 const getVote = (req, res) => {
   models.demand
-    .findAll()
+    .findAll("user")
     .then(([rows]) => {
       res.json(rows);
     })
