@@ -6,3 +6,119 @@
   padding-left: 1%;
   color: white;
 }
+
+.mainHome {
+  background-color: grey;
+  height: 27rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pp {
+  border-radius: 50%;
+  height: 8rem;
+  width: 8rem;
+  margin-top: 4px;
+  align-self: center;
+}
+
+.card {
+  margin-right: 0;
+  margin-top: 15px;
+  margin-left: 6rem;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20rem;
+  border-radius: 0.5rem;
+  border-width: 0.0625rem;
+  border-color: #eaeaea;
+  background-color: #fff;
+  box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+  text-decoration: none;
+  color: black;
+}
+
+.nom {
+  font-family: Raleway;
+  align-self: center;
+}
+
+.statut {
+  font-family: Raleway;
+  align-self: center;
+}
+
+.Modifier {
+  width: 10rem;
+  background: rgba(25, 108, 132, 1);
+  font-family: Raleway;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.information {
+  margin-top: 15px;
+  margin-left: 7rem;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  background-color: white;
+}
+
+.adresse {
+  font-family: Lato;
+  font-size: 1.7rem;
+  margin-top: 1rem;
+  margin-left: 10px;
+  justify-content: flex-start;
+}
+
+.mobile {
+  font-family: Lato;
+  font-size: 1.7rem;
+  margin-left: 10px;
+  justify-content: flex-start;
+}
+
+.fixe {
+  font-family: Lato;
+  font-size: 1.7rem;
+  margin-left: 10px;
+  justify-content: flex-start;
+}
+
+.email {
+  font-family: Lato;
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+  margin-left: 10px;
+  justify-content: flex-start;
+}
+
+.catégorie {
+  font-family: Raleway;
+  align-self: center;
+}
+
+.element {
+  display: flex;
+  justify-content: space-between;
+  height: 27rem;
+}
+
+ul {
+  padding: 0;
+}
+
+.mobile2 {
+  font-family: Lato;
+  font-size: 1.7rem;
+  margin-left: 15px;
+}
