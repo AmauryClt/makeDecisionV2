@@ -2702,3 +2702,7 @@ packages:
       }
     engines: { node: ">=10" }
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

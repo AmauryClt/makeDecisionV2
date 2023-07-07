@@ -1,7 +1,16 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./menu.module.scss";
+import { useAuth } from "./AuthContext";
 
 export default function Menu() {
+  const navigate = useNavigate();
+  const { token } = useAuth();
+
+  useEffect(() => {
+    if (token == null) navigate("/login");
+  }, []);
+
   return (
     <main>
       <h1 className={styles.banniere}> Make Desicion</h1>

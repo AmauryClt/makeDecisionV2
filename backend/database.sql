@@ -24,11 +24,12 @@ CREATE TABLE demand (
     Benefice TEXT,
     Inconvenience TEXT,
     Complement TEXT,
+    ServiceImpact ENUM('ADMINISTRATIF', 'COMPTABILITE', 'MARKETING', 'RESSOURCE HUMAINE', 'COMMERCIAL'),
     Statut ENUM('EN ATTENTE DE VOTE', 'EN DESACCORD', 'VALIDE', 'MISE EN PLACE', 'ARCHIVE', 'QUARANTAINE') DEFAULT 'EN ATTENTE DE VOTE',
     Note FLOAT,
-    user_Id INT NOT NULL,
+    userId INT DEFAULT 2,
     CONSTRAINT fk_demand_user
-    FOREIGN KEY (user_Id)
+    FOREIGN KEY (userId)
     REFERENCES user(Id)
 );
 
@@ -36,10 +37,10 @@ CREATE TABLE interaction (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Content TEXT,
     Note FLOAT,
-    user_Id INT NOT NULL,
+    userId INT NOT NULL,
     demand_Id INT NOT NULL,
     CONSTRAINT fk_interaction_user
-    FOREIGN KEY (user_Id)
+    FOREIGN KEY (userId)
     REFERENCES user(Id),
     CONSTRAINT fk_interaction_demand
     FOREIGN KEY (demand_Id)
@@ -49,10 +50,10 @@ CREATE TABLE interaction (
 CREATE TABLE stakeholder (
     id INT PRIMARY KEY AUTO_INCREMENT,
     Role ENUM('ADMIN', 'EXPERT', 'SALARIE', 'BENEVOLE') DEFAULT 'ADMIN',
-    user_Id INT NOT NULL,
+    userId INT NOT NULL,
     demand_Id INT NOT NULL,
     CONSTRAINT fk_stakeholder_user
-    FOREIGN KEY (user_Id)
+    FOREIGN KEY (userId)
     REFERENCES user(Id),
     CONSTRAINT fk_stakeholder_demand
     FOREIGN KEY (demand_Id)
@@ -68,7 +69,7 @@ VALUES
 ('girbau@user.fr', 'GIRBAU', 'Laëtitia', 'Patronne', '06 78 15 78 53', '377 Avenue Victor Hugo Le Grand Chapitôt', '04 15 84 25 93', 'user1234', 1),
 ('denneulin@user.fr', 'DENNEULIN', 'Thomas', 'Codeur', '06 74 31 58 73', '757 Avenue Victor Hugo Le Grand Chapitôt', '04 47 85 25 93', 'user1234', 0);
 
-INSERT INTO demand (Title, Deadline, Content, Utility, Context, Benefice, Inconvenience, Complement, Statut, Note, user_Id)
+INSERT INTO demand (Title, Deadline, Content, Utility, Context, Benefice, Inconvenience, Complement, Statut, Note, userId)
 VALUES
 ('Lorem_Attente', '2023-07-31', 'Ceci est une demande en attente', 'Voir une demande en attente', 'En attente de vote', '+++', '---', 'je complète', 'EN ATTENTE DE VOTE', '4', 1),
 ('Lorem_désaccord', '2023-07-31', 'Ceci est une demande en désaccord', 'Voir une demande en désaccord', 'En désaccord', '+++', '---', 'je ne suis pas daccord', 'EN DESACCORD', '5', 2),

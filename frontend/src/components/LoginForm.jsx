@@ -1,41 +1,60 @@
-import React from "react";
-import styles from "./loginForm.module.scss";
+import React, { useRef } from "react";
+// import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./loginForm.module.scss";
+import { useAuth } from "./AuthContext";
 
-function LoginForm() {
+function Login() {
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
+
   return (
-    <main className={styles.mainHome}>
-      <form className={styles.labelStyles}>
-        <h1 className={styles.bigTitle}>make decision</h1>
-        <label>
-          <div className={styles.Username}>
-            <input
-              className={styles.inputUsername}
-              type="username"
-              name="username"
-              placeholder="Adresse@mail.fr"
-            />
-          </div>
-        </label>
-        <label>
-          <div className={styles.Password}>
-            <input
-              className={styles.inputPassword}
-              type="password"
-              name="password"
-              placeholder="Mot de passe"
-            />
-          </div>
-        </label>
-        <div className={styles.login}>
-          <button className={styles.button} type="submit">
-            LOGIN
-          </button>
-        </div>
-      </form>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+
+        fetch(
+          `${
+            import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"
+          }/login`,
+          {
+            method: "post",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              username: usernameRef.current.value,
+              password: passwordRef.current.value,
+            }),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            setToken(data.token);
+
+            navigate("/");
+          });
+      }}
+    >
       <div>
-        <img src="./src/assets/makesenseaccueil.jpg" alt="connect" />
+        <label htmlFor="username">Username</label>
+        <input ref={usernameRef} type="text" id="username" name="username" />
       </div>
-    </main>
+      <div>
+        <label htmlFor="password">Password</label>
+        <input
+          ref={passwordRef}
+          type="password"
+          id="password"
+          name="password"
+        />
+      </div>
+      <button type="submit">Go</button>
+    </form>
   );
 }
-export default LoginForm;
+
+export default Login;
