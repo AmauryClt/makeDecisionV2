@@ -1,6 +1,6 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from "react";
 import styles from "./votePage.module.scss";
+import PopupPage from "./PopupPage";
 
 export default function VotePage() {
   const [demands, setDemands] = useState([]);
@@ -31,16 +31,18 @@ export default function VotePage() {
       <div className={styles.block0}>
         <div className={styles.dataContainer}>
           {demands.map((demand) => (
-            <div
-              aria-hidden
-              className={styles.showDemand}
-              key={demand.Id}
-              onClick={() => openPopup(demand)}
-              role="button"
-            >
-              <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
-              <p className={styles.statutFrontDemand}>{demand.Statut}</p>
+            <div className={styles.showDemand} key={demand.Id}>
+              <div className={styles.blockFrontDemand}>
+                <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
+                <p className={styles.statutFrontDemand}>{demand.Statut}</p>
+              </div>
               <p className={styles.contentFrontDemand}>{demand.Content}</p>
+              <div
+                className={styles.buttonContainer}
+                aria-hidden
+                onClick={() => openPopup(demand)}
+                role="button"
+              />
             </div>
           ))}
         </div>
@@ -54,42 +56,11 @@ export default function VotePage() {
         </div>
       </div>
       {selectedDemand && (
-        <div className={`${styles.popup} ${styles.popupContainer}`}>
-          <div className={styles.popupContent}>
-            <button
-              className={styles.popupButton}
-              type="button"
-              onClick={closePopup}
-            >
-              X
-            </button>
-            <div className={styles.block1}>
-              <div className={styles.block2}>
-                <div className={styles.block3}>
-                  <h3 className={styles.title}>{selectedDemand.Title}</h3>
-                  <p className={styles.username}>{selectedDemand.Lastname}</p>
-                </div>
-                <div className={styles.block4}>
-                  <p>{selectedDemand.Content}</p>
-                  <p>{selectedDemand.Utility}</p>
-                  <p>{selectedDemand.Context}</p>
-                  <p>{selectedDemand.Benefice}</p>
-                  <p>{selectedDemand.Inconvenience}</p>
-                  <p>{selectedDemand.Complement}</p>
-                </div>
-              </div>
-              <div className={styles.block5}>
-                <p>{selectedDemand.Deadline}</p>
-                <p>{selectedDemand.Note}</p>
-                <p>{selectedDemand.Statut}</p>
-                <p>Avancement des votes</p>
-                <p>Salarié Votant</p>
-                <p>Expert Votant</p>
-                <p>{selectedDemand.ServiceImpact}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <PopupPage
+          demand={selectedDemand}
+          closePopup={closePopup}
+          styles={styles}
+        />
       )}
     </main>
   );
