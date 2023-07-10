@@ -25,7 +25,7 @@ export default function CreatePage() {
     );
     data.ServicesIds = serviceImpactValues;
 
-    fetch("http://localhost:5001/postDemand", {
+    fetch("http://localhost:5001/demand", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

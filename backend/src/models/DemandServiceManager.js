@@ -11,6 +11,12 @@ class DemandServiceManager extends AbstractManager {
       [ServiceId, DemandId]
     );
   }
+
+  flush(DemandId) {
+    return this.database.query(`delete from ${this.table} where DemandId =?`, [
+      DemandId,
+    ]);
+  }
 }
 
 module.exports = DemandServiceManager;
