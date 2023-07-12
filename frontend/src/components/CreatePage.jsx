@@ -190,7 +190,6 @@ export default function CreatePage() {
             max={maxDate}
             className={styles.inputDate}
             required
-            className={styles.inputDate}
           />
         </label>
         <button className={styles.btnSubmit} type="submit">
