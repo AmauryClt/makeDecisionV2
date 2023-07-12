@@ -8,20 +8,23 @@
 
 .block0 {
   display: flex;
-  width: 100%;
+  margin: 1%;
 }
 
 .dataContainer {
+  display: flex;
+  flex-direction: column;
   flex: 75%;
+  margin-right: 1rem;
 }
 
 .showDemand {
   display: block;
   border: solid 1px;
   border-radius: 10px;
-  margin: 3%;
   height: 20%;
   position: relative;
+  margin-bottom: 1rem;
 }
 
 .buttonContainer {
@@ -45,10 +48,12 @@
 
 .showDemand .titleFrontDemand {
   margin: 10px;
+  border-bottom: none;
 }
 
 .showDemand .statutFrontDemand {
   margin: 10px;
+  border-bottom: none;
 }
 
 .showDemand .contentFrontDemand {
@@ -60,6 +65,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  border-bottom: none;
 }
 
 .guide {
@@ -67,12 +73,14 @@
   float: right;
   width: 20%;
   height: 400px;
-  margin: 3%;
-  padding: 1%;
+  border: 1px solid black;
 }
 
 .guide .content {
-  border: 1px solid black;
   text-align: center;
   padding: 1%;
+}
+
+.guide .content p {
+  border-bottom: none;
 }

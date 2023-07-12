@@ -25,35 +25,34 @@ export default function PopupPage({ demand, closePopup }) {
             <div className={styles.block4}>
               <div className={styles.block4Content}>
                 <h4>Détail de la prise de décision :</h4>
-                <p>{demand.Content}</p>
+                <p className={styles.pBorder}>{demand.Content}</p>
                 <h4>Impact sur l'organisation :</h4>
-                <p>{demand.Utility}</p>
+                <p className={styles.pBorder}>{demand.Utility}</p>
                 <h4>Bénéfices :</h4>
-                <p>{demand.Benefice}</p>
+                <p className={styles.pBorder}>{demand.Benefice}</p>
                 <h4>Risque potentiels :</h4>
-                <p>{demand.Inconvenience}</p>
+                <p className={styles.pBorder}>{demand.Inconvenience}</p>
                 <h4>Commentaire :</h4>
-                <p>{demand.Complement}</p>
+                <p className={styles.pBorder}>{demand.Complement}</p>
               </div>
             </div>
           </div>
           <div className={styles.block5}>
             <div className={styles.block5Content}>
               <h4 className={styles.h4Block5}>Date de cloture des votes :</h4>
-              <p>{demand.Deadline}</p>
+              <p className={styles.pBorder}>{demand.Deadline}</p>
               <h4 className={styles.h4Block5}>Note :</h4>
-              <p>{demand.Note}</p>
+              <p className={styles.pBorder}>{demand.Note}</p>
               <h4 className={styles.h4Block5}>Statut de la demande :</h4>
-              <p>{demand.Statut}</p>
+              <p className={styles.pBorder}>{demand.Statut}</p>
               <h4 className={styles.h4Block5}>Avancement des votes :</h4>
-              <p>provisoire</p>
+              <p className={styles.pBorder}>provisoire</p>
               <h4 className={styles.h4Block5}>Salarié Votant :</h4>
-              <p>provisoire</p>
+              <p className={styles.pBorder}>provisoire</p>
               <h4 className={styles.h4Block5}>Expert Votant :</h4>
-              <p>provisoire</p>
+              <p className={styles.pBorder}>provisoire</p>
               <h4 className={styles.h4Block5}>Service Impacté :</h4>
-              <p>provisoire</p>
-              <p>{demand.ServiceImpact}</p>
+              <p className={styles.pBorder}>{demand.ServiceImpact}</p>
             </div>
           </div>
         </div>
