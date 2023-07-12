@@ -7,7 +7,7 @@ import exitButtonImage from "../assets/bouttonExit.png";
 export default function PopupPage({ demand, closePopup }) {
   return (
     <div className={styles.popupContainer}>
-      <Scrollbars style={{ height: "95%" }}>
+      <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
         <div className={styles.popupContentbar}>
           <div className={styles.closeButton}>
             <img
