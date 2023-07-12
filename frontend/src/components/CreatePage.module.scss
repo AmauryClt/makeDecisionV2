@@ -39,11 +39,13 @@ label,
 
 input,
 select,
+textarea,
 .editor {
   font-family: "Lato", sans-serif;
   border-radius: 5px;
   border: solid whitesmoke 1px;
-  box-shadow: 10px 5px 5px rgb(12, 57, 68);
+  box-shadow: 5px 5px 5px rgb(12, 57, 68);
+  border: solid 1px rgb(12, 57, 68);
 }
 
 .title {
@@ -88,6 +90,19 @@ ul {
   border-radius: 5px;
 }
 
+.benefInc {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+}
+
+textarea {
+  min-width: 36svw;
+  margin: 0px;
+  font-size: 16px;
+  height: 300px;
+}
 .inputDate {
   max-width: 20svw;
   min-width: 10svw;
@@ -98,5 +113,10 @@ ul {
 @media screen and (max-width: 600px) {
   .btnSubmit {
     width: 25svw;
+  }
+
+  .benefInc {
+    flex-direction: column;
+    gap: 15px;
   }
 }

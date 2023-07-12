@@ -79,7 +79,6 @@ export default function CreatePage() {
         items: ["bullist", "numlist", "outdent", "indent"],
       },
     ],
-    color_cols: 5,
     menubar: false,
   };
 
@@ -102,7 +101,6 @@ export default function CreatePage() {
             required
           />
         </label>
-        <p className={styles.label}>Détails :</p>
         <div className={styles.editor}>
           <Controller
             control={control}
@@ -119,22 +117,16 @@ export default function CreatePage() {
             )}
           />
         </div>
-        <p className={styles.label}>Bénéfices :</p>
-        <div className={styles.editor}>
-          <input
+        <div className={styles.benefInc}>
+          <textarea
             {...register("Benefice")}
-            className={styles.title}
             type="text"
             name="Benefice"
             placeholder="Quel en seront les bénéfices ?"
             required
           />
-        </div>
-        <p className={styles.label}>Risques :</p>
-        <div className={styles.editor}>
-          <input
+          <textarea
             {...register("Inconvenience")}
-            className={styles.title}
             type="text"
             name="Inconvenience"
             placeholder="Et les risques ?"
@@ -196,6 +188,7 @@ export default function CreatePage() {
             defaultValue={defaultDate}
             min={minDate}
             max={maxDate}
+            className={styles.inputDate}
             required
             className={styles.inputDate}
           />
