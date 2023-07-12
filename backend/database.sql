@@ -20,7 +20,6 @@ CREATE TABLE demand (
     Deadline DATE,
     Content TEXT,
     Utility VARCHAR(255),
-    Context TEXT,
     Benefice TEXT,
     Inconvenience TEXT,
     Complement TEXT,
