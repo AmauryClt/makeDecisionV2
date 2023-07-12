@@ -80,8 +80,8 @@ ul {
 }
 
 .buttonChoice {
-  background-color: white;
-  color: rgb(12, 57, 68);
+  background-color: rgb(12, 57, 68);
+  color: white;
   border: solid rgb(12, 57, 68);
   font-family: "Lato", sans-serif;
   font-size: 1em;
@@ -103,7 +103,6 @@ textarea {
   font-size: 16px;
   height: 300px;
 }
-
 .inputDate {
   max-width: 20svw;
   min-width: 10svw;
@@ -113,7 +112,7 @@ textarea {
 
 @media screen and (max-width: 600px) {
   .btnSubmit {
-    width: 45svw;
+    width: 25svw;
   }
 
   .benefInc {
