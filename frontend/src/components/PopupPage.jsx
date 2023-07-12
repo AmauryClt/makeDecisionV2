@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Scrollbars } from "react-custom-scrollbars";
+import { Scrollbars } from "react-custom-scrollbars-2";
 import styles from "./popupPage.module.scss";
 import exitButtonImage from "../assets/bouttonExit.png";
 
 export default function PopupPage({ demand, closePopup }) {
   return (
     <div className={styles.popupContainer}>
-      <Scrollbars autoHide autoHideTimeout={500} autoHideDuration={200}>
+      <Scrollbars style={{ height: "95%" }}>
         <div className={styles.popupContentbar}>
           <div className={styles.closeButton}>
             <img

@@ -19,9 +19,9 @@ dependencies:
   react:
     specifier: ^18.2.0
     version: 18.2.0
-  react-custom-scrollbars:
-    specifier: ^4.2.1
-    version: 4.2.1(react-dom@18.2.0)(react@18.2.0)
+  react-custom-scrollbars-2:
+    specifier: ^4.5.0
+    version: 4.5.0(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -2871,14 +2871,14 @@ packages:
       performance-now: 2.1.0
     dev: false
 
-  /react-custom-scrollbars@4.2.1(react-dom@18.2.0)(react@18.2.0):
+  /react-custom-scrollbars-2@4.5.0(react-dom@18.2.0)(react@18.2.0):
     resolution:
       {
-        integrity: sha512-VtJTUvZ7kPh/auZWIbBRceGPkE30XBYe+HktFxuMWBR2eVQQ+Ur6yFJMoaYcNpyGq22uYJ9Wx4UAEcC0K+LNPQ==,
+        integrity: sha512-/z0nWAeXfMDr4+OXReTpYd1Atq9kkn4oI3qxq3iMXGQx1EEfwETSqB8HTAvg1X7dEqcCachbny1DRNGlqX5bDQ==,
       }
     peerDependencies:
-      react: ^0.14.0 || ^15.0.0 || ^16.0.0
-      react-dom: ^0.14.0 || ^15.0.0 || ^16.0.0
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
       dom-css: 2.1.0
       prop-types: 15.8.1
