@@ -4,9 +4,10 @@ const router = express.Router();
 
 const demandControllers = require("./controllers/demandControllers");
 
-router.get("/demand", demandControllers.getDemand);
-router.post("/demand/create", demandControllers.postDemand);
-router.put("/demand/update/:id", demandControllers.updateDemand);
+router.get("/demands", demandControllers.getDemand);
+router.get("/demands/:id", demandControllers.getOneDemand);
+router.post("/demands/create", demandControllers.postDemand);
+router.put("/demands/update/:id", demandControllers.updateDemand);
 
 const authControllers = require("./controllers/authControllers");
 

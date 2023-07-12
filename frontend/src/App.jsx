@@ -27,11 +27,11 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Menu />} />
-            <Route path="/demand/create" element={<CreatePage />} />
-            <Route path="/VotePage" element={<VotePage />} />
-            <Route path="/ValidPage" element={<ValidPage />} />
+            <Route path="/demands/create" element={<CreatePage />} />
+            <Route path="/demands/vote" element={<VotePage />} />
+            <Route path="/demands/valid" element={<ValidPage />} />
             <Route path="/Profil" element={<Profil />} />
-            <Route path="/demand/update/:id" element={<CreatePage />} />
+            <Route path="/demands/update/:id" element={<CreatePage />} />
           </Routes>
         </div>
         <Footer />

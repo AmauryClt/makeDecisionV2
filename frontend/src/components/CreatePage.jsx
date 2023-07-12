@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
@@ -9,6 +9,7 @@ import Button from "./Button";
 export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
+  const [demand, setDemand] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
   const serviceValues = {
@@ -18,6 +19,18 @@ export default function CreatePage() {
     "RESSOURCES HUMAINES": "4",
     COMMERCIAL: "5",
   };
+  if (id) {
+    useEffect(() => {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setDemand(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, []);
+  }
 
   const onSubmit = (data) => {
     console.info(data);
@@ -28,7 +41,7 @@ export default function CreatePage() {
     data.ServicesIds = serviceImpactValues;
 
     if (id) {
-      fetch(`http://localhost:5001/demand/update/${id}`, {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -38,12 +51,13 @@ export default function CreatePage() {
         .then((response) => response.json())
         .then((result) => {
           console.info(result);
+          setSelectedValues(result);
         })
         .catch((error) => {
           console.error(error);
         });
     } else {
-      fetch("http://localhost:5001/demand/create", {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +73,7 @@ export default function CreatePage() {
         });
     }
 
-    navigate("/VotePage");
+    navigate("/demands/vote");
   };
 
   const addValue = useCallback((value) => {
@@ -102,7 +116,7 @@ export default function CreatePage() {
     ],
     menubar: false,
   };
-
+  console.info(demand.Deadline);
   return (
     <main>
       <h1 className={styles.banniere}>
@@ -120,6 +134,7 @@ export default function CreatePage() {
             name="Title"
             placeholder="Titre de ta décision"
             required
+            defaultValue={demand.Title}
           />
         </label>
         <div className={styles.editor}>
@@ -145,6 +160,7 @@ export default function CreatePage() {
             name="Benefice"
             placeholder="Quel en seront les bénéfices ?"
             required
+            defaultValue={demand.Benefice}
           />
           <textarea
             {...register("Inconvenience")}
@@ -152,6 +168,7 @@ export default function CreatePage() {
             name="Inconvenience"
             placeholder="Et les risques ?"
             required
+            defaultValue={demand.Inconvenience}
           />
         </div>
         <p className={styles.label}>Service(s) impactés</p>
@@ -206,7 +223,7 @@ export default function CreatePage() {
             {...register("Deadline")}
             type="date"
             name="Deadline"
-            defaultValue={defaultDate}
+            defaultValue={demand.Deadline || defaultDate}
             min={minDate}
             max={maxDate}
             className={styles.inputDate}

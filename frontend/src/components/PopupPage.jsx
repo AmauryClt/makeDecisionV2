@@ -8,7 +8,7 @@ import editButtonImage from "../assets/modifier.png";
 export default function PopupPage({ demand, closePopup }) {
   const navigate = useNavigate();
   const editDemand = () => {
-    navigate(`/demand/update/${demand.Id}`);
+    navigate(`/demands/update/${demand.Id}`);
   };
 
   return (

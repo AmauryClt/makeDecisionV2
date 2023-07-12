@@ -4,17 +4,12 @@ class AbstractManager {
   }
 
   find(id) {
-    return this.database.query(`select * from  ${this.table} where id = ?`, [
+    return this.database.query(`select * from  ${this.table} where Id = ?`, [
       id,
     ]);
   }
 
-  findAll(relation = null) {
-    if (relation) {
-      return this.database.query(
-        `select * from  ${this.table} INNER JOIN ${relation} ON ${relation}.id = ${this.table}.${relation}id`
-      );
-    }
+  findAll() {
     return this.database.query(`select * from  ${this.table}`);
   }
 
