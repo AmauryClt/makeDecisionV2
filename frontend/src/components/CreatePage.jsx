@@ -2,13 +2,15 @@ import React, { useState, useCallback } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
 export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
-
+  const { id } = useParams();
+  const navigate = useNavigate();
   const serviceValues = {
     ADMINISTRATIF: "1",
     COMPTABILITE: "2",
@@ -25,20 +27,39 @@ export default function CreatePage() {
     );
     data.ServicesIds = serviceImpactValues;
 
-    fetch("http://localhost:5001/demand", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.info(result);
+    if (id) {
+      fetch(`http://localhost:5001/demand/update/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((response) => response.json())
+        .then((result) => {
+          console.info(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      fetch("http://localhost:5001/demand/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.info(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+
+    navigate("/VotePage");
   };
 
   const addValue = useCallback((value) => {

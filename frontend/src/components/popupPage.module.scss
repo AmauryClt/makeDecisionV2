@@ -17,25 +17,20 @@
   border-radius: 8px;
 }
 
-.closeButton {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: 0.2rem;
-  right: 0.2rem;
-  background-color: transparent;
-  border: none;
+.closeButton,
+.editButton {
+  width: 3swh;
+  height: 3svh;
   cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-.closeButton img {
-  width: 100%;
-  height: auto;
+.buttons {
+  padding: 5px;
+  display: flex;
+  justify-content: end;
+  gap: 5px;
 }
-
 .block1 {
   display: flex;
 }

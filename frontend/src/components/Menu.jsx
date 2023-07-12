@@ -15,7 +15,7 @@ export default function Menu() {
     <main>
       <h1 className={styles.banniere}> Make Desicion</h1>
       <div className={styles.mainHome}>
-        <Link className={styles.Creer} to="/CreatePage">
+        <Link className={styles.Creer} to="/demand/create">
           <img
             className={styles.imgCards}
             src="./src/assets/makesensecréer.jpg"
