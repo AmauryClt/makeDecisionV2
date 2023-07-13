@@ -9,12 +9,28 @@ router.get("/demands/:id", demandControllers.getOneDemand);
 router.post("/demands/create", demandControllers.postDemand);
 router.put("/demands/update/:id", demandControllers.updateDemand);
 
-const authControllers = require("./controllers/authControllers");
-
-router.post("/login", authControllers.login);
-
 const userControllers = require("./controllers/userControllers");
 
-router.get("/user", userControllers.getProfile);
+const {
+  hashPassword,
+  verifyPassword,
+  verifyToken,
+} = require("./services/auth");
 
+router.get("/user", userControllers.getProfile);
+router.get("/users", userControllers.browse);
+router.get("/users/:id", userControllers.read);
+router.put("/users/:id", hashPassword, userControllers.edit);
+router.post("/users", hashPassword, userControllers.add);
+router.delete("/users/:id", userControllers.destroy);
+
+const authControllers = require("./controllers/authControllers");
+
+router.post(
+  "/login",
+  authControllers.getUserByUsernameWithPasswordAndPassToNext,
+  verifyPassword
+);
+
+router.use(verifyToken); // mur d'authentification
 module.exports = router;

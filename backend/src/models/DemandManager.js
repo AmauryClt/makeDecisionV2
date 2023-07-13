@@ -5,10 +5,16 @@ class DemandManager extends AbstractManager {
     super({ table: "demand" });
   }
 
-  findAll() {
-    return this.database.query(
-      `select demand.Title, demand.Content, demand.Benefice, demand.Inconvenience, demand.Deadline, demand.Note, demand.Statut, demand.Id, user.Lastname, user.Firstname from  ${this.table} INNER JOIN user ON user.Id = ${this.table}.userId`
-    );
+
+  findAllWithUser() {
+    return this.database.query(`
+      SELECT demand.*, user.Lastname, user.Firstname, GROUP_CONCAT(impactedService.Service SEPARATOR ', ') AS ServicesImpacts
+      FROM demand
+      INNER JOIN user ON demand.userId = user.Id
+      LEFT JOIN demandServiceJoin ON demand.Id = demandServiceJoin.DemandId
+      LEFT JOIN impactedService ON demandServiceJoin.ServiceId = impactedService.Id
+      GROUP BY demand.Id
+    `);
   }
 
   add(demand) {

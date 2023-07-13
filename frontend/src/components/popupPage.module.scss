@@ -1,5 +1,6 @@
 .popupContainer {
   position: fixed;
+  background-color: #d9d9d9;
   top: 5%;
   left: 2%;
   right: 2%;
@@ -12,11 +13,51 @@
 
 .popupContent {
   width: 100%;
-  background-color: #d9d9d9;
   height: 100%;
-  border-radius: 8px;
+  padding: 1%;
 }
 
+.block1 {
+  display: flex;
+  width: 99.5%;
+  height: 99.5%;
+  margin: 0.5%;
+}
+
+.block2 {
+  width: 99.5%;
+  height: 99.5%;
+  margin: 0.5%;
+}
+
+.block3 {
+  display: flex;
+  align-self: center;
+  justify-content: space-around;
+  background-color: #d9d9d9;
+  width: 99.5%;
+  height: 99.5%;
+  border-radius: 20px;
+  margin: 0.5%;
+}
+
+.block4 {
+  background-color: white;
+  border-radius: 20px;
+  padding-bottom: 2%;
+}
+
+.block5 {
+  display: block;
+  float: right;
+  width: 25%;
+  height: 100%;
+  background-color: white;
+  border-radius: 20px;
+  margin: 0.9%;
+  margin-top: 3%;
+  margin-right: 1.7%;
+}
 .closeButton,
 .editButton {
   width: 3swh;
@@ -45,13 +86,64 @@
   font-family: raleway;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 20px;
+  height: 3rem;
+  width: 80%;
+  margin-right: 1%;
 }
 
 .username {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: white;
+  border-radius: 20px;
+  width: 20%;
+  height: 3rem;
+  margin-left: 1%;
+  text-align: center;
+}
+
+.block4Content {
+  padding: 1%;
+  margin-bottom: 1%;
+}
+
+h3 {
+  font-family: "Raleway", sans-serif;
+}
+
+h4 {
+  font-family: "Raleway", sans-serif;
+  border-bottom: solid 1px;
+  padding-bottom: 1px;
+  padding-top: 25px;
+}
+
+.pBorder {
+  font-family: "Lato", sans-serif;
+  border-bottom: solid 1px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.pBorderComment {
+  border-bottom: none;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.block5Content {
+  padding: 3%;
+}
+
+.h4Block5 {
+  border-bottom: none;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 .note {
@@ -62,23 +154,5 @@
   padding: 1%;
   background-color: white;
   height: 70%;
-  border-radius: 5px;
-}
-
-.block4 {
-  background-color: white;
-  width: 80%;
-  border-radius: 10px;
-  margin-left: 1rem;
-}
-
-.block5 {
-  display: block;
-  float: right;
-  width: 20%;
-  margin: 5%;
-  padding: 1%;
-  background-color: white;
-  border-radius: 10px;
-  height: 70%;
+  border-radius: 20px;
 }
