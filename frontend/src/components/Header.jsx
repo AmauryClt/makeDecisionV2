@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 function header() {
   return (
     <nav className={styles.headLinks}>
-      <Link to="/Menu">
+      <Link to="/">
         <img
           className={styles.logo}
           src="./src/assets/logo.png"
