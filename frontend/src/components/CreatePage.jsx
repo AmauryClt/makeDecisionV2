@@ -1,14 +1,28 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
 export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
+  const [demand, setDemand] = useState([]);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
+  const defaultDate = formatISO(add(new Date(), { months: 1 }), {
+    representation: "date",
+  });
+  const maxDate = formatISO(add(new Date(), { years: 1 }), {
+    representation: "date",
+  });
+  const minDate = formatISO(add(new Date(), { days: 7 }), {
+    representation: "date",
+  });
+  let formattedDate = defaultDate;
   const serviceValues = {
     ADMINISTRATIF: "1",
     COMPTABILITE: "2",
@@ -16,6 +30,24 @@ export default function CreatePage() {
     "RESSOURCES HUMAINES": "4",
     COMMERCIAL: "5",
   };
+  if (id) {
+    useEffect(() => {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.info("THEN", data);
+          const dateStr = data.Deadline;
+          formattedDate = formatISO(new Date(dateStr), {
+            representation: "date",
+          });
+          data.Deadline = formattedDate;
+          setDemand(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, []);
+  }
 
   const onSubmit = (data) => {
     console.info(data);
@@ -25,20 +57,39 @@ export default function CreatePage() {
     );
     data.ServicesIds = serviceImpactValues;
 
-    fetch("http://localhost:5001/demand", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        console.info(result);
+    if (id) {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        console.error(error);
-      });
+        .then((response) => response.json())
+        .then((result) => {
+          console.info(result);
+          setSelectedValues(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.info(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    navigate("/demands/vote");
   };
 
   const addValue = useCallback((value) => {
@@ -51,15 +102,6 @@ export default function CreatePage() {
     );
   }, []);
 
-  const defaultDate = formatISO(add(new Date(), { months: 1 }), {
-    representation: "date",
-  });
-  const maxDate = formatISO(add(new Date(), { years: 1 }), {
-    representation: "date",
-  });
-  const minDate = formatISO(add(new Date(), { days: 7 }), {
-    representation: "date",
-  });
   const editorConfig = {
     plugins: "lists",
     height: 300,
@@ -99,18 +141,24 @@ export default function CreatePage() {
             name="Title"
             placeholder="Titre de ta décision"
             required
+            defaultValue={demand.Title}
           />
         </label>
         <div className={styles.editor}>
           <Controller
+            {...demand.Content}
             control={control}
             name="Content"
-            render={({ field: { onChange, onBlur, value, ref } }) => (
+            render={({ field: { onChange, onBlur, ref } }) => (
               <Editor
+                {...demand.Content}
                 onBlur={onBlur} // notify when input is touched
                 onEditorChange={onChange} // send value to hook form
-                value={value}
-                initialValue="<p>Donnez nous des détails sur votre idée !!!</p>"
+                initialValue={
+                  id
+                    ? demand.Content
+                    : "<p>Donnez nous des détails sur votre idée !!!</p>"
+                }
                 init={editorConfig}
                 onInit={(evt, editor) => (ref.current = editor)}
               />
@@ -124,6 +172,7 @@ export default function CreatePage() {
             name="Benefice"
             placeholder="Quel en seront les bénéfices ?"
             required
+            defaultValue={demand.Benefice}
           />
           <textarea
             {...register("Inconvenience")}
@@ -131,6 +180,7 @@ export default function CreatePage() {
             name="Inconvenience"
             placeholder="Et les risques ?"
             required
+            defaultValue={demand.Inconvenience}
           />
         </div>
         <p className={styles.label}>Service(s) impactés</p>
@@ -185,7 +235,8 @@ export default function CreatePage() {
             {...register("Deadline")}
             type="date"
             name="Deadline"
-            defaultValue={defaultDate}
+            placeholder={defaultDate}
+            defaultValue={demand.Deadline}
             min={minDate}
             max={maxDate}
             className={styles.inputDate}

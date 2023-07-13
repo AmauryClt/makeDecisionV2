@@ -6,13 +6,13 @@ function Navbar() {
   return (
     <nav className={styles.navlinks}>
       <div className={styles.ul}>
-        <Link className={styles.créer} to="/CreatePage">
+        <Link className={styles.créer} to="/demands/create">
           <li> Créer ta décision</li>
         </Link>
-        <Link className={styles.encours} to="/VotePage">
+        <Link className={styles.encours} to="/demands/vote">
           <li> En cours de vote</li>
         </Link>
-        <Link className={styles.termine} to="/ValidPage">
+        <Link className={styles.termine} to="/demands/valide">
           <li> Votation terminé</li>
         </Link>
       </div>
