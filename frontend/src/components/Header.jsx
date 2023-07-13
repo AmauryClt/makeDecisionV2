@@ -8,7 +8,7 @@ function header() {
   const { token, setToken } = useAuth();
   return (
     <nav className={styles.headLinks}>
-      <Link to="/Menu">
+      <Link to="/">
         <img
           className={styles.logo}
           src="./src/assets/logo.png"
