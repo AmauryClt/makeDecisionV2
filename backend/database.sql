@@ -16,6 +16,11 @@ CREATE TABLE impactedService (
     Service VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE impactedService (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Service VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE demand (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Title VARCHAR(255) NOT NULL,
@@ -29,6 +34,18 @@ CREATE TABLE demand (
     CONSTRAINT fk_demand_user
     FOREIGN KEY (userId)
     REFERENCES user(Id)
+);
+
+CREATE TABLE demandServiceJoin (
+    ServiceId INT NOT NULL,
+    DemandId INT NOT NULL,
+    PRIMARY KEY (ServiceId, DemandId),
+    CONSTRAINT fk_service_join
+    FOREIGN KEY (ServiceId)
+    REFERENCES impactedService(Id),
+    CONSTRAINT fk_demand_join
+    FOREIGN KEY (DemandId)
+    REFERENCES demand(Id)
 );
 
 CREATE TABLE demandServiceJoin (
@@ -93,13 +110,3 @@ VALUES
   ('Demande 10', '2023-07-15', 'Contenu de la demande 10', 'Bénéfice de la demande 10', 'Inconvénient de la demande 10', 'VALIDE', 4, 5);
 
   INSERT INTO impactedService (Service) VALUES ('ADMINISTRATIF'),('COMPTABILITE'),('MARKETING'),('RESSOURCES HUMAINES'),('COMMERCIAL')
-
-
-
-
-
-
-
-
-
-

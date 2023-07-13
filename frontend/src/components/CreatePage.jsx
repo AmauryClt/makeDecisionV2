@@ -8,11 +8,24 @@ import Button from "./Button";
 export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
+
+  const serviceValues = {
+    ADMINISTRATIF: "1",
+    COMPTABILITE: "2",
+    MARKETING: "3",
+    "RESSOURCES HUMAINES": "4",
+    COMMERCIAL: "5",
+  };
+
   const onSubmit = (data) => {
-    const serviceImpactValues = selectedValues.join(",");
-    data.ServiceImpact = serviceImpactValues;
     console.info(data);
-    fetch("http://localhost:5001/postDemand", {
+
+    const serviceImpactValues = selectedValues.map(
+      (value) => serviceValues[value]
+    );
+    data.ServicesIds = serviceImpactValues;
+
+    fetch("http://localhost:5001/demand", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,6 +50,7 @@ export default function CreatePage() {
       prevSelectedValues.filter((v) => v !== value)
     );
   }, []);
+
   const defaultDate = formatISO(add(new Date(), { months: 1 }), {
     representation: "date",
   });
@@ -65,7 +79,6 @@ export default function CreatePage() {
         items: ["bullist", "numlist", "outdent", "indent"],
       },
     ],
-    color_cols: 5,
     menubar: false,
   };
 
@@ -88,7 +101,6 @@ export default function CreatePage() {
             required
           />
         </label>
-        <p className={styles.label}>Détails :</p>
         <div className={styles.editor}>
           <Controller
             control={control}
@@ -105,22 +117,16 @@ export default function CreatePage() {
             )}
           />
         </div>
-        <p className={styles.label}>Bénéfices :</p>
-        <div className={styles.editor}>
-          <input
+        <div className={styles.benefInc}>
+          <textarea
             {...register("Benefice")}
-            className={styles.title}
             type="text"
             name="Benefice"
             placeholder="Quel en seront les bénéfices ?"
             required
           />
-        </div>
-        <p className={styles.label}>Risques :</p>
-        <div className={styles.editor}>
-          <input
+          <textarea
             {...register("Inconvenience")}
-            className={styles.title}
             type="text"
             name="Inconvenience"
             placeholder="Et les risques ?"
@@ -129,19 +135,39 @@ export default function CreatePage() {
         </div>
         <p className={styles.label}>Service(s) impactés</p>
         <div className={styles.buttonServ}>
-          <Button addValue={addValue} removeValue={removeValue}>
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues.ADMINISTRATIF}
+          >
             ADMINISTRATIF
           </Button>
-          <Button addValue={addValue} removeValue={removeValue}>
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues.COMPTABILITE}
+          >
             COMPTABILITE
           </Button>
-          <Button addValue={addValue} removeValue={removeValue}>
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues.MARKETING}
+          >
             MARKETING
           </Button>
-          <Button addValue={addValue} removeValue={removeValue}>
-            RESSOURCE HUMAINE
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues["RESSOURCES HUMAINES"]}
+          >
+            RESSOURCES HUMAINES
           </Button>
-          <Button addValue={addValue} removeValue={removeValue}>
+          <Button
+            addValue={addValue}
+            removeValue={removeValue}
+            value={serviceValues.ADMINISTRATIF}
+          >
             COMMERCIAL
           </Button>
         </div>
@@ -162,6 +188,7 @@ export default function CreatePage() {
             defaultValue={defaultDate}
             min={minDate}
             max={maxDate}
+            className={styles.inputDate}
             required
           />
         </label>
