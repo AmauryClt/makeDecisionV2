@@ -56,7 +56,7 @@ export default function PopupPage({ demand, closePopup }) {
                 <h4 className={styles.h4Block5}>Expert Votant :</h4>
                 <p className={styles.pBorder}>provisoire</p>
                 <h4 className={styles.h4Block5}>Service Impacté :</h4>
-                <p className={styles.pBorder}>{demand.ServiceImpact}</p>
+                <p className={styles.pBorder}>{demand.ServicesImpacts}</p>
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ PopupPage.propTypes = {
     Deadline: PropTypes.string.isRequired,
     Note: PropTypes.number.isRequired,
     Statut: PropTypes.string.isRequired,
-    ServiceImpact: PropTypes.string.isRequired,
+    ServicesImpacts: PropTypes.string.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
 };
