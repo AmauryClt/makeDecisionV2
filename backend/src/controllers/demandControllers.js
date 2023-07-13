@@ -2,7 +2,7 @@ const models = require("../models");
 
 const getDemand = (req, res) => {
   models.demand
-    .findAll()
+    .findAllWithUser()
     .then(([rows]) => {
       res.json(rows);
     })

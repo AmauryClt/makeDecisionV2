@@ -22,7 +22,9 @@ export default function PopupPage({ demand, closePopup }) {
             <div className={styles.block2}>
               <div className={styles.block3}>
                 <h3 className={styles.title}>{demand.Title}</h3>
-                <h3 className={styles.username}>{demand.Lastname}</h3>
+                <h3 className={styles.username}>
+                  {demand.Lastname} {demand.Firstname}
+                </h3>
               </div>
               <div className={styles.block4}>
                 <div className={styles.block4Content}>
@@ -35,7 +37,7 @@ export default function PopupPage({ demand, closePopup }) {
                     {demand.Inconvenience}
                   </p>
                   <h4>Commentaire :</h4>
-                  <p className={styles.pBorderComment}>{demand.Complement}</p>
+                  <p className={styles.pBorderComment}>provisoire</p>
                 </div>
               </div>
             </div>
@@ -68,12 +70,12 @@ PopupPage.propTypes = {
   demand: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Lastname: PropTypes.string.isRequired,
+    Firstname: PropTypes.string.isRequired,
     Content: PropTypes.string.isRequired,
     Benefice: PropTypes.string.isRequired,
     Inconvenience: PropTypes.string.isRequired,
-    Complement: PropTypes.string.isRequired,
     Deadline: PropTypes.string.isRequired,
-    Note: PropTypes.string.isRequired,
+    Note: PropTypes.number.isRequired,
     Statut: PropTypes.string.isRequired,
     ServiceImpact: PropTypes.string.isRequired,
   }).isRequired,

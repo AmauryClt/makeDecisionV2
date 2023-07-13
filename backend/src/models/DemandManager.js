@@ -5,6 +5,14 @@ class DemandManager extends AbstractManager {
     super({ table: "demand" });
   }
 
+  findAllWithUser() {
+    return this.database.query(`
+      SELECT demand.*, user.Lastname, user.Firstname
+      FROM demand
+      INNER JOIN user ON demand.userId = user.Id
+    `);
+  }
+
   add(demand) {
     return this.database.query(
       `insert into ${this.table}(Title,Deadline,Content,Benefice,Inconvenience) values (?,?,?,?,?)`,
