@@ -58,9 +58,10 @@ const updateDemand = (req, res) => {
         res.sendStatus(404);
       } else {
         if (ServicesIds && Array.isArray(ServicesIds)) {
-          models.demandService.flush(id);
-          ServicesIds.forEach((ServiceId) => {
-            models.demandService.add(id, ServiceId);
+          models.demandService.flush(id).then(() => {
+            ServicesIds.forEach((ServiceId) => {
+              models.demandService.add(id, ServiceId);
+            });
           });
         }
         res.location(`/demands/${id}`);
