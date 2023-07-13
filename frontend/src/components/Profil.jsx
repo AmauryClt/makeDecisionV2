@@ -5,7 +5,7 @@ export default function profile() {
   const [users, setUser] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5001/user")
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/user`)
       .then((response) => response.json())
       .then((data) => {
         const filteredUser = data.filter((user) => user.Id === 1);

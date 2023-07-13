@@ -59,6 +59,20 @@
   margin-right: 1.7%;
 }
 
+.editButton {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  top: 0.3rem;
+  right: 2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .closeButton {
   width: 1.5rem;
   height: 1.5rem;

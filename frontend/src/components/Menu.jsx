@@ -15,7 +15,7 @@ export default function Menu() {
     <main>
       <h1 className={styles.banniere}> Make Desicion</h1>
       <div className={styles.mainHome}>
-        <Link className={styles.Creer} to="/CreatePage">
+        <Link className={styles.Creer} to="/demands/create">
           <img
             className={styles.imgCards}
             src="./src/assets/makesensecréer.jpg"
@@ -26,7 +26,7 @@ export default function Menu() {
             Soit force de proposition pour changer le monde!
           </p>
         </Link>
-        <Link className={styles.EnCours} to="/VotePage">
+        <Link className={styles.EnCours} to="demands/vote">
           <img
             className={styles.imgCards}
             src="./src/assets/encoursdevote.jpeg"
@@ -37,7 +37,7 @@ export default function Menu() {
             Soit force de proposition pour changer le monde!
           </p>
         </Link>
-        <Link className={styles.VoteEnd} to="/ValidPage">
+        <Link className={styles.VoteEnd} to="demands/valid">
           <img
             className={styles.imgCards}
             src="./src/assets/makesensevalide.jpg"

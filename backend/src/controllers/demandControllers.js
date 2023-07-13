@@ -3,8 +3,25 @@ const models = require("../models");
 const getDemand = (req, res) => {
   models.demand
     .findAllWithUser()
+
     .then(([rows]) => {
       res.json(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const getOneDemand = (req, res) => {
+  models.demand
+    .find(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows[0]);
+      }
     })
     .catch((err) => {
       console.error(err);
@@ -22,7 +39,7 @@ const postDemand = (req, res) => {
           models.demandService.add(result.insertId, ServiceId);
         });
       }
-      res.location(`/demand/${result.insertId}`).sendStatus(201);
+      res.location(`/demands/${result.insertId}`);
     })
     .catch((err) => {
       console.error(err);
@@ -46,7 +63,7 @@ const updateDemand = (req, res) => {
             models.demandService.add(id, ServiceId);
           });
         }
-        res.location(`/demand/${id}`).sendStatus(204);
+        res.location(`/demands/${id}`);
       }
     })
     .catch((err) => {
@@ -57,6 +74,7 @@ const updateDemand = (req, res) => {
 
 module.exports = {
   getDemand,
+  getOneDemand,
   postDemand,
   updateDemand,
 };

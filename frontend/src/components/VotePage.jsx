@@ -5,19 +5,24 @@ import PopupPage from "./PopupPage";
 export default function VotePage() {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
+  const [isUpdated, setIsUpdated] = useState(false);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    fetch("http://localhost:5001/demand")
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/demands`
+        );
+        const data = await response.json();
+        setIsUpdated(true);
         setDemands(data);
-        console.info(data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
-      });
-  }, []);
+      }
+    };
+    fetchData();
+  }, [isUpdated]);
 
   const openPopup = (demand) => {
     setSelectedDemand(demand);
