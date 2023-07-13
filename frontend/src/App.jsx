@@ -11,20 +11,20 @@ import styles from "./app.module.scss";
 
 function App() {
   return (
-      <div className={styles.appForm}>
-        <Header />
-        <div className={styles.bodyForm}>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Menu />} />
-            <Route path="/demands/create" element={<CreatePage />} />
-            <Route path="/demands/vote" element={<VotePage />} />
-            <Route path="/demands/valid" element={<ValidPage />} />
-            <Route path="/Profil" element={<Profil />} />
-            <Route path="/demands/update/:id" element={<CreatePage />} />
-          </Routes>
-        </div>
-        <Footer />
+    <div className={styles.appForm}>
+      <Header />
+      <div className={styles.bodyForm}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Menu />} />
+          <Route path="/demands/create" element={<CreatePage />} />
+          <Route path="/demands/vote" element={<VotePage />} />
+          <Route path="/demands/valid" element={<ValidPage />} />
+          <Route path="/Profil" element={<Profil />} />
+          <Route path="/demands/update/:id" element={<CreatePage />} />
+        </Routes>
+      </div>
+      <Footer />
     </div>
   );
 }

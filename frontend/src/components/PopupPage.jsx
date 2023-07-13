@@ -14,26 +14,27 @@ export default function PopupPage({ demand, closePopup }) {
 
   return (
     <div className={styles.popupContainer}>
-  <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
-      <div className={styles.popupContent}>
-        <div className={styles.buttons}>
-          <div>
-            <img
-              aria-hidden
-              src={editButtonImage}
-              alt="Edit"
-              className={styles.editButton}
-              onClick={editDemand}
-            />
-          </div>
-          <div>
-            <img
-              aria-hidden
-              src={exitButtonImage}
-              alt="Exit"
-              className={styles.closeButton}
-              onClick={closePopup}
-            />
+      <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
+        <div className={styles.popupContent}>
+          <div className={styles.buttons}>
+            <div>
+              <img
+                aria-hidden
+                src={editButtonImage}
+                alt="Edit"
+                className={styles.editButton}
+                onClick={editDemand}
+              />
+            </div>
+            <div>
+              <img
+                aria-hidden
+                src={exitButtonImage}
+                alt="Exit"
+                className={styles.closeButton}
+                onClick={closePopup}
+              />
+            </div>
           </div>
           <div className={styles.block1}>
             <div className={styles.block2}>

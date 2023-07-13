@@ -1354,7 +1354,7 @@ packages:
       to-camel-case: 1.0.0
     dev: false
 
-  /electron-to-chromium@1.4.453:
+  /dotenv@16.3.1:
     resolution:
       {
         integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==,

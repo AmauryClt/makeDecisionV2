@@ -5,7 +5,6 @@ class DemandManager extends AbstractManager {
     super({ table: "demand" });
   }
 
-
   findAllWithUser() {
     return this.database.query(`
       SELECT demand.*, user.Lastname, user.Firstname, GROUP_CONCAT(impactedService.Service SEPARATOR ', ') AS ServicesImpacts
