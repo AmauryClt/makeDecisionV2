@@ -145,7 +145,7 @@ export default function CreatePage() {
               <Editor
                 onBlur={onBlur} // notify when input is touched
                 onEditorChange={onChange} // send value to hook form
-                value={value}
+                defaultValue={demand.Content}
                 initialValue="<p>Donnez nous des détails sur votre idée !!!</p>"
                 init={editorConfig}
                 onInit={(evt, editor) => (ref.current = editor)}
@@ -159,7 +159,7 @@ export default function CreatePage() {
             type="text"
             name="Benefice"
             placeholder="Quel en seront les bénéfices ?"
-            required
+            required 
             defaultValue={demand.Benefice}
           />
           <textarea

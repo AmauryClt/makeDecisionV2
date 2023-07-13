@@ -5,6 +5,7 @@ import PopupPage from "./PopupPage";
 export default function VotePage() {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
+const [isUpdated, setIsUpdated] = useState(false);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/demands`)
@@ -15,7 +16,7 @@ export default function VotePage() {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [isUpdated]);
 
   const openPopup = (demand) => {
     setSelectedDemand(demand);
@@ -31,7 +32,7 @@ export default function VotePage() {
       <div className={styles.block0}>
         <div className={styles.dataContainer}>
           {demands.map((demand) => (
-            <div className={styles.showDemand} key={demand.Id}>
+            <div className={styles.showDemand} key={demand.Id} setIsUpdated={setIsUpdated}>
               <div className={styles.blockFrontDemand}>
                 <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
                 <p className={styles.statutFrontDemand}>{demand.Statut}</p>
