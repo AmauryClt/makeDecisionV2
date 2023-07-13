@@ -1,36 +1,67 @@
+import React, { useState, useEffect } from "react";
 import styles from "./votePage.module.scss";
+import PopupPage from "./PopupPage";
 
 export default function VotePage() {
+  const [demands, setDemands] = useState([]);
+  const [selectedDemand, setSelectedDemand] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:5001/demand")
+      .then((response) => response.json())
+      .then((data) => {
+        setDemands(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const openPopup = (demand) => {
+    setSelectedDemand(demand);
+  };
+
+  const closePopup = () => {
+    setSelectedDemand(null);
+  };
+
   return (
     <main>
       <h1 className={styles.banniere}>Décision en attente de vote</h1>
-      <div className={styles.guide}>
-        <div className={styles.content}>
-          <h2>GUIDE</h2>
-          <p>
-            Voici le guide a suivre pour comprendre ce qu'il faut fait pour
-            voter et avancer utiliser l'outil Makedecision
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+      <div className={styles.block0}>
+        <div className={styles.dataContainer}>
+          {demands.map((demand) => (
+            <div className={styles.showDemand} key={demand.Id}>
+              <div className={styles.blockFrontDemand}>
+                <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
+                <p className={styles.statutFrontDemand}>{demand.Statut}</p>
+              </div>
+              <p className={styles.contentFrontDemand}>{demand.Content}</p>
+              <div
+                className={styles.buttonContainer}
+                aria-hidden
+                onClick={() => openPopup(demand)}
+                role="button"
+              />
+            </div>
+          ))}
+        </div>
+        <div className={styles.guide}>
+          <div className={styles.content}>
+            <h2>GUIDE</h2>
+            <p>Lorem ipsum</p>
+            <p>Lorem ipsum</p>
+            <p>Lorem ipsum</p>
+          </div>
         </div>
       </div>
+      {selectedDemand && (
+        <PopupPage
+          demand={selectedDemand}
+          closePopup={closePopup}
+          styles={styles}
+        />
+      )}
     </main>
   );
 }

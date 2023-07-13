@@ -1,0 +1,122 @@
+.banniere {
+  background-color: #fff30d;
+  margin: 0;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 1%;
+}
+
+h1,
+.intro {
+  text-align: center;
+  color: rgb(12, 57, 68);
+}
+
+form {
+  display: flex;
+  font-family: "Lato", sans-serif;
+  flex-direction: column;
+  gap: 20px;
+  width: 80svw;
+  margin: auto;
+}
+
+h1 {
+  font-family: "Raleway", sans-serif;
+}
+
+label,
+.label {
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: -15px;
+}
+
+input,
+select,
+textarea,
+.editor {
+  font-family: "Lato", sans-serif;
+  border-radius: 5px;
+  border: solid whitesmoke 1px;
+  box-shadow: 5px 5px 5px rgb(12, 57, 68);
+  border: solid 1px rgb(12, 57, 68);
+}
+
+.title {
+  height: 40px;
+  width: 100%;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.date > input {
+  font-size: 1em;
+}
+
+.btnSubmit {
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  width: 35svw;
+  height: 35px;
+  background-color: rgb(12, 57, 68);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.buttonServ,
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 5px;
+}
+
+.buttonChoice {
+  background-color: rgb(12, 57, 68);
+  color: white;
+  border: solid rgb(12, 57, 68);
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  width: 15svw;
+  height: 45px;
+  border-radius: 5px;
+}
+
+.benefInc {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+}
+
+textarea {
+  min-width: 36svw;
+  margin: 0px;
+  font-size: 16px;
+  height: 300px;
+}
+.inputDate {
+  max-width: 20svw;
+  min-width: 10svw;
+  height: 45px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .btnSubmit {
+    width: 25svw;
+  }
+
+  .benefInc {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

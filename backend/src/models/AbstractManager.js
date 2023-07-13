@@ -9,7 +9,12 @@ class AbstractManager {
     ]);
   }
 
-  findAll() {
+  findAll(relation = null) {
+    if (relation) {
+      return this.database.query(
+        `select * from  ${this.table} INNER JOIN ${relation} ON ${relation}.id = ${this.table}.${relation}id`
+      );
+    }
     return this.database.query(`select * from  ${this.table}`);
   }
 

@@ -1,21 +1,78 @@
 .banniere {
-    background-color: #FFF30D;
-    margin: 0;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 1%;
+  background-color: #fff30d;
+  margin: 0;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 1%;
+}
+
+.block0 {
+  display: flex;
+  width: 100%;
+}
+
+.dataContainer {
+  flex: 75%;
+}
+
+.showDemand {
+  display: block;
+  border: solid 1px;
+  border-radius: 10px;
+  margin: 3%;
+  height: 20%;
+  position: relative;
+}
+
+.buttonContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.showDemand:hover {
+  background-color: #fff30d;
+}
+
+.blockFrontDemand {
+  display: flex;
+  justify-content: space-between;
+}
+
+.showDemand .titleFrontDemand {
+  margin: 10px;
+}
+
+.showDemand .statutFrontDemand {
+  margin: 10px;
+}
+
+.showDemand .contentFrontDemand {
+  margin: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .guide {
-    display: block;
-    float: right;
-    width: 20%;
-    margin: 5%;
-    padding: 1%;
+  display: block;
+  float: right;
+  width: 20%;
+  height: 400px;
+  margin: 3%;
+  padding: 1%;
 }
 
 .guide .content {
-    border: 1px solid black;
-    text-align: center;
-    padding: 1%;
-  }
+  border: 1px solid black;
+  text-align: center;
+  padding: 1%;
+}

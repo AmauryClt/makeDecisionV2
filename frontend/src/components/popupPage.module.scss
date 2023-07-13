@@ -1,0 +1,89 @@
+.popupContainer {
+  position: fixed;
+  top: 5%;
+  left: 2%;
+  right: 2%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+}
+
+.popupContent {
+  width: 100%;
+  background-color: #d9d9d9;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.closeButton {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton img {
+  width: 100%;
+  height: auto;
+}
+
+.block1 {
+  display: flex;
+}
+
+.block3 {
+  display: flex;
+  align-self: center;
+  justify-content: space-around;
+}
+
+.title {
+  font-family: raleway;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.username {
+  background-color: white;
+}
+
+.note {
+  display: block;
+  float: right;
+  width: 20%;
+  margin: 5%;
+  padding: 1%;
+  background-color: white;
+  height: 70%;
+  border-radius: 5px;
+}
+
+.block4 {
+  background-color: white;
+  width: 80%;
+  border-radius: 10px;
+  margin-left: 1rem;
+}
+
+.block5 {
+  display: block;
+  float: right;
+  width: 20%;
+  margin: 5%;
+  padding: 1%;
+  background-color: white;
+  border-radius: 10px;
+  height: 70%;
+}

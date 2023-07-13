@@ -32,8 +32,9 @@
   },
   "dependencies": {
     "@tinymce/tinymce-react": "^4.3.0",
+    "date-fns": "^2.30.0",
     "fs-extra": "^11.1.1",
     "nodemodule": "^0.3.0",
-    "tinymce": "^6.5.0"
+    "tinymce": "^6.5.1"
   }
 }
