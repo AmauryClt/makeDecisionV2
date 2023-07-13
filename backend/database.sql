@@ -1,36 +1,47 @@
 CREATE TABLE user (
-    Id INT NOT NULL AUTO_INCREMENT,
+    Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Email VARCHAR(50) NOT NULL,
     Lastname VARCHAR(50),
     Firstname VARCHAR(50),
-    Statut VARCHAR(50),
     Numeromob VARCHAR(50),
     Adresse VARCHAR(255),
     Numerofix VARCHAR(50),
     Password VARCHAR(50),
-    Admin TINYINT DEFAULT 0,
-    PRIMARY KEY (Id)
+    Admin TINYINT DEFAULT 0
 );
 
 -- Admin tinyint 0=False 1=True
+
+CREATE TABLE impactedService (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Service VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE demand (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Title VARCHAR(255) NOT NULL,
     Deadline DATE,
     Content TEXT,
-    Utility VARCHAR(255),
-    Context TEXT,
     Benefice TEXT,
     Inconvenience TEXT,
-    Complement TEXT,
-    ServiceImpact ENUM('ADMINISTRATIF', 'COMPTABILITE', 'MARKETING', 'RESSOURCE HUMAINE', 'COMMERCIAL'),
     Statut ENUM('EN ATTENTE DE VOTE', 'EN DESACCORD', 'VALIDE', 'MISE EN PLACE', 'ARCHIVE', 'QUARANTAINE') DEFAULT 'EN ATTENTE DE VOTE',
     Note FLOAT,
     userId INT DEFAULT 2,
     CONSTRAINT fk_demand_user
     FOREIGN KEY (userId)
     REFERENCES user(Id)
+);
+
+CREATE TABLE demandServiceJoin (
+    ServiceId INT NOT NULL,
+    DemandId INT NOT NULL,
+    PRIMARY KEY (ServiceId, DemandId),
+    CONSTRAINT fk_service_join
+    FOREIGN KEY (ServiceId)
+    REFERENCES impactedService(Id),
+    CONSTRAINT fk_demand_join
+    FOREIGN KEY (DemandId)
+    REFERENCES demand(Id)
 );
 
 CREATE TABLE interaction (
@@ -60,17 +71,26 @@ CREATE TABLE stakeholder (
     REFERENCES demand(Id)
 );
 
-INSERT INTO user (Email, Lastname, Firstname, Statut, Numeromob, Adresse, Numerofix, Password, Admin)
+INSERT INTO user (Email, Lastname, Firstname, Numeromob, Adresse, Numerofix, Password, Admin)
 VALUES
-('user@user.fr', 'DUPONT', 'Francois', 'Juriste', '06 78 45 58 23', '157 Avenue Victor Hugo Le Grand Chapitôt', '04 45 85 25 10', 'user1234', 1),
-('dubrulle-fagnoni@user.fr', 'DUBRULLE FAGNONI', 'Alex', 'Codeur', '07 71 47 57 23', '215 Avenue Victor Hugo Le Grand Chapitôt', '04 45 75 25 94', 'user1234', 1),
-('clot@user.fr', 'CLOT', 'Amaury', 'Patron', '07 78 45 48 43', '31 Avenue Victor Hugo Le Grand Chapitôt', '04 45 85 25 73', 'user1234', 1),
-('chabaud@user.fr', 'CHABAUD', 'Fabien', 'Bourreau', '06 71 42 57 83', '177 Avenue Victor Hugo Le Grand Chapitôt', '04 45 45 21 93', 'user1234', 1),
-('girbau@user.fr', 'GIRBAU', 'Laëtitia', 'Patronne', '06 78 15 78 53', '377 Avenue Victor Hugo Le Grand Chapitôt', '04 15 84 25 93', 'user1234', 1),
-('denneulin@user.fr', 'DENNEULIN', 'Thomas', 'Codeur', '06 74 31 58 73', '757 Avenue Victor Hugo Le Grand Chapitôt', '04 47 85 25 93', 'user1234', 0);
+('user@user.fr', 'DUPONT', 'Francois', '06 78 45 58 23', '157 Avenue Victor Hugo Le Grand Chapitôt', '04 45 85 25 10', 'user1234', 1),
+('dubrulle-fagnoni@user.fr', 'DUBRULLE FAGNONI', 'Alex', '07 71 47 57 23', '215 Avenue Victor Hugo Le Grand Chapitôt', '04 45 75 25 94', 'user1234', 1),
+('clot@user.fr', 'CLOT', 'Amaury', '07 78 45 48 43', '31 Avenue Victor Hugo Le Grand Chapitôt', '04 45 85 25 73', 'user1234', 1),
+('chabaud@user.fr', 'CHABAUD', 'Fabien', '06 71 42 57 83', '177 Avenue Victor Hugo Le Grand Chapitôt', '04 45 45 21 93', 'user1234', 1),
+('girbau@user.fr', 'GIRBAU', 'Laëtitia', '06 78 15 78 53', '377 Avenue Victor Hugo Le Grand Chapitôt', '04 15 84 25 93', 'user1234', 1),
+('denneulin@user.fr', 'DENNEULIN', 'Thomas', '06 74 31 58 73', '757 Avenue Victor Hugo Le Grand Chapitôt', '04 47 85 25 93', 'user1234', 0);
 
-INSERT INTO demand (Title, Deadline, Content, Utility, Context, Benefice, Inconvenience, Complement, Statut, Note, userId)
+INSERT INTO demand (Title, Deadline, Content, Benefice, Inconvenience, Statut, Note, userId)
 VALUES
-('TITRE DE NOTRE DECISION 1', '2023-07-31', 'Il faut meubler donc je meuyble avec du texte qui nest pourtant pas du meuble mais bien du meublage', 'Voir une demande en attente', 'En attente de vote', 'Il y a des benefices a prendre des decision', 'Mais il y a aussi des risques a prendre', 'je complète', 'EN ATTENTE DE VOTE', '4', 1),
-('DECISION 2', '2023-07-31', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Voir une demande en désaccord', 'En désaccord', 'Il y a des benefices a prendre des decision', 'Mais il y a aussi des risques a prendre', 'je ne suis pas daccord', 'EN DESACCORD', '5', 2),
-('VOICI UN TITRE VALIDE', '2023-07-31', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Voir une demande en validée', 'Validée', 'Il y a des benefices a prendre des decision','Mais il y a aussi des risques a prendre', 'je ne suis pas daccord', 'EN DESACCORD', '3', 2);
+  ('Demande 1', '2023-07-15', 'Contenu de la demande 1', 'Bénéfice de la demande 1', 'Inconvénient de la demande 1', 'EN ATTENTE DE VOTE', 4, 3),
+  ('Demande 2', '2023-07-15', 'Contenu de la demande 2', 'Bénéfice de la demande 2', 'Inconvénient de la demande 2', 'EN ATTENTE DE VOTE', 3, 1),
+  ('Demande 3', '2023-07-15', 'Contenu de la demande 3', 'Bénéfice de la demande 3', 'Inconvénient de la demande 3', 'EN DESACCORD', 2, 4),
+  ('Demande 4', '2023-07-15', 'Contenu de la demande 4', 'Bénéfice de la demande 4', 'Inconvénient de la demande 4', 'EN ATTENTE DE VOTE', 4, 5),
+  ('Demande 5', '2023-07-15', 'Contenu de la demande 5', 'Bénéfice de la demande 5', 'Inconvénient de la demande 5', 'EN ATTENTE DE VOTE', 4, 6),
+  ('Demande 6', '2023-07-15', 'Contenu de la demande 6', 'Bénéfice de la demande 6', 'Inconvénient de la demande 6', 'EN DESACCORD', 1, 1),
+  ('Demande 7', '2023-07-15', 'Contenu de la demande 7', 'Bénéfice de la demande 7', 'Inconvénient de la demande 7', 'ARCHIVE', 4, 2),
+  ('Demande 8', '2023-07-15', 'Contenu de la demande 8', 'Bénéfice de la demande 8', 'Inconvénient de la demande 8', 'ARCHIVE', 5, 2),
+  ('Demande 9', '2023-07-15', 'Contenu de la demande 9', 'Bénéfice de la demande 9', 'Inconvénient de la demande 9', 'VALIDE', 4, 3),
+  ('Demande 10', '2023-07-15', 'Contenu de la demande 10', 'Bénéfice de la demande 10', 'Inconvénient de la demande 10', 'VALIDE', 4, 5);
+
+  INSERT INTO impactedService (Service) VALUES ('ADMINISTRATIF'),('COMPTABILITE'),('MARKETING'),('RESSOURCES HUMAINES'),('COMMERCIAL')
