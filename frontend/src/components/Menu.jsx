@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./menu.module.scss";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function Menu() {
   const navigate = useNavigate();
