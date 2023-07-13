@@ -5,17 +5,22 @@ import PopupPage from "./PopupPage";
 export default function VotePage() {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
-const [isUpdated, setIsUpdated] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/demands`)
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/demands`
+        );
+        const data = await response.json();
+        setIsUpdated(true);
         setDemands(data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error(error);
-      });
+      }
+    };
+    fetchData();
   }, [isUpdated]);
 
   const openPopup = (demand) => {
@@ -32,7 +37,7 @@ const [isUpdated, setIsUpdated] = useState(false);
       <div className={styles.block0}>
         <div className={styles.dataContainer}>
           {demands.map((demand) => (
-            <div className={styles.showDemand} key={demand.Id} setIsUpdated={setIsUpdated}>
+            <div className={styles.showDemand} key={demand.Id}>
               <div className={styles.blockFrontDemand}>
                 <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
                 <p className={styles.statutFrontDemand}>{demand.Statut}</p>

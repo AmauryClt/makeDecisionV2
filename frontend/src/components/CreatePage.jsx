@@ -12,6 +12,17 @@ export default function CreatePage() {
   const [demand, setDemand] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const defaultDate = formatISO(add(new Date(), { months: 1 }), {
+    representation: "date",
+  });
+  const maxDate = formatISO(add(new Date(), { years: 1 }), {
+    representation: "date",
+  });
+  const minDate = formatISO(add(new Date(), { days: 7 }), {
+    representation: "date",
+  });
+  let formattedDate = defaultDate;
   const serviceValues = {
     ADMINISTRATIF: "1",
     COMPTABILITE: "2",
@@ -24,6 +35,12 @@ export default function CreatePage() {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
         .then((response) => response.json())
         .then((data) => {
+          console.info("THEN", data);
+          const dateStr = data.Deadline;
+          formattedDate = formatISO(new Date(dateStr), {
+            representation: "date",
+          });
+          data.Deadline = formattedDate;
           setDemand(data);
         })
         .catch((error) => {
@@ -72,7 +89,6 @@ export default function CreatePage() {
           console.error(error);
         });
     }
-
     navigate("/demands/vote");
   };
 
@@ -86,15 +102,6 @@ export default function CreatePage() {
     );
   }, []);
 
-  const defaultDate = formatISO(add(new Date(), { months: 1 }), {
-    representation: "date",
-  });
-  const maxDate = formatISO(add(new Date(), { years: 1 }), {
-    representation: "date",
-  });
-  const minDate = formatISO(add(new Date(), { days: 7 }), {
-    representation: "date",
-  });
   const editorConfig = {
     plugins: "lists",
     height: 300,
@@ -116,7 +123,7 @@ export default function CreatePage() {
     ],
     menubar: false,
   };
-  console.info(demand.Deadline);
+
   return (
     <main>
       <h1 className={styles.banniere}>
@@ -139,14 +146,19 @@ export default function CreatePage() {
         </label>
         <div className={styles.editor}>
           <Controller
+            {...demand.Content}
             control={control}
             name="Content"
-            render={({ field: { onChange, onBlur, value, ref } }) => (
+            render={({ field: { onChange, onBlur, ref } }) => (
               <Editor
+                {...demand.Content}
                 onBlur={onBlur} // notify when input is touched
                 onEditorChange={onChange} // send value to hook form
-                defaultValue={demand.Content}
-                initialValue="<p>Donnez nous des détails sur votre idée !!!</p>"
+                initialValue={
+                  id
+                    ? demand.Content
+                    : "<p>Donnez nous des détails sur votre idée !!!</p>"
+                }
                 init={editorConfig}
                 onInit={(evt, editor) => (ref.current = editor)}
               />
@@ -159,7 +171,7 @@ export default function CreatePage() {
             type="text"
             name="Benefice"
             placeholder="Quel en seront les bénéfices ?"
-            required 
+            required
             defaultValue={demand.Benefice}
           />
           <textarea
@@ -223,7 +235,8 @@ export default function CreatePage() {
             {...register("Deadline")}
             type="date"
             name="Deadline"
-            defaultValue={demand.Deadline || defaultDate}
+            placeholder={defaultDate}
+            defaultValue={demand.Deadline}
             min={minDate}
             max={maxDate}
             className={styles.inputDate}
