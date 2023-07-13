@@ -4,7 +4,7 @@ const router = express.Router();
 
 const demandControllers = require("./controllers/demandControllers");
 
-router.get("/demands", demandControllers.getDemand);
+router.get("/demands/", demandControllers.getDemand);
 router.get("/demands/:id", demandControllers.getOneDemand);
 router.post("/demands/create", demandControllers.postDemand);
 router.put("/demands/update/:id", demandControllers.updateDemand);

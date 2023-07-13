@@ -12,7 +12,7 @@ function Navbar() {
         <Link className={styles.encours} to="/demands/vote">
           <li> En cours de vote</li>
         </Link>
-        <Link className={styles.termine} to="/demands/valide">
+        <Link className={styles.termine} to="/demands/valid">
           <li> Votation terminé</li>
         </Link>
       </div>

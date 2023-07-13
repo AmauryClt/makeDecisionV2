@@ -8,7 +8,7 @@ export default function ValidePage() {
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    fetch("http://localhost:5001/demand")
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/`)
       .then((response) => response.json())
       .then((data) => {
         setDemands(data);
