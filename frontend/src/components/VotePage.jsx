@@ -5,12 +5,14 @@ import PopupPage from "./PopupPage";
 export default function VotePage() {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     fetch("http://localhost:5001/demand")
       .then((response) => response.json())
       .then((data) => {
         setDemands(data);
+        console.info(data);
       })
       .catch((error) => {
         console.error(error);
@@ -25,26 +27,54 @@ export default function VotePage() {
     setSelectedDemand(null);
   };
 
+  const handleFilterAll = () => {
+    setFilter("all");
+  };
+
+  const handleFilterWithoutDisagreement = () => {
+    setFilter("withoutDisagreement");
+  };
+
+  const handleFilterWithDisagreement = () => {
+    setFilter("withDisagreement");
+  };
+
   return (
     <main>
       <h1 className={styles.banniere}>Décision en attente de vote</h1>
       <div className={styles.block0}>
         <div className={styles.dataContainer}>
-          {demands.map((demand) => (
-            <div className={styles.showDemand} key={demand.Id}>
-              <div className={styles.blockFrontDemand}>
-                <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
-                <p className={styles.statutFrontDemand}>{demand.Statut}</p>
+          {demands
+            .filter((demand) => {
+              if (filter === "all") {
+                return (
+                  demand.Statut === "EN ATTENTE DE VOTE" ||
+                  demand.Statut === "EN DESACCORD"
+                );
+              }
+              if (filter === "withoutDisagreement") {
+                return demand.Statut === "EN ATTENTE DE VOTE";
+              }
+              if (filter === "withDisagreement") {
+                return demand.Statut === "EN DESACCORD";
+              }
+              return true;
+            })
+            .map((demand) => (
+              <div className={styles.showDemand} key={demand.Id}>
+                <div className={styles.blockFrontDemand}>
+                  <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
+                  <p className={styles.statutFrontDemand}>{demand.Statut}</p>
+                </div>
+                <p className={styles.contentFrontDemand}>{demand.Content}</p>
+                <div
+                  className={styles.buttonContainer}
+                  aria-hidden
+                  onClick={() => openPopup(demand)}
+                  role="button"
+                />
               </div>
-              <p className={styles.contentFrontDemand}>{demand.Content}</p>
-              <div
-                className={styles.buttonContainer}
-                aria-hidden
-                onClick={() => openPopup(demand)}
-                role="button"
-              />
-            </div>
-          ))}
+            ))}
         </div>
         <div className={styles.guide}>
           <div className={styles.content}>
@@ -52,6 +82,27 @@ export default function VotePage() {
             <p>Lorem ipsum</p>
             <p>Lorem ipsum</p>
             <p>Lorem ipsum</p>
+            <button
+              className={styles.btn}
+              onClick={handleFilterAll}
+              type="button"
+            >
+              Tout afficher
+            </button>
+            <button
+              className={styles.btn}
+              onClick={handleFilterWithoutDisagreement}
+              type="button"
+            >
+              Décision sans Désaccord
+            </button>
+            <button
+              className={styles.btn}
+              onClick={handleFilterWithDisagreement}
+              type="button"
+            >
+              Décision avec Désaccord
+            </button>
           </div>
         </div>
       </div>
