@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./header.module.scss";
 import Navbar from "./Navbar";
+import { useAuth } from "../contexts/AuthContext";
 
 function header() {
+  const { token, setToken } = useAuth();
   return (
     <nav className={styles.headLinks}>
       <Link to="/Menu">
@@ -23,6 +25,13 @@ function header() {
         <Link className={styles.name} to="Profil">
           <div>Eliott LAREINE</div>
         </Link>
+        {token == null ? (
+          <Link to="/login">Login</Link>
+        ) : (
+          <button type="button" onClick={() => setToken(null)}>
+            Se déconnecter
+          </button>
+        )}
       </div>
       <style>
         @import

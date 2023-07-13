@@ -1,60 +1,75 @@
-import React, { useRef } from "react";
-// import axios from "axios";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import "./loginForm.module.scss";
-import { useAuth } from "./AuthContext";
+import styles from "./loginForm.module.scss";
+import { useAuth } from "../contexts/AuthContext";
 
-function Login() {
-  const usernameRef = useRef();
-  const passwordRef = useRef();
-
-  const { setToken } = useAuth();
+function LoginForm() {
   const navigate = useNavigate();
+  const [errors, setErrors] = useState("");
+  const form = useRef(null);
+  const { setToken } = useAuth();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = Object.fromEntries(new FormData(form.current));
+    fetch(
+      `${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"}/login`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.message) {
+          setErrors(json);
+        } else {
+          setToken(json.token);
+          navigate("/");
+        }
+      });
+  };
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
+    <main className={styles.mainHome}>
+      <form className={styles.labelStyles} ref={form} onSubmit={handleSubmit}>
+        <h2>Login</h2>
 
-        fetch(
-          `${
-            import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"
-          }/login`,
-          {
-            method: "post",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({
-              username: usernameRef.current.value,
-              password: passwordRef.current.value,
-            }),
-          }
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            setToken(data.token);
+        {errors.message && <p>{errors.message}</p>}
+        <div className={styles.Username}>
+          <label>
+            <input
+              className={styles.inputUsername}
+              type="text"
+              name="username"
+              placeholder="Identifiant"
+            />
+          </label>
+        </div>
+        <div className={styles.Password}>
+          <label>
+            <input
+              className={styles.inputPassword}
+              type="password"
+              name="password"
+              placeholder="mot de passe"
+            />
+          </label>
+        </div>
 
-            navigate("/");
-          });
-      }}
-    >
+        <div className={styles.login}>
+          <button className={styles.button} type="submit">
+            Se connecter
+          </button>
+        </div>
+      </form>
       <div>
-        <label htmlFor="username">Username</label>
-        <input ref={usernameRef} type="text" id="username" name="username" />
+        <img src="./src/assets/makesenseaccueil.jpg" alt="connect" />
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          ref={passwordRef}
-          type="password"
-          id="password"
-          name="password"
-        />
-      </div>
-      <button type="submit">Go</button>
-    </form>
+    </main>
   );
 }
-
-export default Login;
+export default LoginForm;
