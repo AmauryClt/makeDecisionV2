@@ -35,7 +35,9 @@ const verifyPassword = (req, res) => {
         expiresIn: "1h",
       });
 
-      res.json({ token });
+      const userId = req.user.id;
+
+      res.json({ token, userId });
     } else {
       res.sendStatus(401);
     }

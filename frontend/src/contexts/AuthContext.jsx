@@ -7,9 +7,10 @@ const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
   const [token, setToken] = useState();
+  const [userId, setUserId] = useState();
 
   return (
-    <AuthContext.Provider value={{ token, setToken }}>
+    <AuthContext.Provider value={{ token, setToken, userId, setUserId }}>
       {children}
     </AuthContext.Provider>
   );

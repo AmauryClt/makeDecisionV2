@@ -5,11 +5,14 @@ import { useAuth } from "../contexts/AuthContext";
 
 export default function Menu() {
   const navigate = useNavigate();
-  const { token } = useAuth();
+  const { token, userId } = useAuth();
 
   useEffect(() => {
     if (token == null) navigate("/login");
   }, []);
+
+  console.info("ID de l'utilisateur:", userId);
+  console.info("token de cette connection:", token);
 
   return (
     <main>

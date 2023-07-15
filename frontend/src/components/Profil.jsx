@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
 import styles from "./profil.module.scss";
 
 export default function profile() {
   const [users, setUser] = useState([]);
+  const { token, userId } = useAuth();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/user`)
@@ -15,6 +17,9 @@ export default function profile() {
         console.error(error);
       });
   }, []);
+
+  console.info("ID de l'utilisateur:", userId);
+  console.info("token de cette connection:", token);
 
   return (
     <main>
