@@ -5,7 +5,11 @@ import Navbar from "./Navbar";
 import { useAuth } from "../contexts/AuthContext";
 
 function header() {
-  const { token, setToken } = useAuth();
+  const { token, setToken, userId } = useAuth();
+
+  console.info("ID de l'utilisateur:", userId);
+  console.info("token de cette connection:", token);
+
   return (
     <nav className={styles.headLinks}>
       <Link to="/">

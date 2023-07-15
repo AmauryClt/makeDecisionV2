@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.scss";
+import { useAuth } from "../contexts/AuthContext";
 
 function Navbar() {
+  const { token, userId } = useAuth();
+
+  console.info("ID de l'utilisateur:", userId);
+  console.info("token de cette connection:", token);
   return (
     <nav className={styles.navlinks}>
       <div className={styles.ul}>

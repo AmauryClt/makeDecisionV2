@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
 import { useParams, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
@@ -10,6 +11,7 @@ export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
   const [demand, setDemand] = useState([]);
+  const { token, userId } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -123,6 +125,9 @@ export default function CreatePage() {
     ],
     menubar: false,
   };
+
+  console.info("ID de l'utilisateur:", userId);
+  console.info("token de cette connection:", token);
 
   return (
     <main>
