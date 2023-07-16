@@ -1,29 +1,10 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./menu.module.scss";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Menu() {
-  const navigate = useNavigate();
   const { token, userId } = useAuth();
-  const [usersData, setUsersData] = useState(null);
 
-  useEffect(() => {
-    if (token == null) {
-      navigate("/login");
-    } else {
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${userId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setUsersData(data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, []);
-
-  console.info("usersData:", usersData);
   console.info("ID de l'utilisateur:", userId);
   console.info("token de cette connection:", token);
 
