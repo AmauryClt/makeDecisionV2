@@ -52,12 +52,11 @@ export default function CreatePage() {
   }
 
   const onSubmit = (data) => {
-    console.info(data);
-
     const serviceImpactValues = selectedValues.map(
       (value) => serviceValues[value]
     );
     data.ServicesIds = serviceImpactValues;
+    data.UserId = userId;
 
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {
@@ -92,6 +91,7 @@ export default function CreatePage() {
         });
     }
     navigate("/demands/vote");
+    console.info(data);
   };
 
   const addValue = useCallback((value) => {

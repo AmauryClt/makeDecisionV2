@@ -1,14 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./header.module.scss";
 import Navbar from "./Navbar";
 import { useAuth } from "../contexts/AuthContext";
 
-function header() {
+function Header() {
   const { token, setToken, userId } = useAuth();
 
   console.info("ID de l'utilisateur:", userId);
-  console.info("token de cette connection:", token);
 
   return (
     <nav className={styles.headLinks}>
@@ -37,12 +35,8 @@ function header() {
           </button>
         )}
       </div>
-      <style>
-        @import
-        url("https://fonts.googleapis.com/css2?family=Lato:wght@300;900&family=Permanent+Marker&family=Raleway:wght@900&display=swap");
-      </style>
     </nav>
   );
 }
 
-export default header;
+export default Header;
