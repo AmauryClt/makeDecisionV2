@@ -6,7 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 export default function Header() {
   const { token, setToken, userId } = useAuth();
-  const [usersData, setUsersData] = useState(null);
+  const [usersDatas, setUsersData] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Header() {
     }
   }, [userId]);
 
-  console.info("usersData:", usersData);
+  console.info("usersData:", usersDatas);
   console.info("ID de l'utilisateur:", userId);
   console.info("token de cette connexion:", token);
 
@@ -66,7 +66,9 @@ export default function Header() {
           <img className={styles.pp} src="./src/assets/test.jpg" alt="random" />
         </Link>
         <Link className={styles.name} to="Profil">
-          <div>Eliott LAREINE</div>
+          <div>
+            {usersDatas && `${usersDatas.Firstname} ${usersDatas.Lastname}`}
+          </div>
         </Link>
         {token == null ? (
           <Link to="/login">Login</Link>
