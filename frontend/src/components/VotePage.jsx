@@ -7,21 +7,29 @@ export default function VotePage() {
   const [selectedDemand, setSelectedDemand] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false);
   const [filter, setFilter] = useState("all");
-
-  useEffect(() => {
+  
+   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
           `${import.meta.env.VITE_BACKEND_URL}/demands`
         );
         const data = await response.json();
-        setIsUpdated(true);
         setDemands(data);
+        const state = window.history.state || {};
+        setIsUpdated(state.isUpdated || false);
       } catch (error) {
         console.error(error);
       }
     };
+
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (isUpdated) {
+      window.location.reload();
+    }
   }, [isUpdated]);
 
   const openPopup = (demand) => {

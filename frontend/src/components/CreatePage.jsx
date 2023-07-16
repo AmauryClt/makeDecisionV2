@@ -35,7 +35,6 @@ export default function CreatePage() {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
         .then((response) => response.json())
         .then((data) => {
-          console.info("THEN", data);
           const dateStr = data.Deadline;
           formattedDate = formatISO(new Date(dateStr), {
             representation: "date",
@@ -87,9 +86,9 @@ export default function CreatePage() {
         })
         .catch((error) => {
           console.error(error);
-        });
+        });    
     }
-    navigate("/demands/vote");
+    navigate(window.history.back(), { state: { isUpdated: true } });
   };
 
   const addValue = useCallback((value) => {
