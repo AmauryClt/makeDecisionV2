@@ -12,37 +12,43 @@ export default function Profil({ usersDatas }) {
 
   return (
     <main>
-      <h1 className={styles.banniere}>Mon Profil</h1>
-      <div className={styles.mainHome}>
-        <div className={styles.element}>
-          <div className={styles.card}>
-            <img
-              className={styles.pp}
-              src="./src/assets/test.jpg"
-              alt="random"
-            />
-            <p className={styles.nom}>{usersDatas.Lastname}</p>
-            <p className={styles.nom}>{usersDatas.Firstname}</p>
-            <p className={styles.mobile2}>{usersDatas.Numeromob}</p>
-            <p>
-              <button className={styles.Modifier} type="submit">
-                Modifier les infos
-              </button>
-            </p>
+      {userId === undefined ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          <h1 className={styles.banniere}>Mon Profil</h1>
+          <div className={styles.mainHome}>
+            <div className={styles.element}>
+              <div className={styles.card}>
+                <img
+                  className={styles.pp}
+                  src="./src/assets/test.jpg"
+                  alt="random"
+                />
+                <p className={styles.nom}>{usersDatas.Lastname}</p>
+                <p className={styles.nom}>{usersDatas.Firstname}</p>
+                <p className={styles.mobile2}>{usersDatas.Numeromob}</p>
+                <p>
+                  <button className={styles.Modifier} type="submit">
+                    Modifier les infos
+                  </button>
+                </p>
+              </div>
+              <div className={styles.information}>
+                <ul className={styles.mobile}>
+                  Num Mobile :<li>{usersDatas.Numeromob}</li>
+                </ul>
+                <ul className={styles.fixe}>
+                  Num Fixe :<li>{usersDatas.Numerofix}</li>
+                </ul>
+                <ul className={styles.email}>
+                  Email :<li>{usersDatas.Email}</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div className={styles.information}>
-            <ul className={styles.mobile}>
-              Num Mobile :<li>{usersDatas.Numeromob}</li>
-            </ul>
-            <ul className={styles.fixe}>
-              Num Fixe :<li>{usersDatas.Numerofix}</li>
-            </ul>
-            <ul className={styles.email}>
-              Email :<li>{usersDatas.Email}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </main>
   );
 }
