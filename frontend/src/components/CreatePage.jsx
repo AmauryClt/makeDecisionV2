@@ -86,7 +86,7 @@ export default function CreatePage() {
         })
         .catch((error) => {
           console.error(error);
-        });    
+        });
     }
     navigate(window.history.back(), { state: { isUpdated: true } });
   };
@@ -121,6 +121,7 @@ export default function CreatePage() {
       },
     ],
     menubar: false,
+    placeholder: "Test",
   };
 
   return (
@@ -151,13 +152,9 @@ export default function CreatePage() {
             render={({ field: { onChange, onBlur, ref } }) => (
               <Editor
                 {...demand.Content}
-                onBlur={onBlur} // notify when input is touched
-                onEditorChange={onChange} // send value to hook form
-                initialValue={
-                  id
-                    ? demand.Content
-                    : "<p>Donnez nous des détails sur votre idée !!!</p>"
-                }
+                onBlur={onBlur}
+                onEditorChange={onChange}
+                initialValue={id ? demand.Content : undefined}
                 init={editorConfig}
                 onInit={(evt, editor) => (ref.current = editor)}
               />

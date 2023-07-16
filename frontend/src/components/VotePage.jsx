@@ -7,8 +7,8 @@ export default function VotePage() {
   const [selectedDemand, setSelectedDemand] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false);
   const [filter, setFilter] = useState("all");
-  
-   useEffect(() => {
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
