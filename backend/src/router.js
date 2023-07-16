@@ -23,6 +23,7 @@ router.get("/users/:id", userControllers.read);
 router.put("/users/:id", hashPassword, userControllers.edit);
 router.post("/users", hashPassword, userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
+router.get("/user/:userId", userControllers.getUserById);
 
 const authControllers = require("./controllers/authControllers");
 

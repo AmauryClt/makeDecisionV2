@@ -8,6 +8,7 @@ function Navbar() {
 
   console.info("ID de l'utilisateur:", userId);
   console.info("token de cette connection:", token);
+
   return (
     <nav className={styles.navlinks}>
       <div className={styles.ul}>

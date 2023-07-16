@@ -22,15 +22,17 @@ export default function PopupPage({ demand, closePopup }) {
       <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
         <div className={styles.popupContentbar}>
           <div className={styles.closeButton}>
-            <div>
-              <img
-                aria-hidden
-                src={editButtonImage}
-                alt="Edit"
-                className={styles.editButton}
-                onClick={editDemand}
-              />
-            </div>
+            {userId === demand.UserId && (
+              <div>
+                <img
+                  aria-hidden
+                  src={editButtonImage}
+                  alt="Edit"
+                  className={styles.editButton}
+                  onClick={editDemand}
+                />
+              </div>
+            )}
             <div>
               <img
                 aria-hidden
@@ -102,6 +104,7 @@ PopupPage.propTypes = {
     Note: PropTypes.number.isRequired,
     Statut: PropTypes.string.isRequired,
     ServicesImpacts: PropTypes.string.isRequired,
+    UserId: PropTypes.number.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
 };
