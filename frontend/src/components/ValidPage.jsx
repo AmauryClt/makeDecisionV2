@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import styles from "./validPage.module.scss";
 import PopupPage from "./PopupPage";
 
@@ -7,7 +6,6 @@ export default function ValidePage() {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
   const [filter, setFilter] = useState("all");
-  const { token, userId } = useAuth();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/`)
@@ -44,9 +42,6 @@ export default function ValidePage() {
   const handleFilterWithArchived = () => {
     setFilter("withArchived");
   };
-
-  console.info("ID de l'utilisateur:", userId);
-  console.info("token de cette connection:", token);
 
   return (
     <main>

@@ -4,11 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import styles from "./profil.module.scss";
 
 export default function Profil({ usersDatas }) {
-  const { token, userId } = useAuth();
-
-  console.info("ID de l'utilisateur:", userId);
-  console.info("token de cette connexion:", token);
-  console.info("information de l'utilisateur:", usersDatas);
+  const { userId } = useAuth();
 
   return (
     <main>
@@ -58,7 +54,6 @@ Profil.propTypes = {
     Id: PropTypes.number.isRequired,
     Lastname: PropTypes.string.isRequired,
     Firstname: PropTypes.string.isRequired,
-    Statut: PropTypes.string.isRequired,
     Numeromob: PropTypes.string.isRequired,
     Numerofix: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,

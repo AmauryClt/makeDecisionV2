@@ -11,7 +11,7 @@ export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
   const [demand, setDemand] = useState([]);
-  const { token, userId } = useAuth();
+  const { userId } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -125,9 +125,6 @@ export default function CreatePage() {
     ],
     menubar: false,
   };
-
-  console.info("ID de l'utilisateur:", userId);
-  console.info("token de cette connection:", token);
 
   return (
     <main>

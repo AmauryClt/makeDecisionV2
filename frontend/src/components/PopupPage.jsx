@@ -8,14 +8,11 @@ import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
 
 export default function PopupPage({ demand, closePopup }) {
-  const { token, userId } = useAuth();
+  const { userId } = useAuth();
   const navigate = useNavigate();
   const editDemand = () => {
     navigate(`/demands/update/${demand.Id}`);
   };
-
-  console.info("ID de l'utilisateur:", userId);
-  console.info("token de cette connection:", token);
 
   return (
     <div className={styles.popupContainer}>
