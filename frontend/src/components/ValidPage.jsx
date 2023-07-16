@@ -74,7 +74,9 @@ export default function ValidePage() {
                   <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
                   <p className={styles.statutFrontDemand}>{demand.Statut}</p>
                 </div>
-                <p className={styles.contentFrontDemand}>{demand.Content}</p>
+                <p className={styles.contentFrontDemand}>
+                  <span dangerouslySetInnerHTML={{ __html: demand.Content }} />
+                </p>
                 <div
                   className={styles.buttonContainer}
                   aria-hidden
