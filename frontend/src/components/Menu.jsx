@@ -1,13 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./menu.module.scss";
-import { useAuth } from "../contexts/AuthContext";
 
 export default function Menu() {
-  const { token, userId } = useAuth();
-
-  console.info("ID de l'utilisateur:", userId);
-  console.info("token de cette connection:", token);
-
   return (
     <main>
       <h1 className={styles.banniere}> Make Desicion</h1>

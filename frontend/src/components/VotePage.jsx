@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import styles from "./votePage.module.scss";
 import PopupPage from "./PopupPage";
 
@@ -8,7 +7,6 @@ export default function VotePage() {
   const [selectedDemand, setSelectedDemand] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false);
   const [filter, setFilter] = useState("all");
-  const { token, userId } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,9 +43,6 @@ export default function VotePage() {
   const handleFilterWithDisagreement = () => {
     setFilter("withDisagreement");
   };
-
-  console.info("ID de l'utilisateur:", userId);
-  console.info("token de cette connection:", token);
 
   return (
     <main>

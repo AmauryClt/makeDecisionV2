@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Header({ usersDatas }) {
-  const { token, setToken, userId } = useAuth();
+  const { token, setToken } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,10 +14,6 @@ export default function Header({ usersDatas }) {
       navigate("/login");
     }
   }, []);
-
-  console.info("usersData:", usersDatas);
-  console.info("ID de l'utilisateur:", userId);
-  console.info("token de cette connexion:", token);
 
   if (token == null) {
     return (
