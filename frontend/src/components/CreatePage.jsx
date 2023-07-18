@@ -9,6 +9,7 @@ import Button from "./Button";
 export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
+  const [isUpdated, setIsUpdated] = useState(false);
   const [demand, setDemand] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -88,7 +89,9 @@ export default function CreatePage() {
           console.error(error);
         });
     }
-    navigate(window.history.back(), { state: { isUpdated: true } });
+    setIsUpdated(old => !old)
+    console.log(isUpdated)
+    navigate(window.history.back());
   };
 
   const addValue = useCallback((value) => {
@@ -121,7 +124,7 @@ export default function CreatePage() {
       },
     ],
     menubar: false,
-    placeholder: "Test",
+    placeholder: "Expliquez ici en détail votre idée.",
   };
 
   return (

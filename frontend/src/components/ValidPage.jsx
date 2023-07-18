@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./validPage.module.scss";
 import PopupPage from "./PopupPage";
 
-export default function ValidePage() {
+export default function ValidePage({isUpdated}) {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
   const [filter, setFilter] = useState("all");
@@ -12,12 +12,11 @@ export default function ValidePage() {
       .then((response) => response.json())
       .then((data) => {
         setDemands(data);
-        console.info(data);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [isUpdated]);
 
   const openPopup = (demand) => {
     setSelectedDemand(demand);

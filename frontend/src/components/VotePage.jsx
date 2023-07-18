@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import styles from "./votePage.module.scss";
 import PopupPage from "./PopupPage";
 
-export default function VotePage() {
+export default function VotePage({isUpdated}) {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
-  const [isUpdated, setIsUpdated] = useState(false);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
@@ -16,21 +15,14 @@ export default function VotePage() {
         );
         const data = await response.json();
         setDemands(data);
-        const state = window.history.state || {};
-        setIsUpdated(state.isUpdated || false);
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (isUpdated) {
-      window.location.reload();
-    }
   }, [isUpdated]);
+
 
   const openPopup = (demand) => {
     setSelectedDemand(demand);
