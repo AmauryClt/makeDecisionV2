@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import styles from "./validPage.module.scss";
 import PopupPage from "./PopupPage";
 
-export default function ValidePage({isUpdated}) {
+export default function ValidPage({ isUpdated }) {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
   const [filter, setFilter] = useState("all");
@@ -132,3 +133,7 @@ export default function ValidePage({isUpdated}) {
     </main>
   );
 }
+
+ValidPage.propTypes = {
+  isUpdated: PropTypes.bool.isRequired,
+};

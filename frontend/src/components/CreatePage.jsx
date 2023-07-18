@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
@@ -6,10 +7,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
-export default function CreatePage() {
+export default function CreatePage({ setIsUpdated }) {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
-  const [isUpdated, setIsUpdated] = useState(false);
   const [demand, setDemand] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -50,8 +50,6 @@ export default function CreatePage() {
   }
 
   const onSubmit = (data) => {
-    console.info(data);
-
     const serviceImpactValues = selectedValues.map(
       (value) => serviceValues[value]
     );
@@ -89,8 +87,8 @@ export default function CreatePage() {
           console.error(error);
         });
     }
-    setIsUpdated(old => !old)
-    console.log(isUpdated)
+    setIsUpdated((old) => !old);
+    console.info(setIsUpdated);
     navigate(window.history.back());
   };
 
@@ -249,3 +247,7 @@ export default function CreatePage() {
     </main>
   );
 }
+
+CreatePage.propTypes = {
+  setIsUpdated: PropTypes.func.isRequired,
+};
