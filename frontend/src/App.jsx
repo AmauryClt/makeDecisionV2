@@ -31,7 +31,7 @@ function App() {
             path="/demands/valid"
             element={<ValidPage isUpdated={isUpdated} />}
           />
-          <Route path="/Profil" element={<Profil />} />
+          <Route path="/Profil" element={<Profil isUpdated={isUpdated} />} />
           <Route
             path="/demands/update/:id"
             element={<CreatePage setIsUpdated={setIsUpdated} />}
@@ -42,5 +42,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
