@@ -9,10 +9,6 @@ import Footer from "./components/Footer";
 import Login from "./components/LoginForm";
 import Profil from "./components/Profil";
 import styles from "./app.module.scss";
-
-function App() {
-  const [isUpdated, setIsUpdated] = useState(false);
-
 import { useAuth } from "./contexts/AuthContext";
 
 function App() {
