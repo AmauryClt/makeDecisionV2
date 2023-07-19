@@ -11,11 +11,7 @@ router.put("/demands/update/:id", demandControllers.updateDemand);
 
 const userControllers = require("./controllers/userControllers");
 
-const {
-  hashPassword,
-  verifyPassword,
-  verifyToken,
-} = require("./services/auth");
+const { hashPassword, verifyPassword, logout } = require("./services/auth");
 
 router.get("/user", userControllers.getProfile);
 router.get("/users", userControllers.browse);
@@ -32,6 +28,6 @@ router.post(
   authControllers.getUserByUsernameWithPasswordAndPassToNext,
   verifyPassword
 );
+router.get("logout", logout);
 
-router.use(verifyToken); // mur d'authentification
 module.exports = router;

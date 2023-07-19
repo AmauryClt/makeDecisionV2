@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import { useAuth } from "../contexts/AuthContext";
+import { useUser } from "../contexts/UserContext";
 import styles from "./popupPage.module.scss";
 import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
 
 export default function PopupPage({ demand, closePopup }) {
-  const { userId } = useAuth();
+  const { userId } = useUser();
   const navigate = useNavigate();
   const editDemand = () => {
     navigate(`/demands/update/${demand.Id}`);

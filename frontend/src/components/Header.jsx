@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { useEffect } from "react";
 import styles from "./header.module.scss";
 import Navbar from "./Navbar";
-import { useAuth } from "../contexts/AuthContext";
+import { useUser } from "../contexts/UserContext";
 
 export default function Header({ usersDatas }) {
-  const { token, setToken } = useAuth();
+  const { token, setToken } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {

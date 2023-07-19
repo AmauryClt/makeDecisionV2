@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useAuth } from "../contexts/AuthContext";
+import { useUser } from "../contexts/UserContext";
 import styles from "./profil.module.scss";
 
 export default function Profil({ usersDatas }) {
-  const { userId } = useAuth();
+  const { userId } = useUser();
 
   return (
     <main>

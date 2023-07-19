@@ -9,10 +9,10 @@ import Footer from "./components/Footer";
 import Login from "./components/LoginForm";
 import Profil from "./components/Profil";
 import styles from "./app.module.scss";
-import { useAuth } from "./contexts/AuthContext";
+import { useUser } from "./contexts/UserContext";
 
 function App() {
-  const { userId } = useAuth();
+  const { userId } = useUser();
   const [usersDatas, setUsersDatas] = useState(null);
 
   useEffect(() => {
