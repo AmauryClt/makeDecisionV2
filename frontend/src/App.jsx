@@ -40,7 +40,6 @@ function App() {
             path="/demands/create"
             element={<CreatePage setIsUpdated={setIsUpdated} />}
           />
-          console.info(isUpdated)
           <Route
             path="/demands/vote"
             element={<VotePage isUpdated={isUpdated} />}
@@ -49,7 +48,6 @@ function App() {
             path="/demands/valid"
             element={<ValidPage isUpdated={isUpdated} />}
           />
-          <Route path="/Profil" element={<Profil />} />
           <Route path="/Profil" element={<Profil usersDatas={usersDatas} />} />
           <Route
             path="/demands/update/:id"

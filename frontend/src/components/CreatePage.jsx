@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
@@ -7,11 +8,10 @@ import { useAuth } from "../contexts/AuthContext";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
-export default function CreatePage() {
+export default function CreatePage({ setIsUpdated }) {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
-  const [isUpdated, setIsUpdated] = useState(false);
-  const [demand, setDemand] = useState([]);
+  const [demand, setDemand] = useState({});
   const { userId } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -33,8 +33,8 @@ export default function CreatePage() {
     "RESSOURCES HUMAINES": "4",
     COMMERCIAL: "5",
   };
-  if (id) {
-    useEffect(() => {
+  useEffect(() => {
+    if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
         .then((response) => response.json())
         .then((data) => {
@@ -48,8 +48,8 @@ export default function CreatePage() {
         .catch((error) => {
           console.error(error);
         });
-    }, []);
-  }
+    }
+  }, [id]);
 
   const onSubmit = (data) => {
     const serviceImpactValues = selectedValues.map(
@@ -91,7 +91,6 @@ export default function CreatePage() {
         });
     }
     setIsUpdated((old) => !old);
-    console.info(isUpdated);
     navigate(window.history.back());
   };
 
@@ -131,7 +130,8 @@ export default function CreatePage() {
   return (
     <main>
       <h1 className={styles.banniere}>
-        Interface de création d'une demande de décision
+        Interface de {id ? "modification" : "création"} d'une demande de
+        décision
       </h1>
       <p className={styles.intro}>
         Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
@@ -250,3 +250,7 @@ export default function CreatePage() {
     </main>
   );
 }
+
+CreatePage.propTypes = {
+  setIsUpdated: PropTypes.func.isRequired,
+};
