@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 import CreatePage from "./components/CreatePage";
@@ -9,12 +9,29 @@ import Footer from "./components/Footer";
 import Login from "./components/LoginForm";
 import Profil from "./components/Profil";
 import styles from "./app.module.scss";
+import { useAuth } from "./contexts/AuthContext";
 
 function App() {
   const [isUpdated, setIsUpdated] = useState(false);
+  const { userId } = useAuth();
+  const [usersDatas, setUsersDatas] = useState(null);
+
+  useEffect(() => {
+    if (userId) {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setUsersDatas(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [userId]);
+
   return (
     <div className={styles.appForm}>
-      <Header />
+      <Header usersDatas={usersDatas} />
       <div className={styles.bodyForm}>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -33,7 +50,8 @@ function App() {
             element={<ValidPage isUpdated={isUpdated} />}
           />
           <Route path="/Profil" element={<Profil />} />
-          <Route path="/demands/update/:id" element={<CreatePage />} />
+          <Route path="/Profil" element={<Profil usersDatas={usersDatas} />} />
+          <Route path="/demands/update/:id" element={<CreatePage setIsUpdated={setIsUpdated} />} />
         </Routes>
       </div>
       <Footer />

@@ -1,11 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useEffect } from "react";
 import styles from "./header.module.scss";
 import Navbar from "./Navbar";
 import { useAuth } from "../contexts/AuthContext";
 
-function header() {
+export default function Header({ usersDatas }) {
   const { token, setToken } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token == null) {
+      navigate("/login");
+    }
+  }, []);
+
+  if (token == null) {
+    return (
+      <nav className={styles.headLinks}>
+        <img
+          className={styles.logo}
+          src="./src/assets/logo.png"
+          alt="make-sense"
+        />
+      </nav>
+    );
+  }
+
+  const handleLogout = () => {
+    setToken(null);
+    navigate("/login");
+  };
+
   return (
     <nav className={styles.headLinks}>
       <Link to="/">
@@ -22,23 +48,30 @@ function header() {
         <Link to="/Profil">
           <img className={styles.pp} src="./src/assets/test.jpg" alt="random" />
         </Link>
-        <Link className={styles.name} to="Profil">
-          <div>Eliott LAREINE</div>
+        <Link className={styles.name} to="/Profil">
+          {usersDatas && (
+            <div>{`${usersDatas.Firstname} ${usersDatas.Lastname}`}</div>
+          )}
         </Link>
         {token == null ? (
           <Link to="/login">Login</Link>
         ) : (
-          <button type="button" onClick={() => setToken(null)}>
+          <button type="button" onClick={handleLogout}>
             Se déconnecter
           </button>
         )}
       </div>
-      <style>
-        @import
-        url("https://fonts.googleapis.com/css2?family=Lato:wght@300;900&family=Permanent+Marker&family=Raleway:wght@900&display=swap");
-      </style>
     </nav>
   );
 }
 
-export default header;
+Header.propTypes = {
+  usersDatas: PropTypes.shape({
+    Lastname: PropTypes.string.isRequired,
+    Firstname: PropTypes.string.isRequired,
+  }),
+};
+
+Header.defaultProps = {
+  usersDatas: null,
+};
