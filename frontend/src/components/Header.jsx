@@ -1,11 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import { useEffect } from "react";
 import styles from "./header.module.scss";
 import Navbar from "./Navbar";
 import { useUser } from "../contexts/UserContext";
 
-export default function Header({ usersDatas }) {
+export default function Header() {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
 
@@ -49,9 +48,7 @@ export default function Header({ usersDatas }) {
           <img className={styles.pp} src="./src/assets/test.jpg" alt="random" />
         </Link>
         <Link className={styles.name} to="/Profil">
-          {usersDatas && (
-            <div>{`${usersDatas.Firstname} ${usersDatas.Lastname}`}</div>
-          )}
+          {user && <div>{`${user.Firstname} ${user.Lastname}`}</div>}
         </Link>
         {user == null ? (
           <Link to="/login">Login</Link>
@@ -64,14 +61,3 @@ export default function Header({ usersDatas }) {
     </nav>
   );
 }
-
-Header.propTypes = {
-  usersDatas: PropTypes.shape({
-    Lastname: PropTypes.string.isRequired,
-    Firstname: PropTypes.string.isRequired,
-  }),
-};
-
-Header.defaultProps = {
-  usersDatas: null,
-};
