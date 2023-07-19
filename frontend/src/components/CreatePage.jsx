@@ -56,7 +56,7 @@ export default function CreatePage() {
       (value) => serviceValues[value]
     );
     data.ServicesIds = serviceImpactValues;
-    data.User = user.id;
+    data.User = user.Id;
 
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {

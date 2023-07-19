@@ -12,18 +12,6 @@ import styles from "./app.module.scss";
 
 function App() {
   const [isUpdated, setIsUpdated] = useState(false);
-  const [user, setUser] = useState(null);
-
-  if (user) {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${user}`)
-      .then((response) => response.json())
-      .then((userData) => {
-        setUser(userData);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
   return (
     <div className={styles.appForm}>
       <Header />
@@ -35,7 +23,6 @@ function App() {
             path="/demands/create"
             element={<CreatePage setIsUpdated={setIsUpdated} />}
           />
-          console.info(isUpdated);
           <Route
             path="/demands/vote"
             element={<VotePage isUpdated={isUpdated} />}
