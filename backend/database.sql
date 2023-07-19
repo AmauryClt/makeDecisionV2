@@ -24,7 +24,7 @@ CREATE TABLE demand (
     Benefice TEXT,
     Inconvenience TEXT,
     Statut ENUM('EN ATTENTE DE VOTE', 'EN DESACCORD', 'VALIDE', 'MISE EN PLACE', 'ARCHIVE', 'QUARANTAINE') DEFAULT 'EN ATTENTE DE VOTE',
-    Note FLOAT,
+    NoteDemand FLOAT,
     UserId INT NOT NULL,
     CONSTRAINT fk_demand_user
     FOREIGN KEY (UserId)
@@ -57,6 +57,19 @@ CREATE TABLE interaction (
     REFERENCES demand(Id)
 );
 
+CREATE TABLE commentary (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Comment TEXT,
+    UserId INT NOT NULL,
+    DemandId INT NOT NULL,
+    CONSTRAINT fk_commentary_user
+    FOREIGN KEY (UserId)
+    REFERENCES user(Id),
+    CONSTRAINT fk_commentary_demand
+    FOREIGN KEY (DemandId)
+    REFERENCES demand(Id)
+);
+
 CREATE TABLE stakeholder (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Role ENUM('ADMIN', 'EXPERT', 'SALARIE', 'BENEVOLE') DEFAULT 'ADMIN',
@@ -79,7 +92,7 @@ VALUES
 ('girbau@user.fr', 'girbau', 'GIRBAU', 'Laëtitia', '06 78 15 78 53', '377 Avenue Victor Hugo Le Grand Chapitôt', '04 15 84 25 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
 ('denneulin@user.fr', 'denneulin', 'DENNEULIN', 'Thomas', '06 74 31 58 73', '757 Avenue Victor Hugo Le Grand Chapitôt', '04 47 85 25 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 0);
 
-INSERT INTO demand (Title, Deadline, Content, Benefice, Inconvenience, Statut, Note, UserId)
+INSERT INTO demand (Title, Deadline, Content, Benefice, Inconvenience, Statut, NoteDemand, UserId)
 VALUES
   ('Demande 1', '2023-07-15', 'Contenu de la demande 1', 'Bénéfice de la demande 1', 'Inconvénient de la demande 1', 'EN ATTENTE DE VOTE', 4, 3),
   ('Demande 2', '2023-07-15', 'Contenu de la demande 2', 'Bénéfice de la demande 2', 'Inconvénient de la demande 2', 'EN ATTENTE DE VOTE', 3, 1),

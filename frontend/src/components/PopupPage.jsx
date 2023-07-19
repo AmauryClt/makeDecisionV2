@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars-2";
@@ -60,7 +59,7 @@ export default function PopupPage({ demand, closePopup }) {
                     {demand.Inconvenience}
                   </p>
                   <h4>Commentaire :</h4>
-                  <CommentFunction />
+                  <CommentFunction demand={demand} />
                 </div>
               </div>
             </div>
@@ -68,8 +67,8 @@ export default function PopupPage({ demand, closePopup }) {
               <div className={styles.block5Content}>
                 <h4 className={styles.h4Block5}>Date de cloture des votes :</h4>
                 <p className={styles.pBorder}>{demand.Deadline}</p>
-                <h4 className={styles.h4Block5}>Note :</h4>
-                <p className={styles.pBorder}>{demand.Note}</p>
+                <h4 className={styles.h4Block5}>Note de la Demande :</h4>
+                <p className={styles.pBorder}>{demand.NoteDemand}</p>
                 <h4 className={styles.h4Block5}>Statut de la demande :</h4>
                 <p className={styles.pBorder}>{demand.Statut}</p>
                 <h4 className={styles.h4Block5}>Avancement des votes :</h4>
@@ -99,7 +98,7 @@ PopupPage.propTypes = {
     Benefice: PropTypes.string.isRequired,
     Inconvenience: PropTypes.string.isRequired,
     Deadline: PropTypes.string.isRequired,
-    Note: PropTypes.number.isRequired,
+    NoteDemand: PropTypes.number.isRequired,
     Statut: PropTypes.string.isRequired,
     ServicesImpacts: PropTypes.string.isRequired,
     UserId: PropTypes.number.isRequired,

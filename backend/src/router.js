@@ -28,6 +28,7 @@ router.get("/user/:userId", userControllers.getUserById);
 const commentController = require("./controllers/commentController");
 
 router.post("/comments", commentController.postComment);
+router.get("/comments/:demandId", commentController.getCommentsByDemandId);
 
 const authControllers = require("./controllers/authControllers");
 

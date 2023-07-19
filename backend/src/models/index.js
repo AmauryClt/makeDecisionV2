@@ -33,12 +33,12 @@ const DemandManager = require("./DemandManager");
 const DemandServiceManager = require("./DemandServiceManager");
 const CommentManager = require("./CommentManager");
 
-models.interaction = new CommentManager();
+models.commentary = new CommentManager();
 models.demand = new DemandManager();
 models.demandService = new DemandServiceManager();
 models.demand.setDatabase(pool);
 models.demandService.setDatabase(pool);
-models.interaction.setDatabase(pool);
+models.commentary.setDatabase(pool);
 
 const UserManager = require("./UserManager");
 
