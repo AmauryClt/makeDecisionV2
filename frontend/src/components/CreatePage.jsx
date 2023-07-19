@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
@@ -7,9 +8,10 @@ import { useUser } from "../contexts/UserContext";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
-export default function CreatePage() {
+export default function CreatePage({ setIsUpdated }) {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
+
   const [demand, setDemand] = useState([]);
   const { user } = useUser();
   const { id } = useParams();
@@ -32,12 +34,11 @@ export default function CreatePage() {
     "RESSOURCES HUMAINES": "4",
     COMMERCIAL: "5",
   };
-  if (id) {
-    useEffect(() => {
+  useEffect(() => {
+    if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
         .then((response) => response.json())
         .then((data) => {
-          console.info("THEN", data);
           const dateStr = data.Deadline;
           formattedDate = formatISO(new Date(dateStr), {
             representation: "date",
@@ -48,8 +49,8 @@ export default function CreatePage() {
         .catch((error) => {
           console.error(error);
         });
-    }, []);
-  }
+    }
+  }, [id]);
 
   const onSubmit = (data) => {
     const serviceImpactValues = selectedValues.map(
@@ -90,8 +91,8 @@ export default function CreatePage() {
           console.error(error);
         });
     }
-    navigate("/demands/vote");
-    console.info(data);
+    setIsUpdated((old) => !old);
+    navigate(window.history.back());
   };
 
   const addValue = useCallback((value) => {
@@ -124,12 +125,14 @@ export default function CreatePage() {
       },
     ],
     menubar: false,
+    placeholder: "Expliquez ici en détail votre idée.",
   };
 
   return (
     <main>
       <h1 className={styles.banniere}>
-        Interface de création d'une demande de décision
+        Interface de {id ? "modification" : "création"} d'une demande de
+        décision
       </h1>
       <p className={styles.intro}>
         Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
@@ -154,13 +157,9 @@ export default function CreatePage() {
             render={({ field: { onChange, onBlur, ref } }) => (
               <Editor
                 {...demand.Content}
-                onBlur={onBlur} // notify when input is touched
-                onEditorChange={onChange} // send value to hook form
-                initialValue={
-                  id
-                    ? demand.Content
-                    : "<p>Donnez nous des détails sur votre idée !!!</p>"
-                }
+                onBlur={onBlur}
+                onEditorChange={onChange}
+                initialValue={id ? demand.Content : undefined}
                 init={editorConfig}
                 onInit={(evt, editor) => (ref.current = editor)}
               />
@@ -252,3 +251,7 @@ export default function CreatePage() {
     </main>
   );
 }
+
+CreatePage.propTypes = {
+  setIsUpdated: PropTypes.func.isRequired,
+};
