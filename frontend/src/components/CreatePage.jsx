@@ -10,7 +10,7 @@ import Button from "./Button";
 export default function CreatePage({ setIsUpdated }) {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
-  const [demand, setDemand] = useState([]);
+  const [demand, setDemand] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -31,8 +31,8 @@ export default function CreatePage({ setIsUpdated }) {
     "RESSOURCES HUMAINES": "4",
     COMMERCIAL: "5",
   };
-  if (id) {
-    useEffect(() => {
+  useEffect(() => {
+    if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
         .then((response) => response.json())
         .then((data) => {
@@ -46,8 +46,8 @@ export default function CreatePage({ setIsUpdated }) {
         .catch((error) => {
           console.error(error);
         });
-    }, []);
-  }
+    }
+  }, [id]);
 
   const onSubmit = (data) => {
     const serviceImpactValues = selectedValues.map(
@@ -128,7 +128,8 @@ export default function CreatePage({ setIsUpdated }) {
   return (
     <main>
       <h1 className={styles.banniere}>
-        Interface de création d'une demande de décision
+        Interface de {id ? "modification" : "création"} d'une demande de
+        décision
       </h1>
       <p className={styles.intro}>
         Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!

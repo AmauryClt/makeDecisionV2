@@ -32,7 +32,10 @@ function App() {
             element={<ValidPage isUpdated={isUpdated} />}
           />
           <Route path="/Profil" element={<Profil />} />
-          <Route path="/demands/update/:id" element={<CreatePage />} />
+          <Route
+            path="/demands/update/:id"
+            element={<CreatePage setIsUpdated={setIsUpdated} />}
+          />
         </Routes>
       </div>
       <Footer />
