@@ -51,7 +51,11 @@ export default function PopupPage({ demand, closePopup }) {
               <div className={styles.block4}>
                 <div className={styles.block4Content}>
                   <h4>Détail de la prise de décision :</h4>
-                  <p className={styles.pBorderComment}>{demand.Content}</p>
+                  <p className={styles.contentFrontDemand}>
+                    <span
+                      dangerouslySetInnerHTML={{ __html: demand.Content }}
+                    />
+                  </p>
                   <h4>Bénéfices :</h4>
                   <p className={styles.pBorderComment}>{demand.Benefice}</p>
                   <h4>Risque potentiels :</h4>

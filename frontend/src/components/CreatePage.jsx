@@ -10,6 +10,7 @@ import Button from "./Button";
 export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
+  const [isUpdated, setIsUpdated] = useState(false);
   const [demand, setDemand] = useState([]);
   const { userId } = useAuth();
   const { id } = useParams();
@@ -37,7 +38,6 @@ export default function CreatePage() {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
         .then((response) => response.json())
         .then((data) => {
-          console.info("THEN", data);
           const dateStr = data.Deadline;
           formattedDate = formatISO(new Date(dateStr), {
             representation: "date",
@@ -90,8 +90,9 @@ export default function CreatePage() {
           console.error(error);
         });
     }
-    navigate("/demands/vote");
-    console.info(data);
+    setIsUpdated((old) => !old);
+    console.info(isUpdated);
+    navigate(window.history.back());
   };
 
   const addValue = useCallback((value) => {
@@ -124,6 +125,7 @@ export default function CreatePage() {
       },
     ],
     menubar: false,
+    placeholder: "Expliquez ici en détail votre idée.",
   };
 
   return (
@@ -154,13 +156,9 @@ export default function CreatePage() {
             render={({ field: { onChange, onBlur, ref } }) => (
               <Editor
                 {...demand.Content}
-                onBlur={onBlur} // notify when input is touched
-                onEditorChange={onChange} // send value to hook form
-                initialValue={
-                  id
-                    ? demand.Content
-                    : "<p>Donnez nous des détails sur votre idée !!!</p>"
-                }
+                onBlur={onBlur}
+                onEditorChange={onChange}
+                initialValue={id ? demand.Content : undefined}
                 init={editorConfig}
                 onInit={(evt, editor) => (ref.current = editor)}
               />
