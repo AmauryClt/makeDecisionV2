@@ -25,6 +25,10 @@ router.post("/users", hashPassword, userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
 router.get("/user/:userId", userControllers.getUserById);
 
+const commentController = require("./controllers/commentController");
+
+router.post("/comments", commentController.postComment);
+
 const authControllers = require("./controllers/authControllers");
 
 router.post(

@@ -27,7 +27,7 @@ CREATE TABLE demand (
     Note FLOAT,
     UserId INT NOT NULL,
     CONSTRAINT fk_demand_user
-    FOREIGN KEY (userId)
+    FOREIGN KEY (UserId)
     REFERENCES user(Id)
 );
 
@@ -45,12 +45,12 @@ CREATE TABLE demandServiceJoin (
 
 CREATE TABLE interaction (
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    Content TEXT,
+    Comment TEXT,
     Note FLOAT,
-    userId INT NOT NULL,
+    UserId INT NOT NULL,
     demand_Id INT NOT NULL,
     CONSTRAINT fk_interaction_user
-    FOREIGN KEY (userId)
+    FOREIGN KEY (UserId)
     REFERENCES user(Id),
     CONSTRAINT fk_interaction_demand
     FOREIGN KEY (demand_Id)
@@ -60,10 +60,10 @@ CREATE TABLE interaction (
 CREATE TABLE stakeholder (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Role ENUM('ADMIN', 'EXPERT', 'SALARIE', 'BENEVOLE') DEFAULT 'ADMIN',
-    userId INT NOT NULL,
+    UserId INT NOT NULL,
     demand_Id INT NOT NULL,
     CONSTRAINT fk_stakeholder_user
-    FOREIGN KEY (userId)
+    FOREIGN KEY (UserId)
     REFERENCES user(Id),
     CONSTRAINT fk_stakeholder_demand
     FOREIGN KEY (demand_Id)
@@ -79,7 +79,7 @@ VALUES
 ('girbau@user.fr', 'girbau', 'GIRBAU', 'Laëtitia', '06 78 15 78 53', '377 Avenue Victor Hugo Le Grand Chapitôt', '04 15 84 25 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
 ('denneulin@user.fr', 'denneulin', 'DENNEULIN', 'Thomas', '06 74 31 58 73', '757 Avenue Victor Hugo Le Grand Chapitôt', '04 47 85 25 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 0);
 
-INSERT INTO demand (Title, Deadline, Content, Benefice, Inconvenience, Statut, Note, userId)
+INSERT INTO demand (Title, Deadline, Content, Benefice, Inconvenience, Statut, Note, UserId)
 VALUES
   ('Demande 1', '2023-07-15', 'Contenu de la demande 1', 'Bénéfice de la demande 1', 'Inconvénient de la demande 1', 'EN ATTENTE DE VOTE', 4, 3),
   ('Demande 2', '2023-07-15', 'Contenu de la demande 2', 'Bénéfice de la demande 2', 'Inconvénient de la demande 2', 'EN ATTENTE DE VOTE', 3, 1),

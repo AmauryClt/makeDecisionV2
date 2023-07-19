@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 import styles from "./popupPage.module.scss";
 import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
+import CommentFunction from "./CommentFunction";
 
 export default function PopupPage({ demand, closePopup }) {
   const { userId } = useAuth();
@@ -59,7 +60,7 @@ export default function PopupPage({ demand, closePopup }) {
                     {demand.Inconvenience}
                   </p>
                   <h4>Commentaire :</h4>
-                  <p className={styles.pBorderComment}>provisoire</p>
+                  <CommentFunction />
                 </div>
               </div>
             </div>
