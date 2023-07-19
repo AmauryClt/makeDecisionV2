@@ -12,6 +12,7 @@ import styles from "./app.module.scss";
 import { useAuth } from "./contexts/AuthContext";
 
 function App() {
+  const [isUpdated, setIsUpdated] = useState(false);
   const { userId } = useAuth();
   const [usersDatas, setUsersDatas] = useState(null);
 
@@ -35,11 +36,24 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Menu />} />
-          <Route path="/demands/create" element={<CreatePage />} />
-          <Route path="/demands/vote" element={<VotePage />} />
-          <Route path="/demands/valid" element={<ValidPage />} />
+          <Route
+            path="/demands/create"
+            element={<CreatePage setIsUpdated={setIsUpdated} />}
+          />
+          console.info(isUpdated)
+          <Route
+            path="/demands/vote"
+            element={<VotePage isUpdated={isUpdated} />}
+          />
+          <Route
+            path="/demands/valid"
+            element={<ValidPage isUpdated={isUpdated} />}
+          />
           <Route path="/Profil" element={<Profil usersDatas={usersDatas} />} />
-          <Route path="/demands/update/:id" element={<CreatePage />} />
+          <Route
+            path="/demands/update/:id"
+            element={<CreatePage setIsUpdated={setIsUpdated} />}
+          />
         </Routes>
       </div>
       <Footer />

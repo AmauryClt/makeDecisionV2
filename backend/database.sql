@@ -45,16 +45,16 @@ CREATE TABLE demandServiceJoin (
 
 CREATE TABLE interaction (
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    Comment TEXT,
     Note FLOAT,
     UserId INT NOT NULL,
-    demand_Id INT NOT NULL,
+    DemandId INT NOT NULL,
     CONSTRAINT fk_interaction_user
     FOREIGN KEY (UserId)
     REFERENCES user(Id),
     CONSTRAINT fk_interaction_demand
-    FOREIGN KEY (demand_Id)
-    REFERENCES demand(Id)
+    FOREIGN KEY (DemandId)
+    REFERENCES demand(Id),
+    CONSTRAINT uc_interaction_user_note UNIQUE (UserId, Note)
 );
 
 CREATE TABLE commentary (

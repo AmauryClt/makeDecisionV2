@@ -3,11 +3,15 @@ const express = require("express");
 const router = express.Router();
 
 const demandControllers = require("./controllers/demandControllers");
+const interactionControllers = require("./controllers/interactionControllers");
 
 router.get("/demands/", demandControllers.getDemand);
 router.get("/demands/:id", demandControllers.getOneDemand);
 router.post("/demands/create", demandControllers.postDemand);
 router.put("/demands/update/:id", demandControllers.updateDemand);
+router.post("/note", interactionControllers.postNote);
+router.put("/note/:id", interactionControllers.updateNote);
+router.get("/note/:id", interactionControllers.getNoteByDemandId);
 
 const userControllers = require("./controllers/userControllers");
 

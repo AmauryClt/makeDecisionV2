@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import { useAuth } from "../contexts/AuthContext";
+import Stars from "./Note";
 import styles from "./popupPage.module.scss";
 import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
@@ -51,7 +52,11 @@ export default function PopupPage({ demand, closePopup }) {
               <div className={styles.block4}>
                 <div className={styles.block4Content}>
                   <h4>Détail de la prise de décision :</h4>
-                  <p className={styles.pBorderComment}>{demand.Content}</p>
+                  <p className={styles.contentFrontDemand}>
+                    <span
+                      dangerouslySetInnerHTML={{ __html: demand.Content }}
+                    />
+                  </p>
                   <h4>Bénéfices :</h4>
                   <p className={styles.pBorderComment}>{demand.Benefice}</p>
                   <h4>Risque potentiels :</h4>
@@ -67,8 +72,6 @@ export default function PopupPage({ demand, closePopup }) {
               <div className={styles.block5Content}>
                 <h4 className={styles.h4Block5}>Date de cloture des votes :</h4>
                 <p className={styles.pBorder}>{demand.Deadline}</p>
-                <h4 className={styles.h4Block5}>Note de la Demande :</h4>
-                <p className={styles.pBorder}>{demand.NoteDemand}</p>
                 <h4 className={styles.h4Block5}>Statut de la demande :</h4>
                 <p className={styles.pBorder}>{demand.Statut}</p>
                 <h4 className={styles.h4Block5}>Avancement des votes :</h4>
@@ -79,6 +82,10 @@ export default function PopupPage({ demand, closePopup }) {
                 <p className={styles.pBorder}>provisoire</p>
                 <h4 className={styles.h4Block5}>Service Impacté :</h4>
                 <p className={styles.pBorder}>{demand.ServicesImpacts}</p>
+                <h4 className={styles.h4Block5}>Note de la Demande :</h4>
+                <div className={styles.pBorder}>
+                  <Stars demand={demand} />
+                </div>
               </div>
             </div>
           </div>
