@@ -51,7 +51,10 @@ function App() {
           />
           <Route path="/Profil" element={<Profil />} />
           <Route path="/Profil" element={<Profil usersDatas={usersDatas} />} />
-          <Route path="/demands/update/:id" element={<CreatePage setIsUpdated={setIsUpdated} />} />
+          <Route
+            path="/demands/update/:id"
+            element={<CreatePage setIsUpdated={setIsUpdated} />}
+          />
         </Routes>
       </div>
       <Footer />
