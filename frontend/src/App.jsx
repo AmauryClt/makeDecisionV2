@@ -47,7 +47,7 @@ function App() {
           <Route path="/Profil" element={<Profil />} />
           <Route
             path="/demands/update/:id"
-            element={<CreatePage isUpdated={isUpdated} />}
+            element={<CreatePage setIsUpdated={setIsUpdated} />}
           />
         </Routes>
       </div>
