@@ -89,8 +89,8 @@ export default function CreatePage() {
           console.error(error);
         });
     }
-    setIsUpdated(old => !old)
-    console.log(isUpdated)
+    setIsUpdated((old) => !old);
+    console.info(isUpdated);
     navigate(window.history.back());
   };
 

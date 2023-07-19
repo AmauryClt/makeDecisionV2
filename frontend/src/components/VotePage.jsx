@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import styles from "./votePage.module.scss";
 import PopupPage from "./PopupPage";
 
-export default function VotePage({isUpdated}) {
+export default function VotePage({ isUpdated }) {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
   const [filter, setFilter] = useState("all");
@@ -22,7 +23,6 @@ export default function VotePage({isUpdated}) {
 
     fetchData();
   }, [isUpdated]);
-
 
   const openPopup = (demand) => {
     setSelectedDemand(demand);
@@ -123,3 +123,7 @@ export default function VotePage({isUpdated}) {
     </main>
   );
 }
+
+VotePage.propTypes = {
+  isUpdated: PropTypes.bool.isRequired,
+};
