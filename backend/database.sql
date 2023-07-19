@@ -54,7 +54,7 @@ CREATE TABLE interaction (
     CONSTRAINT fk_interaction_demand
     FOREIGN KEY (DemandId)
     REFERENCES demand(Id),
-    CONSTRAINT uc_interaction_user_note UNIQUE (UserId, Note)
+    CONSTRAINT uc_interaction_demand_user UNIQUE (DemandId, UserId)
 );
 
 CREATE TABLE commentary (

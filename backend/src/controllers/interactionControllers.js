@@ -35,24 +35,23 @@ const updateNote = (req, res) => {
     });
 };
 
-const getNoteByDemandId = (req, res) => {
-  const { UserId, DemandId, Note } = req.body;
-  const parsedUserId = parseInt(UserId, 10);
-  const parsedDemandId = parseInt(DemandId, 10);
+const getNotesByDemandId = (req, res) => {
+  const { id } = req.params;
+  const parsedId = parseInt(id, 10);
 
   models.interaction
-    .findNoteByDemandId(parsedUserId, parsedDemandId, Note)
-    .then(([interaction]) => {
-      res.status(201).json(interaction);
+    .findNoteByDemandId(parsedId)
+    .then((notes) => {
+      res.status(200).json({ notes });
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).send("Error retrieving comments");
+      res.status(500).send("Error retrieving notes");
     });
 };
 
 module.exports = {
   postNote,
   updateNote,
-  getNoteByDemandId,
+  getNotesByDemandId,
 };

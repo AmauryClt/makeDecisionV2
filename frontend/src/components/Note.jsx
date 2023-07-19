@@ -1,12 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Rating } from "react-simple-star-rating";
 import PropTypes from "prop-types";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./note.module.scss";
 
 export default function Stars({ demand }) {
-  const [rating, setRating] = useState(0);
   const { userId } = useAuth();
+  const [notesByDemand, setNotesByDemand] = useState([]);
+  const [rating, setRating] = useState(0);
+
+  useEffect(() => {
+    const fetchNotesByDemand = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/notes/${demand.Id}`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setNotesByDemand(data.notes);
+        } else {
+          console.error("Impossible de récupérer les notes pour la demande.");
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des notes :", error);
+      }
+    };
+
+    fetchNotesByDemand();
+  }, [demand.Id]);
+
+  console.info("notes pour la demande", notesByDemand);
 
   const handleSubmitNote = async () => {
     try {

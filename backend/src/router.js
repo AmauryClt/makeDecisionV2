@@ -11,7 +11,7 @@ router.post("/demands/create", demandControllers.postDemand);
 router.put("/demands/update/:id", demandControllers.updateDemand);
 router.post("/note", interactionControllers.postNote);
 router.put("/note/:id", interactionControllers.updateNote);
-router.get("/note/:id", interactionControllers.getNoteByDemandId);
+router.get("/notes/:id", interactionControllers.getNotesByDemandId);
 
 const userControllers = require("./controllers/userControllers");
 
