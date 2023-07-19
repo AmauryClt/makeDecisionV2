@@ -11,7 +11,7 @@ export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
   const [demand, setDemand] = useState([]);
-  const { userId } = useUser();
+  const { user } = useUser();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -56,7 +56,7 @@ export default function CreatePage() {
       (value) => serviceValues[value]
     );
     data.ServicesIds = serviceImpactValues;
-    data.UserId = userId;
+    data.User = user;
 
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {

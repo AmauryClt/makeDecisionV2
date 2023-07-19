@@ -12,12 +12,12 @@ import styles from "./app.module.scss";
 import { useUser } from "./contexts/UserContext";
 
 function App() {
-  const { userId } = useUser();
+  const { user } = useUser();
   const [usersDatas, setUsersDatas] = useState(null);
 
   useEffect(() => {
-    if (userId) {
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${userId}`)
+    if (user) {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/user/${user}`)
         .then((response) => response.json())
         .then((data) => {
           setUsersDatas(data);
@@ -26,7 +26,7 @@ function App() {
           console.error(error);
         });
     }
-  }, [userId]);
+  }, [user]);
 
   return (
     <div className={styles.appForm}>

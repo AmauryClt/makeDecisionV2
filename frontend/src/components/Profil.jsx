@@ -4,11 +4,11 @@ import { useUser } from "../contexts/UserContext";
 import styles from "./profil.module.scss";
 
 export default function Profil({ usersDatas }) {
-  const { userId } = useUser();
+  const { user } = useUser();
 
   return (
     <main>
-      {userId === undefined ? (
+      {user === undefined ? (
         <h1>Loading...</h1>
       ) : (
         <>

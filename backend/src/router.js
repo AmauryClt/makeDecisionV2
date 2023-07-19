@@ -30,4 +30,5 @@ router.post(
 );
 router.get("logout", logout);
 
+// router.use(verifyToken); // mur d'authentification
 module.exports = router;

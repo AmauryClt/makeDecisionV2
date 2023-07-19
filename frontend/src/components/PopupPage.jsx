@@ -8,7 +8,7 @@ import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
 
 export default function PopupPage({ demand, closePopup }) {
-  const { userId } = useUser();
+  const { user } = useUser();
   const navigate = useNavigate();
   const editDemand = () => {
     navigate(`/demands/update/${demand.Id}`);
@@ -19,7 +19,7 @@ export default function PopupPage({ demand, closePopup }) {
       <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
         <div className={styles.popupContentbar}>
           <div className={styles.closeButton}>
-            {userId === demand.UserId && (
+            {user === demand.User && (
               <div>
                 <img
                   aria-hidden
@@ -101,7 +101,7 @@ PopupPage.propTypes = {
     Note: PropTypes.number.isRequired,
     Statut: PropTypes.string.isRequired,
     ServicesImpacts: PropTypes.string.isRequired,
-    UserId: PropTypes.number.isRequired,
+    User: PropTypes.number.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
 };

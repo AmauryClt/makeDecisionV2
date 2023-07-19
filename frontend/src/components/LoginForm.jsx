@@ -31,8 +31,7 @@ function LoginForm() {
         } else {
           setUser(json.user);
           navigate("/");
-          console.info(json.token);
-          console.info(json.userId);
+          console.info(json.user);
         }
       });
   };

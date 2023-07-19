@@ -6,16 +6,16 @@ import Navbar from "./Navbar";
 import { useUser } from "../contexts/UserContext";
 
 export default function Header({ usersDatas }) {
-  const { token, setToken } = useUser();
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token == null) {
+    if (user == null) {
       navigate("/login");
     }
   }, []);
 
-  if (token == null) {
+  if (user == null) {
     return (
       <nav className={styles.headLinks}>
         <img
@@ -28,7 +28,7 @@ export default function Header({ usersDatas }) {
   }
 
   const handleLogout = () => {
-    setToken(null);
+    setUser(null);
     navigate("/login");
   };
 
@@ -53,7 +53,7 @@ export default function Header({ usersDatas }) {
             <div>{`${usersDatas.Firstname} ${usersDatas.Lastname}`}</div>
           )}
         </Link>
-        {token == null ? (
+        {user == null ? (
           <Link to="/login">Login</Link>
         ) : (
           <button type="button" onClick={handleLogout}>
