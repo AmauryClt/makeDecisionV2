@@ -7,7 +7,7 @@ function LoginForm() {
   const navigate = useNavigate();
   const [errors, setErrors] = useState("");
   const form = useRef(null);
-  const { setToken } = useAuth();
+  const { setToken, setUserId } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +29,10 @@ function LoginForm() {
           setErrors(json);
         } else {
           setToken(json.token);
+          setUserId(json.userId);
           navigate("/");
+          console.info(json.token);
+          console.info(json.userId);
         }
       });
   };

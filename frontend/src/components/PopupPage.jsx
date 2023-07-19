@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars-2";
+import { useAuth } from "../contexts/AuthContext";
 import styles from "./popupPage.module.scss";
 import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
 
 export default function PopupPage({ demand, closePopup }) {
+  const { userId } = useAuth();
   const navigate = useNavigate();
   const editDemand = () => {
     navigate(`/demands/update/${demand.Id}`);
@@ -17,15 +19,17 @@ export default function PopupPage({ demand, closePopup }) {
       <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
         <div className={styles.popupContentbar}>
           <div className={styles.closeButton}>
-            <div>
-              <img
-                aria-hidden
-                src={editButtonImage}
-                alt="Edit"
-                className={styles.editButton}
-                onClick={editDemand}
-              />
-            </div>
+            {userId === demand.UserId && (
+              <div>
+                <img
+                  aria-hidden
+                  src={editButtonImage}
+                  alt="Edit"
+                  className={styles.editButton}
+                  onClick={editDemand}
+                />
+              </div>
+            )}
             <div>
               <img
                 aria-hidden
@@ -101,6 +105,7 @@ PopupPage.propTypes = {
     Note: PropTypes.number.isRequired,
     Statut: PropTypes.string.isRequired,
     ServicesImpacts: PropTypes.string.isRequired,
+    UserId: PropTypes.number.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
 };

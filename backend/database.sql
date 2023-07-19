@@ -25,7 +25,7 @@ CREATE TABLE demand (
     Inconvenience TEXT,
     Statut ENUM('EN ATTENTE DE VOTE', 'EN DESACCORD', 'VALIDE', 'MISE EN PLACE', 'ARCHIVE', 'QUARANTAINE') DEFAULT 'EN ATTENTE DE VOTE',
     Note FLOAT,
-    userId INT DEFAULT 2,
+    UserId INT NOT NULL,
     CONSTRAINT fk_demand_user
     FOREIGN KEY (userId)
     REFERENCES user(Id)
