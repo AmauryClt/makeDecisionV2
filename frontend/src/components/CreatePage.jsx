@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
@@ -11,7 +12,7 @@ import Button from "./Button";
 export default function CreatePage({ setIsUpdated }) {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
-  const [demand, setDemand] = useState({});
+  const [demand, setDemand] = useState([]);
   const { userId } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -33,6 +34,17 @@ export default function CreatePage({ setIsUpdated }) {
     "RESSOURCES HUMAINES": "4",
     COMMERCIAL: "5",
   };
+
+  const toastOptions = {
+    position: "top-center",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  };
   useEffect(() => {
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
@@ -50,14 +62,12 @@ export default function CreatePage({ setIsUpdated }) {
         });
     }
   }, [id]);
-
   const onSubmit = (data) => {
     const serviceImpactValues = selectedValues.map(
       (value) => serviceValues[value]
     );
     data.ServicesIds = serviceImpactValues;
     data.UserId = userId;
-
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {
         method: "PUT",
@@ -67,12 +77,12 @@ export default function CreatePage({ setIsUpdated }) {
         body: JSON.stringify(data),
       })
         .then((response) => response.json())
-        .then((result) => {
-          console.info(result);
-          setSelectedValues(result);
-        })
         .catch((error) => {
           console.error(error);
+          toast.error(
+            "Un problème à eu lieu lors de la mise à jour",
+            toastOptions
+          );
         });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/create`, {
@@ -83,15 +93,20 @@ export default function CreatePage({ setIsUpdated }) {
         body: JSON.stringify(data),
       })
         .then((response) => response.json())
-        .then((result) => {
-          console.info(result);
-        })
         .catch((error) => {
           console.error(error);
+          toast.error(
+            "Un problème à eu lieu lors de la création",
+            toastOptions
+          );
         });
     }
     setIsUpdated((old) => !old);
     navigate(window.history.back());
+    toast.success(
+      `${id ? "Modification" : "Création"} prise en compte`,
+      toastOptions
+    );
   };
 
   const addValue = useCallback((value) => {
@@ -133,9 +148,6 @@ export default function CreatePage({ setIsUpdated }) {
         Interface de {id ? "modification" : "création"} d'une demande de
         décision
       </h1>
-      <p className={styles.intro}>
-        Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
-      </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <input
