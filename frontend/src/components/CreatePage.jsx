@@ -91,7 +91,6 @@ export default function CreatePage({ setIsUpdated }) {
         });
     }
     setIsUpdated((old) => !old);
-    console.info(isUpdated);
     navigate(window.history.back());
   };
 
