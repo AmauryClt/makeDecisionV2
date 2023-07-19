@@ -35,7 +35,7 @@ function App() {
             path="/demands/create"
             element={<CreatePage setIsUpdated={setIsUpdated} />}
           />
-          console.info(isUpdated)
+          console.info(isUpdated);
           <Route
             path="/demands/vote"
             element={<VotePage isUpdated={isUpdated} />}
