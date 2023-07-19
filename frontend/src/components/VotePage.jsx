@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import styles from "./votePage.module.scss";
 import PopupPage from "./PopupPage";
 
-export default function VotePage() {
+export default function VotePage({ isUpdated }) {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
-  const [isUpdated, setIsUpdated] = useState(false);
   const [filter, setFilter] = useState("all");
 
   useEffect(() => {
@@ -15,12 +15,12 @@ export default function VotePage() {
           `${import.meta.env.VITE_BACKEND_URL}/demands`
         );
         const data = await response.json();
-        setIsUpdated(true);
         setDemands(data);
       } catch (error) {
         console.error(error);
       }
     };
+
     fetchData();
   }, [isUpdated]);
 
@@ -71,7 +71,9 @@ export default function VotePage() {
                   <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
                   <p className={styles.statutFrontDemand}>{demand.Statut}</p>
                 </div>
-                <p className={styles.contentFrontDemand}>{demand.Content}</p>
+                <p className={styles.contentFrontDemand}>
+                  <span dangerouslySetInnerHTML={{ __html: demand.Content }} />
+                </p>
                 <div
                   className={styles.buttonContainer}
                   aria-hidden
@@ -121,3 +123,7 @@ export default function VotePage() {
     </main>
   );
 }
+
+VotePage.propTypes = {
+  isUpdated: PropTypes.bool.isRequired,
+};
