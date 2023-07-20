@@ -33,7 +33,7 @@ function LoginForm({ toastOptions }) {
         } else {
           setUser(json.user);
           navigate("/");
-          toast.success("Bienvenue !!!", toastOptions);
+          toast.success(" 👋 Bienvenue !!! 👋", toastOptions);
           console.info(json.user);
         }
       })

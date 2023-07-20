@@ -30,13 +30,13 @@ const getOneDemand = (req, res) => {
 };
 
 const postDemand = (req, res) => {
-  const { ServicesIds } = req.body;
+  const { ServicesImpacts } = req.body;
 
   models.demand
     .add(req.body)
     .then(([result]) => {
       const tasks =
-        ServicesIds?.map((ServiceId) =>
+        ServicesImpacts?.map((ServiceId) =>
           models.demandService.add(result.insertId, ServiceId)
         ) ?? [];
       Promise.all(tasks).then(() => {
@@ -51,24 +51,31 @@ const postDemand = (req, res) => {
 
 const updateDemand = (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const { ServicesIds } = req.body;
+  const { ServicesImpacts } = req.body;
   console.info(req.body);
+
   models.demand
     .update({ ...req.body, Id: id })
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
-      } else if (ServicesIds?.length > 0) {
-        const tasks =
-          ServicesIds?.map((ServiceId) =>
-            models.demandService.add(id, ServiceId)
-          ) ?? [];
-        models.demandService.flush(id).then(() =>
-          Promise.all(tasks).then(() => {
+      } else if (ServicesImpacts?.length > 0) {
+        models.demandService
+          .flush(id)
+          .then(() => {
+            const tasks = ServicesImpacts.map((ServiceId) =>
+              models.demandService.add(id, ServiceId)
+            );
+            return Promise.all(tasks);
+          })
+          .then(() => {
             res.send(204);
           })
-        );
-      } else {
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send("Error saving");
+          });
+      } else if (ServicesImpacts?.length === 0) {
         res.send(204);
       }
     })

@@ -11,7 +11,7 @@ import Button from "./Button";
 
 export default function CreatePage({ toastOptions }) {
   const [selectedValues, setSelectedValues] = useState([]);
-  const [demand, setDemand] = useState([]);
+  const [demand, setDemand] = useState({});
   const { user } = useUser();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function CreatePage({ toastOptions }) {
   const minDate = formatISO(add(new Date(), { days: 7 }), {
     representation: "date",
   });
-  let formattedDate = defaultDate;
+
   const serviceValues = {
     ADMINISTRATIF: "1",
     COMPTABILITE: "2",
@@ -40,22 +40,24 @@ export default function CreatePage({ toastOptions }) {
         .then((response) => response.json())
         .then((data) => {
           const dateStr = data.Deadline;
-          formattedDate = formatISO(new Date(dateStr), {
+          const formattedDate = formatISO(new Date(dateStr), {
             representation: "date",
           });
           data.Deadline = formattedDate;
           setDemand(data);
+          setSelectedValues((data.ServicesImpacts || "").split(", "));
         })
         .catch((error) => {
           console.error(error);
         });
     }
   }, [id]);
+
   const onSubmit = (data) => {
     const serviceImpactValues = selectedValues.map(
       (value) => serviceValues[value]
     );
-    data.ServicesIds = serviceImpactValues;
+    data.ServicesImpacts = serviceImpactValues;
     data.UserId = user.Id;
 
     if (id) {
@@ -69,12 +71,15 @@ export default function CreatePage({ toastOptions }) {
         .then(() => {
           console.info("Update done");
           navigate(-1);
-          toast.success("La demande a bien été mise à jour", toastOptions);
+          toast.success(
+            "👍 La demande a bien été mise à jour 👍",
+            toastOptions
+          );
         })
         .catch((error) => {
           console.error(error);
           toast.error(
-            "Un problème à eu lieu lors de la mise à jour",
+            "😓 Un problème à eu lieu lors de la mise à jour 😓",
             toastOptions
           );
         });
@@ -89,21 +94,29 @@ export default function CreatePage({ toastOptions }) {
         .then(() => {
           console.info("Created demand");
           navigate("../demands/vote");
-          toast.success("Votre demande a bien été créé", toastOptions);
+          toast.success("👍 Votre demande a bien été créée 👍", toastOptions);
         })
         .catch((error) => {
           console.error(error);
           toast.error(
-            "Un problème à eu lieu lors de la création",
+            "😓 Un problème a eu lieu lors de la création 😓",
             toastOptions
           );
         });
     }
   };
 
-  const addValue = useCallback((value) => {
-    setSelectedValues((prevSelectedValues) => [...prevSelectedValues, value]);
-  }, []);
+  const addValue = useCallback(
+    (value) => {
+      if (!selectedValues.includes(value)) {
+        setSelectedValues((prevSelectedValues) => [
+          ...prevSelectedValues,
+          value,
+        ]);
+      }
+    },
+    [selectedValues]
+  );
 
   const removeValue = useCallback((value) => {
     setSelectedValues((prevSelectedValues) =>
@@ -124,7 +137,6 @@ export default function CreatePage({ toastOptions }) {
         name: "alignment",
         items: ["alignleft", "aligncenter", "alignright", "alignjustify"],
       },
-
       {
         name: "indentation",
         items: ["bullist", "numlist", "outdent", "indent"],
@@ -133,15 +145,28 @@ export default function CreatePage({ toastOptions }) {
     menubar: false,
     placeholder: "Expliquez ici en détail votre idée.",
   };
-  console.info(demand.Title);
-  const { register, handleSubmit, control } = useForm({
+
+  const { register, handleSubmit, control, setValue } = useForm({
     defaultValues: {
-      Title: demand.Title,
-      Benefice: demand.Benefice,
-      Inconvenience: demand.Inconvenience,
-      Deadline: demand.Deadline,
+      Title: "",
+      Benefice: "",
+      Inconvenience: "",
+      Deadline: defaultDate,
+      ServicesImpacts: [],
     },
   });
+
+  useEffect(() => {
+    if (demand.Title) setValue("Title", demand.Title);
+    if (demand.Content) setValue("Content", demand.Content);
+    if (demand.Benefice) setValue("Benefice", demand.Benefice);
+    if (demand.Inconvenience) setValue("Inconvenience", demand.Inconvenience);
+    if (demand.Deadline) setValue("Deadline", demand.Deadline);
+    if (demand.ServicesImpacts) {
+      setValue("ServicesImpacts", demand.ServicesImpacts);
+    }
+  }, [demand, setValue]);
+
   return (
     <main>
       <h1 className={styles.banniere}>
@@ -151,22 +176,20 @@ export default function CreatePage({ toastOptions }) {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <input
-            {...register("Title")}
             className={styles.title}
             type="text"
             name="Title"
             placeholder="Titre de ta décision"
+            {...register("Title")}
             required
           />
         </label>
         <div className={styles.editor}>
           <Controller
-            {...demand.Content}
             control={control}
             name="Content"
             render={({ field: { onChange, onBlur, ref } }) => (
               <Editor
-                {...demand.Content}
                 onBlur={onBlur}
                 onEditorChange={onChange}
                 initialValue={id ? demand.Content : undefined}
@@ -198,6 +221,7 @@ export default function CreatePage({ toastOptions }) {
             addValue={addValue}
             removeValue={removeValue}
             value={serviceValues.ADMINISTRATIF}
+            isSelected={selectedValues.includes(serviceValues.ADMINISTRATIF)}
           >
             ADMINISTRATIF
           </Button>
@@ -205,6 +229,7 @@ export default function CreatePage({ toastOptions }) {
             addValue={addValue}
             removeValue={removeValue}
             value={serviceValues.COMPTABILITE}
+            isSelected={selectedValues.includes(serviceValues.COMPTABILITE)}
           >
             COMPTABILITE
           </Button>
@@ -212,6 +237,7 @@ export default function CreatePage({ toastOptions }) {
             addValue={addValue}
             removeValue={removeValue}
             value={serviceValues.MARKETING}
+            isSelected={selectedValues.includes(serviceValues.MARKETING)}
           >
             MARKETING
           </Button>
@@ -219,13 +245,17 @@ export default function CreatePage({ toastOptions }) {
             addValue={addValue}
             removeValue={removeValue}
             value={serviceValues["RESSOURCES HUMAINES"]}
+            isSelected={selectedValues.includes(
+              serviceValues["RESSOURCES HUMAINES"]
+            )}
           >
             RESSOURCES HUMAINES
           </Button>
           <Button
             addValue={addValue}
             removeValue={removeValue}
-            value={serviceValues.ADMINISTRATIF}
+            value={serviceValues.COMMERCIAL}
+            isSelected={selectedValues.includes(serviceValues.COMMERCIAL)}
           >
             COMMERCIAL
           </Button>
