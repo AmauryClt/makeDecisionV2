@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
-import { useAuth } from "../contexts/AuthContext";
+import { useUser } from "../contexts/UserContext";
 
 export default function CommentFunction({ demand }) {
   const [comments, setComments] = useState([]);
   const { register, handleSubmit, reset } = useForm();
-  const { userId } = useAuth();
+  const { user } = useUser();
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -45,7 +45,7 @@ export default function CommentFunction({ demand }) {
           body: JSON.stringify({
             ...formData,
             DemandId: demand.Id,
-            UserId: userId,
+            UserId: user,
           }),
         }
       );

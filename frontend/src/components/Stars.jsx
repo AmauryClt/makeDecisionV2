@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import PropTypes from "prop-types";
-import { useAuth } from "../contexts/AuthContext";
+import { useUser } from "../contexts/UserContext";
 import styles from "./note.module.scss";
 
 export default function Stars({ demand, notesByDemand }) {
-  const { userId } = useAuth();
+  const { user } = useUser();
   const [rating, setRating] = useState(0);
 
   const handleSubmitNote = async () => {
@@ -17,7 +17,7 @@ export default function Stars({ demand, notesByDemand }) {
         },
         body: JSON.stringify({
           DemandId: demand.Id,
-          UserId: userId,
+          UserId: user,
           Note: rating,
         }),
       });
