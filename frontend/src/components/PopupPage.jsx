@@ -39,8 +39,6 @@ export default function PopupPage({ demand, closePopup }) {
     fetchNotesByDemand();
   }, [demand.Id]);
 
-  console.info("FETCH DES NOTES", notesByDemand);
-
   return (
     <div className={styles.popupContainer}>
       <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
@@ -112,7 +110,12 @@ export default function PopupPage({ demand, closePopup }) {
                 <p className={styles.pBorder}>{demand.ServicesImpacts}</p>
                 <h4 className={styles.h4Block5}>Note de la Demande :</h4>
                 <div className={styles.pBorder}>
-                  <Stars demand={demand} notesByDemand={notesByDemand} />
+                  <Stars
+                    demand={demand}
+                    notesByDemand={
+                      notesByDemand.length > 0 ? notesByDemand[0].Note : 0
+                    }
+                  />
                 </div>
               </div>
             </div>
@@ -133,10 +136,10 @@ PopupPage.propTypes = {
     Benefice: PropTypes.string.isRequired,
     Inconvenience: PropTypes.string.isRequired,
     Deadline: PropTypes.string.isRequired,
-    NoteDemand: PropTypes.number.isRequired,
+    NoteDemand: PropTypes.string.isRequired,
     Statut: PropTypes.string.isRequired,
     ServicesImpacts: PropTypes.string.isRequired,
-    User: PropTypes.number.isRequired,
+    User: PropTypes.string.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
 };

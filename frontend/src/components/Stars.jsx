@@ -17,7 +17,7 @@ export default function Stars({ demand, notesByDemand }) {
         },
         body: JSON.stringify({
           DemandId: demand.Id,
-          UserId: user,
+          UserId: user.Id,
           Note: rating,
         }),
       });
@@ -29,8 +29,6 @@ export default function Stars({ demand, notesByDemand }) {
     }
   };
 
-  console.info("notes pour la demande", notesByDemand);
-
   const handleRating = (rate) => {
     setRating(rate);
   };
@@ -39,6 +37,7 @@ export default function Stars({ demand, notesByDemand }) {
     <div>
       <Rating
         onClick={handleRating}
+        initialValue={notesByDemand ?? rating}
         ratingValue={rating}
         transition
         showTooltip
