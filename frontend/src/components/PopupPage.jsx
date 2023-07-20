@@ -110,7 +110,7 @@ export default function PopupPage({ demand, closePopup }) {
                 <h4 className={styles.h4Block5exception}>Service Impacté :</h4>
                 <p className={styles.pBorder}>{demand.ServicesImpacts}</p>
                 <h4 className={styles.h4Block5}>Note de la Demande :</h4>
-                <div className={styles.pBorder}>
+                <div className={styles.pBorderexeption}>
                   <Stars demand={demand} notesByDemand={notesByDemand} />
                 </div>
               </div>

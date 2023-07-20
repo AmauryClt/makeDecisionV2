@@ -50,16 +50,16 @@ export default function Header({ toastOptions }) {
         <Link className={styles.name} to="/Profil">
           {user && (
             <div>
-              <p>{user.Lastname}</p>
-              <p>{user.Firstname}</p>
+              <h1>{user.Lastname}</h1>
+              <h1>{user.Firstname}</h1>
             </div>
           )}
         </Link>
         {user == null ? (
           <Link to="/login">Login</Link>
         ) : (
-          <button type="button" onClick={handleLogout}>
-            Se déconnecter
+          <button className={styles.btn} type="button" onClick={handleLogout}>
+            déconnexion
           </button>
         )}
       </div>

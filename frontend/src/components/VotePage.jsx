@@ -69,7 +69,7 @@ export default function VotePage({ isUpdated }) {
               <div className={styles.showDemand} key={demand.Id}>
                 <div className={styles.blockFrontDemand}>
                   <h3 className={styles.titleFrontDemand}>{demand.Title}</h3>
-                  <p className={styles.statutFrontDemand}>{demand.Statut}</p>
+                  <h3 className={styles.statutFrontDemand}>{demand.Statut}</h3>
                 </div>
                 <p className={styles.contentFrontDemand}>
                   <span dangerouslySetInnerHTML={{ __html: demand.Content }} />
