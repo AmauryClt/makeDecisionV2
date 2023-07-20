@@ -6,13 +6,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
+import { toast } from "react-toastify";
 
 export default function CreatePage() {
-  const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
   const [demand, setDemand] = useState([]);
   const { user } = useUser();
-
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -33,6 +32,17 @@ export default function CreatePage() {
     "RESSOURCES HUMAINES": "4",
     COMMERCIAL: "5",
   };
+
+  const toastOptions = {
+    position: "top-center",
+    autoClose: 6000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  };
   useEffect(() => {
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
@@ -50,13 +60,13 @@ export default function CreatePage() {
         });
     }
   }, [id]);
-
   const onSubmit = (data) => {
     const serviceImpactValues = selectedValues.map(
       (value) => serviceValues[value]
     );
     data.ServicesIds = serviceImpactValues;
     data.UserId = user.Id;
+
 
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {
@@ -72,6 +82,10 @@ export default function CreatePage() {
         })
         .catch((error) => {
           console.error(error);
+          toast.error(
+            "Un problème à eu lieu lors de la mise à jour",
+            toastOptions
+          );
         });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/create`, {
@@ -87,6 +101,10 @@ export default function CreatePage() {
         })
         .catch((error) => {
           console.error(error);
+          toast.error(
+            "Un problème à eu lieu lors de la création",
+            toastOptions
+          );
         });
     }
   };
@@ -123,16 +141,21 @@ export default function CreatePage() {
     menubar: false,
     placeholder: "Expliquez ici en détail votre idée.",
   };
-
+  console.info(demand.Title);
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: {
+      Title: demand.Title,
+      Benefice: demand.Benefice,
+      Inconvenience: demand.Inconvenience,
+      Deadline: demand.Deadline,
+    },
+  });
   return (
     <main>
       <h1 className={styles.banniere}>
         Interface de {id ? "modification" : "création"} d'une demande de
         décision
       </h1>
-      <p className={styles.intro}>
-        Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
-      </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <input
@@ -142,7 +165,6 @@ export default function CreatePage() {
             name="Title"
             placeholder="Titre de ta décision"
             required
-            defaultValue={demand.Title}
           />
         </label>
         <div className={styles.editor}>
@@ -169,7 +191,6 @@ export default function CreatePage() {
             name="Benefice"
             placeholder="Quel en seront les bénéfices ?"
             required
-            defaultValue={demand.Benefice}
           />
           <textarea
             {...register("Inconvenience")}
@@ -177,7 +198,6 @@ export default function CreatePage() {
             name="Inconvenience"
             placeholder="Et les risques ?"
             required
-            defaultValue={demand.Inconvenience}
           />
         </div>
         <p className={styles.label}>Service(s) impactés</p>
@@ -233,7 +253,6 @@ export default function CreatePage() {
             type="date"
             name="Deadline"
             placeholder={defaultDate}
-            defaultValue={demand.Deadline}
             min={minDate}
             max={maxDate}
             className={styles.inputDate}

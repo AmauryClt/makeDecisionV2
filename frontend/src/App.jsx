@@ -7,11 +7,14 @@ import ValidPage from "./components/ValidPage";
 import Footer from "./components/Footer";
 import Login from "./components/LoginForm";
 import styles from "./app.module.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+
   return (
     <div className={styles.appForm}>
-      <Header />
+      <Header usersDatas={usersDatas} />
+      <ToastContainer />
       <div className={styles.bodyForm}>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -20,6 +23,7 @@ function App() {
           <Route path="/demands/vote" element={<VotePage />} />
           <Route path="/demands/valid" element={<ValidPage />} />
           <Route path="/demands/update/:id" element={<CreatePage />} />
+          <Route path="/Profil" element={<Profil />} />
         </Routes>
       </div>
       <Footer />
