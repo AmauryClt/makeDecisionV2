@@ -20,6 +20,16 @@ class AbstractManager {
   setDatabase(database) {
     this.database = database;
   }
+
+  add(data) {
+    const columns = Object.keys(data).join(",");
+    const values = Object.values(data);
+
+    const placeholders = values.map(() => "?").join(",");
+    const query = `INSERT INTO ${this.table} (${columns}) VALUES (${placeholders})`;
+
+    return this.database.query(query, values);
+  }
 }
 
 module.exports = AbstractManager;

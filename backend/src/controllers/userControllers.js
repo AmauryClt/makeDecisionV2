@@ -105,6 +105,27 @@ const getUserById = (req, res) => {
     });
 };
 
+const postUser = (req, res) => {
+  const { Email, username, Lastname, Firstname, Numeromob, hashedPassword } =
+    req.body;
+  models.user
+    .add({
+      Email,
+      username,
+      Lastname,
+      Firstname,
+      Numeromob,
+      hashedPassword,
+    })
+    .then((user) => {
+      res.status(201).json(user);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error saving");
+    });
+};
+
 module.exports = {
   browse,
   read,
@@ -113,4 +134,5 @@ module.exports = {
   destroy,
   getProfile,
   getUserById,
+  postUser,
 };

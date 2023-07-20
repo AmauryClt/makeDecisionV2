@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import styles from "./profil.module.scss";
 
@@ -40,6 +41,11 @@ export default function Profil({ usersDatas }) {
                 <ul className={styles.email}>
                   Email :<li>{usersDatas.Email}</li>
                 </ul>
+                <p>
+                  <Link className={styles.Modifier} to="/Admin">
+                    Accès à la page admin
+                  </Link>
+                </p>
               </div>
             </div>
           </div>

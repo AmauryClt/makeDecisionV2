@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Login from "./components/LoginForm";
 import Profil from "./components/Profil";
 import styles from "./app.module.scss";
+import PageAdmin from "./components/PageAdmin";
 import { useAuth } from "./contexts/AuthContext";
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
             path="/demands/update/:id"
             element={<CreatePage setIsUpdated={setIsUpdated} />}
           />
+          <Route path="/Admin" element={<PageAdmin />} />
         </Routes>
       </div>
       <Footer />
