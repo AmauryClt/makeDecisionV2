@@ -1,6 +1,17 @@
 import PropTypes from "prop-types";
 
 export default function AlgoNote({ notesByDemand }) {
+  const calculateAverageNote = () => {
+    if (notesByDemand.length === 0) return 0;
+
+    const totalNotes = notesByDemand.reduce((sum, note) => sum + note.Note, 0);
+    const average = totalNotes / notesByDemand.length;
+
+    return Math.round(average);
+  };
+
+  const averageNote = calculateAverageNote();
+
   return (
     <div>
       {notesByDemand.map((note) => (
@@ -8,7 +19,7 @@ export default function AlgoNote({ notesByDemand }) {
           <p>Note: {note.Note}</p>
         </div>
       ))}
-      <p>ici c'est l'algo</p>
+      <p>Moyenne des notes pour cette demande : {averageNote}</p>
     </div>
   );
 }
