@@ -44,7 +44,7 @@ export default function PopupPage({ demand, closePopup }) {
       <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
         <div className={styles.popupContentbar}>
           <div className={styles.closeButton}>
-            {user === demand.User && (
+            {user === demand.UserId && (
               <div>
                 <img
                   aria-hidden
@@ -110,12 +110,7 @@ export default function PopupPage({ demand, closePopup }) {
                 <p className={styles.pBorder}>{demand.ServicesImpacts}</p>
                 <h4 className={styles.h4Block5}>Note de la Demande :</h4>
                 <div className={styles.pBorder}>
-                  <Stars
-                    demand={demand}
-                    notesByDemand={
-                      notesByDemand.length > 0 ? notesByDemand[0].Note : 0
-                    }
-                  />
+                  <Stars demand={demand} notesByDemand={notesByDemand} />
                 </div>
               </div>
             </div>
@@ -136,10 +131,10 @@ PopupPage.propTypes = {
     Benefice: PropTypes.string.isRequired,
     Inconvenience: PropTypes.string.isRequired,
     Deadline: PropTypes.string.isRequired,
-    NoteDemand: PropTypes.string.isRequired,
+    NoteDemand: PropTypes.number.isRequired,
     Statut: PropTypes.string.isRequired,
-    ServicesImpacts: PropTypes.string.isRequired,
-    User: PropTypes.string.isRequired,
+    ServicesImpacts: PropTypes.string,
+    UserId: PropTypes.number.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
 };

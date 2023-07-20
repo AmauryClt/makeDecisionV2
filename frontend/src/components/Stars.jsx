@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Rating } from "react-simple-star-rating";
 import PropTypes from "prop-types";
 import { useUser } from "../contexts/UserContext";
@@ -7,6 +7,14 @@ import styles from "./note.module.scss";
 export default function Stars({ demand, notesByDemand }) {
   const { user } = useUser();
   const [rating, setRating] = useState(0);
+  const [currentNote, setCurrentNote] = useState(null);
+
+  useEffect(() => {
+    const userNote = notesByDemand.find((Note) => Note.UserId === user.Id);
+    if (userNote) {
+      setCurrentNote(userNote.Note);
+    }
+  }, [notesByDemand, user.Id]);
 
   const handleSubmitNote = async () => {
     try {
@@ -37,7 +45,7 @@ export default function Stars({ demand, notesByDemand }) {
     <div>
       <Rating
         onClick={handleRating}
-        initialValue={notesByDemand ?? rating}
+        initialValue={currentNote ?? rating}
         ratingValue={rating}
         transition
         showTooltip
@@ -70,6 +78,8 @@ Stars.propTypes = {
   notesByDemand: PropTypes.arrayOf(
     PropTypes.shape({
       Id: PropTypes.number.isRequired,
+      UserId: PropTypes.number.isRequired,
+      Note: PropTypes.number.isRequired,
     })
   ).isRequired,
 };
