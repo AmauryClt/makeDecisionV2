@@ -85,9 +85,28 @@ const updateDemand = (req, res) => {
     });
 };
 
+const putNote = (req, res) => {
+  const Id = parseInt(req.params.id, 10);
+  const { Note } = req.body;
+  models.demand
+    .put({ Note, Id })
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.status(404).send("Not Found");
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error editing the note");
+    });
+};
+
 module.exports = {
   getDemand,
   getOneDemand,
   postDemand,
   updateDemand,
+  putNote,
 };

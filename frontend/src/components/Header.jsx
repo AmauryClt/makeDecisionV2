@@ -47,11 +47,13 @@ export default function Header({ toastOptions }) {
         <Navbar />
       </div>
       <div className={styles.rangement}>
-        <Link to="/Profil">
-          <img className={styles.pp} src="./src/assets/test.jpg" alt="random" />
-        </Link>
         <Link className={styles.name} to="/Profil">
-          {user && <div>{`${user.Firstname} ${user.Lastname}`}</div>}
+          {user && (
+            <div>
+              <p>{user.Lastname}</p>
+              <p>{user.Firstname}</p>
+            </div>
+          )}
         </Link>
         {user == null ? (
           <Link to="/login">Login</Link>

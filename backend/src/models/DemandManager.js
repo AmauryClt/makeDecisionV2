@@ -56,6 +56,13 @@ class DemandManager extends AbstractManager {
       ]
     );
   }
+
+  put(demand) {
+    return this.database.query(
+      `UPDATE ${this.table} SET Note = ? WHERE Id = ?`,
+      [demand.Note, demand.Id]
+    );
+  }
 }
 
 module.exports = DemandManager;
