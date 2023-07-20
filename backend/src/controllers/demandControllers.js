@@ -30,17 +30,18 @@ const getOneDemand = (req, res) => {
 };
 
 const postDemand = (req, res) => {
-  const { ServicesIds, userId } = req.body;
+  const { ServicesIds } = req.body;
 
   models.demand
-    .add({ ...req.body, userId })
+    .add(req.body)
     .then(([result]) => {
-      if (ServicesIds && Array.isArray(ServicesIds)) {
-        ServicesIds.forEach((ServiceId) => {
-          models.demandService.add(result.insertId, ServiceId);
-        });
-      }
-      res.location(`/demands/${result.insertId}`);
+      const tasks =
+        ServicesIds?.map((ServiceId) =>
+          models.demandService.add(result.insertId, ServiceId)
+        ) ?? [];
+      Promise.all(tasks).then(() => {
+        res.sendStatus(201);
+      });
     })
     .catch((err) => {
       console.error(err);
@@ -57,15 +58,18 @@ const updateDemand = (req, res) => {
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
-      } else if (Array.isArray(ServicesIds) && ServicesIds !== []) {
-        models.demandService.flush(id).then(() => {
-          ServicesIds.forEach((ServiceId) => {
-            models.demandService.add(id, ServiceId);
-            res.location(`/demands/${id}`);
-          });
+      } else if (ServicesIds?.length > 0) {
+        const tasks = [
+          models.demandService.flush(id),
+          ...(ServicesIds?.map((ServiceId) =>
+            models.demandService.add(id, ServiceId)
+          ) || []),
+        ];
+        Promise.all(tasks).then(() => {
+          res.send(204);
         });
       } else {
-        res.location(`/demands/${id}`);
+        res.send(204);
       }
     })
     .catch((err) => {

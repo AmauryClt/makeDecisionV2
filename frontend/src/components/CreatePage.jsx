@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from "react";
-import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
@@ -8,7 +7,7 @@ import { useUser } from "../contexts/UserContext";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
-export default function CreatePage({ setIsUpdated }) {
+export default function CreatePage() {
   const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
   const [demand, setDemand] = useState([]);
@@ -57,7 +56,7 @@ export default function CreatePage({ setIsUpdated }) {
       (value) => serviceValues[value]
     );
     data.ServicesIds = serviceImpactValues;
-    data.User = user.Id;
+    data.UserId = user.Id;
 
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {
@@ -67,10 +66,9 @@ export default function CreatePage({ setIsUpdated }) {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => response.json())
-        .then((result) => {
-          console.info(result);
-          setSelectedValues(result);
+        .then(() => {
+          console.info("Update done");
+          navigate(-1);
         })
         .catch((error) => {
           console.error(error);
@@ -83,16 +81,14 @@ export default function CreatePage({ setIsUpdated }) {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => response.json())
-        .then((result) => {
-          console.info(result);
+        .then(() => {
+          console.info("Created demand");
+          navigate(-1);
         })
         .catch((error) => {
           console.error(error);
         });
     }
-    setIsUpdated((old) => !old);
-    navigate(window.history.back());
   };
 
   const addValue = useCallback((value) => {
@@ -251,7 +247,3 @@ export default function CreatePage({ setIsUpdated }) {
     </main>
   );
 }
-
-CreatePage.propTypes = {
-  setIsUpdated: PropTypes.func.isRequired,
-};
