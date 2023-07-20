@@ -4,7 +4,7 @@ nav {
   top: 0;
   display: flex;
 }
-.nav-links {
+.navlinks {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -17,10 +17,9 @@ nav {
 .Liens {
   display: flex;
   justify-content: flex-end;
-  padding: 2rem;
+  align-items: center;
   white-space: nowrap;
   gap: 2rem;
-  margin-left: 25rem;
   margin-top: 0.2rem;
   font-family: Raleway;
 }
