@@ -3,19 +3,19 @@ const express = require("express");
 const router = express.Router();
 
 const demandControllers = require("./controllers/demandControllers");
+const interactionControllers = require("./controllers/interactionControllers");
 
 router.get("/demands/", demandControllers.getDemand);
 router.get("/demands/:id", demandControllers.getOneDemand);
 router.post("/demands/create", demandControllers.postDemand);
 router.put("/demands/update/:id", demandControllers.updateDemand);
+router.post("/note", interactionControllers.postNote);
+router.put("/note/:id", interactionControllers.updateNote);
+router.get("/notes/:id", interactionControllers.getNotesByDemandId);
 
 const userControllers = require("./controllers/userControllers");
 
-const {
-  hashPassword,
-  verifyPassword,
-  verifyToken,
-} = require("./services/auth");
+const { hashPassword, verifyPassword, logout } = require("./services/auth");
 
 router.get("/user", userControllers.getProfile);
 router.get("/users", userControllers.browse);
@@ -25,6 +25,11 @@ router.post("/users", hashPassword, userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
 router.get("/user/:userId", userControllers.getUserById);
 
+const commentController = require("./controllers/commentController");
+
+router.post("/comments", commentController.postComment);
+router.get("/comments/:demandId", commentController.getCommentsByDemandId);
+
 const authControllers = require("./controllers/authControllers");
 
 router.post(
@@ -32,6 +37,7 @@ router.post(
   authControllers.getUserByUsernameWithPasswordAndPassToNext,
   verifyPassword
 );
+router.get("logout", logout);
 
-router.use(verifyToken); // mur d'authentification
+// router.use(verifyToken); // mur d'authentification
 module.exports = router;
