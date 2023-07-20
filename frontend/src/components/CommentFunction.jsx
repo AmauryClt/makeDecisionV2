@@ -45,7 +45,7 @@ export default function CommentFunction({ demand }) {
           body: JSON.stringify({
             ...formData,
             DemandId: demand.Id,
-            UserId: user,
+            UserId: user.Id,
           }),
         }
       );
