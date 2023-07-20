@@ -59,15 +59,15 @@ const updateDemand = (req, res) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
       } else if (ServicesIds?.length > 0) {
-        const tasks = [
-          models.demandService.flush(id),
-          ...(ServicesIds?.map((ServiceId) =>
+        const tasks =
+          ServicesIds?.map((ServiceId) =>
             models.demandService.add(id, ServiceId)
-          ) || []),
-        ];
-        Promise.all(tasks).then(() => {
-          res.send(204);
-        });
+          ) ?? [];
+        models.demandService.flush(id).then(() =>
+          Promise.all(tasks).then(() => {
+            res.send(204);
+          })
+        );
       } else {
         res.send(204);
       }

@@ -3,12 +3,13 @@ import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 import { useUser } from "../contexts/UserContext";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
-import { toast } from "react-toastify";
 
-export default function CreatePage() {
+export default function CreatePage({ toastOptions }) {
   const [selectedValues, setSelectedValues] = useState([]);
   const [demand, setDemand] = useState([]);
   const { user } = useUser();
@@ -33,16 +34,6 @@ export default function CreatePage() {
     COMMERCIAL: "5",
   };
 
-  const toastOptions = {
-    position: "top-center",
-    autoClose: 6000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  };
   useEffect(() => {
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
@@ -67,7 +58,6 @@ export default function CreatePage() {
     data.ServicesIds = serviceImpactValues;
     data.UserId = user.Id;
 
-
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {
         method: "PUT",
@@ -79,6 +69,7 @@ export default function CreatePage() {
         .then(() => {
           console.info("Update done");
           navigate(-1);
+          toast.success("La demande a bien été mise à jour", toastOptions);
         })
         .catch((error) => {
           console.error(error);
@@ -97,7 +88,8 @@ export default function CreatePage() {
       })
         .then(() => {
           console.info("Created demand");
-          navigate(-1);
+          navigate("../demands/vote");
+          toast.success("Votre demande a bien été créé", toastOptions);
         })
         .catch((error) => {
           console.error(error);
@@ -266,3 +258,7 @@ export default function CreatePage() {
     </main>
   );
 }
+
+CreatePage.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
+};
