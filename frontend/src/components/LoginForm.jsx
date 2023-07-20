@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import styles from "./loginForm.module.scss";
 import { useAuth } from "../contexts/AuthContext";
 

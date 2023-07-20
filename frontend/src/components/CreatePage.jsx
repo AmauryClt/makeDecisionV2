@@ -10,9 +10,9 @@ import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
 export default function CreatePage({ setIsUpdated }) {
-  const { register, handleSubmit, control } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
   const [demand, setDemand] = useState([]);
+
   const { userId } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -141,7 +141,15 @@ export default function CreatePage({ setIsUpdated }) {
     menubar: false,
     placeholder: "Expliquez ici en détail votre idée.",
   };
-
+  console.info(demand.Title);
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: {
+      Title: demand.Title,
+      Benefice: demand.Benefice,
+      Inconvenience: demand.Inconvenience,
+      Deadline: demand.Deadline,
+    },
+  });
   return (
     <main>
       <h1 className={styles.banniere}>
@@ -157,7 +165,6 @@ export default function CreatePage({ setIsUpdated }) {
             name="Title"
             placeholder="Titre de ta décision"
             required
-            defaultValue={demand.Title}
           />
         </label>
         <div className={styles.editor}>
@@ -184,7 +191,6 @@ export default function CreatePage({ setIsUpdated }) {
             name="Benefice"
             placeholder="Quel en seront les bénéfices ?"
             required
-            defaultValue={demand.Benefice}
           />
           <textarea
             {...register("Inconvenience")}
@@ -192,7 +198,6 @@ export default function CreatePage({ setIsUpdated }) {
             name="Inconvenience"
             placeholder="Et les risques ?"
             required
-            defaultValue={demand.Inconvenience}
           />
         </div>
         <p className={styles.label}>Service(s) impactés</p>
@@ -248,7 +253,6 @@ export default function CreatePage({ setIsUpdated }) {
             type="date"
             name="Deadline"
             placeholder={defaultDate}
-            defaultValue={demand.Deadline}
             min={minDate}
             max={maxDate}
             className={styles.inputDate}
