@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import styles from "./AlgoNote.module.scss";
 
 export default function AlgoNote({ notesByDemand }) {
   const calculateAverageNote = () => {
@@ -10,10 +11,16 @@ export default function AlgoNote({ notesByDemand }) {
     return Math.round(average);
   };
 
+  const calculateTotalNumberOfNotes = () => {
+    return notesByDemand.length;
+  };
+
+  const totalNumberOfNotes = calculateTotalNumberOfNotes();
+
   // eslint-disable-next-line consistent-return
   const getNoteText = (averageNoteValue) => {
     if (typeof averageNoteValue === "string") {
-      return "Pas d'appréciation moyenne";
+      return "Pas d'appréciation moyenne pour le moment";
     }
     if (averageNoteValue <= 1) {
       return "Profond désaccord";
@@ -37,12 +44,11 @@ export default function AlgoNote({ notesByDemand }) {
   return (
     <div>
       {notesByDemand.map((note) => (
-        <div key={note.Id}>
-          <p>Note: {note.Note}</p>
-        </div>
+        <div key={note.Id} />
       ))}
-      <p>Moyenne des notes pour cette demande : {averageNote}</p>
-      <p>Appréciation moyenne : {averageNoteText}</p>
+      <p>Total des votes : {totalNumberOfNotes}</p>
+      <p className={styles.noteavg}>Moyenne de la demande : {averageNote}</p>
+      <p>Appréciation global: {averageNoteText}</p>
     </div>
   );
 }
