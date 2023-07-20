@@ -50,8 +50,23 @@ const getNotesByDemandId = (req, res) => {
     });
 };
 
+const getUsersNotesByDemandId = (req, res) => {
+  const DemandId = parseInt(req.params.demandId, 10);
+
+  models.interaction
+    .findUserByDemandId(DemandId)
+    .then(([rows]) => {
+      res.json(rows);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error retrieving user");
+    });
+};
+
 module.exports = {
   postNote,
   updateNote,
   getNotesByDemandId,
+  getUsersNotesByDemandId,
 };

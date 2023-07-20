@@ -30,6 +30,18 @@ class InteractionManager extends AbstractManager {
       .query(sqlQuery, [demandId])
       .then((results) => results[0]);
   }
+
+  findUserByDemandId(demandId) {
+    return this.database.query(
+      `
+        SELECT c.*, u.Firstname, u.Lastname 
+        FROM ${this.table} AS c
+        JOIN user AS u ON c.UserId = u.Id
+        WHERE c.DemandId = ?;
+    `,
+      [demandId]
+    );
+  }
 }
 
 module.exports = InteractionManager;
