@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 import styles from "./header.module.scss";
 import Navbar from "./Navbar";
 import { useUser } from "../contexts/UserContext";
 
-export default function Header() {
+export default function Header({ toastOptions }) {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
 
@@ -29,6 +31,7 @@ export default function Header() {
   const handleLogout = () => {
     setUser(null);
     navigate("/login");
+    toast.success("👋 A bientot 👋", toastOptions);
   };
 
   return (
@@ -63,3 +66,7 @@ export default function Header() {
     </nav>
   );
 }
+
+Header.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
+};

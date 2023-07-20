@@ -47,7 +47,7 @@ export default function PopupPage({ demand, closePopup }) {
       <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
         <div className={styles.popupContentbar}>
           <div className={styles.closeButton}>
-            {user === demand.UserId && (
+            {user.Id === demand.UserId && (
               <div>
                 <img
                   aria-hidden
