@@ -30,10 +30,10 @@ const getOneDemand = (req, res) => {
 };
 
 const postDemand = (req, res) => {
-  const { ServicesIds, userId } = req.body;
+  const { ServicesIds, UserId } = req.body;
 
   models.demand
-    .add({ ...req.body, userId })
+    .add({ ...req.body, UserId })
     .then(([result]) => {
       if (ServicesIds && Array.isArray(ServicesIds)) {
         ServicesIds.forEach((ServiceId) => {
