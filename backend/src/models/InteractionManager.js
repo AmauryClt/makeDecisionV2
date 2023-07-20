@@ -19,6 +19,18 @@ class InteractionManager extends AbstractManager {
     );
   }
 
+  findNoteByDemandId(demandId) {
+    const sqlQuery = `
+      SELECT *
+      FROM ${this.table}
+      WHERE DemandId = ?;
+    `;
+
+    return this.database
+      .query(sqlQuery, [demandId])
+      .then((results) => results[0]);
+  }
+
   findUserByDemandId(demandId) {
     return this.database.query(
       `

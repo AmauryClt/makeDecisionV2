@@ -31,7 +31,6 @@ function LoginForm() {
         } else {
           setUser(json.user);
           navigate("/");
-          console.info(json.user);
         }
       });
   };

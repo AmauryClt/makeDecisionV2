@@ -40,6 +40,8 @@ export default function PopupPage({ demand, closePopup }) {
     fetchNotesByDemand();
   }, [demand.Id]);
 
+  console.info(notesByDemand);
+
   return (
     <div className={styles.popupContainer}>
       <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
