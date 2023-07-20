@@ -1,14 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { useAuth } from "../contexts/AuthContext";
+import { useUser } from "../contexts/UserContext";
 import styles from "./profil.module.scss";
 
-export default function Profil({ usersDatas }) {
-  const { userId } = useAuth();
+export default function Profil() {
+  const { user } = useUser();
 
   return (
     <main>
-      {userId === undefined ? (
+      {user === undefined ? (
         <h1>Loading...</h1>
       ) : (
         <>
@@ -21,9 +20,9 @@ export default function Profil({ usersDatas }) {
                   src="./src/assets/test.jpg"
                   alt="random"
                 />
-                <p className={styles.nom}>{usersDatas.Lastname}</p>
-                <p className={styles.nom}>{usersDatas.Firstname}</p>
-                <p className={styles.mobile2}>{usersDatas.Numeromob}</p>
+                <p className={styles.nom}>{user.Lastname}</p>
+                <p className={styles.nom}>{user.Firstname}</p>
+                <p className={styles.mobile2}>{user.Numeromob}</p>
                 <p>
                   <button className={styles.Modifier} type="submit">
                     Modifier les infos
@@ -32,13 +31,13 @@ export default function Profil({ usersDatas }) {
               </div>
               <div className={styles.information}>
                 <ul className={styles.mobile}>
-                  Num Mobile :<li>{usersDatas.Numeromob}</li>
+                  Num Mobile :<li>{user.Numeromob}</li>
                 </ul>
                 <ul className={styles.fixe}>
-                  Num Fixe :<li>{usersDatas.Numerofix}</li>
+                  Num Fixe :<li>{user.Numerofix}</li>
                 </ul>
                 <ul className={styles.email}>
-                  Email :<li>{usersDatas.Email}</li>
+                  Email :<li>{user.Email}</li>
                 </ul>
               </div>
             </div>
@@ -48,18 +47,3 @@ export default function Profil({ usersDatas }) {
     </main>
   );
 }
-
-Profil.propTypes = {
-  usersDatas: PropTypes.shape({
-    Id: PropTypes.number.isRequired,
-    Lastname: PropTypes.string.isRequired,
-    Firstname: PropTypes.string.isRequired,
-    Numeromob: PropTypes.string.isRequired,
-    Numerofix: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
-  }),
-};
-
-Profil.defaultProps = {
-  usersDatas: null,
-};

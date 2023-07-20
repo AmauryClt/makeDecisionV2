@@ -1,19 +1,17 @@
 import React, { useState, useCallback, useEffect } from "react";
-import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
 import { useParams, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useAuth } from "../contexts/AuthContext";
+import { useUser } from "../contexts/UserContext";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
+import { toast } from "react-toastify";
 
-export default function CreatePage({ setIsUpdated }) {
+export default function CreatePage() {
   const [selectedValues, setSelectedValues] = useState([]);
   const [demand, setDemand] = useState([]);
-
-  const { userId } = useAuth();
+  const { user } = useUser();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -67,7 +65,9 @@ export default function CreatePage({ setIsUpdated }) {
       (value) => serviceValues[value]
     );
     data.ServicesIds = serviceImpactValues;
-    data.UserId = userId;
+    data.UserId = user.Id;
+
+
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {
         method: "PUT",
@@ -76,7 +76,10 @@ export default function CreatePage({ setIsUpdated }) {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => response.json())
+        .then(() => {
+          console.info("Update done");
+          navigate(-1);
+        })
         .catch((error) => {
           console.error(error);
           toast.error(
@@ -92,7 +95,10 @@ export default function CreatePage({ setIsUpdated }) {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => response.json())
+        .then(() => {
+          console.info("Created demand");
+          navigate(-1);
+        })
         .catch((error) => {
           console.error(error);
           toast.error(
@@ -101,12 +107,6 @@ export default function CreatePage({ setIsUpdated }) {
           );
         });
     }
-    setIsUpdated((old) => !old);
-    navigate(window.history.back());
-    toast.success(
-      `${id ? "Modification" : "Création"} prise en compte`,
-      toastOptions
-    );
   };
 
   const addValue = useCallback((value) => {
@@ -266,7 +266,3 @@ export default function CreatePage({ setIsUpdated }) {
     </main>
   );
 }
-
-CreatePage.propTypes = {
-  setIsUpdated: PropTypes.func.isRequired,
-};
