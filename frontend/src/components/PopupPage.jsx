@@ -9,6 +9,7 @@ import styles from "./popupPage.module.scss";
 import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
 import CommentFunction from "./CommentFunction";
+import MemberByVote from "./MemberByVote";
 
 export default function PopupPage({ demand, closePopup }) {
   const [notesByDemand, setNotesByDemand] = useState([]);
@@ -103,10 +104,8 @@ export default function PopupPage({ demand, closePopup }) {
                   <AlgoNote notesByDemand={notesByDemand} />
                 </div>
                 <h4 className={styles.h4Block5}>Salarié Votant :</h4>
-                <p className={styles.pBorder}>provisoire</p>
-                <h4 className={styles.h4Block5}>Expert Votant :</h4>
-                <p className={styles.pBorder}>provisoire</p>
-                <h4 className={styles.h4Block5}>Service Impacté :</h4>
+                <MemberByVote demandId={demand.Id} />
+                <h4 className={styles.h4Block5exception}>Service Impacté :</h4>
                 <p className={styles.pBorder}>{demand.ServicesImpacts}</p>
                 <h4 className={styles.h4Block5}>Note de la Demande :</h4>
                 <div className={styles.pBorder}>
@@ -131,7 +130,7 @@ PopupPage.propTypes = {
     Benefice: PropTypes.string.isRequired,
     Inconvenience: PropTypes.string.isRequired,
     Deadline: PropTypes.string.isRequired,
-    NoteDemand: PropTypes.number.isRequired,
+    NoteDemand: PropTypes.number,
     Statut: PropTypes.string.isRequired,
     ServicesImpacts: PropTypes.string,
     UserId: PropTypes.number.isRequired,
