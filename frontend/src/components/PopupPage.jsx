@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import { useAuth } from "../contexts/AuthContext";
-import Stars from "./Note";
+import Stars from "./Stars";
+import AlgoNote from "./AlgoNote";
 import styles from "./popupPage.module.scss";
 import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
@@ -10,10 +12,34 @@ import CommentFunction from "./CommentFunction";
 
 export default function PopupPage({ demand, closePopup }) {
   const { userId } = useAuth();
+  const [notesByDemand, setNotesByDemand] = useState([]);
   const navigate = useNavigate();
   const editDemand = () => {
     navigate(`/demands/update/${demand.Id}`);
   };
+
+  useEffect(() => {
+    const fetchNotesByDemand = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/notes/${demand.Id}`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setNotesByDemand(data.notes);
+        } else {
+          console.error("Impossible de récupérer les notes pour la demande.");
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des notes :", error);
+      }
+    };
+
+    fetchNotesByDemand();
+  }, [demand.Id]);
+
+  console.info("FETCH DES NOTES", notesByDemand);
 
   return (
     <div className={styles.popupContainer}>
@@ -75,7 +101,9 @@ export default function PopupPage({ demand, closePopup }) {
                 <h4 className={styles.h4Block5}>Statut de la demande :</h4>
                 <p className={styles.pBorder}>{demand.Statut}</p>
                 <h4 className={styles.h4Block5}>Avancement des votes :</h4>
-                <p className={styles.pBorder}>provisoire</p>
+                <div className={styles.pBorder}>
+                  <AlgoNote notesByDemand={notesByDemand} />
+                </div>
                 <h4 className={styles.h4Block5}>Salarié Votant :</h4>
                 <p className={styles.pBorder}>provisoire</p>
                 <h4 className={styles.h4Block5}>Expert Votant :</h4>
@@ -84,7 +112,7 @@ export default function PopupPage({ demand, closePopup }) {
                 <p className={styles.pBorder}>{demand.ServicesImpacts}</p>
                 <h4 className={styles.h4Block5}>Note de la Demande :</h4>
                 <div className={styles.pBorder}>
-                  <Stars demand={demand} />
+                  <Stars demand={demand} notesByDemand={notesByDemand} />
                 </div>
               </div>
             </div>
