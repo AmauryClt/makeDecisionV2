@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 import styles from "./loginForm.module.scss";
 import { useUser } from "../contexts/UserContext";
 
-function LoginForm() {
+function LoginForm({ toastOptions }) {
   const navigate = useNavigate();
   const [errors, setErrors] = useState("");
   const form = useRef(null);
@@ -31,7 +33,16 @@ function LoginForm() {
         } else {
           setUser(json.user);
           navigate("/");
+          toast.success(" 👋 Bienvenue !!! 👋", toastOptions);
+          console.info(json.user);
         }
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(
+          "Impossible de se connecter, avez-vous vérifié votre login et mot de passe ?",
+          toastOptions
+        );
       });
   };
   return (
@@ -74,3 +85,7 @@ function LoginForm() {
   );
 }
 export default LoginForm;
+
+LoginForm.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
+};
