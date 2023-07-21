@@ -85,7 +85,6 @@ export default function VotePage({ isUpdated, toastOptions }) {
         </div>
         <div className={styles.guide}>
           <div className={styles.content}>
-
             <h2 className={styles.guideTitle}>GUIDE</h2>
             <p>Lorem ipsum</p>
             <p>Lorem ipsum</p>
