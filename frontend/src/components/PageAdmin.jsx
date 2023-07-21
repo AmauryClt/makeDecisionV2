@@ -7,9 +7,30 @@ export default function PageAdmin() {
   const { register, handleSubmit } = useForm();
   const [selectedValues, setSelectedValues] = useState([]);
   const onSubmit = (data) => {
-    const serviceImpactValues = selectedValues.join(",");
-    data.ServiceImpact = serviceImpactValues;
+    const mapServiceToValue = (service) => {
+      switch (service) {
+        case serviceValues.ADMINISTRATIF:
+          return "5";
+        case serviceValues.COMPTABILITE:
+          return "2";
+        case serviceValues.MARKETING:
+          return "3";
+        case serviceValues["RESSOURCES HUMAINES"]:
+          return "4";
+        case serviceValues.COMMERCIAL:
+          return "1";
+        default:
+          return "0";
+      }
+    };
+
+    const numericValues = selectedValues.map((service) =>
+      mapServiceToValue(service)
+    );
+    data.ServiceImpact = numericValues.join(",");
+
     console.info(data);
+
     fetch("http://localhost:5000/user", {
       method: "POST",
       headers: {
@@ -129,7 +150,7 @@ export default function PageAdmin() {
             <Button
               addValue={addValue}
               removeValue={removeValue}
-              value={serviceValues.ADMINISTRATIF}
+              value={serviceValues.COMMERCIAL}
             >
               ADMINISTRATIF
             </Button>
