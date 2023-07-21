@@ -71,15 +71,12 @@ export default function CreatePage({ toastOptions }) {
         .then(() => {
           console.info("Update done");
           navigate(-1);
-          toast.success(
-            "👍 La demande a bien été mise à jour 👍",
-            toastOptions
-          );
+          toast.success("👍 La demande a bien été mise à jour", toastOptions);
         })
         .catch((error) => {
           console.error(error);
           toast.error(
-            "😓 Un problème à eu lieu lors de la mise à jour 😓",
+            "😓 Un problème à eu lieu lors de la mise à jour",
             toastOptions
           );
         });
@@ -94,29 +91,26 @@ export default function CreatePage({ toastOptions }) {
         .then(() => {
           console.info("Created demand");
           navigate("../demands/vote");
-          toast.success("👍 Votre demande a bien été créée 👍", toastOptions);
+          toast.success("👍 Votre demande a bien été créée", toastOptions);
         })
         .catch((error) => {
           console.error(error);
           toast.error(
-            "😓 Un problème a eu lieu lors de la création 😓",
+            "😓 Un problème a eu lieu lors de la création",
             toastOptions
           );
         });
     }
   };
 
-  const addValue = useCallback(
-    (value) => {
-      if (!selectedValues.includes(value)) {
-        setSelectedValues((prevSelectedValues) => [
-          ...prevSelectedValues,
-          value,
-        ]);
+  const addValue = useCallback((value) => {
+    setSelectedValues((prevSelectedValues) => {
+      if (!prevSelectedValues.includes(value)) {
+        return [...prevSelectedValues, value];
       }
-    },
-    [selectedValues]
-  );
+      return prevSelectedValues;
+    });
+  }, []);
 
   const removeValue = useCallback((value) => {
     setSelectedValues((prevSelectedValues) =>
@@ -215,7 +209,7 @@ export default function CreatePage({ toastOptions }) {
             required
           />
         </div>
-        <p className={styles.label}>Service(s) impactés</p>
+        <p className={styles.label}>Choissisez le(s) service(s) impacté(s)</p>
         <div className={styles.buttonServ}>
           <Button
             addValue={addValue}
@@ -260,14 +254,22 @@ export default function CreatePage({ toastOptions }) {
             COMMERCIAL
           </Button>
         </div>
-        <p className={styles.label}>Choix :</p>
-        <div className={styles.buttonServ} id="selectedValue">
-          {selectedValues.map((value) => (
-            <button className={styles.buttonChoice} type="button" key={value}>
-              {value}
-            </button>
-          ))}
-        </div>
+        <table>
+          <thead>
+            <td>
+              <th className={`${styles.label} ${styles.tableHead}`}>
+                Service(s) choisi(s) :
+              </th>
+            </td>
+          </thead>
+          <tbody id="selectedValue">
+            {selectedValues.map((value) => (
+              <tr key={value}>
+                <td>{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         <label className={styles.date}>
           Date de fin souhaitée :
           <input

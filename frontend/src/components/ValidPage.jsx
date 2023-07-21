@@ -45,7 +45,7 @@ export default function ValidPage({ isUpdated }) {
 
   return (
     <main>
-      <h1 className={styles.banniere}>Décision archivée</h1>
+      <h1 className={styles.banniere}>Décisions archivées</h1>
       <div className={styles.block0}>
         <div className={styles.dataContainer}>
           {demands
@@ -89,9 +89,14 @@ export default function ValidPage({ isUpdated }) {
         <div className={styles.guide}>
           <div className={styles.content}>
             <h2>GUIDE</h2>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
-            <p>Lorem ipsum</p>
+            <p className={styles.faq}>
+              Vous trouverez ici toutes les décisions pour lesquelles le vote
+              est terminé.
+            </p>
+            <p className={styles.faq}>
+              Vous pouvez toujours les consulter mais vous ne pouvez plus les
+              commenter ni voter.
+            </p>
             <button
               className={styles.btn}
               onClick={handleFilterAll}
@@ -111,7 +116,7 @@ export default function ValidPage({ isUpdated }) {
               onClick={handleFilterWithImplementation}
               type="button"
             >
-              Décision implémenter
+              Décision mise en place
             </button>
             <button
               className={styles.btn}

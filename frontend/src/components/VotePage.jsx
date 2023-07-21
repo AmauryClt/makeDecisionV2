@@ -46,7 +46,7 @@ export default function VotePage({ isUpdated, toastOptions }) {
 
   return (
     <main>
-      <h1 className={styles.banniere}>Décision en attente de vote</h1>
+      <h1 className={styles.banniere}>Décisions en attente de vote</h1>
       <div className={styles.block0}>
         <div className={styles.dataContainer}>
           {demands
@@ -85,10 +85,21 @@ export default function VotePage({ isUpdated, toastOptions }) {
         </div>
         <div className={styles.guide}>
           <div className={styles.content}>
+
             <h2 className={styles.guideTitle}>GUIDE</h2>
             <p>Lorem ipsum</p>
             <p>Lorem ipsum</p>
             <p>Lorem ipsum</p>
+
+            <p className={styles.faq}>
+              Vous trouverez ici toutes les décisions pour lesquelles le vote
+              est encore en cours.
+            </p>
+            <p className={styles.faq}>
+              N'hésitez pas à les consulter, les commenter et à voter selon
+              votre avis
+            </p>
+
             <button
               className={styles.btn}
               onClick={handleFilterAll}
@@ -101,14 +112,14 @@ export default function VotePage({ isUpdated, toastOptions }) {
               onClick={handleFilterWithoutDisagreement}
               type="button"
             >
-              Décision sans Désaccord
+              Décision sans désaccord
             </button>
             <button
               className={styles.btn}
               onClick={handleFilterWithDisagreement}
               type="button"
             >
-              Décision avec Désaccord
+              Décision en désaccord
             </button>
           </div>
         </div>

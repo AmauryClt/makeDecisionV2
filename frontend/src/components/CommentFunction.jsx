@@ -8,14 +8,11 @@ export default function CommentFunction({ demand }) {
   const [comments, setComments] = useState([]);
   const { register, handleSubmit, reset } = useForm();
   const { user } = useUser();
-
   useEffect(() => {
     const fetchComments = async () => {
       try {
         const response = await fetch(
-          `${
-            import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"
-          }/comments/${demand.Id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/comments/${demand.Id}`,
           {
             method: "GET",
             headers: {
@@ -35,9 +32,7 @@ export default function CommentFunction({ demand }) {
   const onSubmit = async (formData) => {
     try {
       const response = await fetch(
-        `${
-          import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"
-        }/comments`,
+        `${import.meta.env.VITE_BACKEND_URL}/comments`,
         {
           method: "POST",
           headers: {
@@ -50,10 +45,10 @@ export default function CommentFunction({ demand }) {
           }),
         }
       );
-
       reset();
 
       const data = await response.json();
+      console.info(data);
       setComments([...comments, data]);
     } catch (error) {
       console.error(error);
