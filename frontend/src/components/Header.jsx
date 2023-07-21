@@ -43,7 +43,7 @@ export default function Header({ toastOptions }) {
           alt="make-sense"
         />
       </Link>
-      <div className={styles.Liens}>
+      <div className={styles.liens}>
         <Navbar />
       </div>
       <div className={styles.rangement}>

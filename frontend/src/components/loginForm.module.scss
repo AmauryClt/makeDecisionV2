@@ -18,21 +18,19 @@ img {
   display: flex;
   font-size: large;
   margin: auto;
-  padding: 15px;
   border-radius: 60px;
 }
 
 .Password {
   display: flex;
   margin: auto;
-  padding: 26px;
 }
 
 .login {
   display: flex;
   margin: auto;
   float: center;
-  padding: 50px;
+  padding: 10px;
   border-radius: 60px;
 }
 
@@ -49,16 +47,8 @@ img {
   font-family: "Lato", sans-serif;
   height: 30px;
   border-radius: 60px;
-  width: 200px;
+  width: 20svw;
   text-align: center;
-}
-
-.inputUsername {
-  width: 25svw;
-}
-
-.inputPassword {
-  width: 8svw;
 }
 
 .button {
