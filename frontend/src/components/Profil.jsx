@@ -30,9 +30,6 @@ export default function Profil() {
                   Email : <span className={styles.entree}>{user.Email}</span>
                 </p>
               </div>
-              <button className={styles.modifier} type="submit">
-                Modifier les infos
-              </button>
             </div>
           </div>
         </>
