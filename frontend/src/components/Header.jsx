@@ -31,7 +31,7 @@ export default function Header({ toastOptions }) {
   const handleLogout = () => {
     setUser(null);
     navigate("/login");
-    toast.success("👋 A bientot 👋", toastOptions);
+    toast.success("👋 A bientot", toastOptions);
   };
 
   return (

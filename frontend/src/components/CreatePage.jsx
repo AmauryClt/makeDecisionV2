@@ -72,14 +72,14 @@ export default function CreatePage({ toastOptions }) {
           console.info("Update done");
           navigate(-1);
           toast.success(
-            "👍 La demande a bien été mise à jour 👍",
+            "👍 La demande a bien été mise à jour",
             toastOptions
           );
         })
         .catch((error) => {
           console.error(error);
           toast.error(
-            "😓 Un problème à eu lieu lors de la mise à jour 😓",
+            "😓 Un problème à eu lieu lors de la mise à jour",
             toastOptions
           );
         });
@@ -94,12 +94,12 @@ export default function CreatePage({ toastOptions }) {
         .then(() => {
           console.info("Created demand");
           navigate("../demands/vote");
-          toast.success("👍 Votre demande a bien été créée 👍", toastOptions);
+          toast.success("👍 Votre demande a bien été créée", toastOptions);
         })
         .catch((error) => {
           console.error(error);
           toast.error(
-            "😓 Un problème a eu lieu lors de la création 😓",
+            "😓 Un problème a eu lieu lors de la création",
             toastOptions
           );
         });
