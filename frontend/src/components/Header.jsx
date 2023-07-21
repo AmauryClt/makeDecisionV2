@@ -59,7 +59,7 @@ export default function Header({ toastOptions }) {
           <Link to="/login">Login</Link>
         ) : (
           <button className={styles.btn} type="button" onClick={handleLogout}>
-            déconnexion
+            Déconnexion
           </button>
         )}
       </div>

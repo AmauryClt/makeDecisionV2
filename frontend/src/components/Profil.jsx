@@ -13,33 +13,26 @@ export default function Profil() {
         <>
           <h1 className={styles.banniere}>Mon Profil</h1>
           <div className={styles.mainHome}>
-            <div className={styles.element}>
-              <div className={styles.card}>
-                <img
-                  className={styles.pp}
-                  src="./src/assets/test.jpg"
-                  alt="random"
-                />
-                <p className={styles.nom}>{user.Lastname}</p>
-                <p className={styles.nom}>{user.Firstname}</p>
-                <p className={styles.mobile2}>{user.Numeromob}</p>
-                <p>
-                  <button className={styles.Modifier} type="submit">
-                    Modifier les infos
-                  </button>
+            <div className={styles.information}>
+              <p className={styles.nom}>
+                {user.Lastname} {user.Firstname}
+              </p>
+              <div className={styles.coordonnees}>
+                <p className={styles.mobile}>
+                  Num Mobile :{" "}
+                  <span className={styles.entree}>{user.Numeromob}</span>
+                </p>
+                <p className={styles.fixe}>
+                  Num Fixe :{" "}
+                  <span className={styles.entree}>{user.Numerofix}</span>
+                </p>
+                <p className={styles.email}>
+                  Email : <span className={styles.entree}>{user.Email}</span>
                 </p>
               </div>
-              <div className={styles.information}>
-                <ul className={styles.mobile}>
-                  Num Mobile :<li>{user.Numeromob}</li>
-                </ul>
-                <ul className={styles.fixe}>
-                  Num Fixe :<li>{user.Numerofix}</li>
-                </ul>
-                <ul className={styles.email}>
-                  Email :<li>{user.Email}</li>
-                </ul>
-              </div>
+              <button className={styles.modifier} type="submit">
+                Modifier les infos
+              </button>
             </div>
           </div>
         </>

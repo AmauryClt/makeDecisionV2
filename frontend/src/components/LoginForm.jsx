@@ -15,17 +15,14 @@ function LoginForm({ toastOptions }) {
     e.preventDefault();
 
     const data = Object.fromEntries(new FormData(form.current));
-    fetch(
-      `${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"}/login`,
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    )
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
       .then((res) => res.json())
       .then((json) => {
         if (json.message) {

@@ -71,10 +71,7 @@ export default function CreatePage({ toastOptions }) {
         .then(() => {
           console.info("Update done");
           navigate(-1);
-          toast.success(
-            "👍 La demande a bien été mise à jour",
-            toastOptions
-          );
+          toast.success("👍 La demande a bien été mise à jour", toastOptions);
         })
         .catch((error) => {
           console.error(error);
@@ -212,7 +209,7 @@ export default function CreatePage({ toastOptions }) {
             required
           />
         </div>
-        <p className={styles.label}>Service(s) impactés</p>
+        <p className={styles.label}>Choissisez le(s) service(s) impacté(s)</p>
         <div className={styles.buttonServ}>
           <Button
             addValue={addValue}
@@ -260,7 +257,9 @@ export default function CreatePage({ toastOptions }) {
         <table>
           <thead>
             <td>
-              <th className={`${styles.label} ${styles.tableHead}`}>Choix :</th>
+              <th className={`${styles.label} ${styles.tableHead}`}>
+                Service(s) choisi(s) :
+              </th>
             </td>
           </thead>
           <tbody id="selectedValue">

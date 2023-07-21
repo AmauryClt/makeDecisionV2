@@ -4,7 +4,7 @@ import styles from "./menu.module.scss";
 export default function Menu() {
   return (
     <main>
-      <h1 className={styles.banniere}> Make Desicion</h1>
+      <h1 className={styles.banniere}> Make a Desicion</h1>
       <div className={styles.mainHome}>
         <Link className={styles.Creer} to="/demands/create">
           <img
@@ -34,7 +34,7 @@ export default function Menu() {
             src="./src/assets/makesensevalide.jpg"
             alt="Makesense.Logo"
           />
-          <h2 className={styles.TitreHome}>Votation terminé</h2>
+          <h2 className={styles.TitreHome}>Votes terminés</h2>
           <p className={styles.TexteHome}>
             Soit force de proposition pour changer le monde!
           </p>
