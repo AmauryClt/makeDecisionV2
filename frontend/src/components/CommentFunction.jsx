@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
-import { useAuth } from "../contexts/AuthContext";
+import { useUser } from "../contexts/UserContext";
+import styles from "./commentFunction.module.scss";
 
 export default function CommentFunction({ demand }) {
   const [comments, setComments] = useState([]);
   const { register, handleSubmit, reset } = useForm();
-  const { userId } = useAuth();
+  const { user } = useUser();
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -45,7 +46,7 @@ export default function CommentFunction({ demand }) {
           body: JSON.stringify({
             ...formData,
             DemandId: demand.Id,
-            UserId: userId,
+            UserId: user.Id,
           }),
         }
       );
@@ -61,7 +62,7 @@ export default function CommentFunction({ demand }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.commentPost} onSubmit={handleSubmit(onSubmit)}>
         <textarea
           {...register("Comment")}
           type="text"
@@ -69,7 +70,9 @@ export default function CommentFunction({ demand }) {
           placeholder="Donne ton avis sur cette décision à prendre"
           required
         />
-        <button type="submit">Submit</button>
+        <button className={styles.commentButton} type="submit">
+          Submit
+        </button>
       </form>
       {comments.map((comment) => (
         <div key={comment.Id}>

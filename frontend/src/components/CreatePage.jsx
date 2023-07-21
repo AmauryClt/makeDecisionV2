@@ -3,16 +3,16 @@ import { useForm, Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { add, formatISO } from "date-fns";
 import { useParams, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
+import PropTypes from "prop-types";
+import { useUser } from "../contexts/UserContext";
 import styles from "./CreatePage.module.scss";
 import Button from "./Button";
 
-export default function CreatePage() {
-  const { register, handleSubmit, control } = useForm();
+export default function CreatePage({ toastOptions }) {
   const [selectedValues, setSelectedValues] = useState([]);
-  const [isUpdated, setIsUpdated] = useState(false);
-  const [demand, setDemand] = useState([]);
-  const { userId } = useAuth();
+  const [demand, setDemand] = useState({});
+  const { user } = useUser();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ export default function CreatePage() {
   const minDate = formatISO(add(new Date(), { days: 7 }), {
     representation: "date",
   });
-  let formattedDate = defaultDate;
+
   const serviceValues = {
     ADMINISTRATIF: "1",
     COMPTABILITE: "2",
@@ -33,30 +33,32 @@ export default function CreatePage() {
     "RESSOURCES HUMAINES": "4",
     COMMERCIAL: "5",
   };
-  if (id) {
-    useEffect(() => {
+
+  useEffect(() => {
+    if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/${id}`)
         .then((response) => response.json())
         .then((data) => {
           const dateStr = data.Deadline;
-          formattedDate = formatISO(new Date(dateStr), {
+          const formattedDate = formatISO(new Date(dateStr), {
             representation: "date",
           });
           data.Deadline = formattedDate;
           setDemand(data);
+          setSelectedValues((data.ServicesImpacts || "").split(", "));
         })
         .catch((error) => {
           console.error(error);
         });
-    }, []);
-  }
+    }
+  }, [id]);
 
   const onSubmit = (data) => {
     const serviceImpactValues = selectedValues.map(
       (value) => serviceValues[value]
     );
-    data.ServicesIds = serviceImpactValues;
-    data.UserId = userId;
+    data.ServicesImpacts = serviceImpactValues;
+    data.UserId = user.Id;
 
     if (id) {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/update/${id}`, {
@@ -66,13 +68,20 @@ export default function CreatePage() {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => response.json())
-        .then((result) => {
-          console.info(result);
-          setSelectedValues(result);
+        .then(() => {
+          console.info("Update done");
+          navigate(-1);
+          toast.success(
+            "👍 La demande a bien été mise à jour 👍",
+            toastOptions
+          );
         })
         .catch((error) => {
           console.error(error);
+          toast.error(
+            "😓 Un problème à eu lieu lors de la mise à jour 😓",
+            toastOptions
+          );
         });
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/demands/create`, {
@@ -82,22 +91,32 @@ export default function CreatePage() {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => response.json())
-        .then((result) => {
-          console.info(result);
+        .then(() => {
+          console.info("Created demand");
+          navigate("../demands/vote");
+          toast.success("👍 Votre demande a bien été créée 👍", toastOptions);
         })
         .catch((error) => {
           console.error(error);
+          toast.error(
+            "😓 Un problème a eu lieu lors de la création 😓",
+            toastOptions
+          );
         });
     }
-    setIsUpdated((old) => !old);
-    console.info(isUpdated);
-    navigate(window.history.back());
   };
 
-  const addValue = useCallback((value) => {
-    setSelectedValues((prevSelectedValues) => [...prevSelectedValues, value]);
-  }, []);
+  const addValue = useCallback(
+    (value) => {
+      if (!selectedValues.includes(value)) {
+        setSelectedValues((prevSelectedValues) => [
+          ...prevSelectedValues,
+          value,
+        ]);
+      }
+    },
+    [selectedValues]
+  );
 
   const removeValue = useCallback((value) => {
     setSelectedValues((prevSelectedValues) =>
@@ -118,7 +137,6 @@ export default function CreatePage() {
         name: "alignment",
         items: ["alignleft", "aligncenter", "alignright", "alignjustify"],
       },
-
       {
         name: "indentation",
         items: ["bullist", "numlist", "outdent", "indent"],
@@ -128,34 +146,50 @@ export default function CreatePage() {
     placeholder: "Expliquez ici en détail votre idée.",
   };
 
+  const { register, handleSubmit, control, setValue } = useForm({
+    defaultValues: {
+      Title: "",
+      Benefice: "",
+      Inconvenience: "",
+      Deadline: defaultDate,
+      ServicesImpacts: [],
+    },
+  });
+
+  useEffect(() => {
+    if (demand.Title) setValue("Title", demand.Title);
+    if (demand.Content) setValue("Content", demand.Content);
+    if (demand.Benefice) setValue("Benefice", demand.Benefice);
+    if (demand.Inconvenience) setValue("Inconvenience", demand.Inconvenience);
+    if (demand.Deadline) setValue("Deadline", demand.Deadline);
+    if (demand.ServicesImpacts) {
+      setValue("ServicesImpacts", demand.ServicesImpacts);
+    }
+  }, [demand, setValue]);
+
   return (
     <main>
       <h1 className={styles.banniere}>
-        Interface de création d'une demande de décision
+        Interface de {id ? "modification" : "création"} d'une demande de
+        décision
       </h1>
-      <p className={styles.intro}>
-        Soyez le plus précis dans votre idée, les détails sont les bienvenus !!!
-      </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <input
-            {...register("Title")}
             className={styles.title}
             type="text"
             name="Title"
             placeholder="Titre de ta décision"
+            {...register("Title")}
             required
-            defaultValue={demand.Title}
           />
         </label>
         <div className={styles.editor}>
           <Controller
-            {...demand.Content}
             control={control}
             name="Content"
             render={({ field: { onChange, onBlur, ref } }) => (
               <Editor
-                {...demand.Content}
                 onBlur={onBlur}
                 onEditorChange={onChange}
                 initialValue={id ? demand.Content : undefined}
@@ -172,7 +206,6 @@ export default function CreatePage() {
             name="Benefice"
             placeholder="Quel en seront les bénéfices ?"
             required
-            defaultValue={demand.Benefice}
           />
           <textarea
             {...register("Inconvenience")}
@@ -180,7 +213,6 @@ export default function CreatePage() {
             name="Inconvenience"
             placeholder="Et les risques ?"
             required
-            defaultValue={demand.Inconvenience}
           />
         </div>
         <p className={styles.label}>Service(s) impactés</p>
@@ -189,6 +221,7 @@ export default function CreatePage() {
             addValue={addValue}
             removeValue={removeValue}
             value={serviceValues.ADMINISTRATIF}
+            isSelected={selectedValues.includes(serviceValues.ADMINISTRATIF)}
           >
             ADMINISTRATIF
           </Button>
@@ -196,6 +229,7 @@ export default function CreatePage() {
             addValue={addValue}
             removeValue={removeValue}
             value={serviceValues.COMPTABILITE}
+            isSelected={selectedValues.includes(serviceValues.COMPTABILITE)}
           >
             COMPTABILITE
           </Button>
@@ -203,6 +237,7 @@ export default function CreatePage() {
             addValue={addValue}
             removeValue={removeValue}
             value={serviceValues.MARKETING}
+            isSelected={selectedValues.includes(serviceValues.MARKETING)}
           >
             MARKETING
           </Button>
@@ -210,13 +245,17 @@ export default function CreatePage() {
             addValue={addValue}
             removeValue={removeValue}
             value={serviceValues["RESSOURCES HUMAINES"]}
+            isSelected={selectedValues.includes(
+              serviceValues["RESSOURCES HUMAINES"]
+            )}
           >
             RESSOURCES HUMAINES
           </Button>
           <Button
             addValue={addValue}
             removeValue={removeValue}
-            value={serviceValues.ADMINISTRATIF}
+            value={serviceValues.COMMERCIAL}
+            isSelected={selectedValues.includes(serviceValues.COMMERCIAL)}
           >
             COMMERCIAL
           </Button>
@@ -236,7 +275,6 @@ export default function CreatePage() {
             type="date"
             name="Deadline"
             placeholder={defaultDate}
-            defaultValue={demand.Deadline}
             min={minDate}
             max={maxDate}
             className={styles.inputDate}
@@ -250,3 +288,7 @@ export default function CreatePage() {
     </main>
   );
 }
+
+CreatePage.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
+};

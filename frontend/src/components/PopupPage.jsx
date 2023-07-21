@@ -2,17 +2,18 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import { useAuth } from "../contexts/AuthContext";
 import Stars from "./Stars";
 import AlgoNote from "./AlgoNote";
+import { useUser } from "../contexts/UserContext";
 import styles from "./popupPage.module.scss";
 import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
 import CommentFunction from "./CommentFunction";
+import MemberByVote from "./MemberByVote";
 
-export default function PopupPage({ demand, closePopup }) {
-  const { userId } = useAuth();
+export default function PopupPage({ demand, closePopup, toastOptions }) {
   const [notesByDemand, setNotesByDemand] = useState([]);
+  const { user } = useUser();
   const navigate = useNavigate();
   const editDemand = () => {
     navigate(`/demands/update/${demand.Id}`);
@@ -39,14 +40,14 @@ export default function PopupPage({ demand, closePopup }) {
     fetchNotesByDemand();
   }, [demand.Id]);
 
-  console.info("FETCH DES NOTES", notesByDemand);
+  console.info(notesByDemand);
 
   return (
     <div className={styles.popupContainer}>
       <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
         <div className={styles.popupContentbar}>
           <div className={styles.closeButton}>
-            {userId === demand.UserId && (
+            {user.Id === demand.UserId && (
               <div>
                 <img
                   aria-hidden
@@ -105,14 +106,16 @@ export default function PopupPage({ demand, closePopup }) {
                   <AlgoNote notesByDemand={notesByDemand} />
                 </div>
                 <h4 className={styles.h4Block5}>Salarié Votant :</h4>
-                <p className={styles.pBorder}>provisoire</p>
-                <h4 className={styles.h4Block5}>Expert Votant :</h4>
-                <p className={styles.pBorder}>provisoire</p>
-                <h4 className={styles.h4Block5}>Service Impacté :</h4>
+                <MemberByVote demandId={demand.Id} />
+                <h4 className={styles.h4Block5exception}>Service Impacté :</h4>
                 <p className={styles.pBorder}>{demand.ServicesImpacts}</p>
                 <h4 className={styles.h4Block5}>Note de la Demande :</h4>
-                <div className={styles.pBorder}>
-                  <Stars demand={demand} notesByDemand={notesByDemand} />
+                <div className={styles.pBorderexeption}>
+                  <Stars
+                    demand={demand}
+                    notesByDemand={notesByDemand}
+                    toastOptions={toastOptions}
+                  />
                 </div>
               </div>
             </div>
@@ -133,10 +136,14 @@ PopupPage.propTypes = {
     Benefice: PropTypes.string.isRequired,
     Inconvenience: PropTypes.string.isRequired,
     Deadline: PropTypes.string.isRequired,
-    NoteDemand: PropTypes.number.isRequired,
+    NoteDemand: PropTypes.number,
     Statut: PropTypes.string.isRequired,
-    ServicesImpacts: PropTypes.string.isRequired,
+    ServicesImpacts: PropTypes.string,
     UserId: PropTypes.number.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
+};
+
+PopupPage.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
 };

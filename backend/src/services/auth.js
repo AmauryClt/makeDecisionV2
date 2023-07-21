@@ -1,5 +1,6 @@
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
+const dayjs = require("dayjs");
 
 const hashingOptions = {
   type: argon2.argon2id,
@@ -30,14 +31,16 @@ const verifyPassword = (req, res) => {
       const payload = {
         sub: req.user.id,
       };
-
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
-
-      const userId = req.user.id;
-
-      res.json({ token, userId });
+      res.cookie("auth_token", token, {
+        secure: process.env.NODE_ENV !== "development",
+        httpOnly: true,
+        expires: dayjs().add(30, "days").toDate(),
+      });
+      delete req.user.hashedPassword;
+      res.status(200).json({ user: req.user });
     } else {
       res.sendStatus(401);
     }
@@ -46,18 +49,10 @@ const verifyPassword = (req, res) => {
 
 const verifyToken = (req, res, next) => {
   try {
-    const authorization = req.get("Authorization");
-
-    if (authorization == null) {
-      throw new Error("Authorization header is missing");
+    const token = req.cookies?.auth_token;
+    if (token == null) {
+      throw new Error("Token is missing");
     }
-
-    const [type, token] = authorization.split(" ");
-
-    if (type !== "Bearer") {
-      throw new Error("Authorization type is not 'Bearer'");
-    }
-
     req.payload = jwt.verify(token, process.env.JWT_SECRET);
 
     next();
@@ -67,5 +62,8 @@ const verifyToken = (req, res, next) => {
     res.sendStatus(401);
   }
 };
+const logout = (req, res) => {
+  res.clearCookie("auth_token").sendStatus(200);
+};
 
-module.exports = { hashPassword, verifyPassword, verifyToken };
+module.exports = { hashPassword, verifyPassword, verifyToken, logout };
