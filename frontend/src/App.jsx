@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const toastOptions = {
-    position: "top-center",
+    position: "bottom-right",
     autoClose: 1500,
     hideProgressBar: false,
     closeOnClick: true,

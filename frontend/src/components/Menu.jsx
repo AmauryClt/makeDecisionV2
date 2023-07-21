@@ -4,7 +4,7 @@ import styles from "./menu.module.scss";
 export default function Menu() {
   return (
     <main>
-      <h1 className={styles.banniere}> Make a Desicion</h1>
+      <h1 className={styles.banniere}> Make Desicion</h1>
       <div className={styles.mainHome}>
         <Link className={styles.Creer} to="/demands/create">
           <img
