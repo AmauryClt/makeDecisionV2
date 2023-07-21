@@ -53,7 +53,7 @@ export default function AlgoNote({ notesByDemand }) {
           <div className={styles.d3}>Total des votes : </div>
           <h1 className={styles.h1title}> {totalNumberOfNotes}</h1>
           <div className={styles.d1}>Moyenne de la demande : </div>
-          <h1 className={styles.h1title}> {averageNote}</h1>
+          <h1 className={styles.h1title}> {averageNote}/5</h1>
           <div className={styles.d2}>Appréciation globale : </div>
           <h1 className={styles.h1title}> {averageNoteText}</h1>
         </>
