@@ -23,7 +23,7 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
     const fetchNotesByDemand = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/notes/${demand.Id}`
+          `${import.meta.env.VITE_BACKEND_URL}/notes/${demand.Id}`
         );
 
         if (response.ok) {
