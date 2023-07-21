@@ -17,7 +17,6 @@ export default function AlgoNote({ notesByDemand }) {
 
   const totalNumberOfNotes = calculateTotalNumberOfNotes();
 
-  // eslint-disable-next-line consistent-return
   const getNoteText = (averageNoteValue) => {
     if (averageNoteValue === null) {
       return "Pas d'appréciation moyenne pour le moment";
@@ -34,10 +33,9 @@ export default function AlgoNote({ notesByDemand }) {
     if (averageNoteValue <= 4) {
       return "Accord";
     }
-    if (averageNoteValue <= 4.5) {
-      return "Excellente";
-    }
+    return "Excellente";
   };
+
   const averageNote = calculateAverageNote();
   const averageNoteText = getNoteText(averageNote);
 
