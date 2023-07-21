@@ -85,7 +85,11 @@ export default function VotePage({ isUpdated, toastOptions }) {
         </div>
         <div className={styles.guide}>
           <div className={styles.content}>
-            <h2>GUIDE</h2>
+            <h2 className={styles.guideTitle}>GUIDE</h2>
+            <p>Lorem ipsum</p>
+            <p>Lorem ipsum</p>
+            <p>Lorem ipsum</p>
+
             <p className={styles.faq}>
               Vous trouverez ici toutes les décisions pour lesquelles le vote
               est encore en cours.
@@ -94,6 +98,7 @@ export default function VotePage({ isUpdated, toastOptions }) {
               N'hésitez pas à les consulter, les commenter et à voter selon
               votre avis
             </p>
+
             <button
               className={styles.btn}
               onClick={handleFilterAll}

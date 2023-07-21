@@ -47,15 +47,15 @@ export default function AlgoNote({ notesByDemand }) {
         <div key={note.Id} />
       ))}
       {totalNumberOfNotes === 0 ? (
-        <h1>Soit le premier à voter !</h1>
+        <h1 className={styles.h1title}>Soit le premier à voter !</h1>
       ) : (
         <>
           <div className={styles.d3}>Total des votes : </div>
-          <h1> {totalNumberOfNotes}</h1>
+          <h1 className={styles.h1title}> {totalNumberOfNotes}</h1>
           <div className={styles.d1}>Moyenne de la demande : </div>
-          <h1> {averageNote}</h1>
+          <h1 className={styles.h1title}> {averageNote}/5</h1>
           <div className={styles.d2}>Appréciation globale : </div>
-          <h1> {averageNoteText}</h1>
+          <h1 className={styles.h1title}> {averageNoteText}</h1>
         </>
       )}
     </div>

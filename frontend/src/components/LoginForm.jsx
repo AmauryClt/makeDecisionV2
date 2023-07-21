@@ -45,7 +45,7 @@ function LoginForm({ toastOptions }) {
   return (
     <main className={styles.mainHome}>
       <form className={styles.labelStyles} ref={form} onSubmit={handleSubmit}>
-        <h2>make decision</h2>
+        <h2 className={styles.titleMake}>make decision</h2>
 
         {errors.message && <p>{errors.message}</p>}
         <div className={styles.Username}>
