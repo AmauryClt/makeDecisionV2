@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Rating } from "react-simple-star-rating";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { useUser } from "../contexts/UserContext";
 import styles from "./stars.module.scss";
 
-export default function Stars({ demand, notesByDemand }) {
+export default function Stars({ demand, notesByDemand, toastOptions }) {
   const { user } = useUser();
   const [rating, setRating] = useState(0);
   const [currentNote, setCurrentNote] = useState(null);
@@ -19,6 +20,7 @@ export default function Stars({ demand, notesByDemand }) {
   const handleSubmitNote = async () => {
     if (rating === 0) {
       console.error("La note ne peut pas être null.");
+      toast.error("😓 Tu dois choisir une note pour voter ", toastOptions);
       return;
     }
 
@@ -41,6 +43,7 @@ export default function Stars({ demand, notesByDemand }) {
 
         const data = await response.json();
         console.info("Note mise à jour avec succès :", data);
+        toast.success("👍 Note mise à jour avec succès 👍", toastOptions);
       } catch (error) {
         console.error(
           "Erreur lors de la mise à jour de la note :",
@@ -63,6 +66,7 @@ export default function Stars({ demand, notesByDemand }) {
 
         const data = await response.json();
         console.info("Note envoyée avec succès :", data);
+        toast.success("👍 Note enregistré avec succès 👍", toastOptions);
       } catch (error) {
         console.error("Erreur lors de l'envoi de la note :", error.message);
       }
@@ -115,4 +119,8 @@ Stars.propTypes = {
       Note: PropTypes.number.isRequired,
     })
   ).isRequired,
+};
+
+Stars.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
 };

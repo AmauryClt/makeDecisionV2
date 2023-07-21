@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./votePage.module.scss";
 import PopupPage from "./PopupPage";
 
-export default function VotePage({ isUpdated }) {
+export default function VotePage({ isUpdated, toastOptions }) {
   const [demands, setDemands] = useState([]);
   const [selectedDemand, setSelectedDemand] = useState(null);
   const [filter, setFilter] = useState("all");
@@ -118,6 +118,7 @@ export default function VotePage({ isUpdated }) {
           demand={selectedDemand}
           closePopup={closePopup}
           styles={styles}
+          toastOptions={toastOptions}
         />
       )}
     </main>
@@ -126,4 +127,8 @@ export default function VotePage({ isUpdated }) {
 
 VotePage.propTypes = {
   isUpdated: PropTypes.bool.isRequired,
+};
+
+VotePage.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
 };

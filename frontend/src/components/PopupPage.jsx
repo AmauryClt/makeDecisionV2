@@ -11,7 +11,7 @@ import editButtonImage from "../assets/modifier.png";
 import CommentFunction from "./CommentFunction";
 import MemberByVote from "./MemberByVote";
 
-export default function PopupPage({ demand, closePopup }) {
+export default function PopupPage({ demand, closePopup, toastOptions }) {
   const [notesByDemand, setNotesByDemand] = useState([]);
   const { user } = useUser();
   const navigate = useNavigate();
@@ -111,7 +111,11 @@ export default function PopupPage({ demand, closePopup }) {
                 <p className={styles.pBorder}>{demand.ServicesImpacts}</p>
                 <h4 className={styles.h4Block5}>Note de la Demande :</h4>
                 <div className={styles.pBorderexeption}>
-                  <Stars demand={demand} notesByDemand={notesByDemand} />
+                  <Stars
+                    demand={demand}
+                    notesByDemand={notesByDemand}
+                    toastOptions={toastOptions}
+                  />
                 </div>
               </div>
             </div>
@@ -138,4 +142,8 @@ PopupPage.propTypes = {
     UserId: PropTypes.number.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
+};
+
+PopupPage.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
 };

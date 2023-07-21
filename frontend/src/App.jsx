@@ -37,7 +37,10 @@ function App() {
             path="/demands/create"
             element={<CreatePage toastOptions={toastOptions} />}
           />
-          <Route path="/demands/vote" element={<VotePage />} />
+          <Route
+            path="/demands/vote"
+            element={<VotePage toastOptions={toastOptions} />}
+          />
           <Route path="/demands/valid" element={<ValidPage />} />
           <Route
             path="/demands/update/:id"
