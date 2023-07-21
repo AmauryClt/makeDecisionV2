@@ -105,5 +105,6 @@ VALUES
   ('Demande 9', '2023-07-15', 'Contenu de la demande 9', 'Bénéfice de la demande 9', 'Inconvénient de la demande 9', 'VALIDE', 4, 3),
   ('Demande 10', '2023-07-15', 'Contenu de la demande 10', 'Bénéfice de la demande 10', 'Inconvénient de la demande 10', 'VALIDE', 4, 5);
 
-  INSERT INTO impactedService (Service) VALUES ('ADMINISTRATIF'),('COMPTABILITE'),('MARKETING'),('RESSOURCES HUMAINES'),('COMMERCIAL')
+INSERT INTO impactedService (Service) VALUES ('ADMINISTRATIF'),('COMPTABILITE'),('MARKETING'),('RESSOURCES HUMAINES'),('COMMERCIAL');
 
+INSERT INTO demandServiceJoin (ServiceId, DemandId) VALUES (1,1),(2,1),(1,2),(5,3),(4,3),(3,4),(4,4),(1,5),(3,5),(2,6),(5,6),(1,7),(2,7),(3,8),(4,8),(5,8),(1,9),(2,9),(5,10);
