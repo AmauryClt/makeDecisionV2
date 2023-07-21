@@ -94,16 +94,16 @@ VALUES
 
 INSERT INTO demand (Title, Deadline, Content, Benefice, Inconvenience, Statut, NoteDemand, UserId)
 VALUES
-  ('Demande 1', '2023-07-15', 'Contenu de la demande 1', 'Bénéfice de la demande 1', 'Inconvénient de la demande 1', 'EN ATTENTE DE VOTE', 4, 3),
-  ('Demande 2', '2023-07-15', 'Contenu de la demande 2', 'Bénéfice de la demande 2', 'Inconvénient de la demande 2', 'EN ATTENTE DE VOTE', 3, 1),
-  ('Demande 3', '2023-07-15', 'Contenu de la demande 3', 'Bénéfice de la demande 3', 'Inconvénient de la demande 3', 'EN DESACCORD', 2, 4),
-  ('Demande 4', '2023-07-15', 'Contenu de la demande 4', 'Bénéfice de la demande 4', 'Inconvénient de la demande 4', 'EN ATTENTE DE VOTE', 4, 5),
-  ('Demande 5', '2023-07-15', 'Contenu de la demande 5', 'Bénéfice de la demande 5', 'Inconvénient de la demande 5', 'EN ATTENTE DE VOTE', 4, 6),
-  ('Demande 6', '2023-07-15', 'Contenu de la demande 6', 'Bénéfice de la demande 6', 'Inconvénient de la demande 6', 'EN DESACCORD', 1, 1),
-  ('Demande 7', '2023-07-15', 'Contenu de la demande 7', 'Bénéfice de la demande 7', 'Inconvénient de la demande 7', 'ARCHIVE', 4, 2),
-  ('Demande 8', '2023-07-15', 'Contenu de la demande 8', 'Bénéfice de la demande 8', 'Inconvénient de la demande 8', 'ARCHIVE', 5, 2),
-  ('Demande 9', '2023-07-15', 'Contenu de la demande 9', 'Bénéfice de la demande 9', 'Inconvénient de la demande 9', 'VALIDE', 4, 3),
-  ('Demande 10', '2023-07-15', 'Contenu de la demande 10', 'Bénéfice de la demande 10', 'Inconvénient de la demande 10', 'VALIDE', 4, 5);
+  ('Demande 1', '2023-08-15', 'Contenu de la demande 1', 'Bénéfice de la demande 1', 'Inconvénient de la demande 1', 'EN ATTENTE DE VOTE', 4, 3),
+  ('Demande 2', '2023-08-15', 'Contenu de la demande 2', 'Bénéfice de la demande 2', 'Inconvénient de la demande 2', 'EN ATTENTE DE VOTE', 3, 1),
+  ('Demande 3', '2023-08-15', 'Contenu de la demande 3', 'Bénéfice de la demande 3', 'Inconvénient de la demande 3', 'EN DESACCORD', 2, 4),
+  ('Demande 4', '2023-08-15', 'Contenu de la demande 4', 'Bénéfice de la demande 4', 'Inconvénient de la demande 4', 'EN ATTENTE DE VOTE', 4, 5),
+  ('Demande 5', '2023-08-15', 'Contenu de la demande 5', 'Bénéfice de la demande 5', 'Inconvénient de la demande 5', 'EN ATTENTE DE VOTE', 4, 6),
+  ('Demande 6', '2023-08-15', 'Contenu de la demande 6', 'Bénéfice de la demande 6', 'Inconvénient de la demande 6', 'EN DESACCORD', 1, 1),
+  ('Demande 7', '2023-08-15', 'Contenu de la demande 7', 'Bénéfice de la demande 7', 'Inconvénient de la demande 7', 'ARCHIVE', 4, 2),
+  ('Demande 8', '2023-08-15', 'Contenu de la demande 8', 'Bénéfice de la demande 8', 'Inconvénient de la demande 8', 'ARCHIVE', 5, 2),
+  ('Demande 9', '2023-08-15', 'Contenu de la demande 9', 'Bénéfice de la demande 9', 'Inconvénient de la demande 9', 'VALIDE', 4, 3),
+  ('Demande 10', '2023-08-15', 'Contenu de la demande 10', 'Bénéfice de la demande 10', 'Inconvénient de la demande 10', 'VALIDE', 4, 5);
 
 INSERT INTO impactedService (Service) VALUES ('ADMINISTRATIF'),('COMPTABILITE'),('MARKETING'),('RESSOURCES HUMAINES'),('COMMERCIAL');
 
