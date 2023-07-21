@@ -100,9 +100,10 @@ ul {
 
 textarea {
   min-width: 36svw;
+  min-height: 300px;
   margin: 0px;
   font-size: 16px;
-  height: 300px;
+  resize: none;
 }
 .inputDate {
   max-width: 20svw;

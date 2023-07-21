@@ -137,6 +137,8 @@ export default function CreatePage({ toastOptions }) {
       },
     ],
     menubar: false,
+    resize: false,
+    statusbar: false,
     placeholder: "Expliquez ici en détail votre idée.",
   };
 
