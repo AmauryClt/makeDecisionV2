@@ -106,17 +106,14 @@ export default function CreatePage({ toastOptions }) {
     }
   };
 
-  const addValue = useCallback(
-    (value) => {
-      if (!selectedValues.includes(value)) {
-        setSelectedValues((prevSelectedValues) => [
-          ...prevSelectedValues,
-          value,
-        ]);
+  const addValue = useCallback((value) => {
+    setSelectedValues((prevSelectedValues) => {
+      if (!prevSelectedValues.includes(value)) {
+        return [...prevSelectedValues, value];
       }
-    },
-    [selectedValues]
-  );
+      return prevSelectedValues;
+    });
+  }, []);
 
   const removeValue = useCallback((value) => {
     setSelectedValues((prevSelectedValues) =>
@@ -260,14 +257,20 @@ export default function CreatePage({ toastOptions }) {
             COMMERCIAL
           </Button>
         </div>
-        <p className={styles.label}>Choix :</p>
-        <div className={styles.buttonServ} id="selectedValue">
-          {selectedValues.map((value) => (
-            <button className={styles.buttonChoice} type="button" key={value}>
-              {value}
-            </button>
-          ))}
-        </div>
+        <table>
+          <thead>
+            <td>
+              <th className={`${styles.label} ${styles.tableHead}`}>Choix :</th>
+            </td>
+          </thead>
+          <tbody id="selectedValue">
+            {selectedValues.map((value) => (
+              <tr key={value}>
+                <td>{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         <label className={styles.date}>
           Date de fin souhaitée :
           <input

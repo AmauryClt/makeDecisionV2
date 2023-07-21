@@ -13,6 +13,7 @@ h1,
 }
 
 form {
+  padding: 25px 0;
   display: flex;
   font-family: "Lato", sans-serif;
   flex-direction: column;
@@ -107,6 +108,26 @@ textarea {
   max-width: 20svw;
   min-width: 10svw;
   height: 45px;
+  text-align: center;
+}
+
+table,
+td {
+  border: solid rgb(12, 57, 68);
+  border-collapse: collapse;
+  width: 25svw;
+  margin: auto;
+}
+
+thead {
+  height: 35px;
+}
+
+.tableHead {
+  margin: 0;
+}
+
+tr {
   text-align: center;
 }
 
