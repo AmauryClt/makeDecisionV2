@@ -5,8 +5,9 @@ function Footer() {
     <footer>
       <div className={styles.footer}>
         <p className={styles.creators}>
-          Dévellopé par : Amaury Clot - Thomas Denneulin - Fabien Chabaud - Alex
-          Dubrulle-Fagnoni - Laëtitia Girbau
+          Développé par : <br />
+          Amaury Clot - Alex Dubrulle-Fagnoni - Fabien Chabaud - Laëtitia Girbau
+          - Thomas Denneulin
         </p>
       </div>
     </footer>
