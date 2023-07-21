@@ -22,9 +22,9 @@ const updateNote = (req, res) => {
   const { Note, UserId, DemandId } = req.body;
   models.interaction
     .modifInteraction({
-      DemandId,
-      UserId,
       Note,
+      UserId,
+      DemandId,
     })
     .then((interaction) => {
       res.status(201).json(interaction);

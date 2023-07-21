@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   const toastOptions = {
     position: "top-center",
-    autoClose: 6000,
+    autoClose: 1500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -37,7 +37,10 @@ function App() {
             path="/demands/create"
             element={<CreatePage toastOptions={toastOptions} />}
           />
-          <Route path="/demands/vote" element={<VotePage />} />
+          <Route
+            path="/demands/vote"
+            element={<VotePage toastOptions={toastOptions} />}
+          />
           <Route path="/demands/valid" element={<ValidPage />} />
           <Route
             path="/demands/update/:id"
