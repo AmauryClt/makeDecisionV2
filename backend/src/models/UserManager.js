@@ -18,7 +18,7 @@ class UserManager extends AbstractManager {
 
   findByUsernameWithHashedPassword(username) {
     return this.database.query(
-      `select Id, Email, username, Lastname, Firstname, Numeromob, Adresse, Numerofix, Admin, hashedPassword from  ${this.table} where username = ?`,
+      `select Id, Email, username, Lastname, Firstname, Numeromob, Numerofix, Admin, hashedPassword from  ${this.table} where username = ?`,
       [username]
     );
   }
