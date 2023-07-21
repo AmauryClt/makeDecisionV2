@@ -10,10 +10,10 @@
 
 img {
   display: flex;
-  height: 80svh;
-  max-width: 50svw;
-  top: 10px;
-}
+  max-width: 80rem;
+  max-height: 55rem;
+
+  }
 
 .Username {
   display: flex;
@@ -59,7 +59,7 @@ img {
 }
 
 .inputPassword {
-  width: 22svw;
+  width: 8svw;
 }
 
 .button {
@@ -69,4 +69,14 @@ img {
   height: 25px;
   background-color: #fff30d;
   color: black;
+}
+
+h2 {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  width: 25svw;
+  margin: auto;
+ font-size: 3rem;
+  color: white;
+  
 }

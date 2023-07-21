@@ -25,7 +25,7 @@ class UserManager extends AbstractManager {
 
   findById(id) {
     return this.database.query(
-      `SELECT Id, Email, username, Lastname, Firstname, Numeromob, Adresse, Numerofix, Admin FROM ${this.table} WHERE Id = ?`,
+      `SELECT Id, Email, username, Lastname, Firstname, Numeromob, Numerofix, Admin FROM ${this.table} WHERE Id = ?`,
       [id]
     );
   }
