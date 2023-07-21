@@ -45,7 +45,7 @@ function LoginForm({ toastOptions }) {
   return (
     <main className={styles.mainHome}>
       <form className={styles.labelStyles} ref={form} onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2>make decision</h2>
 
         {errors.message && <p>{errors.message}</p>}
         <div className={styles.Username}>
@@ -71,7 +71,7 @@ function LoginForm({ toastOptions }) {
 
         <div className={styles.login}>
           <button className={styles.button} type="submit">
-            Se connecter
+            LOGIN
           </button>
         </div>
       </form>
