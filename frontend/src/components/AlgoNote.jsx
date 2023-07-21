@@ -46,9 +46,9 @@ export default function AlgoNote({ notesByDemand }) {
       {notesByDemand.map((note) => (
         <div key={note.Id} />
       ))}
-      <p>Total des votes : {totalNumberOfNotes}</p>
-      <p className={styles.noteavg}>Moyenne de la demande : {averageNote}</p>
-      <p>Appréciation global: {averageNoteText}</p>
+      <div className={styles.d3}>Total des votes : {totalNumberOfNotes}</div>
+      <div className={styles.d1}>Moyenne de la demande : {averageNote} </div>
+      <div className={styles.d2}> Appréciation global : {averageNoteText}</div>
     </div>
   );
 }
