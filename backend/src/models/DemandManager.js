@@ -16,6 +16,19 @@ class DemandManager extends AbstractManager {
     `);
   }
 
+  find(id) {
+    return this.database.query(
+      `
+      SELECT demand.*, user.Lastname, user.Firstname, GROUP_CONCAT(impactedService.Service SEPARATOR ', ') AS ServicesImpacts
+      FROM demand
+      INNER JOIN user ON demand.userId = user.Id
+      LEFT JOIN demandServiceJoin ON demand.Id = demandServiceJoin.DemandId
+      LEFT JOIN impactedService ON demandServiceJoin.ServiceId = impactedService.Id
+      where demand.Id = ?`,
+      [id]
+    );
+  }
+
   add(demand) {
     return this.database.query(
       `insert into ${this.table}(Title,Deadline,Content,Benefice,Inconvenience,UserId) values (?,?,?,?,?,?)`,
@@ -41,6 +54,13 @@ class DemandManager extends AbstractManager {
         demand.Inconvenience,
         demand.Id,
       ]
+    );
+  }
+
+  put(demand) {
+    return this.database.query(
+      `UPDATE ${this.table} SET Note = ? WHERE Id = ?`,
+      [demand.Note, demand.Id]
     );
   }
 }

@@ -126,11 +126,18 @@ h3 {
   font-family: "Raleway", sans-serif;
 }
 
-h4 {
+.h4Block5 {
   font-family: "Raleway", sans-serif;
   border-bottom: solid 1px;
   padding-bottom: 1px;
   padding-top: 25px;
+}
+
+.h4Block5exception {
+  font-family: "Raleway", sans-serif;
+  border-top: solid 1px;
+  padding-bottom: 1px;
+  padding-top: 5px;
 }
 
 .pBorder {
@@ -138,6 +145,9 @@ h4 {
   border-bottom: solid 1px;
   padding-bottom: 15px;
   padding-top: 15px;
+}
+.pBorderexeption {
+  padding-bottom: 15px;
 }
 
 .pBorderComment {

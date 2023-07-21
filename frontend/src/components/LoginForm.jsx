@@ -1,13 +1,15 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 import styles from "./loginForm.module.scss";
-import { useAuth } from "../contexts/AuthContext";
+import { useUser } from "../contexts/UserContext";
 
-function LoginForm() {
+function LoginForm({ toastOptions }) {
   const navigate = useNavigate();
   const [errors, setErrors] = useState("");
   const form = useRef(null);
-  const { setToken, setUserId } = useAuth();
+  const { setUser } = useUser();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ function LoginForm() {
       `${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"}/login`,
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "content-type": "application/json",
         },
@@ -28,12 +31,18 @@ function LoginForm() {
         if (json.message) {
           setErrors(json);
         } else {
-          setToken(json.token);
-          setUserId(json.userId);
+          setUser(json.user);
           navigate("/");
-          console.info(json.token);
-          console.info(json.userId);
+          toast.success(" 👋 Bienvenue !!! 👋", toastOptions);
+          console.info(json.user);
         }
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(
+          "Impossible de se connecter, avez-vous vérifié votre login et mot de passe ?",
+          toastOptions
+        );
       });
   };
   return (
@@ -76,3 +85,7 @@ function LoginForm() {
   );
 }
 export default LoginForm;
+
+LoginForm.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
+};
