@@ -1,10 +1,4 @@
 
-CREATE TABLE impactedService (
-    Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    Service VARCHAR(50) NOT NULL
-);
-
-
 CREATE TABLE user (
     Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Email VARCHAR(50) NOT NULL,
@@ -12,14 +6,14 @@ CREATE TABLE user (
     Lastname VARCHAR(50),
     Firstname VARCHAR(50),
     Numeromob VARCHAR(50),
-    ServiceImpact INT NOT NULL,
-    Adresse VARCHAR(255),
     Numerofix VARCHAR(50),
     hashedPassword VARCHAR(255) NOT NULL,
-    Admin TINYINT DEFAULT 0,
-    CONSTRAINT fk_impactedService_Service
-    FOREIGN KEY (ServiceImpact)
-    REFERENCES impactedService(Id)
+    Admin TINYINT DEFAULT 0
+);
+
+CREATE TABLE impactedService (
+    Id INT PRIMARY KEY AUTO_INCREMENT,
+    Service VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE demand (
@@ -89,16 +83,14 @@ CREATE TABLE stakeholder (
     REFERENCES demand(Id)
 );
 
-INSERT INTO impactedService (Service) VALUES ('ADMINISTRATIF'),('COMPTABILITE'),('MARKETING'),('RESSOURCES HUMAINES'),('COMMERCIAL');
-
-INSERT INTO user (Email, username, Lastname, Firstname, Numeromob, ServiceImpact, Adresse, Numerofix, hashedPassword, Admin)
+INSERT INTO user (Email, username, Lastname, Firstname, Numeromob, Numerofix, hashedPassword, Admin)
 VALUES
-('user@user.fr', 'user', 'DUPONT', 'Francois', '06 78 45 58 23', 3, '157 Avenue Victor Hugo Le Grand Chapitôt', '04 45 85 25 10', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
-('dubrulle-fagnoni@user.fr', 'dubrulle-fagnoni', 'DUBRULLE FAGNONI', 'Alex', '07 71 47 57 23', 4, '215 Avenue Victor Hugo Le Grand Chapitôt', '04 45 75 25 94', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
-('clot@user.fr', 'clot', 'CLOT', 'Amaury', '07 78 45 48 43', 5, '31 Avenue Victor Hugo Le Grand Chapitôt', '04 45 85 25 10', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
-('chabaud@user.fr', 'chabaud', 'CHABAUD', 'Fabien', '06 71 42 57 83', 1, '177 Avenue Victor Hugo Le Grand Chapitôt', '04 45 45 21 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
-('girbau@user.fr', 'girbau', 'GIRBAU', 'Laëtitia', '06 78 15 78 53', 2, '377 Avenue Victor Hugo Le Grand Chapitôt', '04 15 84 25 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
-('denneulin@user.fr', 'denneulin', 'DENNEULIN', 'Thomas', '06 74 31 58 73', 3, '757 Avenue Victor Hugo Le Grand Chapitôt', '04 47 85 25 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 0);
+('user@user.fr', 'user', 'DUPONT', 'Francois', '06 78 45 58 23', '04 45 85 25 10', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
+('dubrulle-fagnoni@user.fr', 'dubrulle-fagnoni',  'DUBRULLE FAGNONI', 'Alex', '07 71 47 57 23', '04 45 75 25 94', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
+('clot@user.fr', 'clot', 'CLOT', 'Amaury', '07 78 45 48 43', '04 45 85 25 10', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
+('chabaud@user.fr', 'chabaud', 'CHABAUD', 'Fabien', '06 71 42 57 83', '04 45 45 21 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
+('girbau@user.fr', 'girbau', 'GIRBAU', 'Laëtitia', '06 78 15 78 53', '04 15 84 25 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 1),
+('denneulin@user.fr', 'denneulin', 'DENNEULIN', 'Thomas', '06 74 31 58 73', '04 47 85 25 93', '$argon2id$v=19$m=65536,t=5,p=1$5H/CLxn+97eP5lY2kSTDyw$24st+htVb3LlVsxztRlpuaxUdkzRQPN4VAedxtHBpBs', 0);
 
 INSERT INTO demand (Title, Deadline, Content, Benefice, Inconvenience, Statut, NoteDemand, UserId)
 VALUES
@@ -112,3 +104,5 @@ VALUES
   ('Demande 8', '2023-07-15', 'Contenu de la demande 8', 'Bénéfice de la demande 8', 'Inconvénient de la demande 8', 'ARCHIVE', 5, 2),
   ('Demande 9', '2023-07-15', 'Contenu de la demande 9', 'Bénéfice de la demande 9', 'Inconvénient de la demande 9', 'VALIDE', 4, 3),
   ('Demande 10', '2023-07-15', 'Contenu de la demande 10', 'Bénéfice de la demande 10', 'Inconvénient de la demande 10', 'VALIDE', 4, 5);
+
+  INSERT INTO impactedService (Service) VALUES ('ADMINISTRATIF'),('COMPTABILITE'),('MARKETING'),('RESSOURCES HUMAINES'),('COMMERCIAL')

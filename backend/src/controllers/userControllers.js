@@ -106,15 +106,8 @@ const getUserById = (req, res) => {
 };
 
 const postUser = (req, res) => {
-  const {
-    Email,
-    username,
-    Lastname,
-    Firstname,
-    Numeromob,
-    ServiceImpact,
-    hashedPassword,
-  } = req.body;
+  const { Email, username, Lastname, Firstname, Numeromob, hashedPassword } =
+    req.body;
   models.user
     .add({
       Email,
@@ -122,7 +115,6 @@ const postUser = (req, res) => {
       Lastname,
       Firstname,
       Numeromob,
-      ServiceImpact,
       hashedPassword,
     })
     .then((user) => {

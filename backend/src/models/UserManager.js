@@ -18,14 +18,14 @@ class UserManager extends AbstractManager {
 
   findByUsernameWithHashedPassword(username) {
     return this.database.query(
-      `select Id, Email, username, Lastname, Firstname, Numeromob, Adresse, Numerofix, Admin, hashedPassword from  ${this.table} where username = ?`,
+      `select Id, Email, username, Lastname, Firstname, Numeromob, Numerofix, Admin, hashedPassword from  ${this.table} where username = ?`,
       [username]
     );
   }
 
   findById(id) {
     return this.database.query(
-      `SELECT Id, Email, username, Lastname, Firstname, Numeromob, Adresse, Numerofix, Admin FROM ${this.table} WHERE Id = ?`,
+      `SELECT Id, Email, username, Lastname, Firstname, Numeromob, Numerofix, Admin FROM ${this.table} WHERE Id = ?`,
       [id]
     );
   }
@@ -49,14 +49,13 @@ class UserManager extends AbstractManager {
 
   add(user) {
     return this.database.query(
-      `insert into ${this.table}(Email,username,Lastname,Firstname,Numeromob,ServiceImpact,hashedPassword)values (?,?,?,?,?,?,?)`,
+      `insert into ${this.table}(Email,username,Lastname,Firstname,Numeromob,hashedPassword)values (?,?,?,?,?,?)`,
       [
         user.Email,
         user.username,
         user.Lastname,
         user.Firstname,
         user.Numeromob,
-        user.ServiceImpact,
         user.hashedPassword,
       ]
     );
