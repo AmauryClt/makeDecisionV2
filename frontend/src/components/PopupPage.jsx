@@ -142,8 +142,5 @@ PopupPage.propTypes = {
     UserId: PropTypes.number.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
-};
-
-PopupPage.propTypes = {
   toastOptions: PropTypes.shape.isRequired,
 };
