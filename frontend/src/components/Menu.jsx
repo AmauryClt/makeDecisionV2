@@ -12,7 +12,11 @@ export default function Menu() {
             src="./src/assets/makesensecréer.jpg"
             alt="Makesense.Logo"
           />
-          <h2 className={styles.TitreHome}>Créer ta décision</h2>
+          <h2 className={styles.TitreHome}>
+            <div className={styles.buttonYellow} />
+            Créer ta décision
+            <div className={styles.buttonYellow} />
+          </h2>
           <p className={styles.TexteHome}>
             Soit force de proposition pour changer le monde!
           </p>
@@ -23,7 +27,11 @@ export default function Menu() {
             src="./src/assets/encoursdevote.jpeg"
             alt="Makesense.Logo"
           />
-          <h2 className={styles.TitreHome}>En cours de vote</h2>
+          <h2 className={styles.TitreHome}>
+            <div className={styles.buttonGreen} />
+            En cours de vote
+            <div className={styles.buttonGreen} />
+          </h2>
           <p className={styles.TexteHome}>
             Soit force de proposition pour changer le monde!
           </p>
@@ -34,7 +42,11 @@ export default function Menu() {
             src="./src/assets/makesensevalide.jpg"
             alt="Makesense.Logo"
           />
-          <h2 className={styles.TitreHome}>Votes terminés</h2>
+          <h2 className={styles.TitreHome}>
+            <div className={styles.buttonSalmon} />
+            Votes terminés
+            <div className={styles.buttonSalmon} />
+          </h2>
           <p className={styles.TexteHome}>
             Soit force de proposition pour changer le monde!
           </p>
