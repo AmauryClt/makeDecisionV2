@@ -170,16 +170,14 @@ export default function CreatePage({ toastOptions }) {
         décision
       </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          <input
-            className={styles.title}
-            type="text"
-            name="Title"
-            placeholder="Titre de ta décision"
-            {...register("Title")}
-            required
-          />
-        </label>
+        <input
+          className={styles.title}
+          type="text"
+          name="Title"
+          placeholder="Titre de ta décision"
+          {...register("Title")}
+          required
+        />
         <div className={styles.editor}>
           <Controller
             control={control}
@@ -211,69 +209,78 @@ export default function CreatePage({ toastOptions }) {
             required
           />
         </div>
-        <p className={styles.label}>Choissisez le(s) service(s) impacté(s)</p>
-        <div className={styles.buttonServ}>
-          <Button
-            addValue={addValue}
-            removeValue={removeValue}
-            value={serviceValues.ADMINISTRATIF}
-            isSelected={selectedValues.includes(serviceValues.ADMINISTRATIF)}
-          >
-            ADMINISTRATIF
-          </Button>
-          <Button
-            addValue={addValue}
-            removeValue={removeValue}
-            value={serviceValues.COMPTABILITE}
-            isSelected={selectedValues.includes(serviceValues.COMPTABILITE)}
-          >
-            COMPTABILITE
-          </Button>
-          <Button
-            addValue={addValue}
-            removeValue={removeValue}
-            value={serviceValues.MARKETING}
-            isSelected={selectedValues.includes(serviceValues.MARKETING)}
-          >
-            MARKETING
-          </Button>
-          <Button
-            addValue={addValue}
-            removeValue={removeValue}
-            value={serviceValues["RESSOURCES HUMAINES"]}
-            isSelected={selectedValues.includes(
-              serviceValues["RESSOURCES HUMAINES"]
-            )}
-          >
-            RESSOURCES HUMAINES
-          </Button>
-          <Button
-            addValue={addValue}
-            removeValue={removeValue}
-            value={serviceValues.COMMERCIAL}
-            isSelected={selectedValues.includes(serviceValues.COMMERCIAL)}
-          >
-            COMMERCIAL
-          </Button>
-        </div>
-        <table>
-          <thead>
-            <td>
-              <th className={`${styles.label} ${styles.tableHead}`}>
-                Service(s) choisi(s) :
-              </th>
-            </td>
-          </thead>
-          <tbody id="selectedValue">
-            {selectedValues.map((value) => (
-              <tr key={value}>
-                <td>{value}</td>
+        <div className={styles.services}>
+          <div className={styles.impactServices}>
+            <div className={styles.label}>
+              Choissisez le(s) service(s) impacté(s)
+            </div>
+            <div className={styles.buttonServ}>
+              <Button
+                addValue={addValue}
+                removeValue={removeValue}
+                value={serviceValues.ADMINISTRATIF}
+                isSelected={selectedValues.includes(
+                  serviceValues.ADMINISTRATIF
+                )}
+              >
+                ADMINISTRATIF
+              </Button>
+              <Button
+                addValue={addValue}
+                removeValue={removeValue}
+                value={serviceValues.COMPTABILITE}
+                isSelected={selectedValues.includes(serviceValues.COMPTABILITE)}
+              >
+                COMPTABILITE
+              </Button>
+              <Button
+                addValue={addValue}
+                removeValue={removeValue}
+                value={serviceValues.MARKETING}
+                isSelected={selectedValues.includes(serviceValues.MARKETING)}
+              >
+                MARKETING
+              </Button>
+              <Button
+                addValue={addValue}
+                removeValue={removeValue}
+                value={serviceValues["RESSOURCES HUMAINES"]}
+                isSelected={selectedValues.includes(
+                  serviceValues["RESSOURCES HUMAINES"]
+                )}
+              >
+                RESSOURCES HUMAINES
+              </Button>
+              <Button
+                addValue={addValue}
+                removeValue={removeValue}
+                value={serviceValues.COMMERCIAL}
+                isSelected={selectedValues.includes(serviceValues.COMMERCIAL)}
+              >
+                COMMERCIAL
+              </Button>
+              <p />
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th className={`${styles.tableHead}`}>
+                  Service(s) choisi(s) :
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody id="selectedValue">
+              {selectedValues.map((value) => (
+                <tr key={value}>
+                  <td>{value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <label className={styles.date}>
-          Date de fin souhaitée :
+          <p className={styles.dateTitle}>Date de fin souhaitée :</p>
           <input
             {...register("Deadline")}
             type="date"
