@@ -26,3 +26,19 @@
   min-width: 15.1875rem;
   transition: all 0.3s;
 }
+
+.authorComment {
+  font-family: Raleway, sans-serif;
+  border-bottom: dotted 1px;
+  font-size: 1.1em;
+}
+
+.contentComment {
+  font-family: Lato, sans-serif;
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+.zoneComment :nth-of-type(2n) {
+  background-color: rgba(25, 108, 132, 0.15);
+}

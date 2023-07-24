@@ -52,17 +52,20 @@ export default function Stars({ demand, notesByDemand, toastOptions }) {
       }
     } else {
       try {
-        const response = await fetch("http://localhost:5000/note", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            DemandId: demand.Id,
-            UserId: user.Id,
-            Note: rating,
-          }),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/note`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              DemandId: demand.Id,
+              UserId: user.Id,
+              Note: rating,
+            }),
+          }
+        );
 
         const data = await response.json();
         console.info("Note envoyée avec succès :", data);

@@ -8,24 +8,24 @@ export default function CommentFunction({ demand }) {
   const [comments, setComments] = useState([]);
   const { register, handleSubmit, reset } = useForm();
   const { user } = useUser();
+  const fetchComments = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/comments/${demand.Id}`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      setComments(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/comments/${demand.Id}`,
-          {
-            method: "GET",
-            headers: {
-              "content-type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
-        setComments(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     fetchComments();
   }, [demand.Id]);
 
@@ -46,10 +46,9 @@ export default function CommentFunction({ demand }) {
         }
       );
       reset();
-
+      fetchComments();
       const data = await response.json();
       console.info(data);
-      setComments([...comments, data]);
     } catch (error) {
       console.error(error);
     }
@@ -69,14 +68,18 @@ export default function CommentFunction({ demand }) {
           Submit
         </button>
       </form>
-      {comments.map((comment) => (
-        <div key={comment.Id}>
-          <h5>
-            {comment.Lastname} {comment.Firstname}
-          </h5>
-          <p>{comment.Comment}</p>
-        </div>
-      ))}
+      <div className={styles.zoneComment}>
+        {comments.map((comment) => (
+          <div key={comment.Id}>
+            <div className={styles.authorComment}>
+              <h5>
+                {comment.Lastname} {comment.Firstname}
+              </h5>
+            </div>
+            <p className={styles.contentComment}>{comment.Comment}</p>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
