@@ -4,7 +4,7 @@
 
 .mainHome {
   background-color: white;
-  height: 27rem;
+  height: 69svh;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -27,8 +27,8 @@
 
 .Creer {
   background-color: white;
-  width: 25rem;
-  height: 22rem;
+  width: 35rem;
+  height: 35rem;
   margin-left: 5%;
   border-radius: 0.5rem;
   border-width: 0.0625rem;
@@ -42,8 +42,8 @@
 
 .EnCours {
   background-color: white;
-  width: 25rem;
-  height: 22rem;
+  width: 35rem;
+  height: 35rem;
   border-radius: 0.5rem;
   border-width: 0.0625rem;
   border-color: #eaeaea;
@@ -56,8 +56,8 @@
 
 .VoteEnd {
   background-color: white;
-  width: 25rem;
-  height: 22rem;
+  width: 35rem;
+  height: 35rem;
   margin-right: 5%;
   border-radius: 0.5rem;
   border-width: 0.0625rem;
@@ -70,8 +70,8 @@
 }
 
 .imgCards {
-  width: 25rem;
-  height: 15rem;
+  width: 35rem;
+  height: 21rem;
   border-top-left-radius: 12.5px;
   border-top-right-radius: 12.5px;
   background-size: 15%;
@@ -79,9 +79,11 @@
 }
 
 .TitreHome {
+  padding: 5px 0;
   display: flex;
   justify-content: center;
   pointer-events: none;
+  font-size: 2rem;
 }
 
 .TexteHome {
@@ -94,9 +96,9 @@
 .buttonYellow,
 .buttonGreen,
 .buttonSalmon {
-  height: 1svh;
-  width: 1svw;
-  border-radius: 0.5svh;
+  height: 2svh;
+  width: 2svw;
+  border-radius: 1svh;
   margin: auto;
 }
 
@@ -110,4 +112,12 @@
 
 .buttonSalmon {
   background-color: rgba(243, 151, 107, 1);
+}
+
+.blocTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  height: 14rem;
 }
