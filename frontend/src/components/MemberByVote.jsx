@@ -34,13 +34,17 @@ export default function MemberByVote({ demandId }) {
 
   return (
     <div className={styles.pBorderexeption}>
-      {userDetails.map((user) => (
-        <div key={user.Id}>
-          <p>
-            {user.Lastname} {user.Firstname}
-          </p>
-        </div>
-      ))}
+      {userDetails.length === 0 ? (
+        <h1 className={styles.h1title}>Soit le premier à voter !</h1>
+      ) : (
+        userDetails.map((user) => (
+          <div key={user.Id}>
+            <p>
+              {user.Lastname} {user.Firstname}
+            </p>
+          </div>
+        ))
+      )}
     </div>
   );
 }

@@ -1,18 +1,24 @@
 .mainHome {
   display: flex;
-  height: 85svh;
+  height: 81svh;
   background-color: rgba(12, 57, 68, 1);
 }
 
 .labelStyles {
-  width: 50svw;
+  position: absolute;
+  width: 60svw;
   color: white;
+  left: 5rem;
+  top: 13rem;
 }
 
-img {
-  display: flex;
-  max-width: 80rem;
-  max-height: 78svh;
+.imglogin {
+  position: absolute;
+  width: 40rem;
+  height: 94svh;
+  right: 2rem;
+  top: 1rem;
+  object-fit: cover;
 }
 
 .Username {
@@ -68,4 +74,17 @@ img {
   margin: auto;
   font-size: 3rem;
   color: white;
+}
+
+@media screen and (max-width: 1250px) {
+  .labelStyles {
+    width: 100%;
+    color: white;
+    top: 13rem;
+    left: 0;
+  }
+
+  .imglogin {
+    display: none;
+  }
 }

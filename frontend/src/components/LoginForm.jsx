@@ -75,9 +75,11 @@ function LoginForm({ toastOptions }) {
           </button>
         </div>
       </form>
-      <div>
-        <img src="./src/assets/makesenseaccueil.jpg" alt="connect" />
-      </div>
+      <img
+        className={styles.imglogin}
+        src="./src/assets/makesenseaccueil.jpg"
+        alt="connect"
+      />
     </main>
   );
 }
