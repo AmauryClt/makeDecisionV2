@@ -12,7 +12,7 @@ h1,
   color: rgb(12, 57, 68);
 }
 
-form {
+.formCreatePage {
   padding: 25px 0;
   display: flex;
   font-family: "Lato", sans-serif;
@@ -69,16 +69,29 @@ textarea,
   margin-bottom: 5px;
 }
 
-.btnSubmit {
-  font-family: "Lato", sans-serif;
-  font-size: 1em;
-  width: 35svw;
-  height: 35px;
-  background-color: rgb(12, 57, 68);
-  border: none;
-  color: white;
-  border-radius: 5px;
-  margin: auto;
+.createbtnSubmit {
+  text-align: center;
+  font-size: 1.125rem;
+  font-family: Raleway, sans-serif;
+  font-weight: 800;
+  background-color: rgba(25, 108, 132, 1);
+  color: black;
+  border: 0.0625rem solid rgba(25, 108, 132, 1);
+  display: inline-flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  height: 3.375rem;
+  width: 18.1875rem;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 3.375rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-right: 1.6875rem;
+  padding-left: 1.6875rem;
+  min-width: 15.1875rem;
+  transition: all 0.3s;
 }
 
 .buttonServ {

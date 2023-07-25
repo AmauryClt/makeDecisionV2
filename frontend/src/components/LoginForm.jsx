@@ -70,7 +70,7 @@ function LoginForm({ toastOptions }) {
         </div>
 
         <div className={styles.login}>
-          <button className={styles.button} type="submit">
+          <button className={styles.loginbutton} type="submit">
             LOGIN
           </button>
         </div>

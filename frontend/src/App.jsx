@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Login from "./components/LoginForm";
 import Profil from "./components/Profil";
 import styles from "./app.module.scss";
+import AdminPage from "./components/AdminPage";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
             path="/demands/update/:id"
             element={<CreatePage toastOptions={toastOptions} />}
           />
+          <Route path="/Admin" element={<AdminPage />} />
           <Route path="/Profil" element={<Profil />} />
         </Routes>
       </div>
