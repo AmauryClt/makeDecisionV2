@@ -166,10 +166,9 @@ export default function CreatePage({ toastOptions }) {
   return (
     <main>
       <h1 className={styles.banniere}>
-        Interface de {id ? "modification" : "création"} d'une demande de
-        décision
+        Interface de {id ? "modification" : "création"} d'une demande de décision
       </h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.formCreatePage} onSubmit={handleSubmit(onSubmit)}>
         <input
           className={styles.title}
           type="text"
@@ -294,7 +293,7 @@ export default function CreatePage({ toastOptions }) {
             required
           />
         </label>
-        <button className={styles.btnSubmit} type="submit">
+        <button className={styles.createbtnSubmit} type="submit">
           Je propose mon idée !
         </button>
       </form>

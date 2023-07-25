@@ -8,7 +8,6 @@
 }
 
 .mainHome {
-  background-color: grey;
   height: 27rem;
   display: flex;
   align-items: center;
@@ -26,29 +25,70 @@
   text-align: center;
 }
 
-.modifier {
-  width: 10rem;
-  background: rgba(25, 108, 132, 1);
+.Email {
   font-family: Raleway;
   text-align: center;
-  margin-bottom: 5px;
+}
+
+.Modifier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125rem;
+  font-family: Raleway, sans-serif;
+  font-weight: 800;
+  background-color: rgba(25, 108, 132, 1);
+  color: black;
+  border: 0.0625rem solid rgba(25, 108, 132, 1);
+  height: 3.375rem;
+  width: 15.1875rem;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 3.375rem;
+  min-width: 15.1875rem;
+  transition: all 0.3s;
+}
+
+.button {
+  display: flex;
+  align-self: center;
+  text-align: center;
 }
 
 .information {
   margin-top: 15px;
   margin-bottom: 15px;
+  width: 50rem;
+  height: 25rem;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  justify-content: space-around;
   background-color: white;
+  border-radius: 12.5px;
+  border-color: #eaeaea;
+  color: black;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
-.mobile,
-.fixe,
+.mobile {
+  font-family: Lato;
+  font-size: 1.7rem;
+  margin-left: 10px;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
+.fixe {
+  font-family: Lato;
+  font-size: 1.7rem;
+  margin-left: 10px;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
 .email {
   font-family: Lato;
   font-size: 1.7rem;
-  text-align: center;
-  margin: 0;
+  margin-left: 10px;
   font-weight: bold;
 }

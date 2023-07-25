@@ -24,19 +24,21 @@
 .Username {
   display: flex;
   font-size: large;
-  margin: auto;
+  justify-content: center;
   border-radius: 60px;
 }
 
 .Password {
   display: flex;
   margin: auto;
+  justify-content: center;
 }
 
 .login {
   display: flex;
   margin: auto;
   float: center;
+  justify-content: center;
   padding: 10px;
   border-radius: 60px;
 }
@@ -58,7 +60,7 @@
   text-align: center;
 }
 
-.button {
+.loginbutton {
   font-family: "Raleway", sans-serif;
   border-radius: 60px;
   width: 150px;
