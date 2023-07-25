@@ -169,7 +169,7 @@ export default function CreatePage({ toastOptions }) {
         Interface de {id ? "modification" : "création"} d'une demande de
         décision
       </h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.fabienpasbien} onSubmit={handleSubmit(onSubmit)}>
         <input
           className={styles.title}
           type="text"

@@ -28,7 +28,8 @@ export default function AdminPage() {
     <main>
       <h1 className={styles.banniere}>Créer un utilisateur</h1>
       <div className={styles.mainHome}>
-        <div className={styles.recalibrage} onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.recalibrage}>
           <div className={styles.personne}>
             <p className={styles.texte}>Nom d'utilisateur :</p>
             <input
@@ -114,12 +115,13 @@ export default function AdminPage() {
               required
             />
           </div>
-        </div>
+          </div>
         <div className={styles.btnsubmit}>
           <button className={styles.Modifier} type="submit">
             Ajouter un utilisateur
           </button>
         </div>
+        </form>
       </div>
     </main>
   );
