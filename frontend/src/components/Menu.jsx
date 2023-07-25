@@ -39,7 +39,6 @@ export default function Menu() {
               Soit force de proposition pour changer le monde!
             </p>
           </div>
-
         </Link>
         <Link className={styles.VoteEnd} to="demands/valid">
           <img
