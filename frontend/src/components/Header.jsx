@@ -21,7 +21,7 @@ export default function Header({ toastOptions }) {
       <nav className={styles.headLinks}>
         <img
           className={styles.logo}
-          src="./src/assets/logo.png"
+          src="/src/assets/logo.png"
           alt="make-sense"
         />
       </nav>
@@ -39,7 +39,7 @@ export default function Header({ toastOptions }) {
       <Link to="/">
         <img
           className={styles.logo}
-          src="./src/assets/logo.png"
+          src="/src/assets/logo.png"
           alt="make-sense"
         />
       </Link>
