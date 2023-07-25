@@ -97,10 +97,10 @@ export default function AdminPage() {
             }}
           />
           <input
-            {...register("hashedPassword")}
+            {...register("password")}
             className={styles.title}
             type="text"
-            name="hashedPassword"
+            name="password"
             placeholder="hashedPassword"
             required
           />
