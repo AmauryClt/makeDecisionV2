@@ -50,8 +50,8 @@ export default function Header({ toastOptions }) {
         <Link className={styles.name} to="/Profil">
           {user && (
             <div>
-              <h1>{user.Lastname}</h1>
-              <h1>{user.Firstname}</h1>
+              <h1 className={styles.nomProfil}>{user.Lastname}</h1>
+              <h1 className={styles.nomProfil}>{user.Firstname}</h1>
             </div>
           )}
         </Link>

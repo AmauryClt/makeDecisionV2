@@ -1,5 +1,5 @@
 .commentPost {
-  height: 200px;
+  height: 23svh;
   width: 95%;
   box-shadow: none;
 }
@@ -25,4 +25,26 @@
   padding-left: 1.6875rem;
   min-width: 15.1875rem;
   transition: all 0.3s;
+}
+
+.authorComment {
+  font-family: Raleway, sans-serif;
+  border-bottom: dotted 1px;
+  font-size: 1.1em;
+}
+
+.contentComment {
+  font-family: Lato, sans-serif;
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
+.zoneComment :nth-of-type(2n) {
+  background-color: rgba(25, 108, 132, 0.15);
+}
+
+.writeComment {
+  height: 17svh;
+  resize: none;
+  margin-bottom: 0px;
 }
