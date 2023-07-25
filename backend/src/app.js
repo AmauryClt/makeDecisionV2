@@ -21,7 +21,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL ?? https://github.com/WildCodeSchool/2023-02-JS-Valence-P3-makesense,
+    origin: process.env.FRONTEND_URL ?? "https://github.com/WildCodeSchool/2023-02-JS-Valence-P3-makesense",
     optionsSuccessStatus: 200,
   })
 );
