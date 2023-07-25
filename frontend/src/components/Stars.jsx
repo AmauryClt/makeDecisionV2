@@ -20,14 +20,14 @@ export default function Stars({ demand, notesByDemand, toastOptions }) {
   const handleSubmitNote = async () => {
     if (rating === 0) {
       console.error("La note ne peut pas être null.");
-      toast.error("😓 Tu dois choisir une note pour voter ", toastOptions);
+      toast.error("Tu dois choisir une note pour voter ", toastOptions);
       return;
     }
 
     if (currentNote >= 1) {
       try {
         const response = await fetch(
-          `http://localhost:5000/note/${demand.Id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/${demand.Id}`,
           {
             method: "PUT",
             headers: {
@@ -43,7 +43,7 @@ export default function Stars({ demand, notesByDemand, toastOptions }) {
 
         const data = await response.json();
         console.info("Note mise à jour avec succès :", data);
-        toast.success("👍 Note mise à jour avec succès 👍", toastOptions);
+        toast.success("Note mise à jour avec succès", toastOptions);
       } catch (error) {
         console.error(
           "Erreur lors de la mise à jour de la note :",
@@ -69,7 +69,7 @@ export default function Stars({ demand, notesByDemand, toastOptions }) {
 
         const data = await response.json();
         console.info("Note envoyée avec succès :", data);
-        toast.success("👍 Note enregistré avec succès 👍", toastOptions);
+        toast.success("Note enregistré avec succès", toastOptions);
       } catch (error) {
         console.error("Erreur lors de l'envoi de la note :", error.message);
       }
