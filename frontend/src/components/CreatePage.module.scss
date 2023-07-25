@@ -45,7 +45,7 @@ textarea,
   font-family: "Lato", sans-serif;
   border-radius: 5px;
   border: solid whitesmoke 1px;
-  box-shadow: 5px 5px 5px rgb(12, 57, 68);
+  box-shadow: 5px 5px 5px rgba(12, 57, 68, 0.534);
   border: solid 1px rgb(12, 57, 68);
   margin-bottom: 25px;
 }
@@ -116,7 +116,7 @@ textarea,
   margin-bottom: 25px;
 }
 
-textarea {
+.writeBI {
   min-width: 39svw;
   min-height: 300px;
   margin: 0px;

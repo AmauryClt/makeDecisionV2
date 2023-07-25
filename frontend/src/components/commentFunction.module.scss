@@ -1,5 +1,5 @@
 .commentPost {
-  height: 200px;
+  height: 23svh;
   width: 95%;
   box-shadow: none;
 }
@@ -41,4 +41,10 @@
 
 .zoneComment :nth-of-type(2n) {
   background-color: rgba(25, 108, 132, 0.15);
+}
+
+.writeComment {
+  height: 17svh;
+  resize: none;
+  margin-bottom: 0px;
 }

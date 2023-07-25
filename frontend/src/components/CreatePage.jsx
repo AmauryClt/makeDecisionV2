@@ -195,6 +195,7 @@ export default function CreatePage({ toastOptions }) {
         </div>
         <div className={styles.benefInc}>
           <textarea
+            className={styles.writeBI}
             {...register("Benefice")}
             type="text"
             name="Benefice"
@@ -202,6 +203,7 @@ export default function CreatePage({ toastOptions }) {
             required
           />
           <textarea
+            className={styles.writeBI}
             {...register("Inconvenience")}
             type="text"
             name="Inconvenience"

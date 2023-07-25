@@ -58,6 +58,7 @@ export default function CommentFunction({ demand }) {
     <>
       <form className={styles.commentPost} onSubmit={handleSubmit(onSubmit)}>
         <textarea
+          className={styles.writeComment}
           {...register("Comment")}
           type="text"
           name="Comment"
