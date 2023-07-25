@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import styles from "./profil.module.scss";
+import styles from "./adminPage.module.scss";
 
 export default function AdminPage() {
   const { register, handleSubmit } = useForm();

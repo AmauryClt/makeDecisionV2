@@ -15,17 +15,14 @@ function LoginForm({ toastOptions }) {
     e.preventDefault();
 
     const data = Object.fromEntries(new FormData(form.current));
-    fetch(
-      `${import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"}/login`,
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    )
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
       .then((res) => res.json())
       .then((json) => {
         if (json.message) {
@@ -33,7 +30,7 @@ function LoginForm({ toastOptions }) {
         } else {
           setUser(json.user);
           navigate("/");
-          toast.success(" 👋 Bienvenue !!! 👋", toastOptions);
+          toast.success("Bienvenue !!!", toastOptions);
           console.info(json.user);
         }
       })
@@ -48,7 +45,7 @@ function LoginForm({ toastOptions }) {
   return (
     <main className={styles.mainHome}>
       <form className={styles.labelStyles} ref={form} onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2 className={styles.titleMake}>Make A Decision</h2>
 
         {errors.message && <p>{errors.message}</p>}
         <div className={styles.Username}>
@@ -74,7 +71,7 @@ function LoginForm({ toastOptions }) {
 
         <div className={styles.login}>
           <button className={styles.button} type="submit">
-            Se connecter
+            LOGIN
           </button>
         </div>
       </form>

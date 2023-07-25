@@ -9,9 +9,7 @@ export default function MemberByVote({ demandId }) {
     const fetchUserDetails = async () => {
       try {
         const response = await fetch(
-          `${
-            import.meta.env.VITE_BACKEND_URL ?? "http://localhost:5000"
-          }/notesDemands/${demandId}`,
+          `${import.meta.env.VITE_BACKEND_URL}/notesDemands/${demandId}`,
           {
             method: "GET",
             headers: {

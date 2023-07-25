@@ -31,7 +31,7 @@ export default function Header({ toastOptions }) {
   const handleLogout = () => {
     setUser(null);
     navigate("/login");
-    toast.success("👋 A bientot 👋", toastOptions);
+    toast.success("A bientot", toastOptions);
   };
 
   return (
@@ -43,15 +43,16 @@ export default function Header({ toastOptions }) {
           alt="make-sense"
         />
       </Link>
-      <div className={styles.Liens}>
+      <div className={styles.liens}>
         <Navbar />
       </div>
       <div className={styles.rangement}>
         <Link className={styles.name} to="/Profil">
           {user && (
             <div>
-              <h1>{user.Lastname}</h1>
-              <h1>{user.Firstname}</h1>
+              <h1>
+                {user.Lastname} {user.Firstname}
+              </h1>
             </div>
           )}
         </Link>
@@ -59,7 +60,7 @@ export default function Header({ toastOptions }) {
           <Link to="/login">Login</Link>
         ) : (
           <button className={styles.btn} type="button" onClick={handleLogout}>
-            déconnexion
+            Déconnexion
           </button>
         )}
       </div>

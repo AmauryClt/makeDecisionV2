@@ -1,6 +1,6 @@
 .headLinks {
   width: 100%;
-  height: var(--nav-height, 6rem);
+  height: 8svh;
   top: 0;
   display: flex;
   justify-content: space-between;
@@ -15,7 +15,7 @@
   text-decoration: none;
 }
 
-.Liens {
+.liens {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -26,10 +26,10 @@
 }
 
 .logo {
-  width: 20rem;
-  height: 3rem;
-  margin-top: 1.5rem;
+  width: 12svw;
+  height: 6svh;
   margin-left: 1rem;
+  margin-top: 1svh;
 }
 
 .pp {
@@ -42,12 +42,14 @@
   align-items: center;
   justify-content: center;
   margin-top: 0.2rem;
+  padding-right: 1rem;
 }
 .name {
   font-family: raleway;
   color: black;
   text-decoration: none;
   cursor: pointer;
+  font-size: 0.7rem;
 }
 
 .btn {

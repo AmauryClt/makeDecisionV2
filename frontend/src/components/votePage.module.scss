@@ -75,7 +75,7 @@
   display: block;
   float: right;
   width: 20%;
-  height: 400px;
+  height: 500px;
   border: 1px solid black;
 }
 
@@ -108,4 +108,12 @@
   padding-right: 1.6875rem;
   padding-left: 1.6875rem;
   transition: all 0.3s;
+}
+
+.guideTitle {
+  color: black;
+}
+.faq {
+  font-size: 1.2rem;
+  padding: 5px;
 }

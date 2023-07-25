@@ -13,6 +13,7 @@ h1,
 }
 
 form {
+  padding: 25px 0;
   display: flex;
   font-family: "Lato", sans-serif;
   flex-direction: column;
@@ -46,6 +47,7 @@ textarea,
   border: solid whitesmoke 1px;
   box-shadow: 5px 5px 5px rgb(12, 57, 68);
   border: solid 1px rgb(12, 57, 68);
+  margin-bottom: 25px;
 }
 
 .title {
@@ -57,6 +59,14 @@ textarea,
 
 .date > input {
   font-size: 1em;
+}
+
+.date {
+  margin: auto;
+}
+
+.dateTitle {
+  margin-bottom: 5px;
 }
 
 .btnSubmit {
@@ -83,23 +93,19 @@ textarea,
   transition: all 0.3s;
 }
 
-.buttonServ,
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.buttonServ {
+  padding-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 2;
   gap: 5px;
 }
 
-.buttonChoice {
-  background-color: rgb(12, 57, 68);
-  color: white;
-  border: solid rgb(12, 57, 68);
-  font-family: "Lato", sans-serif;
-  font-size: 1em;
-  width: 15svw;
-  height: 45px;
-  border-radius: 5px;
+.services {
+  display: flex;
+  flex-direction: rows;
+  justify-content: space-around;
+  margin-bottom: 25px;
 }
 
 .benefInc {
@@ -107,18 +113,35 @@ ul {
   flex-direction: row;
   justify-content: center;
   gap: 15px;
+  margin-bottom: 25px;
 }
 
 textarea {
-  min-width: 36svw;
+  min-width: 39svw;
+  min-height: 300px;
   margin: 0px;
   font-size: 16px;
-  height: 300px;
+  resize: none;
 }
 .inputDate {
   max-width: 20svw;
   min-width: 10svw;
   height: 45px;
+  text-align: center;
+}
+
+table,
+td {
+  border: solid rgb(12, 57, 68);
+  border-collapse: collapse;
+  width: 25svw;
+}
+
+thead {
+  height: 35px;
+}
+
+tr {
   text-align: center;
 }
 

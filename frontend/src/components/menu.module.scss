@@ -4,7 +4,7 @@
 
 .mainHome {
   background-color: white;
-  height: 27rem;
+  height: 71svh;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -27,51 +27,51 @@
 
 .Creer {
   background-color: white;
-  width: 25rem;
-  height: 22rem;
+  width: 25svw;
+  height: 50svh;
   margin-left: 5%;
   border-radius: 0.5rem;
   border-width: 0.0625rem;
   border-color: #eaeaea;
-  background-color: #fff;
+  color: black;
   box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s;
   text-decoration: none;
-  color: rgba(243, 151, 107, 1);
+  background-color: #fff;
 }
 
 .EnCours {
   background-color: white;
-  width: 25rem;
-  height: 22rem;
+  width: 25svw;
+  height: 50svh;
   border-radius: 0.5rem;
   border-width: 0.0625rem;
   border-color: #eaeaea;
-  background-color: #fff;
+  color: black;
   box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s;
   text-decoration: none;
-  color: #fff30d;
+  background-color: #fff;
 }
 
 .VoteEnd {
   background-color: white;
-  width: 25rem;
-  height: 22rem;
+  width: 25svw;
+  height: 50svh;
   margin-right: 5%;
   border-radius: 0.5rem;
   border-width: 0.0625rem;
   border-color: #eaeaea;
-  background-color: #fff;
+  color: black;
   box-shadow: 0.4375rem 0.4375rem 0.75rem 0 rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s;
   text-decoration: none;
-  color: rgba(112, 175, 144, 1);
+  background-color: #fff;
 }
 
 .imgCards {
-  width: 25rem;
-  height: 15rem;
+  width: 25svw;
+  height: 35svh;
   border-top-left-radius: 12.5px;
   border-top-right-radius: 12.5px;
   background-size: 15%;
@@ -79,13 +79,45 @@
 }
 
 .TitreHome {
+  padding: 5px 0;
   display: flex;
   justify-content: center;
   pointer-events: none;
+  font-size: 1.5rem;
 }
 
 .TexteHome {
   color: black;
   margin-left: 2px;
   pointer-events: none;
+  text-align: center;
+}
+
+.buttonYellow,
+.buttonGreen,
+.buttonSalmon {
+  height: 2svh;
+  width: 2svw;
+  border-radius: 1svh;
+  margin: 0 10px;
+}
+
+.buttonYellow {
+  background-color: #fff30d;
+}
+
+.buttonGreen {
+  background-color: #70af90;
+}
+
+.buttonSalmon {
+  background-color: rgba(243, 151, 107, 1);
+}
+
+.blocTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  height: 15svh;
 }

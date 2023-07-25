@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars-2";
+import { formatISO, format, formatDistanceStrict } from "date-fns";
+import { fr } from "date-fns/locale";
 import Stars from "./Stars";
 import AlgoNote from "./AlgoNote";
 import { useUser } from "../contexts/UserContext";
@@ -23,7 +25,7 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
     const fetchNotesByDemand = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/notes/${demand.Id}`
+          `${import.meta.env.VITE_BACKEND_URL}/notes/${demand.Id}`
         );
 
         if (response.ok) {
@@ -41,6 +43,17 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
   }, [demand.Id]);
 
   console.info(notesByDemand);
+  const dateStr = demand.Deadline;
+  const formattedDateISO = formatISO(new Date(dateStr), {
+    representation: "date",
+  });
+  const formattedDate = format(new Date(formattedDateISO), "dd/MM/yyyy");
+
+  const deadline = formatDistanceStrict(new Date(demand.Deadline), new Date(), {
+    addSuffix: true,
+    unit: "day",
+    locale: fr,
+  });
 
   return (
     <div className={styles.popupContainer}>
@@ -98,7 +111,11 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
             <div className={styles.block5}>
               <div className={styles.block5Content}>
                 <h4 className={styles.h4Block5}>Date de cloture des votes :</h4>
-                <p className={styles.pBorder}>{demand.Deadline}</p>
+                <p className={styles.pBorder}>
+                  {formattedDate}
+                  <br />
+                  Fin des votes {deadline}
+                </p>
                 <h4 className={styles.h4Block5}>Statut de la demande :</h4>
                 <p className={styles.pBorder}>{demand.Statut}</p>
                 <h4 className={styles.h4Block5}>Avancement des votes :</h4>
@@ -142,8 +159,5 @@ PopupPage.propTypes = {
     UserId: PropTypes.number.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
-};
-
-PopupPage.propTypes = {
   toastOptions: PropTypes.shape.isRequired,
 };

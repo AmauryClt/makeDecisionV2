@@ -3,7 +3,7 @@ import styles from "./AlgoNote.module.scss";
 
 export default function AlgoNote({ notesByDemand }) {
   const calculateAverageNote = () => {
-    if (notesByDemand.length === 0) return "Soit le premier a voter !";
+    if (notesByDemand.length === 0) return null;
 
     const totalNotes = notesByDemand.reduce((sum, note) => sum + note.Note, 0);
     const average = totalNotes / notesByDemand.length;
@@ -17,9 +17,8 @@ export default function AlgoNote({ notesByDemand }) {
 
   const totalNumberOfNotes = calculateTotalNumberOfNotes();
 
-  // eslint-disable-next-line consistent-return
   const getNoteText = (averageNoteValue) => {
-    if (typeof averageNoteValue === "string") {
+    if (averageNoteValue === null) {
       return "Pas d'appréciation moyenne pour le moment";
     }
     if (averageNoteValue <= 1) {
@@ -34,10 +33,9 @@ export default function AlgoNote({ notesByDemand }) {
     if (averageNoteValue <= 4) {
       return "Accord";
     }
-    if (averageNoteValue <= 4.5) {
-      return "Excellente";
-    }
+    return "Excellente";
   };
+
   const averageNote = calculateAverageNote();
   const averageNoteText = getNoteText(averageNote);
 
@@ -46,9 +44,18 @@ export default function AlgoNote({ notesByDemand }) {
       {notesByDemand.map((note) => (
         <div key={note.Id} />
       ))}
-      <p>Total des votes : {totalNumberOfNotes}</p>
-      <p className={styles.noteavg}>Moyenne de la demande : {averageNote}</p>
-      <p>Appréciation global: {averageNoteText}</p>
+      {totalNumberOfNotes === 0 ? (
+        <h1 className={styles.h1title}>Soit le premier à voter !</h1>
+      ) : (
+        <>
+          <div className={styles.d3}>Total des votes : </div>
+          <h1 className={styles.h1title}> {totalNumberOfNotes}</h1>
+          <div className={styles.d1}>Moyenne de la demande : </div>
+          <h1 className={styles.h1title}> {averageNote}/5</h1>
+          <div className={styles.d2}>Appréciation globale : </div>
+          <h1 className={styles.h1title}> {averageNoteText}</h1>
+        </>
+      )}
     </div>
   );
 }
