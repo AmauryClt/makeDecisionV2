@@ -21,7 +21,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
+    origin: https://makensense-front.valence.wilders.dev/,
     optionsSuccessStatus: 200,
   })
 );
