@@ -3,7 +3,7 @@
 FROM node:latest as builder
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+ENV PATH /usr/src/node_modules/.bin:$PATH
 ARG VITE_BACKEND_URL=${VITE_BACKEND_URL}
 ENV VITE_BACKEND_URL=${VITE_BACKEND_URL}
 COPY ./frontend /usr/src/app
