@@ -1,18 +1,23 @@
 .mainHome {
   display: flex;
-  height: 85svh;
+  height: 81svh;
   background-color: rgba(12, 57, 68, 1);
 }
 
 .labelStyles {
+  position: absolute;
   width: 50svw;
   color: white;
+  left: 5rem;
+  top: 10rem;
 }
 
-img {
-  display: flex;
-  max-width: 80rem;
-  max-height: 78svh;
+.imglogin {
+  position: absolute;
+  width: 30rem;
+  height: 94svh;
+  right: 2rem;
+  top: 1rem;
 }
 
 .Username {
@@ -68,4 +73,17 @@ img {
   margin: auto;
   font-size: 3rem;
   color: white;
+}
+
+@media screen and (max-width: 925px) {
+  .labelStyles {
+    width: 100%;
+    color: white;
+    top: 10rem;
+    left: 0;
+  }
+
+  .imglogin {
+    display: none;
+  }
 }

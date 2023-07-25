@@ -1,6 +1,17 @@
 import styles from "./footer.module.scss";
+import { useUser } from "../contexts/UserContext";
 
 function Footer() {
+  const { user } = useUser();
+
+  if (user == null) {
+    return (
+      <footer>
+        <div className={styles.footer} />
+      </footer>
+    );
+  }
+
   return (
     <footer>
       <div className={styles.footer}>
