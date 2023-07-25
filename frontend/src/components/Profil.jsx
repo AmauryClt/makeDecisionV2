@@ -24,7 +24,7 @@ export default function Profil() {
               Email :<li>{user.Email}</li>
             </ul>
             {user.Admin === 1 && (
-              <div>
+              <div className={styles.button}>
                 <Link className={styles.Modifier} to="/Admin">
                   Accès à la page admin
                 </Link>
