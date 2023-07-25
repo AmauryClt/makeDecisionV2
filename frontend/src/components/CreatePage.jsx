@@ -294,7 +294,7 @@ export default function CreatePage({ toastOptions }) {
             required
           />
         </label>
-        <button className={styles.btnSubmit} type="submit">
+        <button className={styles.createbtnSubmit} type="submit">
           Je propose mon idée !
         </button>
       </form>

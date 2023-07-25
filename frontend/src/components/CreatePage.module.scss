@@ -69,7 +69,7 @@ textarea,
   margin-bottom: 5px;
 }
 
-.btnSubmit {
+.createbtnSubmit {
   text-align: center;
   font-size: 1.125rem;
   font-family: Raleway, sans-serif;
@@ -78,6 +78,7 @@ textarea,
   color: black;
   border: 0.0625rem solid rgba(25, 108, 132, 1);
   display: inline-flex;
+  align-self: center;
   align-items: center;
   justify-content: center;
   height: 3.375rem;
