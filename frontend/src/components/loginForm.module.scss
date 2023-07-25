@@ -6,18 +6,19 @@
 
 .labelStyles {
   position: absolute;
-  width: 50svw;
+  width: 60svw;
   color: white;
   left: 5rem;
-  top: 10rem;
+  top: 13rem;
 }
 
 .imglogin {
   position: absolute;
-  width: 30rem;
+  width: 40rem;
   height: 94svh;
   right: 2rem;
   top: 1rem;
+  object-fit: cover;
 }
 
 .Username {
@@ -75,11 +76,11 @@
   color: white;
 }
 
-@media screen and (max-width: 925px) {
+@media screen and (max-width: 1250px) {
   .labelStyles {
     width: 100%;
     color: white;
-    top: 10rem;
+    top: 13rem;
     left: 0;
   }
 
