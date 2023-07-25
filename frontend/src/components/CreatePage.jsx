@@ -166,8 +166,7 @@ export default function CreatePage({ toastOptions }) {
   return (
     <main>
       <h1 className={styles.banniere}>
-        Interface de {id ? "modification" : "création"} d'une demande de
-        décision
+        Interface de {id ? "modification" : "création"} d'une demande de décision
       </h1>
       <form className={styles.formCreatePage} onSubmit={handleSubmit(onSubmit)}>
         <input
