@@ -20,12 +20,13 @@ router.get(
 const userControllers = require("./controllers/userControllers");
 
 const { hashPassword, verifyPassword, logout } = require("./services/auth");
+const { checkUserMiddleware } = require("./validator/checkUser");
 
 router.get("/user", userControllers.getProfile);
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
 router.put("/users/:id", hashPassword, userControllers.edit);
-router.post("/users", hashPassword, userControllers.add);
+router.post("/users", checkUserMiddleware, hashPassword, userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
 router.get("/user/:userId", userControllers.getUserById);
 

@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 import styles from "./adminPage.module.scss";
 
-export default function AdminPage() {
+export default function AdminPage({ toastOptions }) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
@@ -15,12 +17,19 @@ export default function AdminPage() {
       },
       body: JSON.stringify(data),
     })
-      .then((response) => response.json())
-      .then((result) => {
-        console.info(result);
+      .then((response) => {
+        if (response.status === 201)
+          toast.success("Utilisateur crée avec succès !", toastOptions);
+        else if (response.status === 403)
+          toast.error("Cette utilisateur éxiste déjà", toastOptions);
+        else
+          throw new Error(
+            "Un problème à eu lieu lors de la création de l'utilisateur"
+          );
       })
       .catch((error) => {
         console.error(error);
+        toast.error(error.message, toastOptions);
       });
   };
 
@@ -126,3 +135,7 @@ export default function AdminPage() {
     </main>
   );
 }
+
+AdminPage.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
+};

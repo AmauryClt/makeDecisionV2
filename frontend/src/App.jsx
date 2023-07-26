@@ -47,7 +47,10 @@ function App() {
             path="/demands/update/:id"
             element={<CreatePage toastOptions={toastOptions} />}
           />
-          <Route path="/Admin" element={<AdminPage />} />
+          <Route
+            path="/Admin"
+            element={<AdminPage toastOptions={toastOptions} />}
+          />
           <Route path="/Profil" element={<Profil />} />
         </Routes>
       </div>
