@@ -23,7 +23,7 @@ dependencies:
     specifier: ^9.0.1
     version: 9.0.1
   mysql2:
-    specifier: ^3.0.1
+    specifier: ^3.5.0
     version: 3.5.0
   nodemodule:
     specifier: ^0.3.0
