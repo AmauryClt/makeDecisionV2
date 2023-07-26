@@ -109,7 +109,7 @@ export default function AdminPage() {
               <input
                 {...register("password")}
                 className={styles.champs}
-                type="text"
+                type="password"
                 name="password"
                 placeholder="hashedPassword"
                 required
