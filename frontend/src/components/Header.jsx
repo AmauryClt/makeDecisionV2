@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import styles from "./header.module.scss";
 import Navbar from "./Navbar";
 import { useUser } from "../contexts/UserContext";
+import logo from "../assets/logo.png";
 
 export default function Header({ toastOptions }) {
   const { user, setUser } = useUser();
@@ -19,11 +20,7 @@ export default function Header({ toastOptions }) {
   if (user == null) {
     return (
       <nav className={styles.headLinks}>
-        <img
-          className={styles.logo}
-          src="./src/assets/logo.png"
-          alt="make-sense"
-        />
+        <img className={styles.logo} src={logo} alt="make-sense" />
       </nav>
     );
   }
@@ -37,11 +34,7 @@ export default function Header({ toastOptions }) {
   return (
     <nav className={styles.headLinks}>
       <Link to="/">
-        <img
-          className={styles.logo}
-          src="./src/assets/logo.png"
-          alt="make-sense"
-        />
+        <img className={styles.logo} src={logo} alt="make-sense" />
       </Link>
       <div className={styles.liens}>
         <Navbar />
