@@ -8,7 +8,7 @@ export default function AdminPage() {
   const onSubmit = (data) => {
     console.info("ce que j'envoi", data);
 
-    fetch("http://localhost:5000/users", {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
