@@ -7,13 +7,13 @@ function Navbar() {
     <nav className={styles.navlinks}>
       <div className={styles.ul}>
         <Link className={styles.créer} to="/demands/create">
-          <li> Créer ta décision</li>
+          <li className={styles.nav}> Créer ta décision</li>
         </Link>
         <Link className={styles.encours} to="/demands/vote">
-          <li> En cours de vote</li>
+          <li className={styles.nav}> En cours de vote</li>
         </Link>
         <Link className={styles.termine} to="/demands/valid">
-          <li> Votes terminés</li>
+          <li className={styles.nav}> Votes terminés</li>
         </Link>
       </div>
     </nav>
