@@ -27,7 +27,7 @@ export default function Stars({ demand, notesByDemand, toastOptions }) {
     if (currentNote >= 1) {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/${demand.Id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/note/${demand.Id}`,
           {
             method: "PUT",
             headers: {
