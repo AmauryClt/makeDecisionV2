@@ -15,7 +15,7 @@ function checkUserMiddleware(req, res, next) {
   const query = "SELECT * FROM user WHERE username = ?";
   connection.query(query, [username], (error, results) => {
     if (error) {
-      return res.status(500).json({ error: "Erreur interne du serveur" });
+      throw new Error(error);
     }
 
     if (results.length > 0) {
