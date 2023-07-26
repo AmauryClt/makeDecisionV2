@@ -15,13 +15,13 @@ export default function Profil() {
             <p className={styles.nom}>{user.Lastname}</p>
             <p className={styles.nom}>{user.Firstname}</p>
             <ul className={styles.mobile}>
-              Num Mobile :<li>{user.Numeromob}</li>
+              <p>Num Mobile : {user.Numeromob}</p>
             </ul>
             <ul className={styles.fixe}>
-              Num Fixe :<li>{user.Numerofix}</li>
+              <p>Num Fixe : {user.Numerofix}</p>
             </ul>
             <ul className={styles.email}>
-              Email :<li>{user.Email}</li>
+              <p>Email : {user.Email}</p>
             </ul>
             {user.Admin === 1 && (
               <div className={styles.button}>
