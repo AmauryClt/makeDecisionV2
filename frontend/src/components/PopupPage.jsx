@@ -42,7 +42,6 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
     fetchNotesByDemand();
   }, [demand.Id]);
 
-  console.info(notesByDemand);
   const dateStr = demand.Deadline;
   const formattedDateISO = formatISO(new Date(dateStr), {
     representation: "date",

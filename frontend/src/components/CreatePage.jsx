@@ -69,7 +69,6 @@ export default function CreatePage({ toastOptions }) {
         body: JSON.stringify(data),
       })
         .then(() => {
-          console.info("Update done");
           navigate(-1);
           toast.success("La demande a bien été mise à jour", toastOptions);
         })
@@ -89,7 +88,6 @@ export default function CreatePage({ toastOptions }) {
         body: JSON.stringify(data),
       })
         .then(() => {
-          console.info("Created demand");
           navigate("../demands/vote");
           toast.success("Votre demande a bien été créée", toastOptions);
         })
