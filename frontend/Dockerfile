@@ -1,7 +1,7 @@
 # Dockerfile frontend
 # build environment
-FROM node:latest as builder
-RUN mkdir /usr/src/app/node_modules/.bin
+FROM node:18.16.1 as builder
+RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 ENV PATH /usr/src/node_modules/.bin:$PATH
 ARG VITE_BACKEND_URL=${VITE_BACKEND_URL}
