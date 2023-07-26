@@ -52,7 +52,6 @@ const postDemand = (req, res) => {
 const updateDemand = (req, res) => {
   const id = parseInt(req.params.id, 10);
   const { ServicesImpacts } = req.body;
-  console.info(req.body);
 
   models.demand
     .update({ ...req.body, Id: id })

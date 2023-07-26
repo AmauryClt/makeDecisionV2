@@ -2,7 +2,6 @@ const models = require("../models");
 
 const postNote = (req, res) => {
   const { Note, UserId, DemandId } = req.body;
-  console.info(req.body);
   models.interaction
     .addInteraction({
       DemandId,

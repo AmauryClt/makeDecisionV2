@@ -6,8 +6,6 @@ export default function AdminPage() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.info("ce que j'envoi", data);
-
     fetch(`${import.meta.env.VITE_BACKEND_URL}/users`, {
       method: "POST",
       headers: {
@@ -16,9 +14,6 @@ export default function AdminPage() {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((result) => {
-        console.info(result);
-      })
       .catch((error) => {
         console.error(error);
       });

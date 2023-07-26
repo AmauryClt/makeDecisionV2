@@ -32,7 +32,6 @@ function LoginForm({ toastOptions }) {
           setUser(json.user);
           navigate("/");
           toast.success("Bienvenue !!!", toastOptions);
-          console.info(json.user);
         }
       })
       .catch((error) => {
