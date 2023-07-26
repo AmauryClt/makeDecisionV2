@@ -91,7 +91,9 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
               <div className={styles.block4}>
                 <div className={styles.block4Content}>
                   <h4>Détail de la prise de décision :</h4>
-                  <p className={styles.contentFrontDemand}>
+                  <p
+                    className={`${styles.contentFrontDemand} ${styles.pBorderComment}`}
+                  >
                     <span
                       dangerouslySetInnerHTML={{ __html: demand.Content }}
                     />
