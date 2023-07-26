@@ -8,8 +8,6 @@ export default function AdminPage({ toastOptions }) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.info("ce que j'envoi", data);
-
     fetch(`${import.meta.env.VITE_BACKEND_URL}/users`, {
       method: "POST",
       headers: {
@@ -118,7 +116,7 @@ export default function AdminPage({ toastOptions }) {
               <input
                 {...register("password")}
                 className={styles.champs}
-                type="text"
+                type="password"
                 name="password"
                 placeholder="hashedPassword"
                 required

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import styles from "./loginForm.module.scss";
 import { useUser } from "../contexts/UserContext";
+import accueil from "../assets/makesenseaccueil.jpg";
 
 function LoginForm({ toastOptions }) {
   const navigate = useNavigate();
@@ -31,7 +32,6 @@ function LoginForm({ toastOptions }) {
           setUser(json.user);
           navigate("/");
           toast.success("Bienvenue !!!", toastOptions);
-          console.info(json.user);
         }
       })
       .catch((error) => {
@@ -75,11 +75,7 @@ function LoginForm({ toastOptions }) {
           </button>
         </div>
       </form>
-      <img
-        className={styles.imglogin}
-        src="./src/assets/makesenseaccueil.jpg"
-        alt="connect"
-      />
+      <img className={styles.imglogin} src={accueil} alt="connect" />
     </main>
   );
 }
