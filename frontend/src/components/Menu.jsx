@@ -7,7 +7,7 @@ import vote from "../assets/encoursdevote.jpeg";
 export default function Menu() {
   return (
     <main>
-      <h1 className={styles.banniere}> Make A Desision</h1>
+      <h1 className={styles.banniere}> Make A Decision</h1>
       <div className={styles.mainHome}>
         <Link className={styles.Creer} to="/demands/create">
           <img className={styles.imgCards} src={creer} alt="Makesense.Logo" />
