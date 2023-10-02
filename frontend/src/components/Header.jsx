@@ -61,5 +61,5 @@ export default function Header({ toastOptions }) {
 }
 
 Header.propTypes = {
-  toastOptions: PropTypes.shape.isRequired,
+  toastOptions: PropTypes.func.isRequired,
 };

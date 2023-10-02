@@ -30,8 +30,10 @@ class UserManager extends AbstractManager {
     );
   }
 
-  findAll() {
-    return this.database.query(`select username from  ${this.table}`);
+  findAllUser() {
+    return this.database.query(
+      `SELECT username, Firstname, Lastname, Numeromob, Numerofix, Admin FROM  ${this.table}`
+    );
   }
 
   insert(user) {
