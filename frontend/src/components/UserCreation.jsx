@@ -17,9 +17,10 @@ export default function UserCreation({ toastOptions, closePopup }) {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        if (response.status === 201)
+        if (response.status === 201) {
           toast.success("Utilisateur crée avec succès !", toastOptions);
-        else if (response.status === 403)
+          closePopup();
+        } else if (response.status === 403)
           toast.error("Cette utilisateur éxiste déjà", toastOptions);
         else
           throw new Error(
