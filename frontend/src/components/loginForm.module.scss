@@ -5,6 +5,11 @@
 }
 
 .labelStyles {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  float: center;
+  justify-content: center;
   position: absolute;
   width: 60svw;
   color: white;
@@ -58,15 +63,59 @@
   border-radius: 60px;
   width: 20svw;
   text-align: center;
+  margin-top: 1rem;
 }
 
 .loginbutton {
-  font-family: "Raleway", sans-serif;
-  border-radius: 60px;
-  width: 150px;
-  height: 25px;
+  text-align: center;
+  font-size: 1.125rem;
+  font-family: Raleway, sans-serif;
+  font-weight: 800;
   background-color: #fff30d;
   color: black;
+  border: 0.0625rem solid #fff30d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.375rem;
+  width: 12.1875rem;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 3.375rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-right: 1.6875rem;
+  padding-left: 1.6875rem;
+  min-width: 12.1875rem;
+  transition: all 0.3s;
+}
+
+.creatButton {
+  text-align: center;
+  display: flex;
+  margin: auto;
+  float: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  font-family: Raleway, sans-serif;
+  font-weight: 800;
+  background-color: #fff30d;
+  color: black;
+  border: 0.0625rem solid #fff30d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.375rem;
+  width: 8.1875rem;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 3.375rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-right: 1.6875rem;
+  padding-left: 1.6875rem;
+  min-width: 8.1875rem;
+  transition: all 0.3s;
 }
 
 .titleMake {

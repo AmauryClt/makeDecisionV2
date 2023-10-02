@@ -1,0 +1,112 @@
+.popupUser {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  float: center;
+  justify-content: center;
+  position: absolute;
+  width: 40svw;
+  color: black;
+  left: 8rem;
+  top: 13rem;
+  background-color: white;
+  border-radius: 1rem;
+}
+
+.closeButton {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  top: 0.3rem;
+  right: 0.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnsubmit {
+  height: 3rem;
+  background: none;
+  font-family: Raleway;
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: -3rem;
+}
+.champs {
+  align-self: center;
+  width: 10rem;
+  height: 2rem;
+  padding: 0;
+  margin: 0;
+}
+
+.Modifier {
+  text-align: center;
+  font-size: 1.125rem;
+  font-family: Raleway, sans-serif;
+  font-weight: 800;
+  background-color: rgba(25, 108, 132, 1);
+  color: black;
+  border: 0.0625rem solid rgba(25, 108, 132, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.375rem;
+  width: 15.1875rem;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 3.375rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-right: 1.6875rem;
+  padding-left: 1.6875rem;
+  min-width: 15.1875rem;
+  transition: all 0.3s;
+}
+
+.texte {
+  align-self: center;
+  font-family: Raleway;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.recalibrage {
+  padding: 0;
+  display: flex;
+}
+
+.personne {
+  width: 15rem;
+  margin-left: 5%;
+}
+
+.donnée {
+  width: 15rem;
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: 1250px) {
+  .popupUser {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    float: center;
+    justify-content: center;
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    color: black;
+    top: 5%;
+    left: 2%;
+    right: 2%;
+    bottom: 5%;
+    background-color: white;
+    border-radius: 1rem;
+    border: solid;
+  }
+}

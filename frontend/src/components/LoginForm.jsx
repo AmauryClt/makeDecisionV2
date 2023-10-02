@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
+import UserCreation from "./UserCreation";
 import styles from "./loginForm.module.scss";
 import { useUser } from "../contexts/UserContext";
 import accueil from "../assets/makesenseaccueil.jpg";
@@ -11,6 +12,7 @@ function LoginForm({ toastOptions }) {
   const [errors, setErrors] = useState("");
   const form = useRef(null);
   const { setUser } = useUser();
+  const [showUserCreationPopup, setShowUserCreationPopup] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +44,15 @@ function LoginForm({ toastOptions }) {
         );
       });
   };
+
+  const openPopup = () => {
+    setShowUserCreationPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowUserCreationPopup(false);
+  };
+
   return (
     <main className={styles.mainHome}>
       <form className={styles.labelStyles} ref={form} onSubmit={handleSubmit}>
@@ -68,14 +79,28 @@ function LoginForm({ toastOptions }) {
             />
           </label>
         </div>
-
         <div className={styles.login}>
           <button className={styles.loginbutton} type="submit">
             LOGIN
           </button>
         </div>
+        <div
+          className={styles.creatButton}
+          aria-hidden
+          onClick={openPopup}
+          role="button"
+        >
+          CREATE USER
+        </div>
       </form>
       <img className={styles.imglogin} src={accueil} alt="connect" />
+      {showUserCreationPopup && (
+        <div className={styles.popupOverlay}>
+          <div className={styles.popup}>
+            <UserCreation closePopup={closePopup} />
+          </div>
+        </div>
+      )}
     </main>
   );
 }
