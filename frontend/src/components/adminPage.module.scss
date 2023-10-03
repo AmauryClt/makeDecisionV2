@@ -11,65 +11,63 @@
   flex-direction: column;
   align-items: center;
 }
-.btnsubmit {
-  height: 3rem;
-  background: white;
-  font-family: Raleway;
-  text-align: center;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-  margin-left: -3rem;
-}
-.champs {
-  align-self: center;
-  width: 10rem;
-  height: 2rem;
-  padding: 0;
-  margin: 0;
-}
 
-.Modifier {
-  text-align: center;
-  font-size: 1.125rem;
-  font-family: Raleway, sans-serif;
-  font-weight: 800;
-  background-color: rgba(25, 108, 132, 1);
-  color: black;
-  border: 0.0625rem solid rgba(25, 108, 132, 1);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 3.375rem;
-  width: 15.1875rem;
-  cursor: pointer;
-  text-decoration: none;
-  border-radius: 3.375rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding-right: 1.6875rem;
-  padding-left: 1.6875rem;
-  min-width: 15.1875rem;
-  transition: all 0.3s;
-}
-
-.texte {
-  align-self: center;
-  font-family: Raleway;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
-}
-
-.recalibrage {
-  padding: 0;
+.dataUserContainer {
   display: flex;
+  flex-direction: column;
+  width: 70svw;
+  margin-right: 1rem;
 }
 
-.personne {
-  width: 15rem;
-  margin-left: 5%;
+.showUser {
+  display: block;
+  border: solid 1px;
+  border-radius: 10px;
+  height: 15svh;
+  position: relative;
+  margin-bottom: 1rem;
+  cursor: pointer;
 }
 
-.donnée {
-  width: 15rem;
-  margin-left: 2rem;
+.buttonContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.showUser:hover {
+  background-color: #eaeaea;
+  box-shadow: 0.2375rem 0.2375rem 0.45rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.blockFrontAllUser {
+  display: flex;
+  justify-content: space-between;
+}
+
+.showAllUser .titleFrontAllUser {
+  margin: 10px 0 5px 10px;
+  border-bottom: none;
+}
+
+.showAllUser .statutFrontAllUser {
+  margin: 10px 10px 5px 0;
+  border-bottom: none;
+}
+
+.showAllUser .contentFrontAllUser {
+  margin-left: 10px;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  border-bottom: none;
 }

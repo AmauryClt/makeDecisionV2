@@ -11,14 +11,14 @@ class UserManager extends AbstractManager {
 
   find(id) {
     return this.database.query(
-      `select username from  ${this.table} where id = ?`,
+      `SELECT username from  ${this.table} where id = ?`,
       [id]
     );
   }
 
   findByUsernameWithHashedPassword(username) {
     return this.database.query(
-      `select Id, Email, username, Lastname, Firstname, Numeromob, Numerofix, Admin, hashedPassword from  ${this.table} where username = ?`,
+      `SELECT Id, Email, username, Lastname, Firstname, Numeromob, Numerofix, Admin, hashedPassword from  ${this.table} where username = ?`,
       [username]
     );
   }
@@ -32,13 +32,13 @@ class UserManager extends AbstractManager {
 
   findAllUser() {
     return this.database.query(
-      `SELECT username, Firstname, Lastname, Numeromob, Numerofix, Admin FROM  ${this.table}`
+      `SELECT Id, username, Firstname, Lastname, Numeromob, Numerofix, Admin FROM  ${this.table}`
     );
   }
 
   insert(user) {
     return this.database.query(
-      `insert into ${this.table} (username, Lastname, Firstname, Numeromob, Email, hashedPassword) values (?, ?, ?, ?, ?, ?)`,
+      `INSERT into ${this.table} (username, Lastname, Firstname, Numeromob, Email, hashedPassword) values (?, ?, ?, ?, ?, ?)`,
       [
         user.username,
         user.Lastname,
@@ -46,6 +46,20 @@ class UserManager extends AbstractManager {
         user.Numeromob,
         user.Email,
         user.hashedPassword,
+      ]
+    );
+  }
+
+  change(user) {
+    return this.database.query(
+      `UPDATE ${this.table} SET username = ?, Lastname = ?, Firstname = ?, Numeromob = ?, Email = ? WHERE Id=?`,
+      [
+        user.username,
+        user.Lastname,
+        user.Firstname,
+        user.Numeromob,
+        user.Email,
+        user.Id,
       ]
     );
   }

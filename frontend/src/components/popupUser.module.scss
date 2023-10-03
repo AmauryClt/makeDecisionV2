@@ -1,0 +1,31 @@
+.popupContainerUser {
+  position: fixed;
+  background-color: #d9d9d9;
+  top: 5%;
+  left: 2%;
+  right: 2%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+}
+
+.closeButton {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  top: 0.3rem;
+  right: 0.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton img {
+  width: 100%;
+  height: auto;
+}

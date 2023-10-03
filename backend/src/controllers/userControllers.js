@@ -45,6 +45,7 @@ const edit = (req, res) => {
       res.sendStatus(500);
     });
 };
+
 const add = (req, res) => {
   const user = req.body;
 
@@ -56,6 +57,25 @@ const add = (req, res) => {
     .catch((err) => {
       console.error(err);
       res.sendStatus(500);
+    });
+};
+
+const changeUser = (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const { username, Lastname, Firstname, Numeromob, Email } = req.body;
+
+  models.user
+    .change({ username, Lastname, Firstname, Numeromob, Email, Id: id })
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Erreur lors de la modification de l'utilisateur");
     });
 };
 
@@ -110,6 +130,7 @@ module.exports = {
   read,
   edit,
   add,
+  changeUser,
   destroy,
   getProfile,
   getUserById,

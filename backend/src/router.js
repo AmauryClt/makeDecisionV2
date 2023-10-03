@@ -26,6 +26,7 @@ router.get("/user", userControllers.getProfile);
 router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
 router.put("/users/:id", hashPassword, userControllers.edit);
+router.put("/changeUser/:id", checkUserMiddleware, userControllers.changeUser);
 router.post("/users", checkUserMiddleware, hashPassword, userControllers.add);
 router.delete("/users/:id", userControllers.destroy);
 router.get("/user/:userId", userControllers.getUserById);

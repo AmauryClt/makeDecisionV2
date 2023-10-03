@@ -31,7 +31,7 @@ class DemandManager extends AbstractManager {
 
   add(demand) {
     return this.database.query(
-      `insert into ${this.table}(Title,Deadline,Content,Benefice,Inconvenience,UserId) values (?,?,?,?,?,?)`,
+      `INSERT into ${this.table}(Title,Deadline,Content,Benefice,Inconvenience,UserId) values (?,?,?,?,?,?)`,
       [
         demand.Title,
         demand.Deadline,
@@ -45,7 +45,7 @@ class DemandManager extends AbstractManager {
 
   update(demand) {
     return this.database.query(
-      `update ${this.table} set Title = ?, Deadline = ?, Content= ?, Benefice= ?, Inconvenience= ? where Id=?`,
+      `UPDATE ${this.table} set Title = ?, Deadline = ?, Content= ?, Benefice= ?, Inconvenience= ? where Id=?`,
       [
         demand.Title,
         demand.Deadline,
