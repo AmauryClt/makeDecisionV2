@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import EditUser from "./EditUser";
 import styles from "./popupUser.module.scss";
 import exitButtonImage from "../assets/bouttonExit.png";
+import editButtonImage from "../assets/modifier.png";
 
 export default function PopupUser({ allUser, closePopup }) {
   return (
@@ -19,6 +21,15 @@ export default function PopupUser({ allUser, closePopup }) {
           alt="Exit"
           className={styles.closeButton}
           onClick={closePopup}
+        />
+      </div>
+      <div>
+        <img
+          aria-hidden
+          src={editButtonImage}
+          alt="Edit"
+          className={styles.editButton}
+          onClick={<EditUser />}
         />
       </div>
     </div>

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import { formatISO, format, formatDistanceStrict } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -18,7 +19,17 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
   const { user } = useUser();
   const navigate = useNavigate();
   const editDemand = () => {
-    navigate(`/demands/update/${demand.Id}`);
+    if (
+      demand.Statut === "EN ATTENTE DE VOTE" ||
+      demand.Statut === "EN DESACCORD"
+    ) {
+      navigate(`/demands/update/${demand.Id}`);
+    } else {
+      // Vous pouvez afficher un message d'erreur ou prendre d'autres mesures ici
+      toast.error(
+        "L'accès à la mise à jour de la demande est interdit pour ce statut."
+      );
+    }
   };
 
   useEffect(() => {
@@ -105,7 +116,10 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
                     {demand.Inconvenience}
                   </p>
                   <h4>Commentaire :</h4>
-                  <CommentFunction demand={demand} />
+                  <CommentFunction
+                    demand={demand}
+                    toastOptions={toastOptions}
+                  />
                 </div>
               </div>
             </div>

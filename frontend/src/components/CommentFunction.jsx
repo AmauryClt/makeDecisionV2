@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { useUser } from "../contexts/UserContext";
 import styles from "./commentFunction.module.scss";
 
-export default function CommentFunction({ demand }) {
+export default function CommentFunction({ demand, toastOptions }) {
   const [comments, setComments] = useState([]);
   const { register, handleSubmit, reset } = useForm();
   const { user } = useUser();
@@ -45,12 +46,23 @@ export default function CommentFunction({ demand }) {
           }),
         }
       );
-      reset();
-      fetchComments();
-      const data = await response.json();
-      console.info(data);
+
+      if (response.status === 201) {
+        toast.success("Commentaire enregistré avec succès", toastOptions);
+        reset();
+        fetchComments();
+        console.info("Le commentaire a été enregistré avec succès");
+      } else if (response.status === 403) {
+        toast.error(
+          "Impossible de laisser un commentaire sur cette demande",
+          toastOptions
+        );
+      }
     } catch (error) {
-      console.error(error);
+      console.error(
+        "Erreur lors de l'enregistrement du message :",
+        error.message
+      );
     }
   };
 
@@ -89,4 +101,8 @@ CommentFunction.propTypes = {
   demand: PropTypes.shape({
     Id: PropTypes.number.isRequired,
   }).isRequired,
+};
+
+CommentFunction.propTypes = {
+  toastOptions: PropTypes.shape.isRequired,
 };

@@ -68,14 +68,14 @@ const updateDemand = (req, res) => {
             return Promise.all(tasks);
           })
           .then(() => {
-            res.send(204);
+            res.send(201);
           })
           .catch((err) => {
             console.error(err);
             res.status(500).send("Error saving");
           });
       } else if (ServicesImpacts?.length === 0) {
-        res.send(204);
+        res.send(201);
       }
     })
     .catch((err) => {
@@ -93,7 +93,7 @@ const putNote = (req, res) => {
       if (result.affectedRows === 0) {
         res.status(404).send("Not Found");
       } else {
-        res.sendStatus(204);
+        res.sendStatus(201);
       }
     })
     .catch((err) => {

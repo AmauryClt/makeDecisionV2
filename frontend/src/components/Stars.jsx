@@ -41,9 +41,17 @@ export default function Stars({ demand, notesByDemand, toastOptions }) {
           }
         );
 
-        const data = await response.json();
-        console.info("Note mise à jour avec succès :", data);
-        toast.success("Note mise à jour avec succès", toastOptions);
+        if (response.status === 201) {
+          const data = await response.json();
+          console.info("Note mise à jour avec succès :", data);
+          toast.success("Note mise à jour avec succès", toastOptions);
+        } else if (response.status === 403) {
+          toast.error("Impossible de modifier cette demande", toastOptions);
+        } else {
+          throw new Error(
+            "Un problème à eu lieu lors de la mise à jour de la note"
+          );
+        }
       } catch (error) {
         console.error(
           "Erreur lors de la mise à jour de la note :",
@@ -67,11 +75,22 @@ export default function Stars({ demand, notesByDemand, toastOptions }) {
           }
         );
 
-        const data = await response.json();
-        console.info("Note envoyée avec succès :", data);
-        toast.success("Note enregistré avec succès", toastOptions);
+        if (response.status === 201) {
+          const data = await response.json();
+          console.info("Note enregistré avec succès :", data);
+          toast.success("Note enregistré avec succès", toastOptions);
+        } else if (response.status === 403) {
+          toast.error("Impossible de modifier cette demande", toastOptions);
+        } else {
+          throw new Error(
+            "Un problème à eu lieu lors de l'enregistrement de la note"
+          );
+        }
       } catch (error) {
-        console.error("Erreur lors de l'envoi de la note :", error.message);
+        console.error(
+          "Erreur lors de l'enregistrement de la note :",
+          error.message
+        );
       }
     }
   };
