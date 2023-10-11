@@ -8,12 +8,14 @@ import editButtonImage from "../assets/modifier.png";
 export default function PopupUser({ allUser, closePopup }) {
   return (
     <div className={styles.popupContainerUser}>
-      <h3>Username: {allUser.username}</h3>
-      <h3>Firstname: {allUser.Firstname}</h3>
-      <h3>Lastname: {allUser.Lastname}</h3>
-      <h3>Numeromob: {allUser.Numeromob}</h3>
-      <h3>Numerofix: {allUser.Numerofix}</h3>
-      <h3>Admin: {allUser.Admin}</h3>
+      <div className={styles.popupListUser}>
+        <h3>Username: {allUser.username}</h3>
+        <h3>Firstname: {allUser.Firstname}</h3>
+        <h3>Lastname: {allUser.Lastname}</h3>
+        <h3>Numeromob: {allUser.Numeromob}</h3>
+        <h3>Numerofix: {allUser.Numerofix}</h3>
+        <h3>Admin: {allUser.Admin}</h3>
+      </div>
       <div>
         <img
           aria-hidden

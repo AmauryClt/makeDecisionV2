@@ -16,6 +16,24 @@ const postComment = (req, res) => {
     });
 };
 
+const updateComment = (req, res) => {
+  const { Comment, DemandId, UserId } = req.body;
+
+  models.commentary
+    .modifComment({
+      Comment,
+      DemandId,
+      UserId,
+    })
+    .then((commentary) => {
+      res.status(201).json(commentary);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error saving");
+    });
+};
+
 const getCommentsByDemandId = (req, res) => {
   const DemandId = parseInt(req.params.demandId, 10);
 
@@ -32,5 +50,6 @@ const getCommentsByDemandId = (req, res) => {
 
 module.exports = {
   postComment,
+  updateComment,
   getCommentsByDemandId,
 };

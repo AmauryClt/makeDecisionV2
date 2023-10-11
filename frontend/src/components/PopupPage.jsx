@@ -32,26 +32,29 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
     }
   };
 
-  useEffect(() => {
-    const fetchNotesByDemand = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/notes/${demand.Id}`
-        );
+  const fetchNotesByDemand = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/notes/${demand.Id}`
+      );
 
-        if (response.ok) {
-          const data = await response.json();
-          setNotesByDemand(data.notes);
-        } else {
-          console.error("Impossible de récupérer les notes pour la demande.");
-        }
-      } catch (error) {
-        console.error("Erreur lors de la récupération des notes :", error);
+      if (response.ok) {
+        const data = await response.json();
+        setNotesByDemand(data.notes);
+      } else {
+        console.error("Impossible de récupérer les notes pour la demande.");
       }
-    };
-
+    } catch (error) {
+      console.error("Erreur lors de la récupération des notes :", error);
+    }
+  };
+  useEffect(() => {
     fetchNotesByDemand();
   }, [demand.Id]);
+
+  const triggerFetchNotes = () => {
+    fetchNotesByDemand();
+  };
 
   const dateStr = demand.Deadline;
   const formattedDateISO = formatISO(new Date(dateStr), {
@@ -147,6 +150,7 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
                     demand={demand}
                     notesByDemand={notesByDemand}
                     toastOptions={toastOptions}
+                    triggerFetchNotes={triggerFetchNotes}
                   />
                 </div>
               </div>

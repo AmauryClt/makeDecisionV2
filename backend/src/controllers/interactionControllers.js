@@ -20,11 +20,7 @@ const postNote = (req, res) => {
 const updateNote = (req, res) => {
   const { Note, UserId, DemandId } = req.body;
   models.interaction
-    .modifInteraction({
-      Note,
-      UserId,
-      DemandId,
-    })
+    .modifInteraction(Note, UserId, DemandId)
     .then((interaction) => {
       res.status(201).json(interaction);
     })

@@ -90,6 +90,28 @@ export default function CommentFunction({ demand, toastOptions }) {
               </h5>
             </div>
             <p className={styles.contentComment}>{comment.Comment}</p>
+            {/* <div className={styles.closeButton}>
+            {user.Id === comment.UserId && (
+              <div>
+                <img
+                  aria-hidden
+                  src={editButtonImage}
+                  alt="Edit"
+                  className={styles.editButton}
+                  onClick={editComment}
+                />
+              </div>
+            )}
+            <div>
+              <img
+                aria-hidden
+                src={exitButtonImage}
+                alt="Exit"
+                className={styles.closeButton}
+                onClick={deleteComment}
+              />
+            </div>
+          </div> */}
           </div>
         ))}
       </div>

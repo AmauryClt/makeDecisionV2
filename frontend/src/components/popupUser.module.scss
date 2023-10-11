@@ -11,6 +11,11 @@
   border-radius: 1rem;
 }
 
+.popupListUser {
+  display: flex;
+  flex-direction: column;
+}
+
 .editButton {
   width: 1.5rem;
   height: 1.5rem;

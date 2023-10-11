@@ -5,7 +5,12 @@ import { toast } from "react-toastify";
 import { useUser } from "../contexts/UserContext";
 import styles from "./stars.module.scss";
 
-export default function Stars({ demand, notesByDemand, toastOptions }) {
+export default function Stars({
+  demand,
+  notesByDemand,
+  toastOptions,
+  triggerFetchNotes,
+}) {
   const { user } = useUser();
   const [rating, setRating] = useState(0);
   const [currentNote, setCurrentNote] = useState(null);
@@ -45,6 +50,8 @@ export default function Stars({ demand, notesByDemand, toastOptions }) {
           const data = await response.json();
           console.info("Note mise à jour avec succès :", data);
           toast.success("Note mise à jour avec succès", toastOptions);
+
+          triggerFetchNotes();
         } else if (response.status === 403) {
           toast.error("Impossible de modifier cette demande", toastOptions);
         } else {
@@ -79,6 +86,8 @@ export default function Stars({ demand, notesByDemand, toastOptions }) {
           const data = await response.json();
           console.info("Note enregistré avec succès :", data);
           toast.success("Note enregistré avec succès", toastOptions);
+
+          triggerFetchNotes();
         } else if (response.status === 403) {
           toast.error("Impossible de modifier cette demande", toastOptions);
         } else {
@@ -145,4 +154,5 @@ Stars.propTypes = {
 
 Stars.propTypes = {
   toastOptions: PropTypes.shape.isRequired,
+  triggerFetchNotes: PropTypes.func.isRequired,
 };

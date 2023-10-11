@@ -12,6 +12,13 @@ class CommentManager extends AbstractManager {
     );
   }
 
+  modifComment(commentary) {
+    return this.database.query(
+      `UPDATE ${this.table} SET Comment = ? WHERE DemandId = ? AND UserId = ?`,
+      [commentary.Comment, commentary.DemandId, commentary.UserId]
+    );
+  }
+
   findCommentsByDemandId(demandId) {
     return this.database.query(
       `
