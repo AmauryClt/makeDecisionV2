@@ -20,7 +20,7 @@ router.put(
   demandControllers.updateDemand
 );
 router.post("/comments", checkDemandMiddleware, commentController.postComment);
-// router.delete("/comments/delete/:id", checkDemandMiddleware, commentController.deleteComment);
+router.delete("/comments/delete/:id", commentController.deleteComment);
 router.put(
   "/comments/update/:id",
   checkDemandMiddleware,

@@ -16,6 +16,20 @@ const postComment = (req, res) => {
     });
 };
 
+const deleteComment = (req, res) => {
+  const commentId = parseInt(req.params.id, 10);
+
+  models.commentary
+    .delete(commentId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error deleting comment");
+    });
+};
+
 const updateComment = (req, res) => {
   const { Comment, DemandId, UserId } = req.body;
 
@@ -51,5 +65,6 @@ const getCommentsByDemandId = (req, res) => {
 module.exports = {
   postComment,
   updateComment,
+  deleteComment,
   getCommentsByDemandId,
 };
