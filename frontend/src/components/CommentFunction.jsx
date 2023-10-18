@@ -9,6 +9,8 @@ export default function CommentFunction({ demand, toastOptions }) {
   const [comments, setComments] = useState([]);
   const { register, handleSubmit, reset } = useForm();
   const { user } = useUser();
+  const [editCommentId, setEditCommentId] = useState(null);
+  const [editedComment, setEditedComment] = useState("");
   const fetchComments = async () => {
     try {
       const response = await fetch(
@@ -66,6 +68,71 @@ export default function CommentFunction({ demand, toastOptions }) {
     }
   };
 
+  const fetchPutComment = async (commentToEdit) => {
+    try {
+      console.info("Data to be sent in the PUT request:", {
+        Comment: editedComment,
+        DemandId: demand.Id,
+        UserId: commentToEdit.UserId,
+      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/comments/update/${
+          commentToEdit.Id
+        }`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            Comment: editedComment,
+            DemandId: demand.Id,
+            UserId: commentToEdit.UserId,
+          }),
+        }
+      );
+
+      if (response.status === 201) {
+        reset();
+        fetchComments();
+        console.info("Le commentaire a été enregistré avec succès");
+      } else if (response.status === 403) {
+        toast.error(
+          "Impossible de laisser un commentaire sur cette demande",
+          toastOptions
+        );
+      }
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'enregistrement du message :",
+        error.message
+      );
+    }
+
+    setEditCommentId(null);
+    setEditedComment("");
+  };
+
+  const startEditingComment = (commentId) => {
+    setEditCommentId(commentId);
+    const commentToEdit = comments.find((comment) => comment.Id === commentId);
+    setEditedComment(commentToEdit.Comment);
+  };
+
+  const saveEditedComment = async (commentToEdit) => {
+    try {
+      await fetchPutComment(commentToEdit);
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'enregistrement du message :",
+        error.message
+      );
+    }
+
+    setEditCommentId(null);
+    setEditedComment("");
+  };
+
   return (
     <>
       <form className={styles.commentPost} onSubmit={handleSubmit(onSubmit)}>
@@ -89,29 +156,38 @@ export default function CommentFunction({ demand, toastOptions }) {
                 {comment.Lastname} {comment.Firstname}
               </h5>
             </div>
-            <p className={styles.contentComment}>{comment.Comment}</p>
-            {/* <div className={styles.closeButton}>
+            {editCommentId === comment.Id ? (
+              <div>
+                <textarea
+                  value={editedComment}
+                  onChange={(e) => setEditedComment(e.target.value)}
+                />
+                <input type="hidden" name="UserId" value={comment.UserId} />
+                <button
+                  type="button"
+                  onClick={() => saveEditedComment(comment)}
+                >
+                  Save
+                </button>
+              </div>
+            ) : (
+              <p className={styles.contentComment}>{comment.Comment}</p>
+            )}
             {user.Id === comment.UserId && (
               <div>
-                <img
-                  aria-hidden
-                  src={editButtonImage}
-                  alt="Edit"
-                  className={styles.editButton}
-                  onClick={editComment}
-                />
+                {editCommentId !== comment.Id && (
+                  <button
+                    type="button"
+                    onClick={() => startEditingComment(comment.Id)}
+                  >
+                    Edit
+                  </button>
+                )}
+                {/* <button type="button" onClick={() => deleteComment(comment)}>
+                  Delete
+                </button> */}
               </div>
             )}
-            <div>
-              <img
-                aria-hidden
-                src={exitButtonImage}
-                alt="Exit"
-                className={styles.closeButton}
-                onClick={deleteComment}
-              />
-            </div>
-          </div> */}
           </div>
         ))}
       </div>

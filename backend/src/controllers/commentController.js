@@ -31,12 +31,13 @@ const deleteComment = (req, res) => {
 };
 
 const updateComment = (req, res) => {
-  const { Comment, DemandId, UserId } = req.body;
+  const { Comment, UserId } = req.body;
+  const CommentId = req.params.id; // Obtenir l'ID de l'URL
 
   models.commentary
     .modifComment({
       Comment,
-      DemandId,
+      Id: CommentId, // Utiliser l'ID de l'URL
       UserId,
     })
     .then((commentary) => {

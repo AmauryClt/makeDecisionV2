@@ -14,8 +14,8 @@ class CommentManager extends AbstractManager {
 
   modifComment(commentary) {
     return this.database.query(
-      `UPDATE ${this.table} SET Comment = ? WHERE DemandId = ? AND UserId = ?`,
-      [commentary.DemandId, commentary.UserId]
+      `UPDATE ${this.table} SET Comment = ? WHERE Id = ? AND UserId = ?`,
+      [commentary.Comment, commentary.Id, commentary.UserId]
     );
   }
 
