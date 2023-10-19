@@ -11,6 +11,7 @@ export default function CommentFunction({ demand, toastOptions }) {
   const { user } = useUser();
   const [editCommentId, setEditCommentId] = useState(null);
   const [editedComment, setEditedComment] = useState("");
+
   const fetchComments = async () => {
     try {
       const response = await fetch(
@@ -70,11 +71,6 @@ export default function CommentFunction({ demand, toastOptions }) {
 
   const fetchPutComment = async (commentToEdit) => {
     try {
-      console.info("Data to be sent in the PUT request:", {
-        Comment: editedComment,
-        DemandId: demand.Id,
-        UserId: commentToEdit.UserId,
-      });
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/comments/update/${
           commentToEdit.Id
@@ -111,6 +107,26 @@ export default function CommentFunction({ demand, toastOptions }) {
 
     setEditCommentId(null);
     setEditedComment("");
+  };
+
+  const deleteCommentbutton = async (commentId) => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/comments/delete/${commentId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.status === 201) {
+        fetchComments();
+        console.info("Le commentaire a été supprimé avec succès");
+      } else if (response.status === 403) {
+        toast.error("Impossible de supprimer ce commentaire", toastOptions);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la suppression du commentaire :", error);
+    }
   };
 
   const startEditingComment = (commentId) => {
@@ -183,9 +199,12 @@ export default function CommentFunction({ demand, toastOptions }) {
                     Edit
                   </button>
                 )}
-                {/* <button type="button" onClick={() => deleteComment(comment)}>
+                <button
+                  type="button"
+                  onClick={() => deleteCommentbutton(comment.Id)}
+                >
                   Delete
-                </button> */}
+                </button>
               </div>
             )}
           </div>

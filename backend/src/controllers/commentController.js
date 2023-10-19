@@ -22,7 +22,7 @@ const deleteComment = (req, res) => {
   models.commentary
     .delete(commentId)
     .then(() => {
-      res.sendStatus(204);
+      res.sendStatus(201);
     })
     .catch((error) => {
       console.error(error);
@@ -32,12 +32,12 @@ const deleteComment = (req, res) => {
 
 const updateComment = (req, res) => {
   const { Comment, UserId } = req.body;
-  const CommentId = req.params.id; // Obtenir l'ID de l'URL
+  const CommentId = req.params.id;
 
   models.commentary
     .modifComment({
       Comment,
-      Id: CommentId, // Utiliser l'ID de l'URL
+      Id: CommentId,
       UserId,
     })
     .then((commentary) => {
