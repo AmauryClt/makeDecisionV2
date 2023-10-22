@@ -8,19 +8,19 @@ export default function VotePage({ isUpdated, toastOptions }) {
   const [selectedDemand, setSelectedDemand] = useState(null);
   const [filter, setFilter] = useState("all");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/demands`
-        );
-        const data = await response.json();
-        setDemands(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/demands`
+      );
+      const data = await response.json();
+      setDemands(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, [isUpdated]);
 
@@ -42,6 +42,10 @@ export default function VotePage({ isUpdated, toastOptions }) {
 
   const handleFilterWithDisagreement = () => {
     setFilter("withDisagreement");
+  };
+
+  const updateData = () => {
+    fetchData();
   };
 
   return (
@@ -125,6 +129,7 @@ export default function VotePage({ isUpdated, toastOptions }) {
           closePopup={closePopup}
           styles={styles}
           toastOptions={toastOptions}
+          updateData={updateData}
         />
       )}
     </main>

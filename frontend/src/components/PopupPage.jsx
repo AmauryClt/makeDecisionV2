@@ -14,7 +14,12 @@ import editButtonImage from "../assets/modifier.png";
 import CommentFunction from "./CommentFunction";
 import MemberByVote from "./MemberByVote";
 
-export default function PopupPage({ demand, closePopup, toastOptions }) {
+export default function PopupPage({
+  demand,
+  closePopup,
+  toastOptions,
+  updateData,
+}) {
   const [notesByDemand, setNotesByDemand] = useState([]);
   const { user } = useUser();
   const navigate = useNavigate();
@@ -67,6 +72,11 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
     locale: fr,
   });
 
+  const closePopupAndRefreshData = () => {
+    closePopup();
+    updateData();
+  };
+
   return (
     <div className={styles.popupContainer}>
       <Scrollbars style={{ height: "95%", marginRight: "1.5px" }}>
@@ -89,7 +99,7 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
                 src={exitButtonImage}
                 alt="Exit"
                 className={styles.closeButton}
-                onClick={closePopup}
+                onClick={closePopupAndRefreshData}
               />
             </div>
           </div>
@@ -177,5 +187,6 @@ PopupPage.propTypes = {
     UserId: PropTypes.number.isRequired,
   }).isRequired,
   closePopup: PropTypes.func.isRequired,
+  updateData: PropTypes.func.isRequired,
   toastOptions: PropTypes.shape.isRequired,
 };
