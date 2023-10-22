@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Scrollbars } from "react-custom-scrollbars-2";
-import { formatISO, format, formatDistanceStrict } from "date-fns";
-import { fr } from "date-fns/locale";
 import Stars from "./Stars";
 import AlgoNote from "./AlgoNote";
 import { useUser } from "../contexts/UserContext";
@@ -13,6 +11,7 @@ import exitButtonImage from "../assets/bouttonExit.png";
 import editButtonImage from "../assets/modifier.png";
 import CommentFunction from "./CommentFunction";
 import MemberByVote from "./MemberByVote";
+import DeadlineFunction from "./DeadlineFunction";
 
 export default function PopupPage({
   demand,
@@ -59,18 +58,6 @@ export default function PopupPage({
   const triggerFetchNotes = () => {
     fetchNotesByDemand();
   };
-
-  const dateStr = demand.Deadline;
-  const formattedDateISO = formatISO(new Date(dateStr), {
-    representation: "date",
-  });
-  const formattedDate = format(new Date(formattedDateISO), "dd/MM/yyyy");
-
-  const deadline = formatDistanceStrict(new Date(demand.Deadline), new Date(), {
-    addSuffix: true,
-    unit: "day",
-    locale: fr,
-  });
 
   const closePopupAndRefreshData = () => {
     closePopup();
@@ -138,11 +125,11 @@ export default function PopupPage({
             <div className={styles.block5}>
               <div className={styles.block5Content}>
                 <h4 className={styles.h4Block5}>Date de cloture des votes :</h4>
-                <p className={styles.pBorder}>
-                  {formattedDate}
-                  <br />
-                  Fin des votes {deadline}
-                </p>
+                <DeadlineFunction
+                  deadline={demand.Deadline}
+                  demandId={demand.Id}
+                  statut={demand.Statut}
+                />
                 <div>
                   <AlgoNote
                     demandId={demand.Id}
