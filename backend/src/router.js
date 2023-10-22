@@ -6,18 +6,21 @@ const demandControllers = require("./controllers/demandControllers");
 const interactionControllers = require("./controllers/interactionControllers");
 const commentController = require("./controllers/commentController");
 const { checkDemandMiddleware } = require("./validator/checkDemand");
+const { checkStatutMiddleware } = require("./validator/checkDemand");
 
 router.get("/demands/", demandControllers.getDemand);
 router.get("/demands/:id", demandControllers.getOneDemand);
-router.post(
-  "/demands/create",
-  checkDemandMiddleware,
-  demandControllers.postDemand
-);
+router.get("/demands/get/statut/:id", demandControllers.getStatut);
+router.post("/demands/create", demandControllers.postDemand);
 router.put(
   "/demands/update/:id",
   checkDemandMiddleware,
   demandControllers.updateDemand
+);
+router.put(
+  "/demands/statut/:id",
+  checkStatutMiddleware,
+  demandControllers.updateStatus
 );
 router.post("/comments", checkDemandMiddleware, commentController.postComment);
 router.delete("/comments/delete/:id", commentController.deleteComment);

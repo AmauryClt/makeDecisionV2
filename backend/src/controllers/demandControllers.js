@@ -84,21 +84,36 @@ const updateDemand = (req, res) => {
     });
 };
 
-const putNote = (req, res) => {
-  const Id = parseInt(req.params.id, 10);
-  const { Note } = req.body;
+const updateStatus = (req, res) => {
+  const demandId = req.params.id;
+  const { Statut } = req.body;
+
   models.demand
-    .put({ Note, Id })
+    .updateStatus({ Id: demandId, Statut })
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error updating status");
+    });
+};
+
+const getStatut = (req, res) => {
+  const demandId = req.params.id;
+
+  models.demand
+    .findStatutWithId(demandId)
     .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.status(404).send("Not Found");
+      if (result.length === 0) {
+        res.sendStatus(404);
       } else {
-        res.sendStatus(201);
+        res.json(result[0]);
       }
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send("Error editing the note");
+      res.status(500).send("Error retrieving status");
     });
 };
 
@@ -107,5 +122,6 @@ module.exports = {
   getOneDemand,
   postDemand,
   updateDemand,
-  putNote,
+  updateStatus,
+  getStatut,
 };

@@ -29,6 +29,13 @@ class DemandManager extends AbstractManager {
     );
   }
 
+  findStatutWithId(id) {
+    return this.database.query(
+      `SELECT Statut FROM ${this.table} WHERE Id = ?`,
+      [id]
+    );
+  }
+
   add(demand) {
     return this.database.query(
       `INSERT into ${this.table}(Title,Deadline,Content,Benefice,Inconvenience,UserId) values (?,?,?,?,?,?)`,
@@ -61,6 +68,13 @@ class DemandManager extends AbstractManager {
     return this.database.query(
       `UPDATE ${this.table} SET Note = ? WHERE Id = ?`,
       [demand.Note, demand.Id]
+    );
+  }
+
+  updateStatus(demand) {
+    return this.database.query(
+      `UPDATE ${this.table} SET Statut = ? WHERE Id = ?`,
+      [demand.Statut, demand.Id]
     );
   }
 }

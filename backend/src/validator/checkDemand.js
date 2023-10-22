@@ -39,4 +39,37 @@ function checkDemandMiddleware(req, res, next) {
   });
 }
 
-module.exports = { checkDemandMiddleware };
+function checkStatutMiddleware(req, res, next) {
+  const demandId = req.params.id;
+
+  const query = "SELECT Statut FROM demand WHERE Id = ?";
+  connection.query(query, [demandId], (error, results) => {
+    if (error) {
+      throw new Error(error);
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Demande non trouvée" });
+    }
+
+    const { Statut } = results[0];
+
+    if (
+      Statut === "VALIDE" ||
+      Statut === "MISE EN PLACE" ||
+      Statut === "ARCHIVE" ||
+      Statut === "QUARANTAINE"
+    ) {
+      return res
+        .status(403)
+        .json({ error: "Impossible de modifier cette demande" });
+    }
+
+    return next();
+  });
+}
+
+module.exports = {
+  checkDemandMiddleware,
+  checkStatutMiddleware,
+};

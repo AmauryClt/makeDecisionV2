@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import styles from "./AlgoNote.module.scss";
+import AlgoStatut from "./AlgoStatut";
 
-export default function AlgoNote({ notesByDemand }) {
+export default function AlgoNote({ notesByDemand, demandId }) {
   const calculateAverageNote = () => {
     if (notesByDemand.length === 0) return null;
 
@@ -41,6 +42,9 @@ export default function AlgoNote({ notesByDemand }) {
 
   return (
     <div>
+      <h4 className={styles.h4Block5}>Statut de la demande :</h4>
+      <AlgoStatut demandId={demandId} averageNote={averageNote} />
+      <h4 className={styles.h4Block5}>Avancement des votes :</h4>
       {notesByDemand.map((note) => (
         <div key={note.Id} />
       ))}
@@ -69,4 +73,5 @@ AlgoNote.propTypes = {
       DemandId: PropTypes.number.isRequired,
     })
   ).isRequired,
+  demandId: PropTypes.number.isRequired,
 };

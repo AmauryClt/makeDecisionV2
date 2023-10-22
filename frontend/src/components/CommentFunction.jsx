@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { useUser } from "../contexts/UserContext";
+import CommentForm from "./CommentPostFunction";
 import styles from "./commentFunction.module.scss";
 
 export default function CommentFunction({ demand, toastOptions }) {
   const [comments, setComments] = useState([]);
-  const { register, handleSubmit, reset } = useForm();
   const { user } = useUser();
   const [editCommentId, setEditCommentId] = useState(null);
   const [editedComment, setEditedComment] = useState("");
@@ -33,42 +32,6 @@ export default function CommentFunction({ demand, toastOptions }) {
     fetchComments();
   }, [demand.Id]);
 
-  const onSubmit = async (formData) => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/comments`,
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            ...formData,
-            DemandId: demand.Id,
-            UserId: user.Id,
-          }),
-        }
-      );
-
-      if (response.status === 201) {
-        toast.success("Commentaire enregistré avec succès", toastOptions);
-        reset();
-        fetchComments();
-        console.info("Le commentaire a été enregistré avec succès");
-      } else if (response.status === 403) {
-        toast.error(
-          "Impossible de laisser un commentaire sur cette demande",
-          toastOptions
-        );
-      }
-    } catch (error) {
-      console.error(
-        "Erreur lors de l'enregistrement du message :",
-        error.message
-      );
-    }
-  };
-
   const fetchPutComment = async (commentToEdit) => {
     try {
       const response = await fetch(
@@ -89,7 +52,6 @@ export default function CommentFunction({ demand, toastOptions }) {
       );
 
       if (response.status === 201) {
-        reset();
         fetchComments();
         console.info("Le commentaire a été enregistré avec succès");
       } else if (response.status === 403) {
@@ -151,19 +113,11 @@ export default function CommentFunction({ demand, toastOptions }) {
 
   return (
     <>
-      <form className={styles.commentPost} onSubmit={handleSubmit(onSubmit)}>
-        <textarea
-          className={styles.writeComment}
-          {...register("Comment")}
-          type="text"
-          name="Comment"
-          placeholder="Donne ton avis sur cette décision à prendre"
-          required
-        />
-        <button className={styles.commentButton} type="submit">
-          Submit
-        </button>
-      </form>
+      <CommentForm
+        demand={demand}
+        toastOptions={toastOptions}
+        fetchComments={fetchComments}
+      />
       <div className={styles.zoneComment}>
         {comments.map((comment) => (
           <div key={comment.Id}>

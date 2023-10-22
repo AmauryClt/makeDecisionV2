@@ -25,7 +25,6 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
     ) {
       navigate(`/demands/update/${demand.Id}`);
     } else {
-      // Vous pouvez afficher un message d'erreur ou prendre d'autres mesures ici
       toast.error(
         "L'accès à la mise à jour de la demande est interdit pour ce statut."
       );
@@ -134,11 +133,11 @@ export default function PopupPage({ demand, closePopup, toastOptions }) {
                   <br />
                   Fin des votes {deadline}
                 </p>
-                <h4 className={styles.h4Block5}>Statut de la demande :</h4>
-                <p className={styles.pBorder}>{demand.Statut}</p>
-                <h4 className={styles.h4Block5}>Avancement des votes :</h4>
-                <div className={styles.pBorder}>
-                  <AlgoNote notesByDemand={notesByDemand} />
+                <div>
+                  <AlgoNote
+                    demandId={demand.Id}
+                    notesByDemand={notesByDemand}
+                  />
                 </div>
                 <h4 className={styles.h4Block5}>Salarié Votant :</h4>
                 <MemberByVote demandId={demand.Id} />
